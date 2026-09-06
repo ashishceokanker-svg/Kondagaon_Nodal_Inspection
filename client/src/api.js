@@ -1,6 +1,7 @@
 // API Service with Supabase Cloud DB, Local Express Server & Offline LocalStorage Fallback
 
 import { supabase, isSupabaseConfigured } from './supabaseClient';
+import { DEFAULT_NODAL_OFFICERS } from './data/defaultOfficers';
 
 const API_BASE = '/api';
 
@@ -102,9 +103,23 @@ export const API = {
       console.warn('Backend server unreachable, using offline cached officers:', err);
     }
 
-    // 3. Fallback to LocalStorage Cache
+    // 3. Fallback to LocalStorage Cache or Embedded Default Officers (All 69 officers)
     const cached = localStorage.getItem('cached_officers');
-    return cached ? JSON.parse(cached) : [];
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      } catch (e) {
+        console.warn('Failed to parse cached_officers:', e);
+      }
+    }
+
+    try {
+      localStorage.setItem('cached_officers', JSON.stringify(DEFAULT_NODAL_OFFICERS));
+    } catch (e) {
+      console.warn('Could not seed default officers to cache', e);
+    }
+    return DEFAULT_NODAL_OFFICERS;
   },
 
   async login(credentials) {
@@ -186,23 +201,30 @@ export const API = {
       console.warn('Offline login fallback:', err);
     }
 
-    // 3. Fallback to LocalStorage Cached Officers
+    // 3. Fallback to LocalStorage Cached Officers or Default Officers
     const cached = localStorage.getItem('cached_officers');
+    let list = DEFAULT_NODAL_OFFICERS;
     if (cached) {
-      const list = JSON.parse(cached);
-      const found = list.find(o => 
-        (credentials.panchayat && (o.panchayat === credentials.panchayat || (o.panchayats && o.panchayats.includes(credentials.panchayat)))) ||
-        (credentials.officerId && o.id === credentials.officerId) ||
-        (credentials.mobile && o.mobile === credentials.mobile.trim())
-      );
-      if (found) {
-        if (credentials.password && credentials.password.trim() === (found.mobile || '').trim()) {
-          const officerWithMonth = { ...found, selectedMonth: credentials.month || 'सितम्बर 2026' };
-          localStorage.setItem('current_officer', JSON.stringify(officerWithMonth));
-          return { success: true, officer: officerWithMonth };
-        } else {
-          return { success: false, message: 'गलत पासवर्ड! आपका पासवर्ड आपका पंजीकृत 10 अंकों का मोबाइल नंबर है।' };
-        }
+      try {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length > 0) list = parsed;
+      } catch (e) {
+        console.warn('Fallback parse error:', e);
+      }
+    }
+
+    const found = list.find(o => 
+      (credentials.panchayat && (o.panchayat === credentials.panchayat || (o.panchayats && o.panchayats.includes(credentials.panchayat)))) ||
+      (credentials.officerId && o.id === credentials.officerId) ||
+      (credentials.mobile && o.mobile === credentials.mobile.trim())
+    );
+    if (found) {
+      if (credentials.password && credentials.password.trim() === (found.mobile || '').trim()) {
+        const officerWithMonth = { ...found, selectedMonth: credentials.month || 'सितम्बर 2026' };
+        localStorage.setItem('current_officer', JSON.stringify(officerWithMonth));
+        return { success: true, officer: officerWithMonth };
+      } else {
+        return { success: false, message: 'गलत पासवर्ड! आपका पासवर्ड आपका पंजीकृत 10 अंकों का मोबाइल नंबर है।' };
       }
     }
 
@@ -277,17 +299,34 @@ export const API = {
 
     // Update cache
     const cached = localStorage.getItem('cached_officers');
+    let list = DEFAULT_NODAL_OFFICERS;
     if (cached) {
-      const list = JSON.parse(cached).filter(o => o.id !== id);
-      localStorage.setItem('cached_officers', JSON.stringify(list));
+      try {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length > 0) list = parsed;
+      } catch (e) {
+        console.warn('Cache parse error in delete:', e);
+      }
     }
+    list = list.filter(o => o.id !== id);
+    localStorage.setItem('cached_officers', JSON.stringify(list));
     return { success: true, message: 'अधिकारी सफलतापूर्वक हटा दिया गया।' };
   },
 
   _updateCachedOfficer(officer) {
     try {
       const cached = localStorage.getItem('cached_officers');
-      let list = cached ? JSON.parse(cached) : [];
+      let list = DEFAULT_NODAL_OFFICERS;
+      if (cached) {
+        try {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed) && parsed.length > 0) list = parsed;
+        } catch (e) {
+          console.warn('Cache parse error in update:', e);
+        }
+      } else {
+        list = [...DEFAULT_NODAL_OFFICERS];
+      }
       const idx = list.findIndex(o => o.id === officer.id);
       if (idx >= 0) list[idx] = officer;
       else list.push(officer);
