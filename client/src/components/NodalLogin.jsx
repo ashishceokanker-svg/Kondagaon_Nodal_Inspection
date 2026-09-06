@@ -325,11 +325,8 @@ export default function NodalLogin({ onLoginSuccess }) {
           ) : (
             /* 2. ADMIN LOGIN FORM */
             <form onSubmit={handleAdminLogin} className="space-y-4">
-              <div className="bg-amber-50 p-3 rounded-xl border border-amber-200 text-amber-900 text-xs">
-                <span className="font-bold">प्रशासक लॉगिन (District Admin):</span>
-                <p className="text-[11px] text-amber-800 mt-0.5">
-                  एडमिन के रूप में लॉगिन करके आप सभी 49 ग्राम पंचायतों के आंकड़े एवं संपूर्ण गोसवारा रिपोर्ट देख व डाउनलोड कर सकते हैं।
-                </p>
+              <div className="bg-amber-50 p-2.5 rounded-xl border border-amber-200 text-amber-900 text-xs font-bold">
+                प्रशासक लॉगिन (District Admin)
               </div>
 
               <div>

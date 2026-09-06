@@ -220,7 +220,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
           <div className="pt-3 border-t border-slate-100 text-xs space-y-2">
             <div className="flex items-center gap-2">
               <span className="bg-amber-100 text-amber-950 border border-amber-300 font-bold px-2 py-0.5 rounded text-[11px]">
-                🛡️ एडमिन दृश्य (Admin View) — समस्त विकासखण्ड एवं सभी 49+ ग्राम पंचायतें
+                🛡️ एडमिन दृश्य (Admin View)
               </span>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
