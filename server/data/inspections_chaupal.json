@@ -1,0 +1,67 @@
+[
+  {
+    "officerId": "off-1",
+    "officerName": "श्री लखेश्वर यादव",
+    "block": "बड़ेराजपुर",
+    "panchayat": "बाँसकोट",
+    "month": "सितम्बर 2026",
+    "date": "2026-09-06",
+    "chaupalDate": "2026-09-06",
+    "villagersPresentCount": 65,
+    "grievancesReceived": 12,
+    "grievancesResolved": 8,
+    "inspectionSummary": "ग्राम चौपाल में 21 विभागों के कार्यों की समीक्षा की गई एवं ग्रामीणों के आवेदनों का निराकरण किया गया।",
+    "id": "CHA-1788696221944-9f50",
+    "createdAt": "2026-09-06T12:03:41.944Z"
+  },
+  {
+    "date": "2026-09-05",
+    "officerId": "off-01",
+    "officerName": "श्री आर. के. शर्मा",
+    "officerDesignation": "नायब तहसीलदार",
+    "officerMobile": "9876543210",
+    "block": "बड़ेराजपुर",
+    "district": "कोण्डागांव",
+    "panchayat": "कोरीगांव",
+    "village": "कोरीगांव",
+    "dependentVillage": "जामगांव",
+    "populationTotal": "840",
+    "sectors": {
+      "school": {
+        "building": "भवन अच्छा"
+      },
+      "anganwadi": {
+        "status": "क्रियाशील"
+      },
+      "pds": {
+        "status": "नियमित वितरण"
+      },
+      "health": {
+        "status": "क्रियाशील"
+      },
+      "jjm": {
+        "status": "कार्य पूर्ण"
+      },
+      "electricity": {
+        "status": "नियमित आपूर्ति"
+      },
+      "road": {
+        "requirement": "पारा चौक से स्कूल तक 500 मीटर सीसी रोड आवश्यक"
+      },
+      "veterinary": {
+        "pmKisanBenefit": "हाँ"
+      },
+      "pmay": {
+        "surveyStatus": "पूर्ण"
+      },
+      "mgnrega": {
+        "paymentStatus": "नियमित"
+      }
+    },
+    "complaints": "पारा टोला में पेयजल पाइपलाइन एक्सटेंशन एवं नवीन हैंडपंप खनन की ग्रामीणों द्वारा मांग की गई।",
+    "sarpanchName": "श्री जयपाल सोरी",
+    "status": "जमा किया गया (पूर्ण)",
+    "id": "CHA-1788693484209-3431",
+    "createdAt": "2026-09-06T11:18:04.209Z"
+  }
+]

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">कोण्डागांव नोडल निरीक्षण</string>
+    <string name="title_activity_main">कोण्डागांव नोडल निरीक्षण</string>
+    <string name="package_name">in.gov.cg.kondagaon.nodal</string>
+    <string name="custom_url_scheme">in.gov.cg.kondagaon.nodal</string>
+</resources>

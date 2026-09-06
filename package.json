@@ -1,0 +1,26 @@
+{
+  "name": "nodal-inspection-app",
+  "version": "1.0.0",
+  "description": "नोडल अधिकारी निरीक्षण एवं गोसवारा रिपोर्ट मोबाइल ऍप (कोण्डागांव)",
+  "scripts": {
+    "start": "node server/server.js",
+    "server": "node server/server.js",
+    "client": "cd client && npm run dev",
+    "build": "cd client && npm run build"
+  },
+  "keywords": [
+    "nodal",
+    "inspection",
+    "goswara",
+    "chhattisgarh",
+    "kondagaon",
+    "anganwadi",
+    "school",
+    "hostel",
+    "pds",
+    "chaupal",
+    "health"
+  ],
+  "author": "District Administration / Nodal Portal",
+  "license": "ISC"
+}

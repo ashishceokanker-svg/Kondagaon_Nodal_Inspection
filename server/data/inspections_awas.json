@@ -1,0 +1,48 @@
+[
+  {
+    "officerId": "off-1",
+    "officerName": "श्री लखेश्वर यादव",
+    "block": "बड़ेराजपुर",
+    "panchayat": "बाँसकोट",
+    "month": "सितम्बर 2026",
+    "date": "2026-09-06",
+    "beneficiaryName": "श्री बुधराम",
+    "sanctionYear": "2023-24",
+    "stage": "पूर्ण",
+    "amountReceived": "120000",
+    "inspectionSummary": "आवास पूर्ण एवं हितग्राही सपरिवार निवासरत है।",
+    "id": "AWA-1788696221935-d8cf",
+    "createdAt": "2026-09-06T12:03:41.935Z"
+  },
+  {
+    "date": "2026-09-05",
+    "officerId": "off-01",
+    "officerName": "श्री आर. के. शर्मा",
+    "officerDesignation": "नायब तहसीलदार",
+    "officerMobile": "9876543210",
+    "block": "बड़ेराजपुर",
+    "district": "कोण्डागांव",
+    "panchayat": "विश्रामपुरी",
+    "village": "विश्रामपुरी",
+    "beneficiaryName": "श्री फागूराम नेताम",
+    "fatherName": "स्व. सुकलू नेताम",
+    "category": "ST",
+    "beneficiaryId": "CG081002345",
+    "installmentAmount": "40,000/- (द्वितीय किश्त)",
+    "installmentDate": "2026-08-20",
+    "fundUtilization": "उचित उपयोग किया गया",
+    "currentStage": "लिंटल स्तर (Lintel Level)",
+    "materials": {
+      "bricks": "उपलब्ध (2500 नग)",
+      "sand": "1 ट्रैक्टर",
+      "cement": "8 बोरी",
+      "steel": "1.5 क्विंटल",
+      "aggregate": "1 ट्रैक्टर",
+      "other": "पानी सुलभ"
+    },
+    "remarks": "कार्य तीव्र गति से प्रगतिरत है। छत स्तर हेतु निर्माण सामग्री स्थल पर मौजूद है। तृतीय किश्त जारी करने की अनुशंसा की जाती है।",
+    "status": "जमा किया गया (पूर्ण)",
+    "id": "AWA-1788693484211-77dc",
+    "createdAt": "2026-09-06T11:18:04.211Z"
+  }
+]

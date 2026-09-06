@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Production builds
+dist/
+client/dist/
+
+# Android build outputs & caches
+.gradle/
+client/android/.gradle/
+client/android/build/
+client/android/app/build/
+client/android/capacitor-android/build/
+client/android/capacitor-cordova-android-plugins/build/
+client/android/custom_cacerts
+
+# Environment secrets
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# System & temporary files
+.DS_Store
+Thumbs.db
+scratch/

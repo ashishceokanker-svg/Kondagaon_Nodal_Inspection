@@ -1,0 +1,83 @@
+[
+  {
+    "officerId": "off-1",
+    "officerName": "श्री लखेश्वर यादव",
+    "officerDesignation": "डिप्टी कलेक्टर",
+    "officerMobile": "7000680294",
+    "block": "बड़ेराजपुर",
+    "panchayat": "बाँसकोट",
+    "month": "सितम्बर 2026",
+    "date": "2026-09-06",
+    "centerName": "आंगनबाड़ी केंद्र बाँसकोट-1",
+    "workerName": "सुश्री अनिता",
+    "workerMobile": "9876543210",
+    "beneficiaries": {
+      "age06m3y": "15",
+      "age3y6y": "20",
+      "pregnant": "5",
+      "lactating": "4",
+      "total": "44"
+    },
+    "timelyOpened": "हां",
+    "weightMachineWorking": "हां",
+    "cleanDrinkingWater": "हां",
+    "toiletCleanFunctional": "हां",
+    "inspectionSummary": "आंगनबाड़ी केंद्र सुचारु रूप से संचालित पाया गया। पोषण आहार उपलब्ध है।",
+    "id": "ANG-1788696221871-ba8e",
+    "createdAt": "2026-09-06T12:03:41.872Z"
+  },
+  {
+    "date": "2026-09-04",
+    "officerId": "off-02",
+    "officerName": "श्रीमती अनीता मरकाम",
+    "officerDesignation": "विकासखंड शिक्षा अधिकारी (BEO)",
+    "officerMobile": "9827112233",
+    "block": "बड़ेराजपुर",
+    "district": "कोण्डागांव",
+    "panchayat": "बांसकोट",
+    "centerName": "आंगनबाड़ी केन्द्र बांसकोट-02",
+    "workerName": "सुश्री प्रमिला शोरी",
+    "workerMobile": "9425099887",
+    "beneficiaries": {
+      "age06m3y": "14",
+      "age3y6y": "19",
+      "pregnant": "5",
+      "lactating": "5",
+      "adolescentGirls": "3",
+      "total": "46",
+      "remarks": "वजन एवं ऊंचाई मापन नियमित।"
+    },
+    "rationStatus": "नियमित",
+    "remarks": "भवन अच्छा है। पेयजल हेतु बोरवेल रनिंग है।",
+    "status": "जमा किया गया (पूर्ण)",
+    "id": "ANG-1788693484204-dd55",
+    "createdAt": "2026-09-06T11:18:04.204Z"
+  },
+  {
+    "date": "2026-09-02",
+    "officerId": "off-01",
+    "officerName": "श्री आर. के. शर्मा",
+    "officerDesignation": "नायब तहसीलदार",
+    "officerMobile": "9876543210",
+    "block": "बड़ेराजपुर",
+    "district": "कोण्डागांव",
+    "panchayat": "विश्रामपुरी",
+    "centerName": "आंगनबाड़ी केन्द्र विश्रामपुरी-01",
+    "workerName": "श्रीमती मंगली बाई",
+    "workerMobile": "9827011223",
+    "beneficiaries": {
+      "age06m3y": "18",
+      "age3y6y": "22",
+      "pregnant": "6",
+      "lactating": "7",
+      "adolescentGirls": "4",
+      "total": "57",
+      "remarks": "कुपोषण दर में 12% की कमी पाई गई।"
+    },
+    "rationStatus": "नियमित वितरण",
+    "remarks": "केन्द्र स्वच्छ है। गरम पका भोजन नियमित रूप से दिया जा रहा है। पोषण ट्रैकर ऐप नियमित रूप से अपडेट किया जा रहा है।",
+    "status": "जमा किया गया (पूर्ण)",
+    "id": "ANG-1788693484199-2cd3",
+    "createdAt": "2026-09-06T11:18:04.200Z"
+  }
+]
