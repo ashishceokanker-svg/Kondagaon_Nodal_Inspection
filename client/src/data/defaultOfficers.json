@@ -1708,11 +1708,319 @@
     "is_active": true
   },
   {
-    "id": "off-56",
+    "id": "nodal-kesh-1",
     "sno": 1,
-    "name": "श्री रवि कुमार सोरी",
+    "name": "सुश्री आकांक्षा नायक",
+    "designation": "एसडीएम, केशकाल",
+    "mobile": "9713289788",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "खालेमुरवेण्ड",
+    "panchayats": [
+      "खालेमुरवेण्ड"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-2",
+    "sno": 2,
+    "name": "श्री किशोर शर्मा",
+    "designation": "डिप्टी कलेक्टर, जिला कोण्डागांव",
+    "mobile": "9340602771",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "तोषकापाल",
+    "panchayats": [
+      "तोषकापाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-3",
+    "sno": 3,
+    "name": "श्री आर.के. ध्रुव",
+    "designation": "जिला परिवहन अधिकारी",
+    "mobile": "9425206215",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "सिवनीपाल",
+    "panchayats": [
+      "सिवनीपाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-4",
+    "sno": 4,
+    "name": "श्री डिगेश कुमार देवांगन",
+    "designation": "जिला आबकारी अधिकारी",
+    "mobile": "9131502113",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "धनोरा",
+    "panchayats": [
+      "धनोरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-5",
+    "sno": 5,
+    "name": "श्री अनुराग सिन्हा",
+    "designation": "मु.का.अ. ज.पं. केशकाल",
+    "mobile": "7999637681",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "कोहकामेटा",
+    "panchayats": [
+      "कोहकामेटा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-6",
+    "sno": 6,
+    "name": "श्री देवेन्द्र सोरी",
+    "designation": "सहायक संचालक, जिला योजना एवं सांख्यिकी",
+    "mobile": "7909409112",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "प्रधानचेर्रा",
+    "panchayats": [
+      "प्रधानचेर्रा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-7",
+    "sno": 7,
+    "name": "श्री विरेन्द्र तांडेकर",
+    "designation": "प्रबंधक, जिला व्यापार एवम उद्योग केंद्र कोंडागांव/केशकाल",
+    "mobile": "7470856404",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "बदवर",
+    "panchayats": [
+      "बदवर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-8",
+    "sno": 8,
+    "name": "श्री जीवन लाल माहला",
+    "designation": "अधीक्षण अभियंता लो.स्वा.यां., कोण्डागांव मण्डल कोण्डागांव",
+    "mobile": "9406252595",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "डुण्डाबेड़मा",
+    "panchayats": [
+      "डुण्डाबेड़मा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-9",
+    "sno": 9,
+    "name": "श्री नवीन श्रीवास्तव",
+    "designation": "सहायक खाद्य अधिकारी",
+    "mobile": "9407781390",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "सिंगनपुर",
+    "panchayats": [
+      "सिंगनपुर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-10",
+    "sno": 10,
+    "name": "श्री नितेशराज खोब्रागढ़े",
+    "designation": "अनुविभागीय अधिकारी जल संसाधन विभाग केशकाल",
+    "mobile": "8770889079",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "कुंए",
+    "panchayats": [
+      "कुंए"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-11",
+    "sno": 11,
+    "name": "श्री नामेश्वर कुमार कावड़े",
+    "designation": "सी.एम.ओ. केशकाल",
+    "mobile": "7000401093",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "नवागढ़",
+    "panchayats": [
+      "नवागढ़"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-12",
+    "sno": 12,
+    "name": "श्री गणेश सिदार",
+    "designation": "तहसीलदार, केशकाल",
+    "mobile": "9131684694",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "एटेकोन्हाडी",
+    "panchayats": [
+      "एटेकोन्हाडी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-13",
+    "sno": 13,
+    "name": "श्री सुधीर रावल",
+    "designation": "तहसीलदार, धनोरा",
+    "mobile": "7987802810",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "गौरगांव",
+    "panchayats": [
+      "गौरगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-14",
+    "sno": 14,
+    "name": "श्री कंवलसिंह पोया",
+    "designation": "विकासखण्ड शिक्षा अधिकारी, केशकाल",
+    "mobile": "6264062347",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "गारावण्डी",
+    "panchayats": [
+      "गारावण्डी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-15",
+    "sno": 15,
+    "name": "डॉ. देवेन्द्र कुमार बिसेन",
+    "designation": "खण्ड चिकित्सा अधिकारी, सीएचसी केशकाल",
+    "mobile": "9893817057",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "हिचका",
+    "panchayats": [
+      "हिचका"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-16",
+    "sno": 16,
+    "name": "श्री मनकर बोगा",
+    "designation": "उप अभियंता, लो.नि.वि.",
+    "mobile": "6264894546",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "सालेभाट",
+    "panchayats": [
+      "सालेभाट"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-17",
+    "sno": 17,
+    "name": "श्री नरसिंह नेताम",
+    "designation": "सहा.प.चि.क्षे.अधि DMF",
+    "mobile": "9302602204",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "ढोढेरापाल",
+    "panchayats": [
+      "ढोढेरापाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-18",
+    "sno": 18,
+    "name": "श्री सुमंत्र कुमार साहू",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "8109187710",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "चिपरेल",
+    "panchayats": [
+      "चिपरेल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-19",
+    "sno": 19,
+    "name": "श्री ललित कावड़े",
     "designation": "विकास विस्तार अधिकारी, केशकाल",
-    "mobile": "9425251101",
+    "mobile": "8719848539",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "होनहेड़",
+    "panchayats": [
+      "होनहेड़"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-20",
+    "sno": 20,
+    "name": "श्री जे.एम.एस. सेम्हरा",
+    "designation": "उप अभियंता, लो.नि.वि. केशकाल",
+    "mobile": "9755819527",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "उमरादाह",
+    "panchayats": [
+      "उमरादाह"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-21",
+    "sno": 21,
+    "name": "श्री डी०एन०गावड़े",
+    "designation": "उपअभियंता लो.नि.वि. केशकाल",
+    "mobile": "8251995077",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "माड़गांव",
+    "panchayats": [
+      "माड़गांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-22",
+    "sno": 22,
+    "name": "डॉ. चार्ली पोर्ते",
+    "designation": "पशु चिकित्सा सहायक शल्यज्ञ",
+    "mobile": "8319852463",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "रावबेड़ा",
+    "panchayats": [
+      "रावबेड़ा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-23",
+    "sno": 23,
+    "name": "डॉ. कस्तुरी प्रधान",
+    "designation": "पशु चिकित्सा सहायक शल्यज्ञ",
+    "mobile": "8878819965",
     "block": "केशकाल",
     "district": "कोण्डागांव",
     "panchayat": "बटराली",
@@ -1722,11 +2030,445 @@
     "is_active": true
   },
   {
-    "id": "off-57",
-    "sno": 2,
-    "name": "श्री सुरेश मण्डावी",
-    "designation": "सहायक प्राध्यापक, केशकाल",
-    "mobile": "9425251102",
+    "id": "nodal-kesh-24",
+    "sno": 24,
+    "name": "श्री गिरजाशंकर साहू",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "7693077442",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "गढ़धनोरा",
+    "panchayats": [
+      "गढ़धनोरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-25",
+    "sno": 25,
+    "name": "श्री महेश कुमार साहू",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "9399221684",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "जामगांव",
+    "panchayats": [
+      "जामगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-26",
+    "sno": 26,
+    "name": "श्री वरुण विकास सोनवानी",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "7000787717",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "कोदोभाट",
+    "panchayats": [
+      "कोदोभाट"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-27",
+    "sno": 27,
+    "name": "श्री डी. के. कश्यप",
+    "designation": "एस.डी.ओ. एग्रीकल्चर",
+    "mobile": "8319972182",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "सिदावण्ड",
+    "panchayats": [
+      "सिदावण्ड"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-28",
+    "sno": 28,
+    "name": "श्रीमती पूनम सोनवानी",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "7999716326",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "गुड़ीपारा",
+    "panchayats": [
+      "गुड़ीपारा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-29",
+    "sno": 29,
+    "name": "श्रीमती सरोजबाला नेताम",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "7389414773",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "अड़ेंगा",
+    "panchayats": [
+      "अड़ेंगा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-30",
+    "sno": 30,
+    "name": "श्री मोहम्मद नवाज",
+    "designation": "उ.वि.अधि.केशकाल",
+    "mobile": "9589560235",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "डोहलापारा",
+    "panchayats": [
+      "डोहलापारा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-31",
+    "sno": 31,
+    "name": "श्री दिनेश कुमार नाग",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "9406110112",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "बाण्डापारा",
+    "panchayats": [
+      "बाण्डापारा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-32",
+    "sno": 32,
+    "name": "सुश्री नोमेश्वरी दीवान",
+    "designation": "मत्स्य निरीक्षक, केशकाल",
+    "mobile": "6268912501",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "ठाकुरपारा",
+    "panchayats": [
+      "ठाकुरपारा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-33",
+    "sno": 33,
+    "name": "श्री दिलीप कुमार कुलदीप",
+    "designation": "सहा.प.चि.क्षे.अधि",
+    "mobile": "9993292174",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "निराछिन्दली",
+    "panchayats": [
+      "निराछिन्दली"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-34",
+    "sno": 34,
+    "name": "श्री ओंकार सिंह कंवर",
+    "designation": "सहायक अभियंता, लो.नि.वि., केशकाल",
+    "mobile": "9425259321",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "उन्दरी",
+    "panchayats": [
+      "उन्दरी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-35",
+    "sno": 35,
+    "name": "श्रीमती ज्ञाना मंडावी",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "8839573258",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "गुलबापारा",
+    "panchayats": [
+      "गुलबापारा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-36",
+    "sno": 36,
+    "name": "श्रीमती रूकमणी सिन्हा",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9993195625",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "गारका",
+    "panchayats": [
+      "गारका"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-37",
+    "sno": 37,
+    "name": "श्री सुमन राम साहू",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "6260928296",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "बंधापारा",
+    "panchayats": [
+      "बंधापारा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-38",
+    "sno": 38,
+    "name": "श्री अभिषेक राठौर",
+    "designation": "कार्यक्रम अधिकारी, वीबीजीरामजी",
+    "mobile": "8319141232",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "टाटीरास",
+    "panchayats": [
+      "टाटीरास"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-39",
+    "sno": 39,
+    "name": "श्री राजीव कुमार सिंह",
+    "designation": "उप अभियंता, आरईएस केशकाल",
+    "mobile": "9429382029",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "आंवरी",
+    "panchayats": [
+      "आंवरी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-40",
+    "sno": 40,
+    "name": "श्री टारजन साहू",
+    "designation": "उप अभियंता, आरईएस केशकाल",
+    "mobile": "9981028141",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "कोरकोटी",
+    "panchayats": [
+      "कोरकोटी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-41",
+    "sno": 41,
+    "name": "श्रीमती ज्ञाना मण्डावी",
+    "designation": "परि.अधि., एकी.बा.वि.परि., केशकाल",
+    "mobile": "8839573258",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "करमरी",
+    "panchayats": [
+      "करमरी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-42",
+    "sno": 42,
+    "name": "श्री उमेश सिंह मरकाम",
+    "designation": "बीपीएम रा.स्वा.मि., सीएचसी केशकाल",
+    "mobile": "9691078360",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "बड़ेखौली",
+    "panchayats": [
+      "बड़ेखौली"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-43",
+    "sno": 43,
+    "name": "श्रीमती यानेश्वरी",
+    "designation": "सहा.प.चि.क्षे.अधि",
+    "mobile": "7587293927",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "पड़डे",
+    "panchayats": [
+      "पड़डे"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-44",
+    "sno": 44,
+    "name": "श्री राजेन्द्र मण्डावी",
+    "designation": "वरि.उ.वि.अधिकारी केशकाल उद्यान विभाग",
+    "mobile": "9479174093",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "तोड़ासी",
+    "panchayats": [
+      "तोड़ासी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-45",
+    "sno": 45,
+    "name": "श्रीमती राजेश्वरी प्रधान",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9407748133",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "ईरागांव",
+    "panchayats": [
+      "ईरागांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-46",
+    "sno": 46,
+    "name": "श्री सूर्याकांत नागेश",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "9131718803",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "चुरेगांव",
+    "panchayats": [
+      "चुरेगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-47",
+    "sno": 47,
+    "name": "श्री गुलशन नन्द ठाकुर",
+    "designation": "फ़ूड इंस्पेक्टर, केशकाल",
+    "mobile": "7000553542",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "कानागांव",
+    "panchayats": [
+      "कानागांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-48",
+    "sno": 48,
+    "name": "श्री तोरण सिंह वर्मा",
+    "designation": "मण्डल संयोजक वि०ख०केशकाल",
+    "mobile": "9755863133",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "कलेपाल",
+    "panchayats": [
+      "कलेपाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-49",
+    "sno": 49,
+    "name": "श्री अनिल मरापी",
+    "designation": "सहा.प.चि.क्षे.अधि DMF, पशु औषधालय",
+    "mobile": "6266982662",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "बिन्झे",
+    "panchayats": [
+      "बिन्झे"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-50",
+    "sno": 50,
+    "name": "श्री आशीष अग्निहोत्री",
+    "designation": "एसडीओ, आरईएस/प्रभारी ईई आरईएस केशकाल",
+    "mobile": "7693989154",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "कर्रारमेटा",
+    "panchayats": [
+      "कर्रारमेटा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-51",
+    "sno": 51,
+    "name": "श्री रविप्रकाश जोशी",
+    "designation": "सहा.अभि. लोक स्वास्थ्य यांत्रिकी उपखण्ड, केशकाल",
+    "mobile": "8839525367",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "भाटगांव",
+    "panchayats": [
+      "भाटगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-52",
+    "sno": 52,
+    "name": "श्री हरिश मण्डावी",
+    "designation": "बीपीएम, एनआरएलम केशकाल",
+    "mobile": "6265054520",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "सवाला",
+    "panchayats": [
+      "सवाला"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-53",
+    "sno": 53,
+    "name": "श्री मेहतर राम नेताम",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "8839526104",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "बनियागांव",
+    "panchayats": [
+      "बनियागांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-54",
+    "sno": 54,
+    "name": "डॉ. सीमा मण्डावी",
+    "designation": "पशु चिकित्सा सहायक शल्यज्ञ",
+    "mobile": "6260824107",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "सिलाटी",
+    "panchayats": [
+      "सिलाटी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-55",
+    "sno": 55,
+    "name": "श्री देवनाथ पोयाम",
+    "designation": "उपअभियंता, जल संसाधन विभाग",
+    "mobile": "9340902654",
     "block": "केशकाल",
     "district": "कोण्डागांव",
     "panchayat": "अरण्डी",
@@ -1736,53 +2478,1285 @@
     "is_active": true
   },
   {
-    "id": "off-58",
-    "sno": 3,
-    "name": "सुश्री नीता नेताम",
-    "designation": "करारोपण अधिकारी, केशकाल",
-    "mobile": "9425251103",
+    "id": "nodal-kesh-56",
+    "sno": 56,
+    "name": "श्री गुलशन गावड़े",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "8103471331",
     "block": "केशकाल",
     "district": "कोण्डागांव",
-    "panchayat": "तमोरा",
+    "panchayat": "तेन्दूभाटा",
     "panchayats": [
-      "तमोरा"
+      "तेन्दूभाटा"
     ],
     "is_active": true
   },
   {
-    "id": "off-59",
-    "sno": 4,
-    "name": "श्री जितेन्द्र कुमार",
-    "designation": "उप अभियंता, केशकाल",
-    "mobile": "9425251104",
+    "id": "nodal-kesh-57",
+    "sno": 57,
+    "name": "श्री नितेश घोष",
+    "designation": "सहायक अभियंता क्रेडा",
+    "mobile": "6263094804",
     "block": "केशकाल",
     "district": "कोण्डागांव",
-    "panchayat": "दादरगढ़",
+    "panchayat": "डुमरपदर",
     "panchayats": [
-      "दादरगढ़"
+      "डुमरपदर"
     ],
     "is_active": true
   },
   {
-    "id": "off-60",
-    "sno": 5,
-    "name": "श्री रमेश पोयाम",
-    "designation": "कृषि विकास अधिकारी, केशकाल",
-    "mobile": "9425251105",
+    "id": "nodal-kesh-58",
+    "sno": 58,
+    "name": "श्रीमती कमितला मण्डावी",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "7974548606",
     "block": "केशकाल",
     "district": "कोण्डागांव",
-    "panchayat": "सुरदोंग",
+    "panchayat": "बेड़मा",
     "panchayats": [
-      "सुरदोंग"
+      "बेड़मा"
     ],
     "is_active": true
   },
   {
-    "id": "off-66",
+    "id": "nodal-kesh-59",
+    "sno": 59,
+    "name": "श्री संतुराम सोरी",
+    "designation": "वरिष्ठ कृषि विकास अधिकारी",
+    "mobile": "9691970508",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "सिकागांव",
+    "panchayats": [
+      "सिकागांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-60",
+    "sno": 60,
+    "name": "श्री बी.एस. राणा",
+    "designation": "सहा.प.चि.क्षे.अधि,पशु औषधालय",
+    "mobile": "9993292118",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "पीपरा",
+    "panchayats": [
+      "पीपरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-61",
+    "sno": 61,
+    "name": "श्री रामनाथ नाग",
+    "designation": "करारोपण अधिकारी, ज.पं. केशकाल",
+    "mobile": "7974567684",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "बड़ेठेमली",
+    "panchayats": [
+      "बड़ेठेमली"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-62",
+    "sno": 62,
+    "name": "श्री घनश्याम प्रसाद ब्रम्हे",
+    "designation": "कार्यपालन अधिकारी, अन्त्यवसायी",
+    "mobile": "7067368314",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "आंवराभाटा",
+    "panchayats": [
+      "आंवराभाटा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-63",
+    "sno": 63,
+    "name": "श्रीमती शारदा लहरे",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9907817091",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "खुटपदर",
+    "panchayats": [
+      "खुटपदर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-64",
+    "sno": 64,
+    "name": "श्रीमती रेणुका सिंह",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9752315084",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "बहीगांव",
+    "panchayats": [
+      "बहीगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-65",
+    "sno": 65,
+    "name": "श्री नवलराम मरकाम",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "7067852620",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "मस्सूकोकोड़ा",
+    "panchayats": [
+      "मस्सूकोकोड़ा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-66",
+    "sno": 66,
+    "name": "श्री भूपेन्द्र सिंह नाग",
+    "designation": "वि.स.एसबीएम,ज.पं. केशकाल",
+    "mobile": "9770028303",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "खेतरपाल",
+    "panchayats": [
+      "खेतरपाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-67",
+    "sno": 67,
+    "name": "सुश्री नरेशबती नेताम",
+    "designation": "क्षेत्रीय समन्वयक, एनआरएलम केशकाल",
+    "mobile": "7828796716",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "चारभाटा",
+    "panchayats": [
+      "चारभाटा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-68",
+    "sno": 68,
+    "name": "सुश्री मनीषा नेताम",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "7987229714",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "पलोरा",
+    "panchayats": [
+      "पलोरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kesh-69",
+    "sno": 69,
+    "name": "श्री आर.के. शुक्ला",
+    "designation": "अधीक्षण अभियंता, पीएचई",
+    "mobile": "9406468651",
+    "block": "केशकाल",
+    "district": "कोण्डागांव",
+    "panchayat": "नयानार",
+    "panchayats": [
+      "नयानार"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-1",
     "sno": 1,
-    "name": "श्री महेन्द्र कुमार जैन",
-    "designation": "विकास विस्तार अधिकारी, कोंडागांव",
-    "mobile": "9425253101",
+    "name": "सुश्री रश्मि पोया",
+    "designation": "डिप्टी कलेक्टर, जिला कोण्डागांव",
+    "mobile": "9575451132",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "खड़का",
+    "panchayats": [
+      "खड़का"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-2",
+    "sno": 2,
+    "name": "सुश्री भारती प्रधान",
+    "designation": "जिला शिक्षा अधिकारी",
+    "mobile": "9407770077",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बेतबेड़ा",
+    "panchayats": [
+      "बेतबेड़ा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-3",
+    "sno": 3,
+    "name": "श्रीमती रेणु प्रकाश",
+    "designation": "जिला कार्यक्रम अधिकारी, म.बा.वि.वि.",
+    "mobile": "9926422577",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बादालूर",
+    "panchayats": [
+      "बादालूर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-4",
+    "sno": 4,
+    "name": "श्री प्रमोद कुमार नेताम",
+    "designation": "उपअभियंता, लो.नि.वि.",
+    "mobile": "7999342289",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "खण्डाम",
+    "panchayats": [
+      "खण्डाम"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-5",
+    "sno": 5,
+    "name": "श्रीमती भावना माहलवार",
+    "designation": "डी.पी.एम. स्वास्थ्य विभाग",
+    "mobile": "9907347676",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "पलारी",
+    "panchayats": [
+      "पलारी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-6",
+    "sno": 6,
+    "name": "डॉ. पी. एल. मंडावी",
+    "designation": "सिविल सर्जन सह मुख्य अस्पताल अधीक्षक, जिला चिकित्सालय कोण्डागांव",
+    "mobile": "9424108534",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "नवागांव",
+    "panchayats": [
+      "नवागांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-7",
+    "sno": 7,
+    "name": "श्री झम्मन लाल वर्मा",
+    "designation": "जिला महामारी, विशेषज्ञ",
+    "mobile": "9131471722",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "पुसपाल",
+    "panchayats": [
+      "पुसपाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-8",
+    "sno": 8,
+    "name": "श्रीमती कुसुमलता नेताम",
+    "designation": "प्रबंधक, जिला व्यापार एवम उद्योग केंद्र कोंडागांव",
+    "mobile": "6261547378",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "गोलावण्ड",
+    "panchayats": [
+      "गोलावण्ड"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-9",
+    "sno": 9,
+    "name": "श्री उत्तम महोबिया",
+    "designation": "मु.का.अ. ज.पं. कोण्डागांव",
+    "mobile": "9826720648",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "नरिहा",
+    "panchayats": [
+      "नरिहा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-10",
+    "sno": 10,
+    "name": "श्री इमरान खान",
+    "designation": "जिला सलाहकार वीबीडी",
+    "mobile": "9425227860",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "मयूरडोंगर",
+    "panchayats": [
+      "मयूरडोंगर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-11",
+    "sno": 11,
+    "name": "श्री मनोज कुमार रावटे",
+    "designation": "तहसीलदार, तहसील कार्यालय कोंडागांव",
+    "mobile": "9479095587",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "माकड़ी",
+    "panchayats": [
+      "माकड़ी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-12",
+    "sno": 12,
+    "name": "श्री नरेन्द्र सिंह",
+    "designation": "नायब तहसीलदार, कार्यालय कोंडागांव",
+    "mobile": "8817499522",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "चेरंग",
+    "panchayats": [
+      "चेरंग"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-13",
+    "sno": 13,
+    "name": "कु. ऐश्वर्या लक्ष्मी ठाकुर",
+    "designation": "उप अभियंता, लो.नि.वि.",
+    "mobile": "7415101130",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बफना",
+    "panchayats": [
+      "बफना"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-14",
+    "sno": 14,
+    "name": "श्री गजेन्द्र प्रसाद कश्यप",
+    "designation": "सहायक परियोजना अधिकारी जिला पंचायत",
+    "mobile": "7987506294",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "छोटेउसरी",
+    "panchayats": [
+      "छोटेउसरी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-15",
+    "sno": 15,
+    "name": "श्री त्रिलोकी प्रसाद अवस्थी",
+    "designation": "सहा. परि. अधि. (वीबीजीरामजी)",
+    "mobile": "8305612433",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "मसोरा",
+    "panchayats": [
+      "मसोरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-16",
+    "sno": 16,
+    "name": "श्री ईमल बघेल",
+    "designation": "जिला परियोजना समन्वयक समग्र शिक्षा",
+    "mobile": "9131406163",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "भोगाड़ी",
+    "panchayats": [
+      "भोगाड़ी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-17",
+    "sno": 17,
+    "name": "श्री पुनेश्वर वर्मा",
+    "designation": "सहा.परि.अधि., कौ.वि.लाईवलीहुड कॉलेज",
+    "mobile": "7000433319",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "चिलपुटी",
+    "panchayats": [
+      "चिलपुटी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-18",
+    "sno": 18,
+    "name": "श्री तिलक शंकर सिन्हा",
+    "designation": "आवास समन्वयक (आवास)",
+    "mobile": "9770665659",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "डोंगरीगुड़ा",
+    "panchayats": [
+      "डोंगरीगुड़ा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-19",
+    "sno": 19,
+    "name": "श्री एवन कुमार",
+    "designation": "जिला सलाहकार, एबीएम",
+    "mobile": "8517855101",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "लेमड़ी",
+    "panchayats": [
+      "लेमड़ी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-20",
+    "sno": 20,
+    "name": "श्री सनकेर उसेण्डी",
+    "designation": "जिला सलाहकार (एसबीएम)",
+    "mobile": "9406288933",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "चिखलपुटी",
+    "panchayats": [
+      "चिखलपुटी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-21",
+    "sno": 21,
+    "name": "सुश्री आकांक्षा सिन्हा",
+    "designation": "सहायक संचालक, उद्यान कोण्डागांव",
+    "mobile": "7745972552",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "हथकली",
+    "panchayats": [
+      "हथकली"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-22",
+    "sno": 22,
+    "name": "श्री जोनाथन विनय जेवोल",
+    "designation": "जिला सलाहकार एनपीपीसीएफ",
+    "mobile": "9425661015",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "धनपुर",
+    "panchayats": [
+      "धनपुर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-23",
+    "sno": 23,
+    "name": "श्री जितेन्द्र कुमार साहू",
+    "designation": "उप अभियंता, लो.नि.वि.",
+    "mobile": "9827367807",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "तोतर",
+    "panchayats": [
+      "तोतर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-24",
+    "sno": 24,
+    "name": "श्री सूर्यकांत यादव",
+    "designation": "सहायक सांख्यिकी अधिकारी",
+    "mobile": "9406153784",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "पोलंग",
+    "panchayats": [
+      "पोलंग"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-25",
+    "sno": 25,
+    "name": "श्री अनिल शर्मा",
+    "designation": "प्र. अधि. वाटरशेड, कार्या. उप संचा. कृषि",
+    "mobile": "9039626564",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "रेंगागोंदी",
+    "panchayats": [
+      "रेंगागोंदी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-26",
+    "sno": 26,
+    "name": "श्री मिथलेश नेताम",
+    "designation": "सहा.प.चि.क्षे.अधि.DMF",
+    "mobile": "7067216839",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "केजंग",
+    "panchayats": [
+      "केजंग"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-27",
+    "sno": 27,
+    "name": "श्री ईतेश मेश्राम",
+    "designation": "अनुविभागीय अधिकारी लघु जल संसाधन सर्वे उप संभाग कोण्डागांव",
+    "mobile": "9109914291",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "मूंगवाल",
+    "panchayats": [
+      "मूंगवाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-28",
+    "sno": 28,
+    "name": "श्री उमेश कुमार नेताम",
+    "designation": "सब इंजिनियर, जल संसाधन, कोण्डागांव",
+    "mobile": "9399827709",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "पेरमापाल",
+    "panchayats": [
+      "पेरमापाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-29",
+    "sno": 29,
+    "name": "श्रीमती कविता नाग",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "8103361670",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बयानार",
+    "panchayats": [
+      "बयानार"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-30",
+    "sno": 30,
+    "name": "श्री मुकेश कुमार साहू",
+    "designation": "उपअभियंता, जल संसाधन विभाग",
+    "mobile": "9131794115",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "जोगीआलवाड़",
+    "panchayats": [
+      "जोगीआलवाड़"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-31",
+    "sno": 31,
+    "name": "श्रीमती रामदुलारी नेताम",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "9131658116",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "टेमरूगांव",
+    "panchayats": [
+      "टेमरूगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-32",
+    "sno": 32,
+    "name": "श्रीमती ममता राठौर",
+    "designation": "क्षेत्रीय समन्वयक, एनआरएलम कोण्डागांव",
+    "mobile": "7697558811",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "चिमड़ी",
+    "panchayats": [
+      "चिमड़ी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-33",
+    "sno": 33,
+    "name": "सुश्री वर्षा जैन",
+    "designation": "उपअभियंता, जल संसाधन विभाग",
+    "mobile": "9827526724",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "चलका",
+    "panchayats": [
+      "चलका"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-34",
+    "sno": 34,
+    "name": "श्री अमरू राम मरकाम",
+    "designation": "कार्यपालन अभियंता लोक निर्माण विभाग",
+    "mobile": "7978494143",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "चौड़ंग",
+    "panchayats": [
+      "चौड़ंग"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-35",
+    "sno": 35,
+    "name": "सुश्री आयशा मण्डावी",
+    "designation": "उपअभियंता, जल संसाधन विभाग",
+    "mobile": "7974491404",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "पाला",
+    "panchayats": [
+      "पाला"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-36",
+    "sno": 36,
+    "name": "श्री आर.एल. धिवर",
+    "designation": "कार्यपालन अभियंता जल संसाधन विभाग",
+    "mobile": "7000103633",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "कोंगेरा",
+    "panchayats": [
+      "कोंगेरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-37",
+    "sno": 37,
+    "name": "श्री राधेश्याम नेताम",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "9111599166",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "किबईबालेंगा",
+    "panchayats": [
+      "किबईबालेंगा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-38",
+    "sno": 38,
+    "name": "श्रीमती रीतू देवांगन",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "7089539393",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "मालाकोट",
+    "panchayats": [
+      "मालाकोट"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-39",
+    "sno": 39,
+    "name": "श्री प्रवीण कुमार नागे",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "7694853271",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बुड़ाकसा",
+    "panchayats": [
+      "बुड़ाकसा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-40",
+    "sno": 40,
+    "name": "श्री संजय पोटावी",
+    "designation": "परियोजना अधिकारी(म.बा.वि)",
+    "mobile": "7587219707",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बनजुगानी",
+    "panchayats": [
+      "बनजुगानी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-41",
+    "sno": 41,
+    "name": "श्री सालकी राम सलाम",
+    "designation": "सहकारी निरीक्षक",
+    "mobile": "8839650085",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बांसगांव",
+    "panchayats": [
+      "बांसगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-42",
+    "sno": 42,
+    "name": "श्री अखिलेश सलाम",
+    "designation": "सहा.िव.िव.अधि.,ज.पं. कोंडागांव",
+    "mobile": "9406167627",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "मड़ागांव",
+    "panchayats": [
+      "मड़ागांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-43",
+    "sno": 43,
+    "name": "श्री राम कुमार कुंजाम",
+    "designation": "सहा.िव.िव.अधि.,ज.पं. कोंडागांव",
+    "mobile": "6263633343",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "तोड़म",
+    "panchayats": [
+      "तोड़म"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-44",
+    "sno": 44,
+    "name": "श्री दीन बंधु नेताम",
+    "designation": "करारोपण अधिकारी, ज.पं. कोंडागांव",
+    "mobile": "9131901491",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "चिचडोंगरी",
+    "panchayats": [
+      "चिचडोंगरी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-45",
+    "sno": 45,
+    "name": "डॉ० जयमती कश्यप",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9993291465",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बुनागांव",
+    "panchayats": [
+      "बुनागांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-46",
+    "sno": 46,
+    "name": "श्रीमती गौ कुमारी",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "8319717020",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "उमरगांव अ",
+    "panchayats": [
+      "उमरगांव अ"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-47",
+    "sno": 47,
+    "name": "श्रीमती रूखमणी साहू",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9977471038",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बनसिरसी",
+    "panchayats": [
+      "बनसिरसी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-48",
+    "sno": 48,
+    "name": "श्री उदयभान सिंह ठाकुर",
+    "designation": "सहायक आयुक्त सहकारिता पंजीयक",
+    "mobile": "7999978895",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "भीरागांव ब",
+    "panchayats": [
+      "भीरागांव ब"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-49",
+    "sno": 49,
+    "name": "श्री सन्तोष कुमार मरकाम",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "7828994305",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "कुम्हारपारा",
+    "panchayats": [
+      "कुम्हारपारा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-50",
+    "sno": 50,
+    "name": "श्री गजेन्द्र कुमार पाण्डेय",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "7987217917",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "गिरोला",
+    "panchayats": [
+      "गिरोला"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-51",
+    "sno": 51,
+    "name": "श्री इन्द्रजीत पाण्डे",
+    "designation": "सहा.प.चि.क्षे.अधि. DMF",
+    "mobile": "9926490472",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "सातगांव",
+    "panchayats": [
+      "सातगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-52",
+    "sno": 52,
+    "name": "श्रीमती पुष्पा वर्मा",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9644095326",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "पल्ली",
+    "panchayats": [
+      "पल्ली"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-53",
+    "sno": 53,
+    "name": "श्री राकेश कुमार चांडक",
+    "designation": "वरिष्ठ सहकारिता निरीक्षक",
+    "mobile": "7987082455",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "सितली",
+    "panchayats": [
+      "सितली"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-54",
+    "sno": 54,
+    "name": "श्री प्रदीप कुमार श्रीवास्तव",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "9424291991",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "नेवता",
+    "panchayats": [
+      "नेवता"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-55",
+    "sno": 55,
+    "name": "श्रीमती सरस्वती मरकाम",
+    "designation": "WDT सदस्य आजीविका, कार्या.परि.क्रि.ए. वि.खं. - कोंडागांव",
+    "mobile": "9098771910",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "मुलमुला",
+    "panchayats": [
+      "मुलमुला"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-56",
+    "sno": 56,
+    "name": "श्री बलराम सिंह ठाकुर",
+    "designation": "कार्यपालन अभियंता पीएमजीएसवाय",
+    "mobile": "8770809311",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "फूकागिरोला",
+    "panchayats": [
+      "फूकागिरोला"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-57",
+    "sno": 57,
+    "name": "श्री मनीष मेश्राम",
+    "designation": "परियोजना अधिकारी, म.बा.वि.वि",
+    "mobile": "7773813828",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बड़ेसिलाटी",
+    "panchayats": [
+      "बड़ेसिलाटी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-58",
+    "sno": 58,
+    "name": "श्री सचिन मिश्रा",
+    "designation": "सहा.अभियंता, पीएमजीएसवाय",
+    "mobile": "9479222232",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "सिंघनपुर",
+    "panchayats": [
+      "सिंघनपुर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-59",
+    "sno": 59,
+    "name": "श्री जगदीश पाण्डेय",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "7000583883",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "भीरागांव अ",
+    "panchayats": [
+      "भीरागांव अ"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-60",
+    "sno": 60,
+    "name": "श्री हिमाचल नेताम",
+    "designation": "ग्रा.उ.वि.अधि. कोण्डागांव",
+    "mobile": "8319461668",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "मालगांव",
+    "panchayats": [
+      "मालगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-61",
+    "sno": 61,
+    "name": "श्रीमती इन्द्राणी पेगड़",
+    "designation": "प्रक्षेत्र सलाहकार (उद्यानिकी विभाग)",
+    "mobile": "7999004261",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "कुम्हारी",
+    "panchayats": [
+      "कुम्हारी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-62",
+    "sno": 62,
+    "name": "श्री चेतन सिंह ध्रुव",
+    "designation": "सहा.परि.अधि.जि.पं. कोण्डागांव",
+    "mobile": "7354446541",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "निलजी",
+    "panchayats": [
+      "निलजी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-63",
+    "sno": 63,
+    "name": "श्रीमती रत्ना निराला",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9424211066",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "चिपावण्ड",
+    "panchayats": [
+      "चिपावण्ड"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-64",
+    "sno": 64,
+    "name": "श्री तुषार नाग",
+    "designation": "कार्यक्रम अधिकारी, वीबीजीरामजी",
+    "mobile": "9340147419",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "उमरगांव ब",
+    "panchayats": [
+      "उमरगांव ब"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-65",
+    "sno": 65,
+    "name": "श्री कन्हैयालाल जैन",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "7000901023",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "कुलझर",
+    "panchayats": [
+      "कुलझर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-66",
+    "sno": 66,
+    "name": "श्री फागू राम साहू",
+    "designation": "बीपीएम, एनआरएलम कोण्डागांव",
+    "mobile": "8770979268",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "भगदेवा",
+    "panchayats": [
+      "भगदेवा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-67",
+    "sno": 67,
+    "name": "श्री करन बिश्वास",
+    "designation": "मत्स्य निरीक्षक, कोण्डागांव",
+    "mobile": "7587460959",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बड़ेभिरवण्ड",
+    "panchayats": [
+      "बड़ेभिरवण्ड"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-68",
+    "sno": 68,
+    "name": "श्रीमती मीनाक्षी मरकाम",
+    "designation": "सहायक मत्स्य अधिकारी कोपाबेड़ा/कोण्डागांव",
+    "mobile": "8240304382",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "छोटेभिरवण्ड",
+    "panchayats": [
+      "छोटेभिरवण्ड"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-69",
+    "sno": 69,
+    "name": "श्रीमती पूर्णवती मरकाम",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9993444130",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बोलबोला",
+    "panchayats": [
+      "बोलबोला"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-70",
+    "sno": 70,
+    "name": "श्री परमानंद बघेल",
+    "designation": "WDT सदस्य समूह विकास, कार्या. परि.क्रि.ए. वि.खं. - कोंडागांव",
+    "mobile": "8839058813",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "छोटेबंजोड़ा",
+    "panchayats": [
+      "छोटेबंजोड़ा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-71",
+    "sno": 71,
+    "name": "श्री डी.एस. पोटाई",
+    "designation": "जिला परियोजना अधिकारी साक्षरता",
+    "mobile": "8839584108",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बड़ेबेन्दरी",
+    "panchayats": [
+      "बड़ेबेन्दरी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-72",
+    "sno": 72,
+    "name": "श्री टुकेश्वर सांडिल्य",
+    "designation": "जिला मिशन समन्वयक समग्र शिक्षा",
+    "mobile": "9691103777",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बड़ेकनेरा",
+    "panchayats": [
+      "बड़ेकनेरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-73",
+    "sno": 73,
+    "name": "श्रीमती अनुसूईया यादव",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9424211000",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "कमेला",
+    "panchayats": [
+      "कमेला"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-74",
+    "sno": 74,
+    "name": "श्री खोमेश्वर साहू",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "9425247899",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "कुकाड़गारकापाल",
+    "panchayats": [
+      "कुकाड़गारकापाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-75",
+    "sno": 75,
+    "name": "श्री वारिश नन्द",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "8319946742",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बाखरा",
+    "panchayats": [
+      "बाखरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-76",
+    "sno": 76,
+    "name": "श्री अगनू राम मण्डावी",
+    "designation": "सहायक सांख्यिकी अधिकारी",
+    "mobile": "9425597436",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "करंजी",
+    "panchayats": [
+      "करंजी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-77",
+    "sno": 77,
+    "name": "सुश्री नेहा त्रिपाठी",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "8319203676",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "कोकोड़ी",
+    "panchayats": [
+      "कोकोड़ी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-78",
+    "sno": 78,
+    "name": "श्रीमती इन्द्रावती ध्रुव",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9425596071",
     "block": "कोंडागांव",
     "district": "कोण्डागांव",
     "panchayat": "बनियागांव",
@@ -1792,11 +3766,11 @@
     "is_active": true
   },
   {
-    "id": "off-67",
-    "sno": 2,
-    "name": "श्री राजेश कुमार नेताम",
-    "designation": "उप अभियंता, कोंडागांव",
-    "mobile": "9425253102",
+    "id": "nodal-kdn-79",
+    "sno": 79,
+    "name": "श्री लखनसिंह पोयाम",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "8889679676",
     "block": "कोंडागांव",
     "district": "कोण्डागांव",
     "panchayat": "दहीकोंगा",
@@ -1806,25 +3780,221 @@
     "is_active": true
   },
   {
-    "id": "off-68",
-    "sno": 3,
-    "name": "सुश्री गीतांजलि मण्डावी",
-    "designation": "करारोपण अधिकारी, कोंडागांव",
-    "mobile": "9425253103",
+    "id": "nodal-kdn-80",
+    "sno": 80,
+    "name": "श्री ताम्रध्वज पटेल",
+    "designation": "उप अभियंता, कोण्डागांव",
+    "mobile": "8717844328",
     "block": "कोंडागांव",
     "district": "कोण्डागांव",
-    "panchayat": "जुगानी",
+    "panchayat": "राजागांव",
     "panchayats": [
-      "जुगानी"
+      "राजागांव"
     ],
     "is_active": true
   },
   {
-    "id": "off-69",
-    "sno": 4,
-    "name": "श्री आशीष श्रीवास्तव",
-    "designation": "समन्वयक, कोंडागांव",
-    "mobile": "9425253104",
+    "id": "nodal-kdn-81",
+    "sno": 81,
+    "name": "श्री मनोज नेताम",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "9993332873",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "सुकूरपाल",
+    "panchayats": [
+      "सुकूरपाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-82",
+    "sno": 82,
+    "name": "श्री भोलाराम ठाकुर",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "9131578209",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "जोबा",
+    "panchayats": [
+      "जोबा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-83",
+    "sno": 83,
+    "name": "श्रीमती लक्ष्मी ठाकुर",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9926171698",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "घोड़ागांव",
+    "panchayats": [
+      "घोड़ागांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-84",
+    "sno": 84,
+    "name": "श्री देब्रत हालदार",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "8319212120",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बनउसरी",
+    "panchayats": [
+      "बनउसरी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-85",
+    "sno": 85,
+    "name": "कु. होमिन साहू",
+    "designation": "WDT सदस्य यांत्रिकी, कार्या. उप संचा. कृषि",
+    "mobile": "9109050466",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "मोहलई",
+    "panchayats": [
+      "मोहलई"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-86",
+    "sno": 86,
+    "name": "श्री सुरेश नेताम",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "9827219948",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "मुनगापदर",
+    "panchayats": [
+      "मुनगापदर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-87",
+    "sno": 87,
+    "name": "श्री दिलीप कुमार यदु",
+    "designation": "उप अभियंता, ग्रा.यां.से. कोण्डागांव",
+    "mobile": "9406380243",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "करनपुर",
+    "panchayats": [
+      "करनपुर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-88",
+    "sno": 88,
+    "name": "डॉ. सरिता सिंह",
+    "designation": "पशु चिकित्सा सहायक शल्यज्ञ",
+    "mobile": "9753219460",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "खचगांव",
+    "panchayats": [
+      "खचगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-89",
+    "sno": 89,
+    "name": "डॉ. ढालेश्वरी",
+    "designation": "पशु चिकित्सा सहायक शल्यज्ञ",
+    "mobile": "9389362965",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बोटीकनेरा",
+    "panchayats": [
+      "बोटीकनेरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-90",
+    "sno": 90,
+    "name": "डॉ. दीपिका सिदार",
+    "designation": "पशु चिकित्सा सहायक शल्यज्ञ",
+    "mobile": "8770569113",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बड़ेबेजोड़ा",
+    "panchayats": [
+      "बड़ेबेजोड़ा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-91",
+    "sno": 91,
+    "name": "श्रीमती सुभद्रा मरकाम",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "9424296202",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "पुसावण्ड",
+    "panchayats": [
+      "पुसावण्ड"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-92",
+    "sno": 92,
+    "name": "तनुश्री गुहाराय",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "7024661530",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "सोनाबाल",
+    "panchayats": [
+      "सोनाबाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-93",
+    "sno": 93,
+    "name": "कुमारी ललिता नेताम",
+    "designation": "सहा.प.चि.क्षे.अधि.DMF",
+    "mobile": "6261021789",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "मड़ानार",
+    "panchayats": [
+      "मड़ानार"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-94",
+    "sno": 94,
+    "name": "सुश्री चंचल ध्रुव",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "9131359582",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "सम्बलपुर",
+    "panchayats": [
+      "सम्बलपुर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-95",
+    "sno": 95,
+    "name": "कुमारी बबीता चौधरी",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9406144488",
     "block": "कोंडागांव",
     "district": "कोण्डागांव",
     "panchayat": "बम्हनी",
@@ -1834,67 +4004,823 @@
     "is_active": true
   },
   {
-    "id": "off-70",
-    "sno": 5,
-    "name": "श्रीमती किरण मरकाम",
-    "designation": "कृषि विकास अधिकारी, कोंडागांव",
-    "mobile": "9425253105",
+    "id": "nodal-kdn-96",
+    "sno": 96,
+    "name": "डॉ. आकांक्षा कश्यप",
+    "designation": "पशु चिकित्सा सहायक शल्यज्ञ",
+    "mobile": "7999033001",
     "block": "कोंडागांव",
     "district": "कोण्डागांव",
-    "panchayat": "लंजोड़ा",
+    "panchayat": "कारसिंग",
     "panchayats": [
-      "लंजोड़ा"
+      "कारसिंग"
     ],
     "is_active": true
   },
   {
-    "id": "off-71",
+    "id": "nodal-kdn-97",
+    "sno": 97,
+    "name": "डॉ. रुचिका सोनिपिपरे",
+    "designation": "पशु चिकित्सा सहायक शल्यज्ञ",
+    "mobile": "8517832868",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "कुसमा",
+    "panchayats": [
+      "कुसमा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-98",
+    "sno": 98,
+    "name": "श्रीमती मालती नेताम",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "9406151597",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "कचोरा",
+    "panchayats": [
+      "कचोरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-99",
+    "sno": 99,
+    "name": "कुमारी रेवती मरकाम",
+    "designation": "सहा.प.चि.क्षे.अधि.DMF",
+    "mobile": "9340531592",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "इसलनार",
+    "panchayats": [
+      "इसलनार"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-100",
+    "sno": 100,
+    "name": "श्री जितेन्द्र कुमार पैकरा",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "9669499686",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "चमई",
+    "panchayats": [
+      "चमई"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-101",
+    "sno": 101,
+    "name": "श्री अश्वन नेताम",
+    "designation": "सहा.प.चि.क्षे.अधि.DMF",
+    "mobile": "8269713751",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "हंगवा",
+    "panchayats": [
+      "हंगवा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-102",
+    "sno": 102,
+    "name": "श्री भानू राम देव",
+    "designation": "सहायक अभियंता, आरईएस",
+    "mobile": "9406225649",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "आदनार",
+    "panchayats": [
+      "आदनार"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-103",
+    "sno": 103,
+    "name": "श्री मनमोहन सिंह",
+    "designation": "WDT सदस्य समूह विकास, कार्या. उप संचा. कृषि",
+    "mobile": "7610576772",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "चेमा",
+    "panchayats": [
+      "चेमा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-104",
+    "sno": 104,
+    "name": "श्री राधेश्याम साहू",
+    "designation": "उप अभियंता, ग्रा.यां.से. कोण्डागांव",
+    "mobile": "8815163934",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बोरगांव",
+    "panchayats": [
+      "बोरगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-105",
+    "sno": 105,
+    "name": "श्री अर्जुन नेताम",
+    "designation": "सहा.प.चि.क्षे.अधि.DMF",
+    "mobile": "6266747922",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "झारा",
+    "panchayats": [
+      "झारा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-106",
+    "sno": 106,
+    "name": "डॉ. नरोत्तम चन्द्रकार",
+    "designation": "अति.उप संचालक प.चि.से",
+    "mobile": "9424230241",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "कांगा",
+    "panchayats": [
+      "कांगा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-107",
+    "sno": 107,
+    "name": "श्री घनश्याम कोर्राम",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "9399774988",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "मर्दापाल",
+    "panchayats": [
+      "मर्दापाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-108",
+    "sno": 108,
+    "name": "श्री रोशन बाबु सहारे",
+    "designation": "मण्डल संयोजक वि.ख. कोण्डागांव",
+    "mobile": "8770756559",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "चांगेर",
+    "panchayats": [
+      "चांगेर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-109",
+    "sno": 109,
+    "name": "डॉ. हरेन्द्र कुमार बघेल",
+    "designation": "कार्यालय खण्ड चिकित्सा अधिकारी विकासखण्ड कोण्डागांव पीएचसी कोण्डागांव",
+    "mobile": "9424277153",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "मूलनार",
+    "panchayats": [
+      "मूलनार"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-110",
+    "sno": 110,
+    "name": "श्री नीरज शोरी",
+    "designation": "बीपीएम रा.स्वा.मि. विकासखण्ड कोण्डागांव पीएचसी कोण्डागांव",
+    "mobile": "9425596453",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "नाहकानार",
+    "panchayats": [
+      "नाहकानार"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-111",
+    "sno": 111,
+    "name": "श्री दुष्यंत नाग",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "7000521033",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "लखापुरी",
+    "panchayats": [
+      "लखापुरी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-112",
+    "sno": 112,
+    "name": "श्री अजय कुमार टोप्पो",
+    "designation": "सहा.अभि. मैकेनिकल उपखण्ड कोण्डागांव",
+    "mobile": "7354056987",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "हड़ेली",
+    "panchayats": [
+      "हड़ेली"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-113",
+    "sno": 113,
+    "name": "श्री संजित कुमार मरकाम",
+    "designation": "सहा.प.चि.क्षे.अधि.DMF",
+    "mobile": "9131546690",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "कड़ेनार",
+    "panchayats": [
+      "कड़ेनार"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-114",
+    "sno": 114,
+    "name": "श्री मनीराम बघेल",
+    "designation": "फ़ूड इंस्पेक्टर, कोंडागांव",
+    "mobile": "9399655342",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बेचा",
+    "panchayats": [
+      "बेचा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-115",
+    "sno": 115,
+    "name": "श्रीमती शारदा कोर्राम",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "7587484318",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "रानापाल",
+    "panchayats": [
+      "रानापाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-116",
+    "sno": 116,
+    "name": "श्री मानव विश्वास",
+    "designation": "जिला समन्वयक (आवास) जि. प.",
+    "mobile": "9406079522",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "बड़ेकुरुषनार",
+    "panchayats": [
+      "बड़ेकुरुषनार"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-117",
+    "sno": 117,
+    "name": "श्री विजय प्रताप सिंह",
+    "designation": "तहसीलदार अधीक्षक भू-अभिलेख",
+    "mobile": "9575086040",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "जोड़ेगा",
+    "panchayats": [
+      "जोड़ेगा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-118",
+    "sno": 118,
+    "name": "श्री नरेन्द्र शर्मा",
+    "designation": "को-आपरेटिव बैंक कोण्डागंव",
+    "mobile": "9406108254",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "खड़पड़ी",
+    "panchayats": [
+      "खड़पड़ी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-119",
+    "sno": 119,
+    "name": "श्री आलोक कुमार ध्रुव",
+    "designation": "सहायक अभियंता, लोक निर्माण विभाग, कोण्डागांव",
+    "mobile": "9425262790",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "कोरमेल",
+    "panchayats": [
+      "कोरमेल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-120",
+    "sno": 120,
+    "name": "सुश्री मनीषा कतलाम",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9406051593",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "हसलनार",
+    "panchayats": [
+      "हसलनार"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-121",
+    "sno": 121,
+    "name": "श्री कमलेश कुमार दीवान",
+    "designation": "उप अभियंता लो.नि.वि. राष्ट्रीय राजमार्ग उप संभाग कोण्डागांव",
+    "mobile": "9340276048",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "मटवाल",
+    "panchayats": [
+      "मटवाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-122",
+    "sno": 122,
+    "name": "श्री जगमोहन भोयर",
+    "designation": "विकासखण्ड शिक्षा अधिकारी, कोण्डागांव",
+    "mobile": "9575374515",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "पदनार",
+    "panchayats": [
+      "पदनार"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-123",
+    "sno": 123,
+    "name": "श्री आलोक नेताम",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "9644131322",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "टेकापाल",
+    "panchayats": [
+      "टेकापाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-124",
+    "sno": 124,
+    "name": "श्री कृष्ण कुमार कोर्राम",
+    "designation": "पशु चिकित्सा सहायक शल्यज्ञ",
+    "mobile": "8319354904",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "कुधुर",
+    "panchayats": [
+      "कुधुर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-125",
+    "sno": 125,
+    "name": "सुश्री माधुरी गौर",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "8120019873",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "तुमड़ीवाल",
+    "panchayats": [
+      "तुमड़ीवाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-kdn-126",
+    "sno": 126,
+    "name": "श्री संजय सोड़ी",
+    "designation": "सहा.प.चि.क्षे.अधि.DMF",
+    "mobile": "9170672180",
+    "block": "कोंडागांव",
+    "district": "कोण्डागांव",
+    "panchayat": "नगरी",
+    "panchayats": [
+      "नगरी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-1",
     "sno": 1,
-    "name": "श्री मनोज कुमार नाग",
-    "designation": "विकास विस्तार अधिकारी, माकडी",
-    "mobile": "9425254101",
+    "name": "डॉ. सुरेन्द्र कुमार नाग",
+    "designation": "उप संचालक, पशु चिकित्सा",
+    "mobile": "9893518810",
     "block": "माकडी",
     "district": "कोण्डागांव",
-    "panchayat": "अनंतपुर",
+    "panchayat": "बड़ेघोड़सोड़ा",
     "panchayats": [
-      "अनंतपुर"
+      "बड़ेघोड़सोड़ा"
     ],
     "is_active": true
   },
   {
-    "id": "off-72",
+    "id": "nodal-makdi-2",
     "sno": 2,
-    "name": "श्री कमल किशोर नेताम",
-    "designation": "उप अभियंता, माकडी",
-    "mobile": "9425254102",
+    "name": "सुश्री सुधा कुमार",
+    "designation": "वरिष्ठ खेल अधिकारी, (खेल एवं युवा कल्याण विभाग)",
+    "mobile": "9424228093",
     "block": "माकडी",
     "district": "कोण्डागांव",
-    "panchayat": "बालेंग",
+    "panchayat": "मांझीबोरण्ड",
     "panchayats": [
-      "बालेंग"
+      "मांझीबोरण्ड"
     ],
     "is_active": true
   },
   {
-    "id": "off-73",
+    "id": "nodal-makdi-3",
     "sno": 3,
-    "name": "सुश्री रीना कश्यप",
-    "designation": "करारोपण अधिकारी, माकडी",
-    "mobile": "9425254103",
+    "name": "श्रीमती ललिता लकड़ा",
+    "designation": "सहायक संचालक, समाज कल्याण विभाग",
+    "mobile": "9074121842",
     "block": "माकडी",
     "district": "कोण्डागांव",
-    "panchayat": "कांगोली",
+    "panchayat": "बड़ेसोंहगा",
     "panchayats": [
-      "कांगोली"
+      "बड़ेसोंहगा"
     ],
     "is_active": true
   },
   {
-    "id": "off-74",
+    "id": "nodal-makdi-4",
     "sno": 4,
-    "name": "श्री हेमंत कुमार साहू",
-    "designation": "कृषि विस्तार अधिकारी, माकडी",
-    "mobile": "9425254104",
+    "name": "श्री गजेन्द्र घुरडे",
+    "designation": "मु.का.अ., जनपद पंचायत माकड़ी",
+    "mobile": "7974368756",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "माकड़ी",
+    "panchayats": [
+      "माकड़ी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-5",
+    "sno": 5,
+    "name": "श्री धनी राम कुलदीप",
+    "designation": "सहायक सांख्यिकी अधिकारी",
+    "mobile": "9340301828",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "गारे",
+    "panchayats": [
+      "गारे"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-6",
+    "sno": 6,
+    "name": "श्री दुर्योधन मेघ",
+    "designation": "डीपीएम(एनआरएलएम)",
+    "mobile": "8224089659",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "बवई",
+    "panchayats": [
+      "बवई"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-7",
+    "sno": 7,
+    "name": "श्री सुखराम देवांगन",
+    "designation": "विकासखण्ड शिक्षा अधिकारी, माकड़ी",
+    "mobile": "6263340147",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "मिरमिंडा",
+    "panchayats": [
+      "मिरमिंडा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-8",
+    "sno": 8,
+    "name": "डॉ. देवेश घरत",
+    "designation": "खण्ड चिकित्सा अधिकारी, सीएचसी माकड़ी",
+    "mobile": "9131438898",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "तमरावण्ड",
+    "panchayats": [
+      "तमरावण्ड"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-9",
+    "sno": 9,
+    "name": "श्री आर.एन. उसेण्डी",
+    "designation": "अनुविभागीय अधिकारी लो.नि.वि.",
+    "mobile": "9424286708",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "तरईबेड़ा",
+    "panchayats": [
+      "तरईबेड़ा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-10",
+    "sno": 10,
+    "name": "श्री कमलेश कुमार",
+    "designation": "एसडीओ, हाउसिंग बोर्ड कोण्डागांव",
+    "mobile": "9669961057",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "उदेंगा",
+    "panchayats": [
+      "उदेंगा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-11",
+    "sno": 11,
+    "name": "श्री दीपक कुमार शर्मा",
+    "designation": "सहायक संचालक, कृषि, कोण्डागॉव",
+    "mobile": "9399747010",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "छतोड़ी",
+    "panchayats": [
+      "छतोड़ी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-12",
+    "sno": 12,
+    "name": "श्री अंकुर रात्रे",
+    "designation": "तहसीलदार माकड़ी",
+    "mobile": "8209464530",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "सोनाबेड़ा",
+    "panchayats": [
+      "सोनाबेड़ा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-13",
+    "sno": 13,
+    "name": "श्री दिनेश कुमार मण्डावी",
+    "designation": "श्रम उपनिरीक्षक",
+    "mobile": "9770825865",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "छोटेसलना",
+    "panchayats": [
+      "छोटेसलना"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-14",
+    "sno": 14,
+    "name": "श्री ओमप्रकाश देवांगन",
+    "designation": "सहायक अभियंता(पीएमआवास)",
+    "mobile": "9329807413",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "करमरी",
+    "panchayats": [
+      "करमरी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-15",
+    "sno": 15,
+    "name": "श्री सौरभ कोचर",
+    "designation": "जिला सलाहकार अस्पताल",
+    "mobile": "9993243021",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "उलेरा",
+    "panchayats": [
+      "उलेरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-16",
+    "sno": 16,
+    "name": "श्री कांतेश देवांगन",
+    "designation": "डीपीसी (एनटीईपी)",
+    "mobile": "7000848825",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "ओण्डारगांव",
+    "panchayats": [
+      "ओण्डारगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-17",
+    "sno": 17,
+    "name": "श्री विरेन्द्र पाण्डे",
+    "designation": "कार्यपालन अभियंता, पीएचई कोण्डागांव",
+    "mobile": "9669685088",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "कोसाहरदूली",
+    "panchayats": [
+      "कोसाहरदूली"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-18",
+    "sno": 18,
+    "name": "श्री पी.एल. सोनवानी",
+    "designation": "एसडीओ, जल संसाधन विभाग",
+    "mobile": "9425228628",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "बागबेड़ा",
+    "panchayats": [
+      "बागबेड़ा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-19",
+    "sno": 19,
+    "name": "श्री प्रवीण मरकाम",
+    "designation": "उप अभियंता, क्रेडा",
+    "mobile": "9691361726",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "कोकोड़ी",
+    "panchayats": [
+      "कोकोड़ी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-20",
+    "sno": 20,
+    "name": "श्री डी.के. पाण्डे",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "9425597449",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "गुहाबोरण्ड",
+    "panchayats": [
+      "गुहाबोरण्ड"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-21",
+    "sno": 21,
+    "name": "श्री सुत्तम सिंह कंवर",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "8889953731",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "पुसापाल",
+    "panchayats": [
+      "पुसापाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-22",
+    "sno": 22,
+    "name": "श्री राजू विजय टंडन",
+    "designation": "उप अभियंता, ग्रा.यां.से. माकड़ी",
+    "mobile": "9424160732",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "मगेदा",
+    "panchayats": [
+      "मगेदा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-23",
+    "sno": 23,
+    "name": "डॉ. सुदरन मरकाम",
+    "designation": "वरिष्ठ पशु चिकित्सा अधिकारी",
+    "mobile": "9406229499",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "ओटेण्डा",
+    "panchayats": [
+      "ओटेण्डा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-24",
+    "sno": 24,
+    "name": "डॉ. प्रिया गजभिये",
+    "designation": "पशु चिकित्सा सहायक शल्यज्ञ",
+    "mobile": "7828840403",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "पीढ़ापाल",
+    "panchayats": [
+      "पीढ़ापाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-25",
+    "sno": 25,
+    "name": "श्री प्रशांत उराव",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "7509993940",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "जरण्डी",
+    "panchayats": [
+      "जरण्डी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-26",
+    "sno": 26,
+    "name": "श्रीमती कुसुम वर्मा",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9669356634",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "लुभा",
+    "panchayats": [
+      "लुभा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-27",
+    "sno": 27,
+    "name": "श्री मंगल राम नेताम",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "7999883872",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "ठेमगांव",
+    "panchayats": [
+      "ठेमगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-28",
+    "sno": 28,
+    "name": "कु. रीतू वर्मा",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9644299242",
     "block": "माकडी",
     "district": "कोण्डागांव",
     "panchayat": "रांधना",
@@ -1904,16 +4830,548 @@
     "is_active": true
   },
   {
-    "id": "off-75",
-    "sno": 5,
-    "name": "श्रीमती देवकी कोर्राम",
-    "designation": "तकनीकी सहायक, माकडी",
-    "mobile": "9425254105",
+    "id": "nodal-makdi-29",
+    "sno": 29,
+    "name": "श्री हरिश नेताम",
+    "designation": "उप अभियंता, लोक निर्माण कोण्डागांव",
+    "mobile": "9424275124",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "बरकई",
+    "panchayats": [
+      "बरकई"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-30",
+    "sno": 30,
+    "name": "श्री विजय कोड़ोपी",
+    "designation": "वरिष्ठ सहकारिता निरीक्षक",
+    "mobile": "9425266721",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "भीरागांव",
+    "panchayats": [
+      "भीरागांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-31",
+    "sno": 31,
+    "name": "श्री ए.के. नामदेव",
+    "designation": "सहायक पंजीयक, सहकारिता",
+    "mobile": "7974732588",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "बालोण्ड",
+    "panchayats": [
+      "बालोण्ड"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-32",
+    "sno": 32,
+    "name": "श्री अतुल सिंह ठाकुर",
+    "designation": "उप अभियंता जल संसाधन",
+    "mobile": "9131423599",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "काटागांव",
+    "panchayats": [
+      "काटागांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-33",
+    "sno": 33,
+    "name": "श्री प्रतीक वर्मा",
+    "designation": "वन परिक्षेत्र अधिकारी, अमरावती",
+    "mobile": "6268196337",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "ओण्डरी",
+    "panchayats": [
+      "ओण्डरी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-34",
+    "sno": 34,
+    "name": "श्री मिर्जा फिरोज बेग",
+    "designation": "वन परिक्षेत्र अधिकारी",
+    "mobile": "7999941983",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "सोड़िसिवनी",
+    "panchayats": [
+      "सोड़िसिवनी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-35",
+    "sno": 35,
+    "name": "श्री विजेन्द्र शर्मा",
+    "designation": "वन परिक्षेत्र अधिकारी, माकड़ी रेंज",
+    "mobile": "8770626206",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "लभा",
+    "panchayats": [
+      "लभा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-36",
+    "sno": 36,
+    "name": "श्री नैनसाय पैकरा",
+    "designation": "उ.वि.अधि. माकड़ी",
+    "mobile": "8223840824",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "बुडरा",
+    "panchayats": [
+      "बुडरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-37",
+    "sno": 37,
+    "name": "श्री गजेन्द्र निषाद",
+    "designation": "प्रक्षेत्र सलाहकार (उद्यानिकी विभाग)",
+    "mobile": "9407727808",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "हांडीगांव",
+    "panchayats": [
+      "हांडीगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-38",
+    "sno": 38,
+    "name": "सुश्री सारिका देवांगन",
+    "designation": "कार्यक्रम अधिकारी, वीबीजीरामजी",
+    "mobile": "8770676601",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "धारली",
+    "panchayats": [
+      "धारली"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-39",
+    "sno": 39,
+    "name": "कु. कौशिल्या देवांगन",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "7999879090",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "उड़िदगांव",
+    "panchayats": [
+      "उड़िदगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-40",
+    "sno": 40,
+    "name": "श्री दिलीप कुमार चन्द्राकर",
+    "designation": "सहायक अभियंता, पीएमजीएसवाय",
+    "mobile": "9425526963",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "कुरलूबहार",
+    "panchayats": [
+      "कुरलूबहार"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-41",
+    "sno": 41,
+    "name": "श्री ऋषि कुमार नागवंशी",
+    "designation": "मण्डल संयोजक वि.ख.माकडी",
+    "mobile": "8103627999",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "इंगरा",
+    "panchayats": [
+      "इंगरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-42",
+    "sno": 42,
+    "name": "श्रीमती माधवी खोटे",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9977486260",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "हीरापुर",
+    "panchayats": [
+      "हीरापुर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-43",
+    "sno": 43,
+    "name": "श्री रविन्द्र साहू",
+    "designation": "उप अभियंता, ग्रा.यां.से. माकड़ी",
+    "mobile": "7828279158",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "हीरावण्डी",
+    "panchayats": [
+      "हीरावण्डी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-44",
+    "sno": 44,
+    "name": "श्री टी.एल. बंजारे",
+    "designation": "उप अभियंता, ग्रा.यां.से. माकड़ी",
+    "mobile": "9406010465",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "तौरेंगा",
+    "panchayats": [
+      "तौरेंगा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-45",
+    "sno": 45,
+    "name": "कुमारी डिगेश्वरी मरकाम",
+    "designation": "सहा.वि.वि.अधि.,ज.पं. माकड़ी",
+    "mobile": "9340334182",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "बेलोण्डी",
+    "panchayats": [
+      "बेलोण्डी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-46",
+    "sno": 46,
+    "name": "श्री कमलेश कुमार नेताम",
+    "designation": "उप अभियंता, पीएमजीएसवाय",
+    "mobile": "9407930943",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "तोरण्डी",
+    "panchayats": [
+      "तोरण्डी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-47",
+    "sno": 47,
+    "name": "श्री शलेन्द्र सेठिया",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "6263108725",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "राकसबेड़ा",
+    "panchayats": [
+      "राकसबेड़ा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-48",
+    "sno": 48,
+    "name": "श्री एम.एस. ध्रुव",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "7646806166",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "सोड़मा",
+    "panchayats": [
+      "सोड़मा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-49",
+    "sno": 49,
+    "name": "श्रीमती प्रियंका शिवना",
+    "designation": "बीपीएम रा.स्वा.मि., सीएचसी माकड़ी",
+    "mobile": "7987370194",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "उमरगांव",
+    "panchayats": [
+      "उमरगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-50",
+    "sno": 50,
+    "name": "श्री छत्रपाल सोनवानी",
+    "designation": "सहायक अभियंता लो.स्वा.यां. उपखण्ड, कोण्डागांव",
+    "mobile": "7354073209",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "बेलगांव",
+    "panchayats": [
+      "बेलगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-51",
+    "sno": 51,
+    "name": "श्री बसंत मरकाम",
+    "designation": "सहा.वि.वि.अधि.,ज.पं. माकड़ी",
+    "mobile": "6261139775",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "कावरा",
+    "panchayats": [
+      "कावरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-52",
+    "sno": 52,
+    "name": "श्री आलोक यादव",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "7692034400",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "मारागांव",
+    "panchayats": [
+      "मारागांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-53",
+    "sno": 53,
+    "name": "श्री सियाराम नेताम",
+    "designation": "सहा.प.चि.क्षे.अधि.",
+    "mobile": "8959384283",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "हुक्काबेड़ापाथरी",
+    "panchayats": [
+      "हुक्काबेड़ापाथरी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-54",
+    "sno": 54,
+    "name": "श्री मेघनाथ मरकाम",
+    "designation": "करारोपण अधिकारी, ज.पं. माकड़ी",
+    "mobile": "9131167553",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "बिवला",
+    "panchayats": [
+      "बिवला"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-55",
+    "sno": 55,
+    "name": "श्रीमती बिन्देश्वरी सोनवानी",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9174797728",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "बाडरा",
+    "panchayats": [
+      "बाडरा"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-56",
+    "sno": 56,
+    "name": "श्रीमती नम्रता एल्मा",
+    "designation": "सहायक प्रबंधक, जिला व्यापार एवम उद्योग केंद्र कोंडागांव/फरसगांव /माकड़ी",
+    "mobile": "6261161403",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "केरावाही",
+    "panchayats": [
+      "केरावाही"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-57",
+    "sno": 57,
+    "name": "श्रीमती बेला रानी विशवास",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "9575345517",
     "block": "माकडी",
     "district": "कोण्डागांव",
     "panchayat": "शामपुर",
     "panchayats": [
       "शामपुर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-58",
+    "sno": 58,
+    "name": "श्री लच्छिन मौर्या",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "8319583613",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "करण्डी",
+    "panchayats": [
+      "करण्डी"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-59",
+    "sno": 59,
+    "name": "श्री आशीष कुमार नेताम",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "8435795581",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "देवगांव",
+    "panchayats": [
+      "देवगांव"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-60",
+    "sno": 60,
+    "name": "श्री भूनेश्वर शोरी",
+    "designation": "फ़ूड इंस्पेक्टर, माकड़ी",
+    "mobile": "9753886724",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "एरला",
+    "panchayats": [
+      "एरला"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-61",
+    "sno": 61,
+    "name": "श्री सदानन्द सहाना",
+    "designation": "सहा.प.चि.क्षे.अधि. DMF",
+    "mobile": "7000485683",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "अनतपुर",
+    "panchayats": [
+      "अनतपुर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-62",
+    "sno": 62,
+    "name": "श्रीमती अनुसूईया भिमटे",
+    "designation": "पर्यवेक्षक, म.बा.वि.वि.",
+    "mobile": "8319912159",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "बीजापुर",
+    "panchayats": [
+      "बीजापुर"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-63",
+    "sno": 63,
+    "name": "श्री सदाराम नेताम",
+    "designation": "वि.वि.अधि.,ज.पं. माकड़ी",
+    "mobile": "9425592682",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "अमरावती",
+    "panchayats": [
+      "अमरावती"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-64",
+    "sno": 64,
+    "name": "श्री हेमंत भारद्वाज",
+    "designation": "क्षेत्रीय समन्वयक, एनआरएलम माकड़ी",
+    "mobile": "8103542900",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "बेलगांव (अ)",
+    "panchayats": [
+      "बेलगांव (अ)"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-65",
+    "sno": 65,
+    "name": "श्री परमेश्वर चंदेल",
+    "designation": "बीपीएम, एनआरएलम माकड़ी",
+    "mobile": "9753906254",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "देउरबाल",
+    "panchayats": [
+      "देउरबाल"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-66",
+    "sno": 66,
+    "name": "श्री तेजलाल यादव",
+    "designation": "ग्रामीण कृषि विस्तार अधिकारी",
+    "mobile": "7697581745",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "बिंजोली",
+    "panchayats": [
+      "बिंजोली"
+    ],
+    "is_active": true
+  },
+  {
+    "id": "nodal-makdi-67",
+    "sno": 67,
+    "name": "श्री दीनदयाल पात्र",
+    "designation": "सहा.प.चि.क्षे.अधि. DMF",
+    "mobile": "7354093322",
+    "block": "माकडी",
+    "district": "कोण्डागांव",
+    "panchayat": "छिनारी",
+    "panchayats": [
+      "छिनारी"
     ],
     "is_active": true
   }
