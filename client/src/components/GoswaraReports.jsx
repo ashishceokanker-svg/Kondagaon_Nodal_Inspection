@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { FileSpreadsheet, Printer, Download, Filter, Eye, Trash2, Calendar, MapPin, Building, Baby, GraduationCap, Wheat, Landmark, Activity, Home, ArrowLeft, MessageSquare, RefreshCw } from 'lucide-react';
 import { API } from '../api';
-import { DISTRICT_BLOCKS, getPanchayatsForBlock } from '../constants';
+import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../constants';
 import { exportGoswaraToExcelClient } from '../utils/clientExcelExport';
 
 
 export default function GoswaraReports({ officer, onBack, onSelectInspection }) {
   const isAdmin = officer?.role === 'admin' || officer?.id === 'admin';
+  const officerPanchayats = getOfficerPanchayats(officer);
 
   const [goswaraData, setGoswaraData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,12 +19,25 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
   const [allRemarksLoading, setAllRemarksLoading] = useState(false);
 
   // Filters: Locked to officer unless Admin
-  const [filters, setFilters] = useState({
-    block: isAdmin ? '' : (officer?.block || ''),
-    panchayat: isAdmin ? '' : (officer?.panchayat || (officer?.panchayats?.[0] || '')),
-    startDate: '',
-    endDate: '',
-    officerId: isAdmin ? '' : (officer?.id || '')
+  const [filters, setFilters] = useState(() => {
+    if (isAdmin) {
+      return {
+        block: '',
+        panchayat: '',
+        startDate: '',
+        endDate: '',
+        officerId: ''
+      };
+    } else {
+      return {
+        block: officer?.block || '',
+        panchayat: officerPanchayats.length === 1 ? officerPanchayats[0] : '',
+        panchayats: officerPanchayats,
+        startDate: '',
+        endDate: '',
+        officerId: officer?.id || ''
+      };
+    }
   });
 
   const [masters, setMasters] = useState(null);
@@ -123,7 +137,8 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
   const handleDownloadExcel = async () => {
     const exportFilters = {
       ...filters,
-      officerId: isAdmin ? (filters.officerId || '') : (officer?.id || '')
+      officerId: isAdmin ? (filters.officerId || '') : (officer?.id || ''),
+      panchayats: isAdmin ? null : (filters.panchayat ? [filters.panchayat] : officerPanchayats)
     };
     try {
       await exportGoswaraToExcelClient(exportFilters);
@@ -162,6 +177,76 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
     { key: 'health', name: 'स्वास्थ्य केन्द्र', icon: Activity, color: 'text-red-600 bg-red-50' },
     { key: 'awas', name: 'प्रधानमंत्री आवास', icon: Home, color: 'text-cyan-600 bg-cyan-50' },
   ];
+
+  // Compute strictly officer's assigned panchayat(s) if not admin
+  const displayedPanchayatStats = React.useMemo(() => {
+    const list = goswaraData?.panchayatStats || [];
+    if (isAdmin) return list;
+
+    const allowed = filters.panchayat ? [filters.panchayat] : officerPanchayats;
+    if (allowed.length === 0) return list;
+
+    const filtered = list.filter(p => allowed.includes(p.panchayat));
+
+    // If any allowed panchayat doesn't have inspection yet, still show it in table with 0s
+    allowed.forEach(pName => {
+      if (!filtered.some(f => f.panchayat === pName)) {
+        filtered.push({
+          panchayat: pName,
+          total: 0,
+          anganwadi: 0,
+          school: 0,
+          hostel: 0,
+          pds: 0,
+          chaupal: 0,
+          health: 0,
+          awas: 0
+        });
+      }
+    });
+    return filtered;
+  }, [goswaraData?.panchayatStats, isAdmin, filters.panchayat, officerPanchayats]);
+
+  const { displayedTotalInspections, displayedTypeStats } = React.useMemo(() => {
+    if (isAdmin) {
+      const ts = {};
+      facilities.forEach(f => {
+        const raw = goswaraData?.typeStats?.[f.key];
+        ts[f.key] = typeof raw === 'object' ? (raw?.count ?? raw?.total ?? 0) : (raw || 0);
+      });
+      return {
+        displayedTotalInspections: goswaraData?.totalInspections || 0,
+        displayedTypeStats: ts
+      };
+    }
+
+    let total = 0;
+    const ts = { anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0 };
+    displayedPanchayatStats.forEach(p => {
+      total += (Number(p.total) || 0);
+      facilities.forEach(f => {
+        ts[f.key] = (ts[f.key] || 0) + (Number(p[f.key]) || 0);
+      });
+    });
+    return {
+      displayedTotalInspections: total,
+      displayedTypeStats: ts
+    };
+  }, [isAdmin, goswaraData, displayedPanchayatStats]);
+
+  const displayedFacilityRecords = React.useMemo(() => {
+    if (isAdmin) return facilityRecords;
+    const allowed = filters.panchayat ? [filters.panchayat] : officerPanchayats;
+    if (allowed.length === 0) return facilityRecords;
+    return facilityRecords.filter(r => allowed.includes(r.panchayat));
+  }, [isAdmin, facilityRecords, filters.panchayat, officerPanchayats]);
+
+  const displayedRemarksRecords = React.useMemo(() => {
+    if (isAdmin) return allRemarksRecords;
+    const allowed = filters.panchayat ? [filters.panchayat] : officerPanchayats;
+    if (allowed.length === 0) return allRemarksRecords;
+    return allRemarksRecords.filter(r => allowed.includes(r.panchayat));
+  }, [isAdmin, allRemarksRecords, filters.panchayat, officerPanchayats]);
 
   return (
     <div className="max-w-6xl mx-auto space-y-6 mb-16">
@@ -265,6 +350,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                 <label className="block text-[11px] font-semibold text-slate-600 mb-1">प्रारंभ दिनांक</label>
                 <input
                   type="date"
+                  max={getTodayDateString()}
                   value={filters.startDate}
                   onChange={e => setFilters({ ...filters, startDate: e.target.value })}
                   className="w-full p-2 border border-slate-300 rounded-lg bg-white"
@@ -275,6 +361,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                 <label className="block text-[11px] font-semibold text-slate-600 mb-1">समाप्ति दिनांक</label>
                 <input
                   type="date"
+                  max={getTodayDateString()}
                   value={filters.endDate}
                   onChange={e => setFilters({ ...filters, endDate: e.target.value })}
                   className="w-full p-2 border border-slate-300 rounded-lg bg-white"
@@ -294,15 +381,38 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                 </span>
               </div>
               <div className="text-slate-600 text-xs">
-                विकासखण्ड: <strong className="text-slate-900">{officer?.block}</strong> • ग्राम पंचायत: <strong className="text-slate-900">{officer?.panchayat || officer?.panchayats?.join(', ')}</strong>
+                विकासखण्ड: <strong className="text-slate-900">{officer?.block}</strong> • आवंटित ग्राम पंचायत: <strong className="text-slate-900">{officerPanchayats.join(', ') || officer?.panchayat}</strong>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-2.5 sm:w-1/2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              {officerPanchayats.length > 1 && (
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-600 mb-1">आवंटित पंचायत चुनें</label>
+                  <select
+                    value={filters.panchayat}
+                    onChange={e => {
+                      const val = e.target.value;
+                      setFilters({
+                        ...filters,
+                        panchayat: val,
+                        panchayats: val ? [val] : officerPanchayats
+                      });
+                    }}
+                    className="w-full p-2 border border-slate-300 rounded-lg bg-white"
+                  >
+                    <option value="">-- समस्त आवंटित पंचायतें ({officerPanchayats.length}) --</option>
+                    {officerPanchayats.map(p => (
+                      <option key={p} value={p}>{p}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
               <div>
                 <label className="block text-[11px] font-semibold text-slate-600 mb-1">प्रारंभ दिनांक से</label>
                 <input
                   type="date"
+                  max={getTodayDateString()}
                   value={filters.startDate}
                   onChange={e => setFilters({ ...filters, startDate: e.target.value })}
                   className="w-full p-2 border border-slate-300 rounded-lg bg-white"
@@ -312,6 +422,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                 <label className="block text-[11px] font-semibold text-slate-600 mb-1">समाप्ति दिनांक तक</label>
                 <input
                   type="date"
+                  max={getTodayDateString()}
                   value={filters.endDate}
                   onChange={e => setFilters({ ...filters, endDate: e.target.value })}
                   className="w-full p-2 border border-slate-300 rounded-lg bg-white"
@@ -339,7 +450,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
           <p className="text-xs text-slate-600 mt-1 font-medium">
             {isAdmin 
               ? (filters.block ? `विकासखण्ड: ${filters.block}` : 'समस्त विकासखण्ड') 
-              : `नोडल अधिकारी: ${officer?.name || ''} (${officer?.designation || ''}) • ग्राम पंचायत: ${officer?.panchayat || officer?.panchayats?.join(', ') || ''} • विकासखण्ड: ${officer?.block || ''}`} • 
+              : `नोडल अधिकारी: ${officer?.name || ''} (${officer?.designation || ''}) • ग्राम पंचायत: ${officerPanchayats.join(', ') || officer?.panchayat || ''} • विकासखण्ड: ${officer?.block || ''}`} • 
             दिनांक: {new Date().toLocaleDateString('hi-IN')}
           </p>
         </div>
@@ -348,12 +459,11 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 mb-6">
           <div className="p-3 rounded-xl border bg-slate-900 text-white text-center">
             <span className="text-[10px] text-slate-300 block font-medium">कुल निरीक्षण</span>
-            <span className="text-xl font-black">{goswaraData?.totalInspections || 0}</span>
+            <span className="text-xl font-black">{displayedTotalInspections}</span>
           </div>
 
           {facilities.map(f => {
-            const rawVal = goswaraData?.typeStats?.[f.key];
-            const count = typeof rawVal === 'object' ? (rawVal?.count ?? rawVal?.total ?? 0) : (rawVal || 0);
+            const count = displayedTypeStats[f.key] || 0;
             return (
               <div key={f.key} className={`p-3 rounded-xl border text-center ${f.color}`}>
                 <span className="text-[10px] block font-semibold truncate">{f.name}</span>
@@ -419,8 +529,8 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
-                {goswaraData?.panchayatStats?.length > 0 ? (
-                  goswaraData.panchayatStats.map((p, idx) => (
+                {displayedPanchayatStats?.length > 0 ? (
+                  displayedPanchayatStats.map((p, idx) => (
                     <tr key={idx} className="hover:bg-slate-50">
                       <td className="p-2 text-center font-semibold text-slate-500 border-r">{idx + 1}</td>
                       <td className="p-2 font-bold text-slate-800 border-r">{p.panchayat}</td>
@@ -483,8 +593,8 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200">
-                  {facilityRecords.length > 0 ? (
-                    facilityRecords.map((rec, idx) => {
+                  {displayedFacilityRecords.length > 0 ? (
+                    displayedFacilityRecords.map((rec, idx) => {
                       const tip = getRecordTip(rec);
                       return (
                         <tr key={rec.id || idx} className="hover:bg-slate-50 align-top">
@@ -573,7 +683,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                 </p>
               </div>
               <div className="text-xs font-bold text-amber-900 bg-white px-3 py-1 rounded-lg border border-amber-300 shadow-sm self-start sm:self-auto">
-                कुल प्रविष्टियां: {allRemarksRecords.length}
+                कुल प्रविष्टियां: {displayedRemarksRecords.length}
               </div>
             </div>
 
@@ -594,8 +704,8 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200">
-                  {allRemarksRecords.length > 0 ? (
-                    allRemarksRecords.map((rec, idx) => {
+                  {displayedRemarksRecords.length > 0 ? (
+                    displayedRemarksRecords.map((rec, idx) => {
                       const tip = getRecordTip(rec);
                       return (
                         <tr key={rec.id || idx} className="hover:bg-slate-50 align-top">

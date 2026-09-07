@@ -81,3 +81,34 @@ export const getPanchayatsForBlock = (blockName) => {
   }
   return [];
 };
+
+export const getTodayDateString = () => {
+  const d = new Date();
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+export const getOfficerPanchayats = (officer) => {
+  if (!officer) return [];
+  const list = [];
+  if (Array.isArray(officer.panchayats) && officer.panchayats.length > 0) {
+    officer.panchayats.forEach(p => {
+      if (p && typeof p === 'string') {
+        p.split(',').forEach(sub => {
+          const trimmed = sub.trim();
+          if (trimmed && !list.includes(trimmed)) list.push(trimmed);
+        });
+      }
+    });
+  }
+  if (officer.panchayat && typeof officer.panchayat === 'string') {
+    officer.panchayat.split(',').forEach(sub => {
+      const trimmed = sub.trim();
+      if (trimmed && !list.includes(trimmed)) list.push(trimmed);
+    });
+  }
+  return list;
+};
+

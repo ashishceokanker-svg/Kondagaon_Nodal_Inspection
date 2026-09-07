@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
 import { Wheat, Calendar, User, Camera, Save, Send, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { API } from '../../api';
-import { DISTRICT_BLOCKS, getPanchayatsForBlock } from '../../constants';
+import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../../constants';
 import GeoPhotoCapture from '../GeoPhotoCapture';
 
 
 export default function PdsForm({ officer, onBack, onSuccess, initialData = null }) {
+  const isOfficer = officer && officer.role !== 'admin';
+  const officerPanchayats = getOfficerPanchayats(officer);
+  const today = getTodayDateString();
+
   const [formData, setFormData] = useState(() => {
     if (initialData) return initialData;
     return {
-      date: new Date().toISOString().slice(0, 10),
+      date: today,
       officerId: officer?.id || '',
       officerName: officer?.name || '',
       officerDesignation: officer?.designation || '',
       officerMobile: officer?.mobile || '',
       block: officer?.block || 'बड़ेराजपुर',
       district: officer?.district || 'कोण्डागांव',
-      panchayat: officer?.panchayats?.[0] || '',
+      panchayat: officerPanchayats[0] || officer?.panchayats?.[0] || officer?.panchayat || '',
 
       // 01. Shop Details
       shopName: '',
@@ -149,20 +153,45 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-200">
             <div>
               <label className="block text-[11px] font-semibold text-slate-600 mb-1">02. जांच की तिथि</label>
               <input
                 type="date"
+                max={today}
                 value={formData.date}
-                onChange={e => setFormData({ ...formData, date: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                onChange={e => {
+                  const val = e.target.value;
+                  if (val > today) {
+                    alert('भविष्य (आगे) की तारीख का चयन नहीं किया जा सकता। कृपया वर्तमान या पूर्व की तारीख चुनें।');
+                    return;
+                  }
+                  setFormData({ ...formData, date: val });
+                }}
+                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
               />
             </div>
+            <div>
+              <label className="block text-[11px] font-semibold text-slate-600 mb-1">नोडल अधिकारी का नाम</label>
+              <input
+                type="text"
+                readOnly={isOfficer}
+                value={formData.officerName}
+                onChange={e => !isOfficer && setFormData({ ...formData, officerName: e.target.value })}
+                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-bold ${
+                  isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white text-slate-900'
+                }`}
+                title={isOfficer ? "नोडल अधिकारी का नाम बदला नहीं जा सकता" : ""}
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-200">
             <div>
               <label className="block text-[11px] font-semibold text-slate-600 mb-1">विकासखण्ड</label>
               <select
                 value={formData.block}
+                disabled={isOfficer}
                 onChange={e => {
                   const newBlock = e.target.value;
                   const panchs = getPanchayatsForBlock(newBlock);
@@ -172,7 +201,9 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
                     panchayat: panchs[0] || '' 
                   });
                 }}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
+                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-medium ${
+                  isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
+                }`}
               >
                 {DISTRICT_BLOCKS.map(b => (
                   <option key={b} value={b}>{b}</option>
@@ -183,11 +214,14 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
               <label className="block text-[11px] font-semibold text-slate-600 mb-1">ग्राम पंचायत *</label>
               <select
                 value={formData.panchayat}
+                disabled={isOfficer && officerPanchayats.length <= 1}
                 onChange={e => setFormData({ ...formData, panchayat: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
+                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-medium ${
+                  isOfficer && officerPanchayats.length <= 1 ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
+                }`}
               >
-                <option value="">-- ग्राम पंचायत चुनें --</option>
-                {getPanchayatsForBlock(formData.block).map(p => (
+                {!isOfficer && <option value="">-- ग्राम पंचायत चुनें --</option>}
+                {((isOfficer && officerPanchayats.length > 0) ? officerPanchayats : getPanchayatsForBlock(formData.block)).map(p => (
                   <option key={p} value={p}>{p}</option>
                 ))}
               </select>

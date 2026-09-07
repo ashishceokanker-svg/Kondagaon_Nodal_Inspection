@@ -415,12 +415,16 @@ export const API = {
     if (isSupabaseConfigured() && supabase) {
       try {
         let query = supabase.from(`inspections_${type}`).select('*');
-        if (filters.officerId) query = query.eq('officer_id', filters.officerId);
+        if (filters.officerId && filters.officerId !== 'admin') {
+          query = query.eq('officer_id', filters.officerId);
+        }
         if (filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड') {
           query = query.or(`block.eq.${filters.block},block.ilike.%${filters.block}%`);
         }
         if (filters.panchayat && filters.panchayat !== 'सभी ग्राम पंचायतें' && filters.panchayat !== 'समस्त पंचायतें') {
           query = query.eq('panchayat', filters.panchayat);
+        } else if (filters.panchayats && Array.isArray(filters.panchayats) && filters.panchayats.length > 0) {
+          query = query.in('panchayat', filters.panchayats);
         }
         if (filters.startDate) query = query.gte('date', filters.startDate);
         if (filters.endDate) query = query.lte('date', filters.endDate);
@@ -432,9 +436,19 @@ export const API = {
           if (filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड') {
             mapped = mapped.filter(item => matchBlock(item.block, filters.block));
           }
+          if (filters.panchayat && filters.panchayat !== 'सभी ग्राम पंचायतें' && filters.panchayat !== 'समस्त पंचायतें') {
+            mapped = mapped.filter(item => item.panchayat === filters.panchayat);
+          } else if (filters.panchayats && Array.isArray(filters.panchayats) && filters.panchayats.length > 0) {
+            mapped = mapped.filter(item => filters.panchayats.includes(item.panchayat));
+          }
           localStorage.setItem(`cached_inspections_${type}`, JSON.stringify(mapped));
           // Merge any offline pending drafts
-          const drafts = this.getOfflineDrafts(type);
+          let drafts = this.getOfflineDrafts(type);
+          if (filters.panchayat && filters.panchayat !== 'सभी ग्राम पंचायतें' && filters.panchayat !== 'समस्त पंचायतें') {
+            drafts = drafts.filter(item => item.panchayat === filters.panchayat);
+          } else if (filters.panchayats && Array.isArray(filters.panchayats) && filters.panchayats.length > 0) {
+            drafts = drafts.filter(item => filters.panchayats.includes(item.panchayat));
+          }
           return [...drafts, ...mapped];
         }
       } catch (err) {
@@ -465,8 +479,23 @@ export const API = {
     // 3. Fallback to LocalStorage Cache + Drafts
     const cached = localStorage.getItem(`cached_inspections_${type}`);
     let list = cached ? JSON.parse(cached) : [];
-    const drafts = this.getOfflineDrafts(type);
-    return [...drafts, ...list];
+    let drafts = this.getOfflineDrafts(type);
+    let combined = [...drafts, ...list];
+    if (filters.panchayat && filters.panchayat !== 'सभी ग्राम पंचायतें' && filters.panchayat !== 'समस्त पंचायतें') {
+      combined = combined.filter(item => item.panchayat === filters.panchayat);
+    } else if (filters.panchayats && Array.isArray(filters.panchayats) && filters.panchayats.length > 0) {
+      combined = combined.filter(item => filters.panchayats.includes(item.panchayat));
+    }
+    if (filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड') {
+      combined = combined.filter(item => matchBlock(item.block, filters.block));
+    }
+    if (filters.startDate) {
+      combined = combined.filter(item => (item.date || item.inspectionDate) >= filters.startDate);
+    }
+    if (filters.endDate) {
+      combined = combined.filter(item => (item.date || item.inspectionDate) <= filters.endDate);
+    }
+    return combined;
   },
 
   async saveInspection(type, data) {
@@ -630,22 +659,19 @@ export const API = {
       const typeStats = { anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0 };
       const panchayatMap = {};
 
-      for (const type of TYPES) {
-        const items = await this.getInspections(type, filters);
-        const count = items.length;
-        typeStats[type] = { count, total: count };
-        items.forEach(item => {
-          allInspections.push({ ...item, _type: type });
-          const pName = item.panchayat || 'अन्य';
-          if (!panchayatMap[pName]) {
-            panchayatMap[pName] = { panchayat: pName, total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0 };
-          }
-          panchayatMap[pName].total++;
-          panchayatMap[pName][type]++;
-        });
+      // Determine target panchayats if filtering for officer or specific panchayat
+      let targetPanchayats = null;
+      if (filters.panchayat && filters.panchayat !== 'सभी ग्राम पंचायतें' && filters.panchayat !== 'समस्त पंचायतें') {
+        targetPanchayats = [filters.panchayat];
+      } else if (filters.panchayats && Array.isArray(filters.panchayats) && filters.panchayats.length > 0) {
+        targetPanchayats = filters.panchayats;
       }
 
-      if (filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड') {
+      if (targetPanchayats) {
+        targetPanchayats.forEach(pName => {
+          panchayatMap[pName] = { panchayat: pName, total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0 };
+        });
+      } else if (!filters.officerId && filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड') {
         const blkPanchayats = getPanchayatsForBlock(filters.block);
         blkPanchayats.forEach(pName => {
           if (!panchayatMap[pName]) {
@@ -654,12 +680,36 @@ export const API = {
         });
       }
 
+      for (const type of TYPES) {
+        const items = await this.getInspections(type, filters);
+        const count = items.length;
+        typeStats[type] = { count, total: count };
+        items.forEach(item => {
+          const pName = item.panchayat || 'अन्य';
+          if (targetPanchayats && !targetPanchayats.includes(pName)) {
+            return;
+          }
+          allInspections.push({ ...item, _type: type });
+          if (!panchayatMap[pName]) {
+            panchayatMap[pName] = { panchayat: pName, total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0 };
+          }
+          panchayatMap[pName].total++;
+          panchayatMap[pName][type]++;
+        });
+      }
+
       allInspections.sort((a, b) => new Date(b.date || b.createdAt || 0) - new Date(a.date || a.createdAt || 0));
+
+      let panchayatStats = Object.values(panchayatMap);
+      if (targetPanchayats) {
+        panchayatStats = panchayatStats.filter(p => targetPanchayats.includes(p.panchayat));
+      }
+      panchayatStats.sort((a, b) => b.total - a.total);
 
       const summary = {
         totalInspections: allInspections.length,
         typeStats,
-        panchayatStats: Object.values(panchayatMap).sort((a, b) => b.total - a.total),
+        panchayatStats,
         recentInspections: allInspections.slice(0, 50)
       };
       localStorage.setItem('cached_goswara', JSON.stringify(summary));
