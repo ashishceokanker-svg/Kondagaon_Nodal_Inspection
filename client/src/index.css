@@ -12,9 +12,15 @@
 
 /* Custom print styles for inspection forms and Goswara report */
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 8mm 8mm 8mm;
+  }
   body {
     background: white !important;
     color: black !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
   .no-print {
     display: none !important;
@@ -24,5 +30,41 @@
   }
   .page-break {
     page-break-before: always;
+  }
+  .break-inside-avoid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  /* Modal print styles so inspection modal prints as full-page official document */
+  .inspection-modal-backdrop {
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    z-index: auto !important;
+    display: block !important;
+  }
+  .inspection-modal-box {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+  .inspection-modal-body {
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
   }
 }
