@@ -2,6 +2,7 @@
 
 import { supabase, isSupabaseConfigured } from './supabaseClient';
 import { DEFAULT_NODAL_OFFICERS } from './data/defaultOfficers';
+import { matchBlock, getPanchayatsForBlock } from './constants';
 
 const API_BASE = '/api';
 
@@ -415,15 +416,22 @@ export const API = {
       try {
         let query = supabase.from(`inspections_${type}`).select('*');
         if (filters.officerId) query = query.eq('officer_id', filters.officerId);
-        if (filters.block) query = query.eq('block', filters.block);
-        if (filters.panchayat) query = query.eq('panchayat', filters.panchayat);
+        if (filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड') {
+          query = query.or(`block.eq.${filters.block},block.ilike.%${filters.block}%`);
+        }
+        if (filters.panchayat && filters.panchayat !== 'सभी ग्राम पंचायतें' && filters.panchayat !== 'समस्त पंचायतें') {
+          query = query.eq('panchayat', filters.panchayat);
+        }
         if (filters.startDate) query = query.gte('date', filters.startDate);
         if (filters.endDate) query = query.lte('date', filters.endDate);
         query = query.order('created_at', { ascending: false });
 
         const { data, error } = await query;
         if (!error && Array.isArray(data)) {
-          const mapped = data.map(mapDbRowToInspection);
+          let mapped = data.map(mapDbRowToInspection);
+          if (filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड') {
+            mapped = mapped.filter(item => matchBlock(item.block, filters.block));
+          }
           localStorage.setItem(`cached_inspections_${type}`, JSON.stringify(mapped));
           // Merge any offline pending drafts
           const drafts = this.getOfflineDrafts(type);
@@ -634,6 +642,15 @@ export const API = {
           }
           panchayatMap[pName].total++;
           panchayatMap[pName][type]++;
+        });
+      }
+
+      if (filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड') {
+        const blkPanchayats = getPanchayatsForBlock(filters.block);
+        blkPanchayats.forEach(pName => {
+          if (!panchayatMap[pName]) {
+            panchayatMap[pName] = { panchayat: pName, total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0 };
+          }
         });
       }
 

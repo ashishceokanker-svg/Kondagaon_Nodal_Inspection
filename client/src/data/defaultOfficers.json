@@ -1022,62 +1022,6 @@
     "is_active": true
   },
   {
-    "id": "nodal-fars-74",
-    "sno": 74,
-    "name": "कु० पिंकी ठाकुर",
-    "designation": "तकनीकी सहायक, वीबीजीरामजी",
-    "mobile": "9406039252",
-    "block": "फरसगांव",
-    "district": "कोण्डागांव",
-    "panchayat": "रिजर्व",
-    "panchayats": [
-      "रिजर्व"
-    ],
-    "is_active": true
-  },
-  {
-    "id": "nodal-fars-75",
-    "sno": 75,
-    "name": "कु० प्रियंका ठाकुर",
-    "designation": "तकनीकी सहायक, वीबीजीरामजी",
-    "mobile": "9340097554",
-    "block": "फरसगांव",
-    "district": "कोण्डागांव",
-    "panchayat": "रिजर्व",
-    "panchayats": [
-      "रिजर्व"
-    ],
-    "is_active": true
-  },
-  {
-    "id": "nodal-fars-76",
-    "sno": 76,
-    "name": "कु० स्नेहा साहू",
-    "designation": "तकनीकी सहायक, वीबीजीरामजी",
-    "mobile": "7974053660",
-    "block": "फरसगांव",
-    "district": "कोण्डागांव",
-    "panchayat": "रिजर्व",
-    "panchayats": [
-      "रिजर्व"
-    ],
-    "is_active": true
-  },
-  {
-    "id": "nodal-fars-77",
-    "sno": 77,
-    "name": "श्री भोजराज नारनोरे",
-    "designation": "तकनीकी सहायक, वीबीजीरामजी",
-    "mobile": "9999999999",
-    "block": "फरसगांव",
-    "district": "कोण्डागांव",
-    "panchayat": "रिजर्व",
-    "panchayats": [
-      "रिजर्व"
-    ],
-    "is_active": true
-  },
-  {
     "id": "off-1",
     "sno": 1,
     "name": "श्री लखेश्वर यादव",
