@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FileSpreadsheet, Printer, Download, Filter, Eye, Trash2, Calendar, MapPin, Building, Baby, GraduationCap, Wheat, Landmark, Activity, Home, ArrowLeft, MessageSquare } from 'lucide-react';
+import { FileSpreadsheet, Printer, Download, Filter, Eye, Trash2, Calendar, MapPin, Building, Baby, GraduationCap, Wheat, Landmark, Activity, Home, ArrowLeft, MessageSquare, RefreshCw } from 'lucide-react';
 import { API } from '../api';
 import { DISTRICT_BLOCKS, getPanchayatsForBlock } from '../constants';
 import { exportGoswaraToExcelClient } from '../utils/clientExcelExport';
@@ -195,6 +195,15 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
 
           {/* Action buttons */}
           <div className="flex items-center gap-2">
+            <button
+              onClick={loadGoswaraData}
+              className="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold py-2.5 px-3 rounded-xl shadow-sm flex items-center gap-1.5 transition"
+              title="ताज़ा ऑनलाइन डेटा लोड करें"
+            >
+              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+              <span className="hidden sm:inline">रिफ्रेश</span>
+            </button>
+
             <button
               onClick={handleDownloadExcel}
               className="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-sm flex items-center gap-1.5 transition"

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Baby, GraduationCap, Building, Wheat, Landmark, Activity, Home, FileSpreadsheet, ChevronRight, Clock, PlusCircle, MapPin, CheckCircle, AlertTriangle, ClipboardCheck, Users, UserPlus } from 'lucide-react';
+import { Baby, GraduationCap, Building, Wheat, Landmark, Activity, Home, FileSpreadsheet, ChevronRight, Clock, PlusCircle, MapPin, CheckCircle, AlertTriangle, ClipboardCheck, Users, UserPlus, RefreshCw } from 'lucide-react';
 import { API } from '../api';
 
 export default function Dashboard({ officer, onSelectModule, onViewGoswara, onViewDetail, onViewCompliance, onViewOfficers }) {
@@ -147,6 +147,15 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
             >
               <FileSpreadsheet className="w-4 h-4 text-emerald-800" />
               <span>गोसवारा रिपोर्ट</span>
+            </button>
+
+            <button
+              onClick={loadDashboardData}
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs py-2.5 px-3 rounded-xl shadow-md flex items-center justify-center gap-1.5 transition active:scale-95"
+              title="ऑनलाइन डेटा रिफ्रेश करें"
+            >
+              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+              <span className="hidden sm:inline">रिफ्रेश</span>
             </button>
           </div>
         </div>

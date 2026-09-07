@@ -138,7 +138,7 @@ export const API = {
   async login(credentials) {
     // Admin check
     if (credentials.role === 'admin' || credentials.username === 'admin') {
-      if (credentials.password && credentials.password.trim() === 'admin') {
+      if (credentials.password && credentials.password.trim() === 'admin#123') {
         const adminOfficer = {
           id: 'admin',
           name: 'जिला प्रशासक (Admin)',
@@ -153,7 +153,7 @@ export const API = {
         localStorage.setItem('current_officer', JSON.stringify(adminOfficer));
         return { success: true, officer: adminOfficer };
       } else {
-        return { success: false, message: 'गलत एडमिन पासवर्ड! कृपया सही पासवर्ड (admin) दर्ज करें।' };
+        return { success: false, message: 'गलत एडमिन पासवर्ड! कृपया सही पासवर्ड दर्ज करें।' };
       }
     }
 

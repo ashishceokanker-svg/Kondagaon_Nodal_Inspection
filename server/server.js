@@ -82,7 +82,7 @@ app.post('/api/auth/login', (req, res) => {
 
   // 1. Admin Login
   if (role === 'admin' || username === 'admin') {
-    if (password && password.trim() === 'admin') {
+    if (password && password.trim() === 'admin#123') {
       return res.json({
         success: true,
         officer: {
@@ -98,7 +98,7 @@ app.post('/api/auth/login', (req, res) => {
         }
       });
     } else {
-      return res.status(401).json({ success: false, message: 'गलत एडमिन पासवर्ड! कृपया सही पासवर्ड (admin) दर्ज करें।' });
+      return res.status(401).json({ success: false, message: 'अमान्य एडमिन पासवर्ड!' });
     }
   }
 

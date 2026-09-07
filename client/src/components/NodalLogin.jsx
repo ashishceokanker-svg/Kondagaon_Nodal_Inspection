@@ -126,7 +126,7 @@ export default function NodalLogin({ onLoginSuccess }) {
       if (res.success && res.officer) {
         onLoginSuccess(res.officer);
       } else {
-        setErrorMsg(res.message || 'गलत एडमिन क्रेडेंशियल (पासवर्ड: admin)');
+        setErrorMsg(res.message || 'गलत एडमिन क्रेडेंशियल');
       }
     } catch (err) {
       setErrorMsg('सर्वर से संपर्क नहीं हो सका।');
@@ -350,14 +350,11 @@ export default function NodalLogin({ onLoginSuccess }) {
                 </label>
                 <input
                   type="password"
-                  placeholder="admin"
+                  placeholder="एडमिन पासवर्ड दर्ज करें"
                   value={adminPassword}
                   onChange={(e) => setAdminPassword(e.target.value)}
                   className="w-full text-xs p-3 rounded-xl border border-slate-300 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-amber-500 font-mono text-slate-900"
                 />
-                <p className="text-[10px] text-slate-500 mt-1">
-                  डिफ़ॉल्ट पासवर्ड: <span className="font-mono font-bold text-slate-700">admin</span>
-                </p>
               </div>
 
               <div>

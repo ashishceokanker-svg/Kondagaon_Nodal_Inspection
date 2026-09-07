@@ -29,6 +29,20 @@ export default function App() {
     }
     // Automatically sync any pending drafts to Supabase cloud
     API.syncOfflineDrafts().catch(() => {});
+
+    const handleOnline = () => {
+      API.syncOfflineDrafts().catch(() => {});
+    };
+    window.addEventListener('online', handleOnline);
+
+    const interval = setInterval(() => {
+      API.syncOfflineDrafts().catch(() => {});
+    }, 20000);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      clearInterval(interval);
+    };
   }, []);
 
   const handleLogout = () => {
