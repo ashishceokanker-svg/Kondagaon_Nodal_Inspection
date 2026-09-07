@@ -55,12 +55,14 @@ export default function NodalLogin({ onLoginSuccess }) {
     }
   };
 
-  // When Gram Panchayat changes, automatically find and set the officer & post
   const handlePanchayatChange = (panchayatName) => {
     setSelectedPanchayat(panchayatName);
     setErrorMsg('');
     setPassword('');
-    const found = officers.find(o => o.panchayat === panchayatName || (o.panchayats && o.panchayats.includes(panchayatName)));
+    const found = officers.find(o => 
+      matchBlock(o.block, selectedBlock) && 
+      (o.panchayat === panchayatName || (o.panchayats && o.panchayats.includes(panchayatName)))
+    );
     if (found) {
       setMatchedOfficer(found);
     } else {
