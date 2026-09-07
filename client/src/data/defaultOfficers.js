@@ -1,3 +1,3 @@
-import defaultOfficersJson from './defaultOfficers.json';
+import officersJson from './defaultOfficers.json';
 
-export const DEFAULT_NODAL_OFFICERS = defaultOfficersJson;
+export const DEFAULT_NODAL_OFFICERS = officersJson;

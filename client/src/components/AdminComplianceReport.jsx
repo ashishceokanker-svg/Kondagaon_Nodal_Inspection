@@ -9,7 +9,7 @@ import { DISTRICT_BLOCKS, MONTHS_LIST, getPanchayatsForBlock } from '../constant
 import { exportComplianceToExcelClient } from '../utils/clientExcelExport';
 
 export default function AdminComplianceReport({ officer, onBack }) {
-  const [selectedBlock, setSelectedBlock] = useState('बड़ेराजपुर');
+  const [selectedBlock, setSelectedBlock] = useState('फरसगांव');
   const [selectedPanchayat, setSelectedPanchayat] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('सितम्बर 2026');
   const [activeListTab, setActiveListTab] = useState('all'); // 'all' | 'completed' | 'pending'
@@ -338,7 +338,8 @@ export default function AdminComplianceReport({ officer, onBack }) {
         </h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">
           {facilityLabels.map(fac => {
-            const count = summary.typeStats?.[fac.key] || 0;
+            const val = summary.typeStats?.[fac.key];
+            const count = typeof val === 'object' ? (val?.count ?? val?.total ?? 0) : (val || 0);
             return (
               <div 
                 key={fac.key}

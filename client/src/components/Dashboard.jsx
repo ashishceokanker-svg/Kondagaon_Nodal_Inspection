@@ -25,6 +25,11 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
     }
   };
 
+  const getTypeCount = (key) => {
+    const val = stats?.typeStats?.[key];
+    return typeof val === 'object' ? (val?.count ?? val?.total ?? 0) : (val || 0);
+  };
+
   const modules = [
     {
       key: 'anganwadi',
@@ -159,13 +164,13 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
           <div className="bg-white/5 p-2 rounded-xl">
             <span className="text-[10px] text-slate-300 block">स्कूल / आंगनबाड़ी</span>
             <span className="text-base font-bold text-emerald-300">
-              {(stats?.typeStats?.school?.count || 0) + (stats?.typeStats?.anganwadi?.count || 0)}
+              {getTypeCount('school') + getTypeCount('anganwadi')}
             </span>
           </div>
           <div className="bg-white/5 p-2 rounded-xl">
             <span className="text-[10px] text-slate-300 block">स्वास्थ्य / चौपाल</span>
             <span className="text-base font-bold text-sky-300">
-              {(stats?.typeStats?.health?.count || 0) + (stats?.typeStats?.chaupal?.count || 0)}
+              {getTypeCount('health') + getTypeCount('chaupal')}
             </span>
           </div>
         </div>
@@ -289,7 +294,7 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
           {/* 7 Inspection Modules Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             {modules.map(mod => {
-              const count = stats?.typeStats?.[mod.countKey]?.count || 0;
+              const count = getTypeCount(mod.countKey);
               return (
                 <div
                   key={mod.key}

@@ -343,7 +343,8 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
           </div>
 
           {facilities.map(f => {
-            const count = goswaraData?.typeStats?.[f.key]?.count || 0;
+            const rawVal = goswaraData?.typeStats?.[f.key];
+            const count = typeof rawVal === 'object' ? (rawVal?.count ?? rawVal?.total ?? 0) : (rawVal || 0);
             return (
               <div key={f.key} className={`p-3 rounded-xl border text-center ${f.color}`}>
                 <span className="text-[10px] block font-semibold truncate">{f.name}</span>

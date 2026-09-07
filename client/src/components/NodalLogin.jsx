@@ -6,7 +6,7 @@ import { DISTRICT_BLOCKS, MONTH_OPTIONS, matchBlock } from '../constants';
 export default function NodalLogin({ onLoginSuccess }) {
   const [loginMode, setLoginMode] = useState('officer'); // 'officer' | 'admin'
   const [officers, setOfficers] = useState([]);
-  const [selectedBlock, setSelectedBlock] = useState('बड़ेराजपुर');
+  const [selectedBlock, setSelectedBlock] = useState('फरसगांव');
   const [selectedPanchayat, setSelectedPanchayat] = useState('');
   const [matchedOfficer, setMatchedOfficer] = useState(null);
   const [selectedMonth, setSelectedMonth] = useState('सितम्बर 2026');
@@ -31,7 +31,7 @@ export default function NodalLogin({ onLoginSuccess }) {
       const cleanList = (list || []).filter(o => !o.panchayat?.includes('रिजर्व'));
       setOfficers(cleanList);
       if (cleanList.length > 0) {
-        const blockOfficers = cleanList.filter(o => matchBlock(o.block, selectedBlock));
+        const blockOfficers = cleanList.filter(o => matchBlock(o.block, 'फरसगांव'));
         const first = blockOfficers[0] || cleanList[0];
         setSelectedPanchayat(first.panchayat);
         setMatchedOfficer(first);
