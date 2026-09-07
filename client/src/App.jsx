@@ -27,6 +27,8 @@ export default function App() {
     if (current && (!officer || officer.id !== current.id)) {
       setOfficer(current);
     }
+    // Automatically sync any pending drafts to Supabase cloud
+    API.syncOfflineDrafts().catch(() => {});
   }, []);
 
   const handleLogout = () => {

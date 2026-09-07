@@ -39,10 +39,10 @@ function mapDbRowToInspection(row) {
   };
 }
 
-// Helper to convert frontend object to Supabase row
+// Helper to convert frontend object to Supabase row matching exact schema columns
 function mapInspectionToDbRow(type, data) {
   const id = data.id || `insp-${type}-${Date.now()}-${Math.round(Math.random() * 1000)}`;
-  return {
+  const row = {
     id,
     officer_id: data.officerId || data.officer_id || '',
     officer_name: data.officerName || data.officer_name || '',
@@ -52,13 +52,6 @@ function mapInspectionToDbRow(type, data) {
     district: data.district || 'कोण्डागांव',
     panchayat: data.panchayat || '',
     village: data.village || '',
-    center_name: data.centerName || '',
-    school_name: data.schoolName || '',
-    hostel_name: data.hostelName || '',
-    shop_number: data.shopNumber || '',
-    beneficiary_name: data.beneficiaryName || '',
-    health_center_name: data.healthCenterName || '',
-    chaupal_date: data.chaupalDate || data.date || '',
     date: data.date || '',
     month: data.month || 'सितम्बर 2026',
     status: data.status || 'पूर्ण',
@@ -70,6 +63,25 @@ function mapInspectionToDbRow(type, data) {
     form_data: { ...data, id },
     updated_at: new Date().toISOString()
   };
+
+  // Add only the specific valid column corresponding to this inspection type
+  if (type === 'anganwadi') {
+    row.center_name = data.centerName || data.center_name || '';
+  } else if (type === 'school') {
+    row.school_name = data.schoolName || data.school_name || '';
+  } else if (type === 'hostel') {
+    row.hostel_name = data.hostelName || data.hostel_name || '';
+  } else if (type === 'pds') {
+    row.shop_number = data.shopNumber || data.shop_number || '';
+  } else if (type === 'chaupal') {
+    row.chaupal_date = data.chaupalDate || data.chaupal_date || data.date || '';
+  } else if (type === 'health') {
+    row.health_center_name = data.healthCenterName || data.health_center_name || '';
+  } else if (type === 'awas') {
+    row.beneficiary_name = data.beneficiaryName || data.beneficiary_name || '';
+  }
+
+  return row;
 }
 
 export const API = {
@@ -445,18 +457,18 @@ export const API = {
     if (isSupabaseConfigured() && supabase) {
       try {
         const dbRow = mapInspectionToDbRow(type, data);
-        const { data: savedRow, error } = await supabase
+        const { data: savedRows, error } = await supabase
           .from(`inspections_${type}`)
           .upsert(dbRow)
-          .select()
-          .single();
+          .select();
 
-        if (!error && savedRow) {
-          const item = mapDbRowToInspection(savedRow);
+        if (!error) {
+          const rowToUse = (savedRows && savedRows.length > 0) ? savedRows[0] : dbRow;
+          const item = mapDbRowToInspection(rowToUse);
           this.removeOfflineDraft(type, data.draftId || data.id);
           this._updateCachedInspection(type, item);
           return { success: true, item };
-        } else if (error) {
+        } else {
           console.warn('Supabase upsert error, falling back to local/draft:', error);
         }
       } catch (err) {
@@ -526,49 +538,50 @@ export const API = {
     }
   },
 
-  // File & Photo Upload (Supabase Storage with Local Server / DataURL fallback)
+  // File & Photo Upload (Direct Optimized Base64 for Supabase Database)
   async uploadFile(file) {
-    // 1. Try Supabase Storage
-    if (isSupabaseConfigured() && supabase) {
-      try {
-        const ext = file.name.split('.').pop() || 'jpg';
-        const cleanName = file.name.replace(/[^a-zA-Z0-9]/g, '_');
-        const fileName = `${Date.now()}-${cleanName}.${ext}`;
-
-        const { data: uploadData, error: uploadError } = await supabase.storage
-          .from('inspection-photos')
-          .upload(fileName, file, { cacheControl: '3600', upsert: true });
-
-        if (!uploadError) {
-          const { data: { publicUrl } } = supabase.storage
-            .from('inspection-photos')
-            .getPublicUrl(fileName);
-          return { success: true, fileUrl: publicUrl, filename: fileName };
-        } else {
-          console.warn('Supabase storage upload error:', uploadError);
-        }
-      } catch (err) {
-        console.warn('Supabase storage upload failed:', err);
-      }
-    }
-
-    // 2. Try Local Server Upload
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-      const res = await fetch(`${API_BASE}/upload`, { method: 'POST', body: formData });
-      if (res.ok) return await res.json();
-    } catch (err) {
-      console.warn('Server upload failed, converting to local Data URL');
-    }
-
-    // 3. Fallback: Base64 Data URL (Works 100% offline inside mobile APK)
     return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        resolve({ success: true, fileUrl: reader.result, isLocalDataUrl: true });
-      };
-      reader.readAsDataURL(file);
+      // If image, compress to lightweight Base64 to save database space and ensure ultra-fast sync
+      if (file.type && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            try {
+              const canvas = document.createElement('canvas');
+              const maxDim = 1024;
+              let width = img.width;
+              let height = img.height;
+              if (width > height && width > maxDim) {
+                height = Math.round((height * maxDim) / width);
+                width = maxDim;
+              } else if (height > maxDim) {
+                width = Math.round((width * maxDim) / height);
+                height = maxDim;
+              }
+              canvas.width = width;
+              canvas.height = height;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, width, height);
+              const base64Url = canvas.toDataURL('image/jpeg', 0.8);
+              resolve({ success: true, fileUrl: base64Url, dataUrl: base64Url, filename: file.name });
+            } catch (canvasErr) {
+              resolve({ success: true, fileUrl: e.target.result, dataUrl: e.target.result, filename: file.name });
+            }
+          };
+          img.onerror = () => {
+            resolve({ success: true, fileUrl: e.target.result, dataUrl: e.target.result, filename: file.name });
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          resolve({ success: true, fileUrl: reader.result, dataUrl: reader.result, filename: file.name });
+        };
+        reader.readAsDataURL(file);
+      }
     });
   },
 
