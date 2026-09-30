@@ -72,6 +72,29 @@ export const BLOCK_PANCHAYATS = {
   ]
 };
 
+export const getBlockForPanchayat = (panchayatName) => {
+  if (!panchayatName) return '';
+  const clean = panchayatName.trim();
+  for (const [blk, list] of Object.entries(BLOCK_PANCHAYATS)) {
+    if (list.includes(clean)) {
+      if (blk === 'कोंडागांव') return 'कोण्डागांव';
+      if (blk === 'माकडी') return 'माकड़ी';
+      return blk;
+    }
+  }
+  const norm = clean.replace(/[\u093c\s\(\)]/g, '');
+  for (const [blk, list] of Object.entries(BLOCK_PANCHAYATS)) {
+    for (const p of list) {
+      if (p.replace(/[\u093c\s\(\)]/g, '') === norm) {
+        if (blk === 'कोंडागांव') return 'कोण्डागांव';
+        if (blk === 'माकडी') return 'माकड़ी';
+        return blk;
+      }
+    }
+  }
+  return '';
+};
+
 export const getPanchayatsForBlock = (blockName) => {
   if (!blockName || blockName === 'सभी विकासखण्ड' || blockName === 'समस्त विकासखण्ड') {
     return Array.from(new Set(Object.values(BLOCK_PANCHAYATS).flat()));

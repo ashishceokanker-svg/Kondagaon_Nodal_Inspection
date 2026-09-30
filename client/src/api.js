@@ -2,7 +2,7 @@
 
 import { supabase, isSupabaseConfigured } from './supabaseClient';
 import { DEFAULT_NODAL_OFFICERS } from './data/defaultOfficers';
-import { matchBlock, getPanchayatsForBlock } from './constants';
+import { matchBlock, getPanchayatsForBlock, getBlockForPanchayat } from './constants';
 
 const API_BASE = '/api';
 
@@ -839,13 +839,13 @@ export const API = {
 
       if (targetPanchayats) {
         targetPanchayats.forEach(pName => {
-          panchayatMap[pName] = { panchayat: pName, total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0, nirman: 0 };
+          panchayatMap[pName] = { panchayat: pName, block: getBlockForPanchayat(pName), total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0, nirman: 0 };
         });
       } else if (!filters.officerId && filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड') {
         const blkPanchayats = getPanchayatsForBlock(filters.block);
         blkPanchayats.forEach(pName => {
           if (!panchayatMap[pName]) {
-            panchayatMap[pName] = { panchayat: pName, total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0, nirman: 0 };
+            panchayatMap[pName] = { panchayat: pName, block: filters.block, total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0, nirman: 0 };
           }
         });
       }
@@ -861,7 +861,7 @@ export const API = {
           }
           allInspections.push({ ...item, _type: type });
           if (!panchayatMap[pName]) {
-            panchayatMap[pName] = { panchayat: pName, total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0, nirman: 0 };
+            panchayatMap[pName] = { panchayat: pName, block: item.block || getBlockForPanchayat(pName) || '', total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0, nirman: 0 };
           }
           panchayatMap[pName].total++;
           panchayatMap[pName][type]++;

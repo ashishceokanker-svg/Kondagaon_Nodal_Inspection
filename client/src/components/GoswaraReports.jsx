@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FileSpreadsheet, Printer, Download, Filter, Eye, Trash2, Calendar, MapPin, Building, Baby, GraduationCap, Wheat, Landmark, Activity, Home, ArrowLeft, MessageSquare, RefreshCw, HardHat } from 'lucide-react';
 import { API } from '../api';
-import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../constants';
+import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats, matchBlock, getBlockForPanchayat } from '../constants';
 import { exportGoswaraToExcelClient } from '../utils/clientExcelExport';
 
 
@@ -256,6 +256,72 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
     return allRemarksRecords.filter(r => allowed.includes(r.panchayat));
   }, [isAdmin, allRemarksRecords, filters.panchayat, officerPanchayats]);
 
+  const dateRangeDisplay = React.useMemo(() => {
+    if (filters.startDate && filters.endDate) {
+      return `${filters.startDate} से ${filters.endDate}`;
+    }
+    if (filters.startDate) {
+      return `${filters.startDate} से आज तक`;
+    }
+    if (filters.endDate) {
+      return `प्रारंभ से ${filters.endDate}`;
+    }
+    return new Date().toLocaleDateString('hi-IN');
+  }, [filters.startDate, filters.endDate]);
+
+  const groupedPanchayatStats = React.useMemo(() => {
+    const list = displayedPanchayatStats || [];
+    if (filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड') {
+      return [{
+        blockName: filters.block,
+        panchayats: list
+      }];
+    }
+
+    const BLOCKS = ['फरसगांव', 'बड़ेराजपुर', 'केशकाल', 'कोण्डागांव', 'माकड़ी'];
+    const groups = [];
+    const usedPanchayats = new Set();
+
+    BLOCKS.forEach(bName => {
+      const pList = list.filter(p => {
+        const pBlock = p.block || getBlockForPanchayat(p.panchayat);
+        return matchBlock(pBlock, bName);
+      });
+      pList.forEach(p => usedPanchayats.add(p.panchayat));
+      if (pList.length > 0) {
+        groups.push({
+          blockName: bName,
+          panchayats: pList
+        });
+      }
+    });
+
+    const remaining = list.filter(p => !usedPanchayats.has(p.panchayat));
+    if (remaining.length > 0) {
+      groups.push({
+        blockName: 'अन्य / सामान्य',
+        panchayats: remaining
+      });
+    }
+
+    return groups.length > 0 ? groups : [{ blockName: 'समस्त विकासखण्ड', panchayats: list }];
+  }, [displayedPanchayatStats, filters.block]);
+
+  const grandTotals = React.useMemo(() => {
+    const list = displayedPanchayatStats || [];
+    return {
+      total: list.reduce((s, p) => s + (Number(p.total) || 0), 0),
+      anganwadi: list.reduce((s, p) => s + (Number(p.anganwadi) || 0), 0),
+      school: list.reduce((s, p) => s + (Number(p.school) || 0), 0),
+      hostel: list.reduce((s, p) => s + (Number(p.hostel) || 0), 0),
+      pds: list.reduce((s, p) => s + (Number(p.pds) || 0), 0),
+      chaupal: list.reduce((s, p) => s + (Number(p.chaupal) || 0), 0),
+      health: list.reduce((s, p) => s + (Number(p.health) || 0), 0),
+      awas: list.reduce((s, p) => s + (Number(p.awas) || 0), 0),
+      nirman: list.reduce((s, p) => s + (Number(p.nirman) || 0), 0),
+    };
+  }, [displayedPanchayatStats]);
+
   return (
     <div className="max-w-6xl mx-auto space-y-6 mb-16">
       
@@ -466,22 +532,82 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
         )}
       </div>
 
+      {/* Landscape Print Styles */}
+      <style>{`
+        @media print {
+          @page {
+            size: landscape;
+            margin: 8mm 6mm;
+          }
+          body {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            background: white !important;
+          }
+          .no-print {
+            display: none !important;
+          }
+          .printable-report-card {
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+          }
+          table {
+            page-break-inside: auto;
+            width: 100% !important;
+            border-collapse: collapse !important;
+          }
+          thead {
+            display: table-header-group;
+          }
+          tfoot {
+            display: table-footer-group;
+          }
+          tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
+          }
+          th, td {
+            font-size: 11px !important;
+            padding: 4px 6px !important;
+          }
+        }
+      `}</style>
+
       {/* Printable Report View (Visible during print or on screen) */}
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-6">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-6 printable-report-card">
         
-        {/* Report Header for Print & Screen */}
-        <div className="text-center pb-3 border-b border-slate-200 mb-4 flex flex-col items-center justify-center">
-          <h2 className="text-base sm:text-lg font-black text-blue-900">
+        {/* Official Header for Print & Screen */}
+        <div className="text-center pb-4 border-b-2 border-slate-300 mb-5 flex flex-col items-center justify-center space-y-1.5">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 mb-1 flex items-center justify-center">
+            <img 
+              src="/cg_logo.svg" 
+              alt="छत्तीसगढ़ शासन" 
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <h1 className="text-lg sm:text-2xl font-black text-slate-900 tracking-tight">
+            कार्यालय कलेक्टर, जिला-कोण्डागांव (छत्तीसगढ़)
+          </h1>
+          <h2 className="text-sm sm:text-lg font-bold text-blue-950">
             नोडल अधिकारियों द्वारा क्षेत्रीय निरीक्षण का मासिक / पाक्षिक गोसवारा प्रतिवेदन
           </h2>
-          <p className="text-xs text-slate-600 mt-1 font-medium">
-            {isAdmin 
-              ? (filters.block ? `विकासखण्ड: ${filters.block}` : 'समस्त विकासखण्ड') 
-              : `नोडल अधिकारी: ${officer?.name || ''} (${officer?.designation || ''}) • ग्राम पंचायत: ${officerPanchayats.join(', ') || officer?.panchayat || ''} • विकासखण्ड: ${officer?.block || ''}`} • 
-            दिनांक: {new Date().toLocaleDateString('hi-IN')}
+          <p className="text-xs sm:text-sm font-bold text-slate-700">
+            {filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड'
+              ? `विकासखण्ड: ${filters.block}` 
+              : 'समस्त विकासखण्ड'}
+            {filters.panchayat ? ` • ग्राम पंचायत: ${filters.panchayat}` : ''}
+            {' • '}
+            <span>दिनांक: {dateRangeDisplay}</span>
           </p>
+          <div className="pt-2">
+            <span className="inline-block bg-blue-900 text-white text-xs sm:text-sm font-extrabold px-5 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+              ग्राम पंचायतवार समेकित गोसवारा
+            </span>
+          </div>
         </div>
-
 
         {/* Mode Selector Tabs (Hidden in Print) */}
         <div className="flex flex-wrap border-b border-slate-200 mb-4 no-print text-xs font-bold gap-1">
@@ -523,44 +649,101 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
         {/* VIEW 1: PANCHAYAT GOSWARA TABLE */}
         {activeSubTab === 'summary' && (
           <div className="overflow-x-auto">
-            <table className="w-full text-xs text-left border border-slate-200">
-              <thead className="bg-slate-100 text-slate-800 border-b border-slate-300">
+            <table className="w-full text-xs text-left border border-slate-300">
+              <thead className="bg-slate-100 text-slate-900 border-b-2 border-slate-400">
                 <tr>
-                  <th className="p-2.5 text-center w-10 border-r">क्र.</th>
-                  <th className="p-2.5 font-bold border-r">ग्राम पंचायत / स्थल</th>
-                  <th className="p-2.5 text-center font-bold bg-blue-50 text-blue-900 border-r">कुल निरीक्षण</th>
-                  <th className="p-2 text-center border-r">आंगनबाड़ी</th>
-                  <th className="p-2 text-center border-r">शाला</th>
-                  <th className="p-2 text-center border-r">छात्रावास</th>
-                  <th className="p-2 text-center border-r">राशन दुकान</th>
-                  <th className="p-2 text-center border-r">ग्राम चौपाल</th>
-                  <th className="p-2 text-center border-r">स्वास्थ्य केन्द्र</th>
-                  <th className="p-2 text-center border-r">पीएम आवास</th>
-                  <th className="p-2 text-center">निर्माण कार्य</th>
+                  <th className="p-2.5 text-center w-10 border-r border-slate-300">क्र.</th>
+                  <th className="p-2.5 font-bold border-r border-slate-300 min-w-[140px]">ग्राम पंचायत / स्थल</th>
+                  <th className="p-2.5 text-center font-black bg-blue-100/80 text-blue-950 border-r border-slate-300">कुल निरीक्षण</th>
+                  <th className="p-2 text-center border-r border-slate-300 text-pink-700 font-bold">आंगनबाड़ी</th>
+                  <th className="p-2 text-center border-r border-slate-300 text-blue-700 font-bold">शाला</th>
+                  <th className="p-2 text-center border-r border-slate-300 text-emerald-700 font-bold">छात्रावास</th>
+                  <th className="p-2 text-center border-r border-slate-300 text-amber-700 font-bold">राशन दुकान</th>
+                  <th className="p-2 text-center border-r border-slate-300 text-purple-700 font-bold">ग्राम चौपाल</th>
+                  <th className="p-2 text-center border-r border-slate-300 text-red-700 font-bold">स्वास्थ्य केन्द्र</th>
+                  <th className="p-2 text-center border-r border-slate-300 text-cyan-700 font-bold">पीएम आवास</th>
+                  <th className="p-2 text-center text-amber-900 font-bold">निर्माण कार्य</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
-                {displayedPanchayatStats?.length > 0 ? (
-                  displayedPanchayatStats.map((p, idx) => (
-                    <tr key={idx} className="hover:bg-slate-50">
-                      <td className="p-2 text-center font-semibold text-slate-500 border-r">{idx + 1}</td>
-                      <td className="p-2 font-bold text-slate-800 border-r">{p.panchayat}</td>
-                      <td className="p-2 text-center font-extrabold bg-blue-50/70 text-blue-900 border-r">{p.total}</td>
-                      <td className="p-2 text-center border-r">{p.anganwadi || '-'}</td>
-                      <td className="p-2 text-center border-r">{p.school || '-'}</td>
-                      <td className="p-2 text-center border-r">{p.hostel || '-'}</td>
-                      <td className="p-2 text-center border-r">{p.pds || '-'}</td>
-                      <td className="p-2 text-center border-r">{p.chaupal || '-'}</td>
-                      <td className="p-2 text-center border-r">{p.health || '-'}</td>
-                      <td className="p-2 text-center border-r">{p.awas || '-'}</td>
-                      <td className="p-2 text-center font-bold text-amber-900">{p.nirman || '-'}</td>
-                    </tr>
-                  ))
+                {groupedPanchayatStats && groupedPanchayatStats.length > 0 ? (
+                  groupedPanchayatStats.map((grp, gIdx) => {
+                    const blockTotal = {
+                      total: grp.panchayats.reduce((s, p) => s + (Number(p.total) || 0), 0),
+                      anganwadi: grp.panchayats.reduce((s, p) => s + (Number(p.anganwadi) || 0), 0),
+                      school: grp.panchayats.reduce((s, p) => s + (Number(p.school) || 0), 0),
+                      hostel: grp.panchayats.reduce((s, p) => s + (Number(p.hostel) || 0), 0),
+                      pds: grp.panchayats.reduce((s, p) => s + (Number(p.pds) || 0), 0),
+                      chaupal: grp.panchayats.reduce((s, p) => s + (Number(p.chaupal) || 0), 0),
+                      health: grp.panchayats.reduce((s, p) => s + (Number(p.health) || 0), 0),
+                      awas: grp.panchayats.reduce((s, p) => s + (Number(p.awas) || 0), 0),
+                      nirman: grp.panchayats.reduce((s, p) => s + (Number(p.nirman) || 0), 0),
+                    };
+
+                    return (
+                      <React.Fragment key={gIdx}>
+                        {/* Block Section Header */}
+                        <tr className="bg-slate-200 text-slate-900 font-black border-y-2 border-slate-400">
+                          <td colSpan={11} className="p-2 px-3 text-xs sm:text-sm tracking-wide">
+                            📍 विकासखण्ड: <span className="text-blue-900">{grp.blockName}</span> ({grp.panchayats.length} ग्राम पंचायतें)
+                          </td>
+                        </tr>
+
+                        {grp.panchayats.map((p, pIdx) => (
+                          <tr key={pIdx} className="hover:bg-slate-50">
+                            <td className="p-2 text-center font-semibold text-slate-500 border-r border-slate-200">{pIdx + 1}</td>
+                            <td className="p-2 font-bold text-slate-800 border-r border-slate-200">{p.panchayat}</td>
+                            <td className="p-2 text-center font-black bg-blue-50/70 text-blue-900 border-r border-slate-200">{p.total}</td>
+                            <td className="p-2 text-center border-r border-slate-200">{p.anganwadi || '-'}</td>
+                            <td className="p-2 text-center border-r border-slate-200">{p.school || '-'}</td>
+                            <td className="p-2 text-center border-r border-slate-200">{p.hostel || '-'}</td>
+                            <td className="p-2 text-center border-r border-slate-200">{p.pds || '-'}</td>
+                            <td className="p-2 text-center border-r border-slate-200">{p.chaupal || '-'}</td>
+                            <td className="p-2 text-center border-r border-slate-200">{p.health || '-'}</td>
+                            <td className="p-2 text-center border-r border-slate-200">{p.awas || '-'}</td>
+                            <td className="p-2 text-center font-bold text-amber-900">{p.nirman || '-'}</td>
+                          </tr>
+                        ))}
+
+                        {/* Block Subtotal row */}
+                        <tr className="bg-blue-50/70 font-extrabold text-blue-950 border-b-2 border-slate-300">
+                          <td colSpan={2} className="p-2 text-right pr-4">योग (विकासखण्ड {grp.blockName}):</td>
+                          <td className="p-2 text-center bg-blue-100 font-black">{blockTotal.total}</td>
+                          <td className="p-2 text-center">{blockTotal.anganwadi}</td>
+                          <td className="p-2 text-center">{blockTotal.school}</td>
+                          <td className="p-2 text-center">{blockTotal.hostel}</td>
+                          <td className="p-2 text-center">{blockTotal.pds}</td>
+                          <td className="p-2 text-center">{blockTotal.chaupal}</td>
+                          <td className="p-2 text-center">{blockTotal.health}</td>
+                          <td className="p-2 text-center">{blockTotal.awas}</td>
+                          <td className="p-2 text-center text-amber-900">{blockTotal.nirman}</td>
+                        </tr>
+                      </React.Fragment>
+                    );
+                  })
                 ) : (
                   <tr>
                     <td colSpan={11} className="p-8 text-center text-slate-400">
-                      कोई निरीक्षण प्रविष्टि उपलब्ध नहीं है। कृपया फॉर्म भरकर सबमिट करें।
+                      कोई निरीक्षण प्रविष्टि उपलब्ध नहीं है। कृपया फ़िल्टर जांचें या फॉर्म भरकर सबमिट करें।
                     </td>
+                  </tr>
+                )}
+
+                {/* Grand Total Row across all blocks */}
+                {displayedPanchayatStats && displayedPanchayatStats.length > 0 && (
+                  <tr className="bg-slate-900 text-white font-black text-xs sm:text-sm border-t-2 border-slate-900">
+                    <td colSpan={2} className="p-2.5 text-center">
+                      महायोग ({filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड' ? `विकासखण्ड ${filters.block}` : 'समस्त विकासखण्ड'})
+                    </td>
+                    <td className="p-2.5 text-center bg-blue-700 text-white font-black text-sm">{grandTotals.total}</td>
+                    <td className="p-2.5 text-center text-pink-200">{grandTotals.anganwadi}</td>
+                    <td className="p-2.5 text-center text-blue-200">{grandTotals.school}</td>
+                    <td className="p-2.5 text-center text-emerald-200">{grandTotals.hostel}</td>
+                    <td className="p-2.5 text-center text-amber-200">{grandTotals.pds}</td>
+                    <td className="p-2.5 text-center text-purple-200">{grandTotals.chaupal}</td>
+                    <td className="p-2.5 text-center text-red-200">{grandTotals.health}</td>
+                    <td className="p-2.5 text-center text-cyan-200">{grandTotals.awas}</td>
+                    <td className="p-2.5 text-center text-amber-300">{grandTotals.nirman}</td>
                   </tr>
                 )}
               </tbody>

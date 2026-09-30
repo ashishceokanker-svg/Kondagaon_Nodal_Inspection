@@ -1,5 +1,6 @@
 import * as XLSX from 'xlsx';
 import { API } from '../api';
+import { matchBlock, getBlockForPanchayat } from '../constants';
 
 function extractTip(r) {
   if (!r) return '';
@@ -17,31 +18,224 @@ function extractTip(r) {
 export async function exportGoswaraToExcelClient(filters = {}) {
   const wb = XLSX.utils.book_new();
 
-  // 1. Goswara Summary Sheet
   const goswara = await API.getGoswaraSummary(filters);
+  const pStats = goswara.panchayatStats || [];
+
+  const dateText = filters.startDate || filters.endDate
+    ? `${filters.startDate || 'प्रारंभ'} से ${filters.endDate || 'आज तक'}`
+    : new Date().toLocaleDateString('hi-IN');
+  const isAllBlocks = !filters.block || filters.block === 'सभी विकासखण्ड' || filters.block === 'समस्त विकासखण्ड';
+  const blockTitleText = !isAllBlocks ? `विकासखण्ड: ${filters.block}` : 'समस्त विकासखण्ड';
+
+  const BLOCKS = ['फरसगांव', 'बड़ेराजपुर', 'केशकाल', 'कोण्डागांव', 'माकड़ी'];
+
+  // 1. Goswara Summary Sheet
   const summaryRows = [
-    ['कार्यालय कलेक्टर, जिला-कोण्डागांव (छ०ग०) — नोडल अधिकारी निरीक्षण गोसवारा प्रतिवेदन'],
-    ['क्र.', 'ग्राम पंचायत / स्थल', 'कुल निरीक्षण', 'आंगनबाड़ी', 'शाला', 'छात्रावास', 'उचित मूल्य दुकान', 'ग्राम चौपाल', 'स्वास्थ्य केन्द्र', 'पीएम आवास', 'निर्माण कार्य']
+    ['कार्यालय कलेक्टर, जिला-कोण्डागांव (छत्तीसगढ़)'],
+    ['नोडल अधिकारियों द्वारा क्षेत्रीय निरीक्षण का मासिक / पाक्षिक गोसवारा प्रतिवेदन'],
+    [`${blockTitleText} • दिनांक: ${dateText}`],
+    ['ग्राम पंचायतवार समेकित गोसवारा'],
+    [''],
+    ['क्र.', 'विकासखण्ड', 'ग्राम पंचायत / स्थल', 'कुल निरीक्षण', 'आंगनबाड़ी', 'शाला', 'छात्रावास', 'उचित मूल्य दुकान', 'ग्राम चौपाल', 'स्वास्थ्य केन्द्र', 'पीएम आवास', 'निर्माण कार्य']
   ];
 
-  (goswara.panchayatStats || []).forEach((p, idx) => {
-    summaryRows.push([
-      idx + 1,
-      p.panchayat || '',
-      p.total || 0,
-      p.anganwadi || 0,
-      p.school || 0,
-      p.hostel || 0,
-      p.pds || 0,
-      p.chaupal || 0,
-      p.health || 0,
-      p.awas || 0,
-      p.nirman || 0
-    ]);
-  });
+  if (isAllBlocks) {
+    let globalIndex = 1;
+    let grandTotals = { total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0, nirman: 0 };
 
-  const wsSummary = XLSX.utils.aoa_to_sheet(summaryRows);
-  XLSX.utils.book_append_sheet(wb, wsSummary, 'गोसवारा सारांश');
+    BLOCKS.forEach(bName => {
+      const blockPanchayats = pStats.filter(p => {
+        const blk = p.block || getBlockForPanchayat(p.panchayat);
+        return matchBlock(blk, bName);
+      });
+
+      if (blockPanchayats.length > 0) {
+        summaryRows.push(['', `📍 विकासखण्ड: ${bName}`, '', '', '', '', '', '', '', '', '', '']);
+        let bTot = { total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0, nirman: 0 };
+
+        blockPanchayats.forEach(p => {
+          bTot.total += (Number(p.total) || 0);
+          bTot.anganwadi += (Number(p.anganwadi) || 0);
+          bTot.school += (Number(p.school) || 0);
+          bTot.hostel += (Number(p.hostel) || 0);
+          bTot.pds += (Number(p.pds) || 0);
+          bTot.chaupal += (Number(p.chaupal) || 0);
+          bTot.health += (Number(p.health) || 0);
+          bTot.awas += (Number(p.awas) || 0);
+          bTot.nirman += (Number(p.nirman) || 0);
+
+          summaryRows.push([
+            globalIndex++,
+            bName,
+            p.panchayat || '',
+            p.total || 0,
+            p.anganwadi || 0,
+            p.school || 0,
+            p.hostel || 0,
+            p.pds || 0,
+            p.chaupal || 0,
+            p.health || 0,
+            p.awas || 0,
+            p.nirman || 0
+          ]);
+        });
+
+        // Block subtotal
+        summaryRows.push([
+          '',
+          `योग (विकासखण्ड ${bName})`,
+          '',
+          bTot.total,
+          bTot.anganwadi,
+          bTot.school,
+          bTot.hostel,
+          bTot.pds,
+          bTot.chaupal,
+          bTot.health,
+          bTot.awas,
+          bTot.nirman
+        ]);
+
+        grandTotals.total += bTot.total;
+        grandTotals.anganwadi += bTot.anganwadi;
+        grandTotals.school += bTot.school;
+        grandTotals.hostel += bTot.hostel;
+        grandTotals.pds += bTot.pds;
+        grandTotals.chaupal += bTot.chaupal;
+        grandTotals.health += bTot.health;
+        grandTotals.awas += bTot.awas;
+        grandTotals.nirman += bTot.nirman;
+      }
+    });
+
+    // Grand total row
+    summaryRows.push([
+      '',
+      'महायोग (समस्त विकासखण्ड)',
+      '',
+      grandTotals.total,
+      grandTotals.anganwadi,
+      grandTotals.school,
+      grandTotals.hostel,
+      grandTotals.pds,
+      grandTotals.chaupal,
+      grandTotals.health,
+      grandTotals.awas,
+      grandTotals.nirman
+    ]);
+
+    const wsSummary = XLSX.utils.aoa_to_sheet(summaryRows);
+    XLSX.utils.book_append_sheet(wb, wsSummary, 'समेकित गोसवारा');
+
+    // Separate sheets for each block
+    BLOCKS.forEach(bName => {
+      const blockPanchayats = pStats.filter(p => {
+        const blk = p.block || getBlockForPanchayat(p.panchayat);
+        return matchBlock(blk, bName);
+      });
+
+      const bSheetRows = [
+        ['कार्यालय कलेक्टर, जिला-कोण्डागांव (छत्तीसगढ़)'],
+        ['नोडल अधिकारियों द्वारा क्षेत्रीय निरीक्षण का मासिक / पाक्षिक गोसवारा प्रतिवेदन'],
+        [`विकासखण्ड: ${bName} • दिनांक: ${dateText}`],
+        ['ग्राम पंचायतवार समेकित गोसवारा'],
+        [''],
+        ['क्र.', 'ग्राम पंचायत', 'कुल निरीक्षण', 'आंगनबाड़ी', 'शाला', 'छात्रावास', 'उचित मूल्य दुकान', 'ग्राम चौपाल', 'स्वास्थ्य केन्द्र', 'पीएम आवास', 'निर्माण कार्य']
+      ];
+
+      let bTot = { total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0, nirman: 0 };
+      blockPanchayats.forEach((p, idx) => {
+        bTot.total += (Number(p.total) || 0);
+        bTot.anganwadi += (Number(p.anganwadi) || 0);
+        bTot.school += (Number(p.school) || 0);
+        bTot.hostel += (Number(p.hostel) || 0);
+        bTot.pds += (Number(p.pds) || 0);
+        bTot.chaupal += (Number(p.chaupal) || 0);
+        bTot.health += (Number(p.health) || 0);
+        bTot.awas += (Number(p.awas) || 0);
+        bTot.nirman += (Number(p.nirman) || 0);
+
+        bSheetRows.push([
+          idx + 1,
+          p.panchayat || '',
+          p.total || 0,
+          p.anganwadi || 0,
+          p.school || 0,
+          p.hostel || 0,
+          p.pds || 0,
+          p.chaupal || 0,
+          p.health || 0,
+          p.awas || 0,
+          p.nirman || 0
+        ]);
+      });
+
+      bSheetRows.push([
+        '',
+        `योग (विकासखण्ड ${bName})`,
+        bTot.total,
+        bTot.anganwadi,
+        bTot.school,
+        bTot.hostel,
+        bTot.pds,
+        bTot.chaupal,
+        bTot.health,
+        bTot.awas,
+        bTot.nirman
+      ]);
+
+      const wsBlock = XLSX.utils.aoa_to_sheet(bSheetRows);
+      XLSX.utils.book_append_sheet(wb, wsBlock, `गोसवारा-${bName}`);
+    });
+  } else {
+    // Single block chosen
+    const bName = filters.block;
+    let bTot = { total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0, nirman: 0 };
+    pStats.forEach((p, idx) => {
+      bTot.total += (Number(p.total) || 0);
+      bTot.anganwadi += (Number(p.anganwadi) || 0);
+      bTot.school += (Number(p.school) || 0);
+      bTot.hostel += (Number(p.hostel) || 0);
+      bTot.pds += (Number(p.pds) || 0);
+      bTot.chaupal += (Number(p.chaupal) || 0);
+      bTot.health += (Number(p.health) || 0);
+      bTot.awas += (Number(p.awas) || 0);
+      bTot.nirman += (Number(p.nirman) || 0);
+
+      summaryRows.push([
+        idx + 1,
+        bName,
+        p.panchayat || '',
+        p.total || 0,
+        p.anganwadi || 0,
+        p.school || 0,
+        p.hostel || 0,
+        p.pds || 0,
+        p.chaupal || 0,
+        p.health || 0,
+        p.awas || 0,
+        p.nirman || 0
+      ]);
+    });
+
+    summaryRows.push([
+      '',
+      `योग (विकासखण्ड ${bName})`,
+      '',
+      bTot.total,
+      bTot.anganwadi,
+      bTot.school,
+      bTot.hostel,
+      bTot.pds,
+      bTot.chaupal,
+      bTot.health,
+      bTot.awas,
+      bTot.nirman
+    ]);
+
+    const wsSummary = XLSX.utils.aoa_to_sheet(summaryRows);
+    XLSX.utils.book_append_sheet(wb, wsSummary, `गोसवारा-${bName}`);
+  }
 
   // 2. Anganwadi Sheet
   const anganwadi = await API.getInspections('anganwadi', filters);
