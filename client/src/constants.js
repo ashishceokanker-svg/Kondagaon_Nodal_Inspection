@@ -26,8 +26,8 @@ export const MONTHS_LIST = MONTH_OPTIONS;
 export const matchBlock = (b1, b2) => {
   if (!b1 || !b2) return false;
   if (b1 === b2) return true;
-  const s1 = b1.replace(/[\u093c\s]/g, '');
-  const s2 = b2.replace(/[\u093c\s]/g, '');
+  const s1 = b1.replace(/[\u093c\s]/g, '').replace(/ड़/g, 'ड').replace(/ि/g, 'ी');
+  const s2 = b2.replace(/[\u093c\s]/g, '').replace(/ड़/g, 'ड').replace(/ि/g, 'ी');
   if (s1 === s2) return true;
   if (s1.includes('फरस') && s2.includes('फरस')) return true;
   if (s1.includes('राजपुर') && s2.includes('राजपुर')) return true;

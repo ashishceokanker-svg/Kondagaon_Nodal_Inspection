@@ -148,6 +148,12 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
           hostelType: first.hostelType || prev.hostelType
         }));
       }
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        hostelName: '',
+        address: prev.panchayat || ''
+      }));
     }
   }, [formData.block, formData.panchayat]);
 

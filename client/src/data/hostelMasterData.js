@@ -228,14 +228,51 @@ export const HOSTEL_MASTER_DATA = {
   }
 };
 
+import { matchBlock } from '../constants.js';
+
+const ALIAS_MAP = {
+  'कसई फरसगांव': 'फरसगांव',
+  'हिरी': 'हिर्री',
+  'सालना': 'सलना',
+  'अड़ेंगा': 'अडेगा',
+  'कुंए': 'कुए',
+  'बिन्झे': 'बिंजे',
+  'खालेमुरवेण्ड': 'खालेमुरवेंड',
+  'होनहेड़': 'होनहेड',
+  'अनतपुर': 'अनंतपुर',
+  'मटवाल': 'मतवाल',
+  'हंगवा': 'हगंवा',
+  'बड़ेकनेरा': 'बड़ेकनेरा',
+  'मड़ानार': 'मडानार',
+  'बड़ेनार': 'बड़ेनार',
+  'खड़पड़ी': 'खड़पडी',
+  'घोड़ागांव': 'घोड़ागांव',
+  'किबाईबालेंगा': 'किबाई बालेगा'
+};
+
+function normalizeStr(str) {
+  if (!str) return '';
+  let s = str.trim();
+  if (ALIAS_MAP[s]) s = ALIAS_MAP[s];
+  return s
+    .replace(/['"']/g, '')
+    .replace(/[\u093c]/g, '') // strip nukta
+    .replace(/\s+/g, '')
+    .replace(/िं/g, 'ी')
+    .replace(/ि/g, 'ी')
+    .replace(/ुं/g, 'ू')
+    .replace(/ु/g, 'ू')
+    .replace(/ण्ड/g, 'ंड')
+    .replace(/ड़/g, 'ड')
+    .replace(/ढ़/g, 'ढ');
+}
+
 export function getHostelsForPanchayat(block, panchayat) {
   if (!block || !panchayat) return [];
   
   // Find block matching
-  let blockKey = block;
-  if (!HOSTEL_MASTER_DATA[blockKey]) {
-    blockKey = Object.keys(HOSTEL_MASTER_DATA).find(b => b.includes(block) || block.includes(b)) || block;
-  }
+  const blockKey = Object.keys(HOSTEL_MASTER_DATA).find(b => matchBlock(b, block));
+  if (!blockKey) return [];
   
   const blockData = HOSTEL_MASTER_DATA[blockKey];
   if (!blockData) return [];
@@ -243,14 +280,15 @@ export function getHostelsForPanchayat(block, panchayat) {
   // Direct match
   if (blockData[panchayat]) return blockData[panchayat];
 
-  // Soft search across panchayats in block
-  const cleanPanch = panchayat.replace(/['"']/g, '').trim();
+  // Normalized/alias match
+  const normPanch = normalizeStr(panchayat);
   for (const [pName, list] of Object.entries(blockData)) {
-    const cleanKey = pName.replace(/['"']/g, '').trim();
-    if (cleanKey.includes(cleanPanch) || cleanPanch.includes(cleanKey)) {
+    const normKey = normalizeStr(pName);
+    if (normKey === normPanch) {
       return list;
     }
   }
 
   return [];
 }
+
