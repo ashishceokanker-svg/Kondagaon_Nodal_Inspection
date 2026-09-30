@@ -8121,13 +8121,5 @@ export const getSchoolsForPanchayat = (blockName, panchayatName) => {
     if (normalizeStr(pName) === normPanch) return list;
   }
 
-  // Partial substring match fallback
-  for (const [pName, list] of Object.entries(blockData)) {
-    const normKey = normalizeStr(pName);
-    if ((normKey.includes(normPanch) || normPanch.includes(normKey)) && normKey.length >= 4 && normPanch.length >= 4) {
-      return list;
-    }
-  }
-
   return [];
 };
