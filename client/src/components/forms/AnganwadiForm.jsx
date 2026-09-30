@@ -23,7 +23,11 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
   const today = getTodayDateString();
 
   const [formData, setFormData] = useState(() => {
-    if (initialData) return initialData;
+    if (initialData) return {
+      nrcChildrenCount: '',
+      nrcRemarks: '',
+      ...initialData
+    };
     return {
       date: today,
       officerId: officer?.id || '',
@@ -45,6 +49,8 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
         total: '',
         remarks: ''
       },
+      nrcChildrenCount: '',
+      nrcRemarks: '',
       rationRows: DEFAULT_RATION_ROWS,
       remarks: '',
       photoUrl: '',
@@ -513,6 +519,48 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
             </div>
           </div>
         )}
+
+        {/* NRC (पोषण पुनर्वास केंद्र) विवरण */}
+        <div className="border border-rose-200 bg-rose-50/50 rounded-xl p-3.5 space-y-3 shadow-xs">
+          <div className="flex items-center justify-between border-b border-rose-200 pb-2">
+            <h3 className="text-xs font-bold text-rose-950 flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-rose-600"></span>
+              <span>एन.आर.सी. (Nutrition Rehabilitation Centre - NRC) विवरण</span>
+            </h3>
+            <span className="text-[10px] font-bold bg-rose-100 text-rose-800 px-2 py-0.5 rounded-full border border-rose-200">
+              गंभीर कुपोषित बच्चे
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div className="sm:col-span-1">
+              <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                NRC में वर्तमान में कितने बच्चे हैं (संख्या):
+              </label>
+              <input
+                type="number"
+                min="0"
+                placeholder="0"
+                value={formData.nrcChildrenCount}
+                onChange={e => setFormData({ ...formData, nrcChildrenCount: e.target.value })}
+                className="w-full p-2.5 rounded-lg border border-rose-300 bg-white text-center font-black text-rose-900 focus:ring-2 focus:ring-rose-500 focus:outline-none"
+              />
+            </div>
+
+            <div className="sm:col-span-2">
+              <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                NRC हेतु टीप:
+              </label>
+              <input
+                type="text"
+                placeholder="NRC भर्ती, स्वास्थ्य सुधार अथवा अन्य आवश्यक निर्देश/टीप दर्ज करें..."
+                value={formData.nrcRemarks}
+                onChange={e => setFormData({ ...formData, nrcRemarks: e.target.value })}
+                className="w-full p-2.5 rounded-lg border border-rose-300 bg-white font-medium text-slate-800 focus:ring-2 focus:ring-rose-500 focus:outline-none"
+              />
+            </div>
+          </div>
+        </div>
 
         {/* 4. Notes / Remarks */}
         <div>

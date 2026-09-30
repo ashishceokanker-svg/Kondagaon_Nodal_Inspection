@@ -46,7 +46,7 @@ export async function exportGoswaraToExcelClient(filters = {}) {
   // 2. Anganwadi Sheet
   const anganwadi = await API.getInspections('anganwadi', filters);
   const anganwadiRows = [
-    ['क्र.', 'निरीक्षण दिनांक', 'नोडल अधिकारी का नाम', 'पदनाम', 'मोबाइल', 'विकासखण्ड', 'ग्राम पंचायत', 'आंगनबाड़ी केन्द्र का नाम', 'कार्यकर्ता का नाम', '06 माह से 03 वर्ष बच्चे', '03 से 06 वर्ष बच्चे', 'गर्भवती महिलाएं', 'शिशुवती महिलाएं', '11-14 वर्ष शाला त्यागी', 'कुल दर्ज हितग्राही', 'राशन वितरण स्थिति', 'टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश)']
+    ['क्र.', 'निरीक्षण दिनांक', 'नोडल अधिकारी का नाम', 'पदनाम', 'मोबाइल', 'विकासखण्ड', 'ग्राम पंचायत', 'आंगनबाड़ी केन्द्र का नाम', 'कार्यकर्ता का नाम', '06 माह से 03 वर्ष बच्चे', '03 से 06 वर्ष बच्चे', 'गर्भवती महिलाएं', 'शिशुवती महिलाएं', '11-14 वर्ष शाला त्यागी', 'कुल दर्ज हितग्राही', 'NRC में बच्चों की संख्या', 'NRC हेतु टीप', 'राशन वितरण स्थिति', 'टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश)']
   ];
   anganwadi.forEach((r, idx) => {
     const ben = r.beneficiaries || {};
@@ -54,6 +54,7 @@ export async function exportGoswaraToExcelClient(filters = {}) {
       idx + 1, r.date || '', r.officerName || '', r.officerDesignation || '', r.officerMobile || '',
       r.block || '', r.panchayat || '', r.centerName || '', r.workerName || '',
       ben.age06m3y || 0, ben.age3y6y || 0, ben.pregnant || 0, ben.lactating || 0, ben.adolescentGirls || 0, ben.total || 0,
+      r.nrcChildrenCount || 0, r.nrcRemarks || '',
       r.rationStatus || 'नियमित', extractTip(r)
     ]);
   });

@@ -343,6 +343,28 @@ export default function InspectionDetailModal({ data, onClose }) {
                   </div>
                 </div>
               )}
+
+              {/* NRC (पोषण पुनर्वास केंद्र) विवरण */}
+              <div className="border border-rose-300 rounded-xl overflow-hidden shadow-xs bg-rose-50/40">
+                <div className="bg-rose-100/80 px-3 py-1.5 border-b border-rose-200 flex justify-between items-center">
+                  <span className="font-bold text-rose-950 text-[11px]">
+                    एन.आर.सी. (Nutrition Rehabilitation Centre - NRC) विवरण
+                  </span>
+                  <span className="text-[10px] font-bold bg-rose-200 text-rose-900 px-2 py-0.5 rounded-full">
+                    कुपोषण प्रबंधन
+                  </span>
+                </div>
+                <div className="p-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="p-2.5 bg-white rounded-lg border border-rose-200 text-center">
+                    <span className="text-[10px] text-slate-500 block">NRC में वर्तमान में दर्ज बच्चे (संख्या)</span>
+                    <span className="font-black text-base text-rose-900">{record.nrcChildrenCount || '0'}</span>
+                  </div>
+                  <div className="sm:col-span-2 p-2.5 bg-white rounded-lg border border-rose-200 flex flex-col justify-center">
+                    <span className="text-[10px] text-slate-500 block">NRC हेतु टीप</span>
+                    <span className="font-semibold text-slate-800 text-xs">{record.nrcRemarks || '-'}</span>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
 

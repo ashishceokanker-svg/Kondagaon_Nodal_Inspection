@@ -126,7 +126,11 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
 
   const getRecordTip = (rec) => {
     if (!rec) return '';
-    const tip = rec.remarks || rec.inspectionSummary || rec.academicRemarks || rec.complaints || (Array.isArray(rec.academicNotes) ? rec.academicNotes.filter(Boolean).join('; ') : '') || '';
+    let tip = rec.remarks || rec.inspectionSummary || rec.academicRemarks || rec.complaints || (Array.isArray(rec.academicNotes) ? rec.academicNotes.filter(Boolean).join('; ') : '') || '';
+    if (rec.nrcRemarks) {
+      const nrcInfo = `[NRC: दर्ज बच्चे ${rec.nrcChildrenCount || 0} - ${rec.nrcRemarks}]`;
+      tip = tip ? `${tip}\n${nrcInfo}` : nrcInfo;
+    }
     return typeof tip === 'string' ? tip.trim() : String(tip).trim();
   };
 

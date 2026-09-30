@@ -576,14 +576,29 @@ export default function NodalLogin({ onLoginSuccess }) {
               </div>
 
               {/* Contact / Support */}
-              <div className="p-3.5 bg-slate-100 rounded-xl border border-slate-300 text-slate-700">
-                <div className="flex items-center gap-2 font-bold text-slate-900 mb-1">
-                  <PhoneCall className="w-4 h-4 text-slate-700" />
-                  <span>तकनीकी सहायता एवं नोडल हेल्पलाइन:</span>
+              <div className="p-4 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border-2 border-amber-300 text-slate-800 shadow-xs">
+                <div className="flex items-center gap-2 font-bold text-amber-950 text-sm mb-1.5">
+                  <PhoneCall className="w-4 h-4 text-amber-700 shrink-0" />
+                  <span>तकनीकी सहायता एवं नोडल हेल्पलाइन (Technical Support):</span>
                 </div>
-                <p className="text-[11px] text-slate-600">
-                  कार्यालय कलेक्टर (नोडल निरीक्षण शाखा) / राष्ट्रीय सूचना विज्ञान केंद्र (NIC), जिला कोण्डागांव (छ०ग०)।
-                </p>
+                <div className="space-y-1.5 text-xs">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <span className="font-bold text-slate-900 text-sm">श्री आशीष डे (Ashish Dey)</span>
+                    <span className="text-slate-600 font-medium text-xs">• मुख्य कार्यपालन अधिकारी (CEO), जनपद पंचायत बड़ेराजपुर</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-amber-900">मोबाइल नंबर:</span>
+                    <a href="tel:9244249975" className="font-black text-blue-700 hover:underline bg-white px-2 py-0.5 rounded border border-amber-300 shadow-xs">
+                      📞 9244249975
+                    </a>
+                  </div>
+                  <div className="p-2.5 bg-white/90 rounded-lg border border-amber-200 text-xs text-amber-950 font-bold mt-1 shadow-xs">
+                    💬 "ऐप अथवा पोर्टल के संचालन में किसी भी प्रकार की तकनीकी दिक्कत या समस्या होने पर तत्काल संपर्क करें।"
+                  </div>
+                  <p className="text-[10px] text-slate-500 pt-1">
+                    कार्यालय कलेक्टर (नोडल निरीक्षण शाखा) / राष्ट्रीय सूचना विज्ञान केंद्र (NIC), जिला कोण्डागांव (छ०ग०)
+                  </p>
+                </div>
               </div>
 
             </div>

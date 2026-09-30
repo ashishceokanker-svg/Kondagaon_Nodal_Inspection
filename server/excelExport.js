@@ -101,7 +101,7 @@ async function generateGoswaraExcel(filters = {}) {
   anganwadiSheet.addRow([
     'क्र.', 'निरीक्षण दिनांक', 'नोडल अधिकारी का नाम', 'पदनाम', 'मोबाइल', 'विकासखण्ड', 'ग्राम पंचायत', 
     'आंगनबाड़ी केन्द्र का नाम', 'कार्यकर्ता का नाम', '06 माह से 03 वर्ष बच्चे', '03 से 06 वर्ष बच्चे', 
-    'गर्भवती महिलाएं', 'शिशुवती महिलाएं', '11-14 वर्ष शाला त्यागी', 'कुल दर्ज हितग्राही', 'राशन वितरण स्थिति', 'टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश)'
+    'गर्भवती महिलाएं', 'शिशुवती महिलाएं', '11-14 वर्ष शाला त्यागी', 'कुल दर्ज हितग्राही', 'NRC में बच्चों की संख्या', 'NRC हेतु टीप', 'राशन वितरण स्थिति', 'टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश)'
   ]);
   anganwadiSheet.getRow(1).height = 28;
   anganwadiSheet.getRow(1).eachCell(cell => {
@@ -130,19 +130,21 @@ async function generateGoswaraExcel(filters = {}) {
       ben.lactating || 0,
       ben.adolescentGirls || 0,
       ben.total || 0,
+      r.nrcChildrenCount || 0,
+      r.nrcRemarks || '',
       r.rationStatus || 'नियमित',
       getExtractTip(r) || 'निरंक'
     ]);
     row.eachCell((c, colNum) => { 
       c.border = borderStyle; 
-      c.alignment = { vertical: 'middle', wrapText: colNum === 17 }; 
+      c.alignment = { vertical: 'middle', wrapText: colNum === 19 }; 
     });
   });
   anganwadiSheet.columns = [
     { width: 6 }, { width: 15 }, { width: 22 }, { width: 20 }, { width: 15 },
     { width: 16 }, { width: 18 }, { width: 24 }, { width: 20 }, { width: 12 },
     { width: 12 }, { width: 12 }, { width: 12 }, { width: 12 }, { width: 14 },
-    { width: 18 }, { width: 45 }
+    { width: 14 }, { width: 24 }, { width: 18 }, { width: 45 }
   ];
 
   // 3. SCHOOL SHEET (Shala_Nirikshan)
