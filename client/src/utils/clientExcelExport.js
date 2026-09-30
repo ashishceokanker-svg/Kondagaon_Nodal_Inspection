@@ -21,7 +21,7 @@ export async function exportGoswaraToExcelClient(filters = {}) {
   const goswara = await API.getGoswaraSummary(filters);
   const summaryRows = [
     ['कार्यालय कलेक्टर, जिला-कोण्डागांव (छ०ग०) — नोडल अधिकारी निरीक्षण गोसवारा प्रतिवेदन'],
-    ['क्र.', 'ग्राम पंचायत / स्थल', 'कुल निरीक्षण', 'आंगनबाड़ी', 'शाला', 'छात्रावास', 'उचित मूल्य दुकान', 'ग्राम चौपाल', 'स्वास्थ्य केन्द्र', 'पीएम आवास']
+    ['क्र.', 'ग्राम पंचायत / स्थल', 'कुल निरीक्षण', 'आंगनबाड़ी', 'शाला', 'छात्रावास', 'उचित मूल्य दुकान', 'ग्राम चौपाल', 'स्वास्थ्य केन्द्र', 'पीएम आवास', 'निर्माण कार्य']
   ];
 
   (goswara.panchayatStats || []).forEach((p, idx) => {
@@ -35,7 +35,8 @@ export async function exportGoswaraToExcelClient(filters = {}) {
       p.pds || 0,
       p.chaupal || 0,
       p.health || 0,
-      p.awas || 0
+      p.awas || 0,
+      p.nirman || 0
     ]);
   });
 
@@ -143,6 +144,23 @@ export async function exportGoswaraToExcelClient(filters = {}) {
     ]);
   });
   XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(awasRows), 'awas nirkchan');
+
+  // 9. Nirman Karya Sheet
+  const nirman = await API.getInspections('nirman', filters);
+  const nirmanRows = [
+    ['क्र.', 'निरीक्षण दिनांक', 'नोडल अधिकारी का नाम', 'पदनाम', 'मोबाइल', 'विकासखण्ड', 'ग्राम पंचायत', 'ग्राम / कार्यस्थल', 'निर्माण कार्य का नाम', 'श्रेणी', 'योजना / मद', 'स्वीकृत राशि (लाख)', 'आहरित / व्यय राशि (लाख)', 'निर्माण एजेंसी', 'वर्तमान प्रगति स्तर', 'प्रगति %', 'कार्य स्थिति', 'गुणवत्ता रेटिंग', 'प्राक्कलन अनुरूप कार्य?', 'CIB सूचना पटल', 'उप अभियंता निरीक्षण?', 'मजदूरी भुगतान स्थिति', 'तराई व्यवस्था', 'टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश)']
+  ];
+  nirman.forEach((r, idx) => {
+    nirmanRows.push([
+      idx + 1, r.date || '', r.officerName || '', r.officerDesignation || '', r.officerMobile || '',
+      r.block || '', r.panchayat || '', r.village || '', r.workName || '', r.workCategory || '', r.schemeName || '',
+      r.sanctionCost || '', r.expenditureCost || '', r.agencyName || '', r.currentStage || '',
+      `${r.progressPercent || 0}%`, r.isWorkOngoing || 'चालू', r.qualityRating || '',
+      r.isEstimateFollowed || 'हाँ', r.hasCibBoard || 'हाँ', r.hasSubEngineerInspection || 'हाँ',
+      r.laborPaymentStatus || 'नियमित', r.hasCuringFacility || 'हाँ', extractTip(r)
+    ]);
+  });
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(nirmanRows), 'nirman karya');
 
   const fileName = `Nodal_Goswara_Report_${new Date().toISOString().slice(0, 10)}.xlsx`;
   XLSX.writeFile(wb, fileName);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Baby, GraduationCap, Building, Wheat, Landmark, Activity, Home, FileSpreadsheet, ChevronRight, Clock, PlusCircle, MapPin, CheckCircle, AlertTriangle, ClipboardCheck, Users, UserPlus, RefreshCw, Sliders } from 'lucide-react';
+import { Baby, GraduationCap, Building, Wheat, Landmark, Activity, Home, FileSpreadsheet, ChevronRight, Clock, PlusCircle, MapPin, CheckCircle, AlertTriangle, ClipboardCheck, Users, UserPlus, RefreshCw, Sliders, HardHat } from 'lucide-react';
 import { API } from '../api';
 import AdminFieldControlModal from './AdminFieldControlModal';
 
@@ -95,6 +95,15 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
       color: 'from-cyan-600 to-teal-700',
       badgeBg: 'bg-cyan-50 text-cyan-700 border-cyan-200',
       countKey: 'awas'
+    },
+    {
+      key: 'nirman',
+      title: 'ग्राम पंचायत निर्माण कार्य निरीक्षण',
+      desc: 'स्वीकृत कार्य, लागत, भौतिक प्रगति स्तर, गुणवत्ता व CIB बोर्ड स्थिति',
+      icon: HardHat,
+      color: 'from-amber-600 to-yellow-600',
+      badgeBg: 'bg-amber-50 text-amber-800 border-amber-200',
+      countKey: 'nirman'
     },
   ];
 
@@ -288,7 +297,7 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
                     </h4>
                   </div>
                   <p className="text-xs text-slate-500 mt-1">
-                    जिले के सभी 7 निरीक्षण प्रपत्रों की समेकित रिपोर्ट देखें, प्रिंट करें एवं मल्टी-शीट आधिकारिक एक्सेल (.xlsx) डाउनलोड करें।
+                    जिले के सभी 8 निरीक्षण प्रपत्रों की समेकित रिपोर्ट देखें, प्रिंट करें एवं मल्टी-शीट आधिकारिक एक्सेल (.xlsx) डाउनलोड करें।
                   </p>
                   <div className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-amber-900 bg-amber-100 px-3 py-1.5 rounded-xl group-hover:bg-amber-500 group-hover:text-slate-950 transition">
                     <FileSpreadsheet className="w-3.5 h-3.5" />
@@ -318,7 +327,7 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
                     </h4>
                   </div>
                   <p className="text-xs text-slate-500 mt-1">
-                    पासवर्ड <span className="font-mono font-bold text-purple-700">ashish#123</span> द्वारा 7 फॉर्मों में प्रारंभिक जानकारी, राशन, स्टाफ विवरण आदि हाइड या अनहाइड करें।
+                    पासवर्ड <span className="font-mono font-bold text-purple-700">ashish#123</span> द्वारा प्रपत्रों में प्रारंभिक जानकारी, राशन, स्टाफ विवरण आदि हाइड या अनहाइड करें।
                   </p>
                   <div className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-purple-700 bg-purple-50 px-3 py-1.5 rounded-xl group-hover:bg-purple-600 group-hover:text-white transition">
                     <Sliders className="w-3.5 h-3.5" />
@@ -337,10 +346,10 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
             <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider">
               निरीक्षण प्रपत्र चुनें (Select Form)
             </h3>
-            <span className="text-[11px] text-slate-500 font-medium">7 श्रेणियां उपलब्ध</span>
+            <span className="text-[11px] text-slate-500 font-medium">8 श्रेणियां उपलब्ध</span>
           </div>
 
-          {/* 7 Inspection Modules Grid */}
+          {/* 8 Inspection Modules Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             {modules.map(mod => {
               const count = getTypeCount(mod.countKey);

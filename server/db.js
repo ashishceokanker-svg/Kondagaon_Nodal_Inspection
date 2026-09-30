@@ -365,7 +365,8 @@ const DB = {
       { key: 'pds', name: 'उचित मूल्य दुकान' },
       { key: 'chaupal', name: 'ग्राम चौपाल' },
       { key: 'health', name: 'स्वास्थ्य केन्द्र' },
-      { key: 'awas', name: 'पीएम आवास' }
+      { key: 'awas', name: 'पीएम आवास' },
+      { key: 'nirman', name: 'निर्माण कार्य' }
     ];
 
     const monthInspections = [];
@@ -394,7 +395,8 @@ const DB = {
         pds: 0,
         chaupal: 0,
         health: 0,
-        awas: 0
+        awas: 0,
+        nirman: 0
       };
 
       let latestDate = null;
@@ -445,7 +447,8 @@ const DB = {
       pds: completedList.reduce((a, c) => a + c.breakdown.pds, 0),
       chaupal: completedList.reduce((a, c) => a + c.breakdown.chaupal, 0),
       health: completedList.reduce((a, c) => a + c.breakdown.health, 0),
-      awas: completedList.reduce((a, c) => a + c.breakdown.awas, 0)
+      awas: completedList.reduce((a, c) => a + c.breakdown.awas, 0),
+      nirman: completedList.reduce((a, c) => a + c.breakdown.nirman, 0)
     };
 
     const summary = {

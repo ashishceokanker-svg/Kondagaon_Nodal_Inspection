@@ -159,7 +159,7 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
 });
 
 // Inspections CRUD
-const VALID_TYPES = ['anganwadi', 'school', 'hostel', 'pds', 'chaupal', 'health', 'awas'];
+const VALID_TYPES = ['anganwadi', 'school', 'hostel', 'pds', 'chaupal', 'health', 'awas', 'nirman'];
 
 app.get('/api/inspections/:type', (req, res) => {
   const { type } = req.params;

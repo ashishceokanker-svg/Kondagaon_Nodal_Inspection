@@ -9,6 +9,7 @@ import PdsForm from './components/forms/PdsForm';
 import GramChaupalForm from './components/forms/GramChaupalForm';
 import HealthForm from './components/forms/HealthForm';
 import AwasForm from './components/forms/AwasForm';
+import NirmanKaryaForm from './components/forms/NirmanKaryaForm';
 import GoswaraReports from './components/GoswaraReports';
 import AdminComplianceReport from './components/AdminComplianceReport';
 import AdminOfficerManagement from './components/AdminOfficerManagement';
@@ -159,6 +160,14 @@ export default function App() {
 
                 {activeTab === 'form_awas' && (
                   <AwasForm
+                    officer={officer}
+                    onBack={handleFormBack}
+                    onSuccess={handleFormSuccess}
+                  />
+                )}
+
+                {activeTab === 'form_nirman' && (
+                  <NirmanKaryaForm
                     officer={officer}
                     onBack={handleFormBack}
                     onSuccess={handleFormSuccess}

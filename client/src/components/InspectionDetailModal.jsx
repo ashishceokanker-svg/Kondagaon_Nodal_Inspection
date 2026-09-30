@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   X, Printer, Baby, GraduationCap, Wheat, Landmark, Building, 
-  HeartPulse, Home, MapPin, ExternalLink, Calendar, User, Phone, CheckCircle2, AlertCircle
+  HeartPulse, Home, MapPin, ExternalLink, Calendar, User, Phone, CheckCircle2, AlertCircle, HardHat
 } from 'lucide-react';
 import { useFormVisibility } from '../utils/useFormVisibility';
 
@@ -39,6 +39,7 @@ export default function InspectionDetailModal({ data, onClose }) {
     else if (record.shopId || record.shopName) type = 'pds';
     else if (record.hostelName || record.superintendentName) type = 'hostel';
     else if (record.inchargeName || record.drugs || record.centerType) type = 'health';
+    else if (record.workName || record.workCategory || record.sanctionCost) type = 'nirman';
     else if (record.beneficiaryId || record.currentStage || record.fatherName) type = 'awas';
     else if (record.sectors || record.dependentVillage || record.scCount) type = 'chaupal';
     else type = 'anganwadi';
@@ -113,6 +114,13 @@ export default function InspectionDetailModal({ data, onClose }) {
           title: 'प्रधानमंत्री आवास योजना (ग्रामीण) स्थल निरीक्षण प्रारूप',
           leftSigner: 'हितग्राही / ग्राम रोजगार सहायक',
           leftSignerName: record.beneficiaryName || 'हितग्राही'
+        };
+      case 'nirman':
+        return {
+          dept: 'पंचायत एवं ग्रामीण विकास विभाग',
+          title: 'ग्राम पंचायत में चल रहे निर्माण कार्यों का निरीक्षण प्रतिवेदन',
+          leftSigner: 'सचिव / उप अभियंता / एजेंसी',
+          leftSignerName: record.agencyRepresentative || 'निर्माण एजेंसी'
         };
       default:
         return {
@@ -1011,6 +1019,89 @@ export default function InspectionDetailModal({ data, onClose }) {
                   </div>
                 </div>
               )}
+            </div>
+          )}
+
+          {/* ========================================================================= */}
+          {/* 8. NIRMAN KARYA (ग्राम पंचायत निर्माण कार्य) */}
+          {/* ========================================================================= */}
+          {type === 'nirman' && (
+            <div className="space-y-4">
+              <div className="border border-slate-300 rounded-xl p-3.5 bg-amber-50/40 space-y-3">
+                <div className="font-bold text-xs text-amber-950 pb-1.5 border-b border-amber-200 flex items-center justify-between">
+                  <span>निर्माण कार्य की मुख्य जानकारी</span>
+                  <span className="text-[10px] bg-amber-200 text-amber-900 px-2 py-0.5 rounded font-bold">
+                    {record.workCategory || 'निर्माण कार्य'}
+                  </span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                  <div>
+                    <span className="text-slate-600 block text-[11px]">कार्य का नाम:</span>
+                    <strong className="text-slate-900 text-sm">{record.workName || '-'}</strong>
+                  </div>
+                  <div>
+                    <span className="text-slate-600 block text-[11px]">योजना / मद:</span>
+                    <strong className="text-slate-900">{record.schemeName || '-'}</strong>
+                  </div>
+                  <div>
+                    <span className="text-slate-600 block text-[11px]">प्रशासकीय स्वीकृति क्र. व दिनांक:</span>
+                    <strong className="text-slate-800">{record.asNumberDate || '-'}</strong>
+                  </div>
+                  <div>
+                    <span className="text-slate-600 block text-[11px]">निर्माण एजेंसी:</span>
+                    <strong className="text-slate-800">{record.agencyName || 'ग्राम पंचायत'}</strong>
+                    {record.agencyRepresentative && <span className="text-slate-500 text-[11px] block">({record.agencyRepresentative})</span>}
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="p-3 bg-white rounded-xl border border-slate-300 text-center">
+                  <span className="text-[10px] text-slate-500 block">स्वीकृत लागत राशि</span>
+                  <span className="text-lg font-black text-amber-900">₹{record.sanctionCost || '0.00'} लाख</span>
+                </div>
+                <div className="p-3 bg-white rounded-xl border border-slate-300 text-center">
+                  <span className="text-[10px] text-slate-500 block">व्यय / आहरित राशि</span>
+                  <span className="text-lg font-black text-slate-800">₹{record.expenditureCost || '0.00'} लाख</span>
+                </div>
+                <div className="p-3 bg-blue-50 rounded-xl border border-blue-200 text-center">
+                  <span className="text-[10px] text-blue-700 block">वर्तमान भौतिक प्रगति स्तर</span>
+                  <span className="text-sm font-black text-blue-950 block">{record.currentStage || 'प्रगतिरत'}</span>
+                  <span className="text-[10px] font-bold text-blue-800">({record.progressPercent || 0}% पूर्ण)</span>
+                </div>
+              </div>
+
+              <div className="border border-slate-300 rounded-xl overflow-hidden">
+                <div className="bg-slate-100 px-3 py-1.5 border-b border-slate-300 font-bold text-[11px] text-slate-800">
+                  तकनीकी मानक, गुणवत्ता एवं स्थल अनुपालन
+                </div>
+                <div className="p-3 grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-white">
+                  <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
+                    <span className="text-[10px] text-slate-500 block">समग्र गुणवत्ता</span>
+                    <strong className="text-slate-900">{record.qualityRating || 'अच्छी'}</strong>
+                  </div>
+                  <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
+                    <span className="text-[10px] text-slate-500 block">प्राक्कलन अनुरूप कार्य</span>
+                    <strong className="text-slate-900">{record.isEstimateFollowed || 'हाँ'}</strong>
+                  </div>
+                  <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
+                    <span className="text-[10px] text-slate-500 block">सामग्री गुणवत्ता</span>
+                    <strong className="text-slate-900">{record.materialQuality || 'मानक अनुसार'}</strong>
+                  </div>
+                  <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
+                    <span className="text-[10px] text-slate-500 block">CIB सूचना पटल</span>
+                    <strong className="text-slate-900">{record.hasCibBoard || 'हाँ'}</strong>
+                  </div>
+                  <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
+                    <span className="text-[10px] text-slate-500 block">उप अभियंता नियमित निरीक्षण</span>
+                    <strong className="text-slate-900">{record.hasSubEngineerInspection || 'हाँ'}</strong>
+                  </div>
+                  <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
+                    <span className="text-[10px] text-slate-500 block">श्रमिक मजदूरी भुगतान</span>
+                    <strong className="text-slate-900">{record.laborPaymentStatus || 'नियमित'}</strong>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
 

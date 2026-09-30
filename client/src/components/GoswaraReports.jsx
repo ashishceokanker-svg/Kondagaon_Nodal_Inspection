@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FileSpreadsheet, Printer, Download, Filter, Eye, Trash2, Calendar, MapPin, Building, Baby, GraduationCap, Wheat, Landmark, Activity, Home, ArrowLeft, MessageSquare, RefreshCw } from 'lucide-react';
+import { FileSpreadsheet, Printer, Download, Filter, Eye, Trash2, Calendar, MapPin, Building, Baby, GraduationCap, Wheat, Landmark, Activity, Home, ArrowLeft, MessageSquare, RefreshCw, HardHat } from 'lucide-react';
 import { API } from '../api';
 import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../constants';
 import { exportGoswaraToExcelClient } from '../utils/clientExcelExport';
@@ -131,7 +131,9 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
   };
 
   const getFacilitySiteName = (rec) => {
-    return rec.centerName || rec.schoolName || rec.hostelName || rec.shopName || rec.village || rec.beneficiaryName || 'निरीक्षण स्थल';
+    return rec.workName 
+      ? `${rec.workName}${rec.sanctionCost ? ` (₹${rec.sanctionCost} लाख)` : ''}` 
+      : (rec.centerName || rec.schoolName || rec.hostelName || rec.shopName || rec.village || rec.beneficiaryName || 'निरीक्षण स्थल');
   };
 
   const handleDownloadExcel = async () => {
@@ -176,6 +178,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
     { key: 'chaupal', name: 'ग्राम चौपाल', icon: Landmark, color: 'text-purple-600 bg-purple-50' },
     { key: 'health', name: 'स्वास्थ्य केन्द्र', icon: Activity, color: 'text-red-600 bg-red-50' },
     { key: 'awas', name: 'प्रधानमंत्री आवास', icon: Home, color: 'text-cyan-600 bg-cyan-50' },
+    { key: 'nirman', name: 'निर्माण कार्य', icon: HardHat, color: 'text-amber-800 bg-amber-50' },
   ];
 
   // Compute strictly officer's assigned panchayat(s) if not admin
@@ -200,7 +203,8 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
           pds: 0,
           chaupal: 0,
           health: 0,
-          awas: 0
+          awas: 0,
+          nirman: 0
         });
       }
     });
@@ -221,7 +225,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
     }
 
     let total = 0;
-    const ts = { anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0 };
+    const ts = { anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0, nirman: 0 };
     displayedPanchayatStats.forEach(p => {
       total += (Number(p.total) || 0);
       facilities.forEach(f => {
@@ -262,17 +266,14 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-white p-1 shadow border border-amber-400 shrink-0">
-                <img src="/cg_logo.svg" alt="छत्तीसगढ़ शासन मोनो" className="w-full h-full object-contain" />
-              </div>
+            <div className="flex items-center gap-2">
               <div>
-                <h2 className="text-base sm:text-lg font-black text-slate-900 tracking-tight">
-                  कार्यालय कलेक्टर, जिला-कोण्डागांव (छ०ग०)
+                <h2 className="text-base sm:text-lg font-black text-slate-900 tracking-tight flex items-center gap-2">
+                  <FileSpreadsheet className="w-5 h-5 text-emerald-600" />
+                  <span>नोडल अधिकारी निरीक्षण गोसवारा</span>
                 </h2>
-                <p className="text-xs text-slate-600 font-medium flex items-center gap-1.5 mt-0.5">
-                  <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>नोडल अधिकारी निरीक्षण गोसवारा • समेकित प्रतिवेदन</span>
+                <p className="text-xs text-slate-600 font-medium mt-0.5">
+                  समेकित एवं विस्तृत निरीक्षण प्रतिवेदन
                 </p>
               </div>
             </div>
@@ -436,15 +437,9 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
       {/* Printable Report View (Visible during print or on screen) */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-6">
         
-        {/* Official Letterhead Header for Print */}
-        <div className="text-center pb-4 border-b-2 border-slate-800 mb-4 flex flex-col items-center justify-center">
-          <div className="w-16 h-16 rounded-full bg-white p-1 border-2 border-amber-400 mb-2 shadow-sm flex items-center justify-center">
-            <img src="/cg_logo.svg" alt="छत्तीसगढ़ शासन मोनो" className="w-full h-full object-contain" />
-          </div>
-          <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-            कार्यालय कलेक्टर, जिला-कोण्डागांव (छ०ग०)
-          </h1>
-          <h2 className="text-sm sm:text-base font-bold text-blue-900 mt-0.5">
+        {/* Report Header for Print & Screen */}
+        <div className="text-center pb-3 border-b border-slate-200 mb-4 flex flex-col items-center justify-center">
+          <h2 className="text-base sm:text-lg font-black text-blue-900">
             नोडल अधिकारियों द्वारा क्षेत्रीय निरीक्षण का मासिक / पाक्षिक गोसवारा प्रतिवेदन
           </h2>
           <p className="text-xs text-slate-600 mt-1 font-medium">
@@ -456,7 +451,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
         </div>
 
         {/* Top Summary Stat Badges */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-2 mb-6">
           <div className="p-3 rounded-xl border bg-slate-900 text-white text-center">
             <span className="text-[10px] text-slate-300 block font-medium">कुल निरीक्षण</span>
             <span className="text-xl font-black">{displayedTotalInspections}</span>
@@ -525,7 +520,8 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                   <th className="p-2 text-center border-r">राशन दुकान</th>
                   <th className="p-2 text-center border-r">ग्राम चौपाल</th>
                   <th className="p-2 text-center border-r">स्वास्थ्य केन्द्र</th>
-                  <th className="p-2 text-center">पीएम आवास</th>
+                  <th className="p-2 text-center border-r">पीएम आवास</th>
+                  <th className="p-2 text-center">निर्माण कार्य</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
@@ -541,12 +537,13 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                       <td className="p-2 text-center border-r">{p.pds || '-'}</td>
                       <td className="p-2 text-center border-r">{p.chaupal || '-'}</td>
                       <td className="p-2 text-center border-r">{p.health || '-'}</td>
-                      <td className="p-2 text-center">{p.awas || '-'}</td>
+                      <td className="p-2 text-center border-r">{p.awas || '-'}</td>
+                      <td className="p-2 text-center font-bold text-amber-900">{p.nirman || '-'}</td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={10} className="p-8 text-center text-slate-400">
+                    <td colSpan={11} className="p-8 text-center text-slate-400">
                       कोई निरीक्षण प्रविष्टि उपलब्ध नहीं है। कृपया फॉर्म भरकर सबमिट करें।
                     </td>
                   </tr>
@@ -679,7 +676,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                   <span>समस्त निरीक्षणों की टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश)</span>
                 </h3>
                 <p className="text-xs text-amber-800 mt-0.5">
-                  सभी 7 श्रेणियों के निरीक्षणों में दर्ज की गई विस्तृत टिप्पणियां एवं सुधार निर्देश का समेकित पंजी
+                  सभी 8 श्रेणियों के निरीक्षणों में दर्ज की गई विस्तृत टिप्पणियां एवं सुधार निर्देश का समेकित पंजी
                 </p>
               </div>
               <div className="text-xs font-bold text-amber-900 bg-white px-3 py-1 rounded-lg border border-amber-300 shadow-sm self-start sm:self-auto">
