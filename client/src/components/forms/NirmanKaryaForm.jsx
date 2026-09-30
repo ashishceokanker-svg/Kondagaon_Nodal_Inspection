@@ -40,6 +40,8 @@ const AGENCIES = [
   'ग्राम पंचायत',
   'ग्रामीण यांत्रिकी सेवा (RES)',
   'लोक निर्माण विभाग (PWD)',
+  'प्रधानमंत्री ग्राम सड़क योजना (PMGSY)',
+  'जल संसाधन विभाग (Jal Sansadhan)',
   'वन विभाग',
   'लोक स्वास्थ्य यांत्रिकी (PHE)',
   'अन्य कार्य एजेंसी'
@@ -48,11 +50,17 @@ const AGENCIES = [
 const STAGES = [
   'अप्रारंभ (Not Started)',
   'ले-आउट / प्रारंभिक स्तर (Layout)',
-  'नींव स्तर (Foundation)',
+  'नींव / खुदाई स्तर (Foundation / Excavation)',
   'प्लिंथ स्तर (Plinth Level)',
   'दीवार / लिंटल स्तर (Wall / Lintel)',
   'छत ढलाई स्तर (Roof / Slab)',
-  'प्लास्टर / फिनिशिंग स्तर',
+  'सड़क - सबग्रेड / अर्थवर्क स्तर (Subgrade)',
+  'सड़क - GSB / WBM स्तर (GSB/WBM)',
+  'सड़क - कंक्रीट / डामरीकरण स्तर (Concrete/BT)',
+  'सड़क - साइड शोल्डर / फिनिशिंग स्तर',
+  'नाली - बेस कंक्रीट / खुदाई स्तर (Drain Bed)',
+  'नाली - साइड वॉल कंक्रीटिंग स्तर (Drain Wall)',
+  'प्लास्टर / फिनिशिंग स्तर (Finishing)',
   'कार्य पूर्ण (Completed)',
   'कार्य बंद / बाधित (Stalled)'
 ];
@@ -64,7 +72,14 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
   const today = getTodayDateString();
 
   const [formData, setFormData] = useState(() => {
-    if (initialData) return initialData;
+    if (initialData) {
+      const isKnownAgency = AGENCIES.includes(initialData.agencyName);
+      return {
+        ...initialData,
+        agencyName: isKnownAgency ? initialData.agencyName : (initialData.agencyName ? 'अन्य कार्य एजेंसी' : 'ग्राम पंचायत'),
+        customAgencyName: isKnownAgency ? '' : (initialData.agencyName || '')
+      };
+    }
     return {
       date: today,
       officerId: officer?.id || '',
@@ -84,6 +99,7 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
       sanctionCost: '',
       expenditureCost: '',
       agencyName: 'ग्राम पंचायत',
+      customAgencyName: '',
       startDate: '',
       targetDate: '',
 
@@ -129,12 +145,21 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
         alert('निरीक्षण दिनांक आज अथवा पूर्व की ही हो सकती है, भविष्य की दिनांक मान्य नहीं है।');
         return;
       }
+      if (formData.agencyName === 'अन्य कार्य एजेंसी' && (!formData.customAgencyName || !formData.customAgencyName.trim())) {
+        alert('कृपया अन्य निर्माण एजेंसी का नाम दर्ज करें।');
+        return;
+      }
     }
 
     setSaving(true);
     try {
+      const finalAgencyName = formData.agencyName === 'अन्य कार्य एजेंसी'
+        ? (formData.customAgencyName.trim() || 'अन्य कार्य एजेंसी')
+        : formData.agencyName;
+
       const payload = {
         ...formData,
+        agencyName: finalAgencyName,
         isDraft,
         status: isDraft ? 'ड्राफ्ट (लंबित)' : 'जमा किया गया (पूर्ण)'
       };
@@ -337,22 +362,6 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
                 onChange={e => setFormData({ ...formData, workName: e.target.value })}
                 className="w-full p-2.5 border border-slate-300 rounded-lg bg-white font-bold text-slate-900 text-sm focus:ring-2 focus:ring-amber-500"
               />
-              {/* Quick suggestion tags */}
-              <div className="flex flex-wrap gap-1.5 mt-2">
-                {['सी.सी. रोड', 'सामुदायिक भवन', 'पुलिया निर्माण', 'नाली निर्माण', 'आंगनबाड़ी भवन', 'मुक्तिधाम शेड', 'गोठान बाउंड्रीवाल', 'पेयजल कूप / बोर'].map(tag => (
-                  <button
-                    key={tag}
-                    type="button"
-                    onClick={() => {
-                      if (!formData.workName) setFormData({ ...formData, workName: tag + ' निर्माण' });
-                      else setFormData({ ...formData, workName: formData.workName + ' - ' + tag });
-                    }}
-                    className="text-[10px] bg-slate-100 hover:bg-amber-100 text-slate-700 hover:text-amber-900 px-2 py-0.5 rounded border border-slate-200 transition"
-                  >
-                    + {tag}
-                  </button>
-                ))}
-              </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
@@ -393,12 +402,21 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
                 <select
                   value={formData.agencyName}
                   onChange={e => setFormData({ ...formData, agencyName: e.target.value })}
-                  className="w-full p-2.5 border border-slate-300 rounded-lg bg-white"
+                  className="w-full p-2.5 border border-slate-300 rounded-lg bg-white font-semibold"
                 >
                   {AGENCIES.map(a => (
                     <option key={a} value={a}>{a}</option>
                   ))}
                 </select>
+                {formData.agencyName === 'अन्य कार्य एजेंसी' && (
+                  <input
+                    type="text"
+                    placeholder="अन्य कार्य एजेंसी का नाम दर्ज करें"
+                    value={formData.customAgencyName}
+                    onChange={e => setFormData({ ...formData, customAgencyName: e.target.value })}
+                    className="w-full mt-2 p-2 border border-amber-400 rounded-lg bg-amber-50/70 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-amber-500"
+                  />
+                )}
               </div>
 
               <div>
