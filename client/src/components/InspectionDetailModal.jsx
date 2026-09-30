@@ -3,6 +3,7 @@ import {
   X, Printer, Baby, GraduationCap, Wheat, Landmark, Building, 
   HeartPulse, Home, MapPin, ExternalLink, Calendar, User, Phone, CheckCircle2, AlertCircle
 } from 'lucide-react';
+import { useFormVisibility } from '../utils/useFormVisibility';
 
 const safeParse = (val, fallback = {}) => {
   if (!val) return fallback;
@@ -26,6 +27,7 @@ const DEFAULT_RATION_ROWS = [
 ];
 
 export default function InspectionDetailModal({ data, onClose }) {
+  const visibility = useFormVisibility();
   if (!data || !data.record) return null;
   const { record } = data;
 
@@ -180,7 +182,9 @@ export default function InspectionDetailModal({ data, onClose }) {
               </h1>
             </div>
             <div className="flex flex-wrap justify-between text-[11px] text-slate-700 mt-2 px-1 font-medium">
-              <span>निरीक्षण दिनांक: <strong className="text-slate-950 font-bold">{record.date || record.inspectionDate || '-'}</strong></span>
+              {!visibility.hidePreliminaryInfo && (
+                <span>निरीक्षण दिनांक: <strong className="text-slate-950 font-bold">{record.date || record.inspectionDate || '-'}</strong></span>
+              )}
               <span>विकासखण्ड: <strong className="text-slate-950 font-bold">{record.block || 'कोण्डागांव'}</strong></span>
               <span>ग्राम पंचायत: <strong className="text-slate-950 font-bold">{record.panchayat || record.village || '-'}</strong></span>
               <span>स्थिति: <strong className="text-emerald-800 font-bold">{record.status || 'पूर्ण'}</strong></span>
@@ -188,31 +192,46 @@ export default function InspectionDetailModal({ data, onClose }) {
           </div>
 
           {/* PRELIMINARY COMMON INFO */}
-          <div className="bg-slate-50 border border-slate-300 rounded-xl p-3 space-y-2">
-            <div className="font-bold text-[11px] text-slate-800 uppercase tracking-wider pb-1 border-b border-slate-200">
-              1. प्रारंभिक विवरण (Preliminary Details)
+          {!visibility.hidePreliminaryInfo ? (
+            <div className="bg-slate-50 border border-slate-300 rounded-xl p-3 space-y-2">
+              <div className="font-bold text-[11px] text-slate-800 uppercase tracking-wider pb-1 border-b border-slate-200">
+                1. प्रारंभिक विवरण (Preliminary Details)
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <div>
+                  <span className="text-[10px] text-slate-500 block">संस्था / स्थल का नाम:</span>
+                  <span className="font-bold text-slate-900 text-xs">
+                    {record.centerName || record.schoolName || record.shopName || record.hostelName || record.village || record.beneficiaryName || '-'}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-slate-500 block">ग्राम पंचायत:</span>
+                  <span className="font-semibold text-slate-800">{record.panchayat || record.village || '-'}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-slate-500 block">निरीक्षणकर्ता नोडल अधिकारी:</span>
+                  <span className="font-bold text-slate-900">{record.officerName || '-'}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-slate-500 block">पदनाम व मोबाइल:</span>
+                  <span className="font-semibold text-slate-800">{record.officerDesignation || '-'} ({record.officerMobile || '-'})</span>
+                </div>
+              </div>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          ) : (
+            <div className="bg-slate-50 border border-slate-300 rounded-xl p-2.5 flex items-center justify-between text-xs">
               <div>
                 <span className="text-[10px] text-slate-500 block">संस्था / स्थल का नाम:</span>
-                <span className="font-bold text-slate-900 text-xs">
+                <span className="font-bold text-slate-900">
                   {record.centerName || record.schoolName || record.shopName || record.hostelName || record.village || record.beneficiaryName || '-'}
                 </span>
               </div>
-              <div>
+              <div className="text-right">
                 <span className="text-[10px] text-slate-500 block">ग्राम पंचायत:</span>
                 <span className="font-semibold text-slate-800">{record.panchayat || record.village || '-'}</span>
               </div>
-              <div>
-                <span className="text-[10px] text-slate-500 block">निरीक्षणकर्ता नोडल अधिकारी:</span>
-                <span className="font-bold text-slate-900">{record.officerName || '-'}</span>
-              </div>
-              <div>
-                <span className="text-[10px] text-slate-500 block">पदनाम व मोबाइल:</span>
-                <span className="font-semibold text-slate-800">{record.officerDesignation || '-'} ({record.officerMobile || '-'})</span>
-              </div>
             </div>
-          </div>
+          )}
 
           {/* ========================================================================= */}
           {/* 1. ANGANWADI PROFORMA */}
@@ -279,41 +298,43 @@ export default function InspectionDetailModal({ data, onClose }) {
               </div>
 
               {/* 3. Ration & Nutrition Stock Table */}
-              <div className="border border-slate-300 rounded-xl overflow-hidden shadow-xs">
-                <div className="bg-slate-100 px-3 py-1.5 border-b border-slate-300">
-                  <span className="font-bold text-slate-900 text-[11px]">
-                    3. सामग्री प्रदाय, बचत एवं वितरण की स्थिति (8 श्रेणियां)
-                  </span>
-                </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left text-[11px] border-collapse">
-                    <thead className="bg-slate-50 text-slate-700 border-b border-slate-200 font-bold">
-                      <tr>
-                        <th className="p-2 text-center w-8 border-r border-slate-200">क्र.</th>
-                        <th className="p-2 border-r border-slate-200">हितग्राही वर्ग</th>
-                        <th className="p-2 text-center border-r border-slate-200">सामग्री प्रदाय</th>
-                        <th className="p-2 text-center border-r border-slate-200">पूर्व बचत</th>
-                        <th className="p-2 text-center border-r border-slate-200">कुल मात्रा</th>
-                        <th className="p-2 text-center border-r border-slate-200">वितरण</th>
-                        <th className="p-2 text-center">उपलब्ध पैकेट</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-200">
-                      {(Array.isArray(rationRows) ? rationRows : DEFAULT_RATION_ROWS).map((row, idx) => (
-                        <tr key={row.id || idx} className="hover:bg-slate-50">
-                          <td className="p-2 text-center font-bold text-slate-500 border-r border-slate-200">{idx + 1}</td>
-                          <td className="p-2 font-medium text-slate-800 border-r border-slate-200">{row.category}</td>
-                          <td className="p-2 text-center border-r border-slate-200">{row.supply || '-'}</td>
-                          <td className="p-2 text-center border-r border-slate-200">{row.prevBalance || '-'}</td>
-                          <td className="p-2 text-center font-bold text-slate-900 border-r border-slate-200">{row.total || '-'}</td>
-                          <td className="p-2 text-center border-r border-slate-200">{row.distributed || '-'}</td>
-                          <td className="p-2 text-center font-semibold text-emerald-800">{row.availablePackets || '-'}</td>
+              {!visibility.hideAnganwadiRation && (
+                <div className="border border-slate-300 rounded-xl overflow-hidden shadow-xs">
+                  <div className="bg-slate-100 px-3 py-1.5 border-b border-slate-300">
+                    <span className="font-bold text-slate-900 text-[11px]">
+                      3. सामग्री प्रदाय, बचत एवं वितरण की स्थिति (8 श्रेणियां)
+                    </span>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-[11px] border-collapse">
+                      <thead className="bg-slate-50 text-slate-700 border-b border-slate-200 font-bold">
+                        <tr>
+                          <th className="p-2 text-center w-8 border-r border-slate-200">क्र.</th>
+                          <th className="p-2 border-r border-slate-200">हितग्राही वर्ग</th>
+                          <th className="p-2 text-center border-r border-slate-200">सामग्री प्रदाय</th>
+                          <th className="p-2 text-center border-r border-slate-200">पूर्व बचत</th>
+                          <th className="p-2 text-center border-r border-slate-200">कुल मात्रा</th>
+                          <th className="p-2 text-center border-r border-slate-200">वितरण</th>
+                          <th className="p-2 text-center">उपलब्ध पैकेट</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody className="divide-y divide-slate-200">
+                        {(Array.isArray(rationRows) ? rationRows : DEFAULT_RATION_ROWS).map((row, idx) => (
+                          <tr key={row.id || idx} className="hover:bg-slate-50">
+                            <td className="p-2 text-center font-bold text-slate-500 border-r border-slate-200">{idx + 1}</td>
+                            <td className="p-2 font-medium text-slate-800 border-r border-slate-200">{row.category}</td>
+                            <td className="p-2 text-center border-r border-slate-200">{row.supply || '-'}</td>
+                            <td className="p-2 text-center border-r border-slate-200">{row.prevBalance || '-'}</td>
+                            <td className="p-2 text-center font-bold text-slate-900 border-r border-slate-200">{row.total || '-'}</td>
+                            <td className="p-2 text-center border-r border-slate-200">{row.distributed || '-'}</td>
+                            <td className="p-2 text-center font-semibold text-emerald-800">{row.availablePackets || '-'}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           )}
 
@@ -453,7 +474,7 @@ export default function InspectionDetailModal({ data, onClose }) {
                     19. बच्चों का कक्षावार / विषयवार, अकादमिक स्तर पर टिप्पणी:
                   </div>
                   <div className="space-y-1">
-                    {academicNotes.map((note, idx) => note && note.trim() ? (
+                    {(visibility.hideSchoolAcademicExtra ? academicNotes.slice(0, 1) : academicNotes).map((note, idx) => note && note.trim() ? (
                       <div key={idx} className="flex gap-2 text-xs">
                         <span className="font-bold text-slate-600 w-4">{idx + 1}.</span>
                         <span className="text-slate-900 font-medium">{note}</span>
@@ -728,49 +749,53 @@ export default function InspectionDetailModal({ data, onClose }) {
                   <span className="text-[10px] text-slate-500 block">स्वीकृत / उपस्थित सीट:</span>
                   <span className="font-bold text-slate-900">{record.sanctionedSeats || '-'} / {record.presentStudents || '-'}</span>
                 </div>
-                <div>
-                  <span className="text-[10px] text-slate-500 block">अधीक्षक का नाम:</span>
-                  <span className="font-semibold text-slate-800">{record.superintendentName || '-'} ({record.superintendentMobile || '-'})</span>
-                </div>
+                {!visibility.hideHostelSuperintendent && (
+                  <div>
+                    <span className="text-[10px] text-slate-500 block">अधीक्षक का नाम:</span>
+                    <span className="font-semibold text-slate-800">{record.superintendentName || '-'} ({record.superintendentMobile || '-'})</span>
+                  </div>
+                )}
               </div>
 
               {/* Staff matrix table */}
-              <div className="border border-slate-300 rounded-xl overflow-hidden shadow-xs">
-                <div className="bg-slate-100 px-3 py-1.5 border-b border-slate-300">
-                  <span className="font-bold text-slate-900 text-[11px]">
-                    7. पदस्थ स्टॉफ विवरण (Staff Matrix)
-                  </span>
+              {!visibility.hideHostelStaff && (
+                <div className="border border-slate-300 rounded-xl overflow-hidden shadow-xs">
+                  <div className="bg-slate-100 px-3 py-1.5 border-b border-slate-300">
+                    <span className="font-bold text-slate-900 text-[11px]">
+                      7. पदस्थ स्टॉफ विवरण (Staff Matrix)
+                    </span>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-[11px] border-collapse">
+                      <thead className="bg-slate-50 text-slate-700 border-b border-slate-200">
+                        <tr>
+                          <th className="p-2 border-r">पद का नाम</th>
+                          <th className="p-2 text-center border-r" colSpan={2}>नियमित (पु/म)</th>
+                          <th className="p-2 text-center border-r" colSpan={2}>संविदा (पु/म)</th>
+                          <th className="p-2 text-center" colSpan={2}>दैनिक वेतनभोगी (पु/म)</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-200 text-center">
+                        {['peon', 'cook', 'guard', 'homeguard'].map(role => {
+                          const rName = role === 'peon' ? 'भृत्य' : role === 'cook' ? 'रसोइया' : role === 'guard' ? 'चौकीदार' : 'नगर सैनिक/होमगार्ड';
+                          const s = staff[role] || {};
+                          return (
+                            <tr key={role} className="hover:bg-slate-50">
+                              <td className="p-2 text-left font-bold text-slate-800 border-r">{rName}</td>
+                              <td className="p-1 border-r text-slate-600">पु: {s.mReg || 0}</td>
+                              <td className="p-1 border-r text-slate-600">म: {s.fReg || 0}</td>
+                              <td className="p-1 border-r text-slate-600">पु: {s.mCont || 0}</td>
+                              <td className="p-1 border-r text-slate-600">म: {s.fCont || 0}</td>
+                              <td className="p-1 border-r text-slate-600">पु: {s.mDaily || 0}</td>
+                              <td className="p-1 text-slate-600">म: {s.fDaily || 0}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left text-[11px] border-collapse">
-                    <thead className="bg-slate-50 text-slate-700 border-b border-slate-200">
-                      <tr>
-                        <th className="p-2 border-r">पद का नाम</th>
-                        <th className="p-2 text-center border-r" colSpan={2}>नियमित (पु/म)</th>
-                        <th className="p-2 text-center border-r" colSpan={2}>संविदा (पु/म)</th>
-                        <th className="p-2 text-center" colSpan={2}>दैनिक वेतनभोगी (पु/म)</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-200 text-center">
-                      {['peon', 'cook', 'guard', 'homeguard'].map(role => {
-                        const rName = role === 'peon' ? 'भृत्य' : role === 'cook' ? 'रसोइया' : role === 'guard' ? 'चौकीदार' : 'नगर सैनिक/होमगार्ड';
-                        const s = staff[role] || {};
-                        return (
-                          <tr key={role} className="hover:bg-slate-50">
-                            <td className="p-2 text-left font-bold text-slate-800 border-r">{rName}</td>
-                            <td className="p-1 border-r text-slate-600">पु: {s.mReg || 0}</td>
-                            <td className="p-1 border-r text-slate-600">म: {s.fReg || 0}</td>
-                            <td className="p-1 border-r text-slate-600">पु: {s.mCont || 0}</td>
-                            <td className="p-1 border-r text-slate-600">म: {s.fCont || 0}</td>
-                            <td className="p-1 border-r text-slate-600">पु: {s.mDaily || 0}</td>
-                            <td className="p-1 text-slate-600">म: {s.fDaily || 0}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+              )}
 
               {/* Amenities & Security Checklist */}
               <div className="border border-slate-300 rounded-xl p-3 bg-white space-y-2">
@@ -778,10 +803,12 @@ export default function InspectionDetailModal({ data, onClose }) {
                   8 से 11. भवन, सुरक्षा व मूलभूत सुविधाएं
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                  <div className="flex justify-between border-b pb-1">
-                    <span className="text-slate-600">अधीक्षक क्वार्टर में निवास:</span>
-                    <strong className="text-slate-900">{record.superintendentResiding || '-'}</strong>
-                  </div>
+                  {!visibility.hideHostelSuperintendent && (
+                    <div className="flex justify-between border-b pb-1">
+                      <span className="text-slate-600">अधीक्षक क्वार्टर में निवास:</span>
+                      <strong className="text-slate-900">{record.superintendentResiding || '-'}</strong>
+                    </div>
+                  )}
                   <div className="flex justify-between border-b pb-1">
                     <span className="text-slate-600">CCTV कैमरा स्थिति:</span>
                     <strong className="text-slate-900">{record.cctvWorking || 'हाँ'} ({record.cctvCount || 0} कैमरे)</strong>
@@ -949,39 +976,41 @@ export default function InspectionDetailModal({ data, onClose }) {
               </div>
 
               {/* Construction materials on site */}
-              <div className="border border-slate-300 rounded-xl overflow-hidden shadow-xs">
-                <div className="bg-slate-100 px-3 py-1.5 border-b border-slate-300">
-                  <span className="font-bold text-slate-900 text-[11px]">
-                    स्थल पर उपलब्ध निर्माण सामग्री की स्थिति
-                  </span>
+              {!visibility.hideAwasMaterials && (
+                <div className="border border-slate-300 rounded-xl overflow-hidden shadow-xs">
+                  <div className="bg-slate-100 px-3 py-1.5 border-b border-slate-300">
+                    <span className="font-bold text-slate-900 text-[11px]">
+                      स्थल पर उपलब्ध निर्माण सामग्री की स्थिति
+                    </span>
+                  </div>
+                  <div className="p-3 grid grid-cols-2 sm:grid-cols-3 gap-2 bg-white text-center text-xs">
+                    <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
+                      <span className="text-[10px] text-slate-500 block">ईंट (Bricks)</span>
+                      <span className="font-bold text-slate-800">{materials.bricks || 'उपलब्ध'}</span>
+                    </div>
+                    <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
+                      <span className="text-[10px] text-slate-500 block">रेत (Sand)</span>
+                      <span className="font-bold text-slate-800">{materials.sand || 'उपलब्ध'}</span>
+                    </div>
+                    <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
+                      <span className="text-[10px] text-slate-500 block">सीमेंट (Cement)</span>
+                      <span className="font-bold text-slate-800">{materials.cement || 'उपलब्ध'}</span>
+                    </div>
+                    <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
+                      <span className="text-[10px] text-slate-500 block">छड़ / लोहा (Steel)</span>
+                      <span className="font-bold text-slate-800">{materials.steel || 'उपलब्ध'}</span>
+                    </div>
+                    <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
+                      <span className="text-[10px] text-slate-500 block">गिट्टी (Aggregate)</span>
+                      <span className="font-bold text-slate-800">{materials.aggregate || 'उपलब्ध'}</span>
+                    </div>
+                    <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
+                      <span className="text-[10px] text-slate-500 block">पानी व अन्य</span>
+                      <span className="font-bold text-slate-800">{materials.other || 'उपलब्ध'}</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="p-3 grid grid-cols-2 sm:grid-cols-3 gap-2 bg-white text-center text-xs">
-                  <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
-                    <span className="text-[10px] text-slate-500 block">ईंट (Bricks)</span>
-                    <span className="font-bold text-slate-800">{materials.bricks || 'उपलब्ध'}</span>
-                  </div>
-                  <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
-                    <span className="text-[10px] text-slate-500 block">रेत (Sand)</span>
-                    <span className="font-bold text-slate-800">{materials.sand || 'उपलब्ध'}</span>
-                  </div>
-                  <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
-                    <span className="text-[10px] text-slate-500 block">सीमेंट (Cement)</span>
-                    <span className="font-bold text-slate-800">{materials.cement || 'उपलब्ध'}</span>
-                  </div>
-                  <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
-                    <span className="text-[10px] text-slate-500 block">छड़ / लोहा (Steel)</span>
-                    <span className="font-bold text-slate-800">{materials.steel || 'उपलब्ध'}</span>
-                  </div>
-                  <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
-                    <span className="text-[10px] text-slate-500 block">गिट्टी (Aggregate)</span>
-                    <span className="font-bold text-slate-800">{materials.aggregate || 'उपलब्ध'}</span>
-                  </div>
-                  <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
-                    <span className="text-[10px] text-slate-500 block">पानी व अन्य</span>
-                    <span className="font-bold text-slate-800">{materials.other || 'उपलब्ध'}</span>
-                  </div>
-                </div>
-              </div>
+              )}
             </div>
           )}
 

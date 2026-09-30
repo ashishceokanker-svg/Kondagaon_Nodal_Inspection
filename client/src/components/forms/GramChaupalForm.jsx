@@ -3,9 +3,10 @@ import { Landmark, Users, MapPin, Calendar, CheckSquare, ChevronDown, ChevronUp,
 import { API } from '../../api';
 import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../../constants';
 import GeoPhotoCapture from '../GeoPhotoCapture';
-
+import { useFormVisibility } from '../../utils/useFormVisibility';
 
 export default function GramChaupalForm({ officer, onBack, onSuccess, initialData = null }) {
+  const visibility = useFormVisibility();
   const [activeSection, setActiveSection] = useState(0);
   const isOfficer = officer && officer.role !== 'admin';
   const officerPanchayats = getOfficerPanchayats(officer);
@@ -165,24 +166,26 @@ export default function GramChaupalForm({ officer, onBack, onSuccess, initialDat
             <MapPin className="w-4 h-4 text-purple-600" /> ग्राम एवं जनसंख्या विवरण
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">निरीक्षण दिनांक</label>
-              <input
-                type="date"
-                max={today}
-                value={formData.date}
-                onChange={e => {
-                  const val = e.target.value;
-                  if (val > today) {
-                    alert('भविष्य (आगे) की तारीख का चयन नहीं किया जा सकता। कृपया वर्तमान या पूर्व की तारीख चुनें।');
-                    return;
-                  }
-                  setFormData({ ...formData, date: val });
-                }}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
-              />
-            </div>
+          <div className={`grid grid-cols-1 ${!visibility.hidePreliminaryInfo ? 'sm:grid-cols-4' : 'sm:grid-cols-3'} gap-3`}>
+            {!visibility.hidePreliminaryInfo && (
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">निरीक्षण दिनांक</label>
+                <input
+                  type="date"
+                  max={today}
+                  value={formData.date}
+                  onChange={e => {
+                    const val = e.target.value;
+                    if (val > today) {
+                      alert('भविष्य (आगे) की तारीख का चयन नहीं किया जा सकता। कृपया वर्तमान या पूर्व की तारीख चुनें।');
+                      return;
+                    }
+                    setFormData({ ...formData, date: val });
+                  }}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
+                />
+              </div>
+            )}
             <div>
               <label className="block text-[11px] font-semibold text-slate-600 mb-1">विकासखण्ड (Block) *</label>
               <select
@@ -235,7 +238,7 @@ export default function GramChaupalForm({ officer, onBack, onSuccess, initialDat
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 border-t border-slate-200">
+          <div className={`grid grid-cols-1 ${!visibility.hidePreliminaryInfo ? 'sm:grid-cols-3' : 'sm:grid-cols-1'} gap-3 pt-1 border-t border-slate-200`}>
             <div>
               <label className="block text-[11px] font-semibold text-slate-600 mb-1">आश्रित ग्राम</label>
               <input
@@ -246,28 +249,32 @@ export default function GramChaupalForm({ officer, onBack, onSuccess, initialDat
                 className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
               />
             </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">नोडल अधिकारी का नाम</label>
-              <input
-                type="text"
-                readOnly={isOfficer}
-                value={formData.officerName}
-                onChange={e => !isOfficer && setFormData({ ...formData, officerName: e.target.value })}
-                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-bold ${
-                  isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white text-slate-900'
-                }`}
-                title={isOfficer ? "नोडल अधिकारी का नाम बदला नहीं जा सकता" : ""}
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">पदनाम व मोबाइल</label>
-              <input
-                type="text"
-                readOnly
-                value={`${formData.officerDesignation || ''} (${formData.officerMobile || ''})`}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-slate-100 text-slate-700 cursor-not-allowed font-medium"
-              />
-            </div>
+            {!visibility.hidePreliminaryInfo && (
+              <>
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-600 mb-1">नोडल अधिकारी का नाम</label>
+                  <input
+                    type="text"
+                    readOnly={isOfficer}
+                    value={formData.officerName}
+                    onChange={e => !isOfficer && setFormData({ ...formData, officerName: e.target.value })}
+                    className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-bold ${
+                      isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white text-slate-900'
+                    }`}
+                    title={isOfficer ? "नोडल अधिकारी का नाम बदला नहीं जा सकता" : ""}
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-600 mb-1">पदनाम व मोबाइल</label>
+                  <input
+                    type="text"
+                    readOnly
+                    value={`${formData.officerDesignation || ''} (${formData.officerMobile || ''})`}
+                    className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-slate-100 text-slate-700 cursor-not-allowed font-medium"
+                  />
+                </div>
+              </>
+            )}
           </div>
 
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 pt-2 text-xs">

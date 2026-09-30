@@ -3,9 +3,10 @@ import { GraduationCap, Calendar, User, BookOpen, Camera, Save, Send, ArrowLeft 
 import { API } from '../../api';
 import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../../constants';
 import GeoPhotoCapture from '../GeoPhotoCapture';
-
+import { useFormVisibility } from '../../utils/useFormVisibility';
 
 export default function SchoolForm({ officer, onBack, onSuccess, initialData = null }) {
+  const visibility = useFormVisibility();
   const isOfficer = officer && officer.role !== 'admin';
   const officerPanchayats = getOfficerPanchayats(officer);
   const today = getTodayDateString();
@@ -136,132 +137,194 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
       <div className="p-4 sm:p-6 space-y-6">
 
         {/* 1. Preliminary Details */}
-        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
-          <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-            <User className="w-4 h-4 text-blue-600" /> प्रारंभिक जानकारी
-          </h3>
+        {!visibility.hidePreliminaryInfo ? (
+          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+              <User className="w-4 h-4 text-blue-600" /> प्रारंभिक जानकारी
+            </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">1. निरीक्षण दिनांक</label>
-              <input
-                type="date"
-                max={today}
-                value={formData.date}
-                onChange={e => {
-                  const val = e.target.value;
-                  if (val > today) {
-                    alert('भविष्य (आगे) की तारीख का चयन नहीं किया जा सकता। कृपया वर्तमान या पूर्व की तारीख चुनें।');
-                    return;
-                  }
-                  setFormData({ ...formData, date: val });
-                }}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">1. निरीक्षण दिनांक</label>
+                <input
+                  type="date"
+                  max={today}
+                  value={formData.date}
+                  onChange={e => {
+                    const val = e.target.value;
+                    if (val > today) {
+                      alert('भविष्य (आगे) की तारीख का चयन नहीं किया जा सकता। कृपया वर्तमान या पूर्व की तारीख चुनें।');
+                      return;
+                    }
+                    setFormData({ ...formData, date: val });
+                  }}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">माह</label>
+                <input
+                  type="text"
+                  value={formData.month}
+                  onChange={e => setFormData({ ...formData, month: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">नोडल अधिकारी का नाम</label>
+                <input
+                  type="text"
+                  readOnly={isOfficer}
+                  value={formData.officerName}
+                  onChange={e => !isOfficer && setFormData({ ...formData, officerName: e.target.value })}
+                  className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-bold ${
+                    isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white text-slate-900'
+                  }`}
+                  title={isOfficer ? "नोडल अधिकारी का नाम बदला नहीं जा सकता" : ""}
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">माह</label>
-              <input
-                type="text"
-                value={formData.month}
-                onChange={e => setFormData({ ...formData, month: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
-              />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-200">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">2. विकासखण्ड</label>
+                <select
+                  value={formData.block}
+                  disabled={isOfficer}
+                  onChange={e => {
+                    const newBlock = e.target.value;
+                    const panchs = getPanchayatsForBlock(newBlock);
+                    setFormData({ 
+                      ...formData, 
+                      block: newBlock, 
+                      panchayat: panchs[0] || '' 
+                    });
+                  }}
+                  className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-medium ${
+                    isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
+                  }`}
+                >
+                  {DISTRICT_BLOCKS.map(b => (
+                    <option key={b} value={b}>{b}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">ग्राम पंचायत *</label>
+                <select
+                  value={formData.panchayat}
+                  disabled={isOfficer && officerPanchayats.length <= 1}
+                  onChange={e => setFormData({ ...formData, panchayat: e.target.value })}
+                  className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-medium ${
+                    isOfficer && officerPanchayats.length <= 1 ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
+                  }`}
+                >
+                  {!isOfficer && <option value="">-- ग्राम पंचायत चुनें --</option>}
+                  {((isOfficer && officerPanchayats.length > 0) ? officerPanchayats : getPanchayatsForBlock(formData.block)).map(p => (
+                    <option key={p} value={p}>{p}</option>
+                  ))}
+                </select>
+              </div>
             </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">नोडल अधिकारी का नाम</label>
-              <input
-                type="text"
-                readOnly={isOfficer}
-                value={formData.officerName}
-                onChange={e => !isOfficer && setFormData({ ...formData, officerName: e.target.value })}
-                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-bold ${
-                  isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white text-slate-900'
-                }`}
-                title={isOfficer ? "नोडल अधिकारी का नाम बदला नहीं जा सकता" : ""}
-              />
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">3. शाला का नाम *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="उदा. प्रा.शा. विश्रामपुरी"
+                  value={formData.schoolName}
+                  onChange={e => setFormData({ ...formData, schoolName: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-blue-300 bg-blue-50/30 focus:bg-white font-semibold text-slate-800"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">शाला स्तर</label>
+                <select
+                  value={formData.schoolLevel}
+                  onChange={e => setFormData({ ...formData, schoolLevel: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                >
+                  <option value="प्राथमिक">प्राथमिक शाला</option>
+                  <option value="माध्यमिक">माध्यमिक शाला</option>
+                  <option value="हाई स्कूल">हाई स्कूल</option>
+                  <option value="हायर सेकेंडरी">हायर सेकेंडरी स्कूल</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">4. संकुल का नाम</label>
+                <input
+                  type="text"
+                  placeholder="संकुल का नाम"
+                  value={formData.sankul}
+                  onChange={e => setFormData({ ...formData, sankul: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                />
+              </div>
             </div>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-200">
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">2. विकासखण्ड</label>
-              <select
-                value={formData.block}
-                disabled={isOfficer}
-                onChange={e => {
-                  const newBlock = e.target.value;
-                  const panchs = getPanchayatsForBlock(newBlock);
-                  setFormData({ 
-                    ...formData, 
-                    block: newBlock, 
-                    panchayat: panchs[0] || '' 
-                  });
-                }}
-                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-medium ${
-                  isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
-                }`}
-              >
-                {DISTRICT_BLOCKS.map(b => (
-                  <option key={b} value={b}>{b}</option>
-                ))}
-              </select>
+        ) : (
+          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+              <GraduationCap className="w-4 h-4 text-blue-600" /> शाला विवरण
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">ग्राम पंचायत *</label>
+                <select
+                  value={formData.panchayat}
+                  disabled={isOfficer && officerPanchayats.length <= 1}
+                  onChange={e => setFormData({ ...formData, panchayat: e.target.value })}
+                  className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-medium ${
+                    isOfficer && officerPanchayats.length <= 1 ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
+                  }`}
+                >
+                  {!isOfficer && <option value="">-- ग्राम पंचायत चुनें --</option>}
+                  {((isOfficer && officerPanchayats.length > 0) ? officerPanchayats : getPanchayatsForBlock(formData.block)).map(p => (
+                    <option key={p} value={p}>{p}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">3. शाला का नाम *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="उदा. प्रा.शा. विश्रामपुरी"
+                  value={formData.schoolName}
+                  onChange={e => setFormData({ ...formData, schoolName: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-blue-300 bg-blue-50/30 focus:bg-white font-semibold text-slate-800"
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">ग्राम पंचायत *</label>
-              <select
-                value={formData.panchayat}
-                disabled={isOfficer && officerPanchayats.length <= 1}
-                onChange={e => setFormData({ ...formData, panchayat: e.target.value })}
-                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-medium ${
-                  isOfficer && officerPanchayats.length <= 1 ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
-                }`}
-              >
-                {!isOfficer && <option value="">-- ग्राम पंचायत चुनें --</option>}
-                {((isOfficer && officerPanchayats.length > 0) ? officerPanchayats : getPanchayatsForBlock(formData.block)).map(p => (
-                  <option key={p} value={p}>{p}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">3. शाला का नाम *</label>
-              <input
-                type="text"
-                required
-                placeholder="उदा. प्रा.शा. विश्रामपुरी"
-                value={formData.schoolName}
-                onChange={e => setFormData({ ...formData, schoolName: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-blue-300 bg-blue-50/30 focus:bg-white font-semibold text-slate-800"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">शाला स्तर</label>
-              <select
-                value={formData.schoolLevel}
-                onChange={e => setFormData({ ...formData, schoolLevel: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
-              >
-                <option value="प्राथमिक">प्राथमिक शाला</option>
-                <option value="माध्यमिक">माध्यमिक शाला</option>
-                <option value="हाई स्कूल">हाई स्कूल</option>
-                <option value="हायर सेकेंडरी">हायर सेकेंडरी स्कूल</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">4. संकुल का नाम</label>
-              <input
-                type="text"
-                placeholder="संकुल का नाम"
-                value={formData.sankul}
-                onChange={e => setFormData({ ...formData, sankul: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">शाला स्तर</label>
+                <select
+                  value={formData.schoolLevel}
+                  onChange={e => setFormData({ ...formData, schoolLevel: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                >
+                  <option value="प्राथमिक">प्राथमिक शाला</option>
+                  <option value="माध्यमिक">माध्यमिक शाला</option>
+                  <option value="हाई स्कूल">हाई स्कूल</option>
+                  <option value="हायर सेकेंडरी">हायर सेकेंडरी स्कूल</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">4. संकुल का नाम</label>
+                <input
+                  type="text"
+                  placeholder="संकुल का नाम"
+                  value={formData.sankul}
+                  onChange={e => setFormData({ ...formData, sankul: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* 2. Teachers & Students Matrix */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -544,7 +607,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
           <h4 className="text-xs font-bold text-slate-800">
             19. बच्चों का कक्षावार / विषयवार, अकादमिक स्तर पर टिप्पणी:
           </h4>
-          {[0, 1, 2, 3].map(i => (
+          {(visibility.hideSchoolAcademicExtra ? [0] : [0, 1, 2, 3]).map(i => (
             <div key={i} className="flex items-center gap-2">
               <span className="text-xs font-bold text-slate-500 w-4">{i + 1}.</span>
               <input

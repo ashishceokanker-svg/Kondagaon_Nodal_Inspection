@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, User, LogOut, Wifi, WifiOff, RefreshCw, FileSpreadsheet, Home, ChevronRight, ClipboardCheck, Users } from 'lucide-react';
+import { Shield, User, LogOut, Wifi, WifiOff, RefreshCw, FileSpreadsheet, Home, ChevronRight, ClipboardCheck, Users, Sliders } from 'lucide-react';
 import { API } from '../api';
+import AdminFieldControlModal from './AdminFieldControlModal';
 
 export default function Navbar({ officer, onLogout, activeTab, setActiveTab }) {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [draftCount, setDraftCount] = useState(0);
   const [syncing, setSyncing] = useState(false);
+  const [showFieldControl, setShowFieldControl] = useState(false);
 
   useEffect(() => {
     const handleOnline = () => setIsOnline(true);
@@ -136,6 +138,18 @@ export default function Navbar({ officer, onLogout, activeTab, setActiveTab }) {
             </button>
           )}
 
+          {officer?.role === 'admin' && (
+            <button
+              onClick={() => setShowFieldControl(true)}
+              className="text-xs px-3 py-1.5 rounded-lg font-semibold flex items-center gap-1.5 transition bg-amber-400/20 hover:bg-amber-400 text-amber-200 hover:text-slate-950 border border-amber-400/40"
+              title="विशेष पासवर्ड ashish#123 द्वारा फ़ील्ड दृश्यता नियंत्रित करें"
+            >
+              <Sliders className="w-4 h-4 text-amber-300" />
+              <span className="hidden sm:inline">विशेष फ़ील्ड नियंत्रण</span>
+              <span className="sm:hidden">फ़ील्ड नियंत्रण</span>
+            </button>
+          )}
+
           {officer && (
             <div className="flex items-center gap-2 bg-white/10 px-2.5 py-1 rounded-xl border border-white/10">
               <div className="text-right">
@@ -167,6 +181,12 @@ export default function Navbar({ officer, onLogout, activeTab, setActiveTab }) {
           )}
         </div>
       </div>
+
+      {/* Admin Special Field Control Modal */}
+      <AdminFieldControlModal 
+        isOpen={showFieldControl} 
+        onClose={() => setShowFieldControl(false)} 
+      />
     </header>
   );
 }

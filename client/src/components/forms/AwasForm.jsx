@@ -3,7 +3,7 @@ import { Home, User, Calendar, MapPin, Camera, Save, Send, ArrowLeft, CheckCircl
 import { API } from '../../api';
 import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../../constants';
 import GeoPhotoCapture from '../GeoPhotoCapture';
-
+import { useFormVisibility } from '../../utils/useFormVisibility';
 
 const CONSTRUCTION_STAGES = [
   'अप्रारंभ',
@@ -17,6 +17,7 @@ const CONSTRUCTION_STAGES = [
 ];
 
 export default function AwasForm({ officer, onBack, onSuccess, initialData = null }) {
+  const visibility = useFormVisibility();
   const isOfficer = officer && officer.role !== 'admin';
   const officerPanchayats = getOfficerPanchayats(officer);
   const today = getTodayDateString();
@@ -143,52 +144,54 @@ export default function AwasForm({ officer, onBack, onSuccess, initialData = nul
         {/* 1. Beneficiary Info */}
         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-            <User className="w-4 h-4 text-cyan-700" /> प्रारंभिक एवं हितग्राही की जानकारी
+            <User className="w-4 h-4 text-cyan-700" /> {visibility.hidePreliminaryInfo ? 'हितग्राही की जानकारी' : 'प्रारंभिक एवं हितग्राही की जानकारी'}
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">निरीक्षण दिनांक</label>
-              <input
-                type="date"
-                max={today}
-                value={formData.date}
-                onChange={e => {
-                  const val = e.target.value;
-                  if (val > today) {
-                    alert('भविष्य (आगे) की तारीख का चयन नहीं किया जा सकता। कृपया वर्तमान या पूर्व की तारीख चुनें।');
-                    return;
-                  }
-                  setFormData({ ...formData, date: val });
-                }}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
-              />
+          {!visibility.hidePreliminaryInfo && (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">निरीक्षण दिनांक</label>
+                <input
+                  type="date"
+                  max={today}
+                  value={formData.date}
+                  onChange={e => {
+                    const val = e.target.value;
+                    if (val > today) {
+                      alert('भविष्य (आगे) की तारीख का चयन नहीं किया जा सकता। कृपया वर्तमान या पूर्व की तारीख चुनें।');
+                      return;
+                    }
+                    setFormData({ ...formData, date: val });
+                  }}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">नोडल अधिकारी का नाम</label>
+                <input
+                  type="text"
+                  readOnly={isOfficer}
+                  value={formData.officerName}
+                  onChange={e => !isOfficer && setFormData({ ...formData, officerName: e.target.value })}
+                  className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-bold ${
+                    isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white text-slate-900'
+                  }`}
+                  title={isOfficer ? "नोडल अधिकारी का नाम बदला नहीं जा सकता" : ""}
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">पदनाम व मोबाइल</label>
+                <input
+                  type="text"
+                  readOnly
+                  value={`${formData.officerDesignation || ''} (${formData.officerMobile || ''})`}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-slate-100 text-slate-700 cursor-not-allowed font-medium"
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">नोडल अधिकारी का नाम</label>
-              <input
-                type="text"
-                readOnly={isOfficer}
-                value={formData.officerName}
-                onChange={e => !isOfficer && setFormData({ ...formData, officerName: e.target.value })}
-                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-bold ${
-                  isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white text-slate-900'
-                }`}
-                title={isOfficer ? "नोडल अधिकारी का नाम बदला नहीं जा सकता" : ""}
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">पदनाम व मोबाइल</label>
-              <input
-                type="text"
-                readOnly
-                value={`${formData.officerDesignation || ''} (${formData.officerMobile || ''})`}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-slate-100 text-slate-700 cursor-not-allowed font-medium"
-              />
-            </div>
-          </div>
+          )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-200">
+          <div className={`grid grid-cols-1 sm:grid-cols-2 gap-3 ${!visibility.hidePreliminaryInfo ? 'pt-2 border-t border-slate-200' : ''}`}>
             <div>
               <label className="block text-[11px] font-semibold text-slate-600 mb-1">हितग्राही का नाम *</label>
               <input
@@ -367,74 +370,76 @@ export default function AwasForm({ officer, onBack, onSuccess, initialData = nul
         </div>
 
         {/* 3. Materials Available On Site */}
-        <div className="border border-slate-200 rounded-xl p-4 space-y-3">
-          <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider text-cyan-900">
-            उपलब्ध निर्माण सामग्री (मात्रा) :—
-          </h3>
+        {!visibility.hideAwasMaterials && (
+          <div className="border border-slate-200 rounded-xl p-4 space-y-3">
+            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider text-cyan-900">
+              उपलब्ध निर्माण सामग्री (मात्रा) :—
+            </h3>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
-            <div>
-              <label className="block text-[11px] text-slate-600 mb-1">ईंट (Bricks)</label>
-              <input
-                type="text"
-                placeholder="उदा. 3000 नग"
-                value={formData.materials.bricks}
-                onChange={e => handleMaterialChange('bricks', e.target.value)}
-                className="w-full p-2 border rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] text-slate-600 mb-1">रेत (Sand)</label>
-              <input
-                type="text"
-                placeholder="उदा. 2 ट्रैक्टर"
-                value={formData.materials.sand}
-                onChange={e => handleMaterialChange('sand', e.target.value)}
-                className="w-full p-2 border rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] text-slate-600 mb-1">सीमेंट (Cement)</label>
-              <input
-                type="text"
-                placeholder="उदा. 15 बोरी"
-                value={formData.materials.cement}
-                onChange={e => handleMaterialChange('cement', e.target.value)}
-                className="w-full p-2 border rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] text-slate-600 mb-1">छड़ / सरिया (Steel)</label>
-              <input
-                type="text"
-                placeholder="उदा. 3 क्विंटल"
-                value={formData.materials.steel}
-                onChange={e => handleMaterialChange('steel', e.target.value)}
-                className="w-full p-2 border rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] text-slate-600 mb-1">गिट्टी (Aggregate)</label>
-              <input
-                type="text"
-                placeholder="उदा. 1 ट्रैक्टर"
-                value={formData.materials.aggregate}
-                onChange={e => handleMaterialChange('aggregate', e.target.value)}
-                className="w-full p-2 border rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] text-slate-600 mb-1">अन्य (Other)</label>
-              <input
-                type="text"
-                placeholder="अन्य निर्माण सामग्री..."
-                value={formData.materials.other}
-                onChange={e => handleMaterialChange('other', e.target.value)}
-                className="w-full p-2 border rounded-lg"
-              />
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+              <div>
+                <label className="block text-[11px] text-slate-600 mb-1">ईंट (Bricks)</label>
+                <input
+                  type="text"
+                  placeholder="उदा. 3000 नग"
+                  value={formData.materials.bricks}
+                  onChange={e => handleMaterialChange('bricks', e.target.value)}
+                  className="w-full p-2 border rounded-lg"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] text-slate-600 mb-1">रेत (Sand)</label>
+                <input
+                  type="text"
+                  placeholder="उदा. 2 ट्रैक्टर"
+                  value={formData.materials.sand}
+                  onChange={e => handleMaterialChange('sand', e.target.value)}
+                  className="w-full p-2 border rounded-lg"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] text-slate-600 mb-1">सीमेंट (Cement)</label>
+                <input
+                  type="text"
+                  placeholder="उदा. 15 बोरी"
+                  value={formData.materials.cement}
+                  onChange={e => handleMaterialChange('cement', e.target.value)}
+                  className="w-full p-2 border rounded-lg"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] text-slate-600 mb-1">छड़ / सरिया (Steel)</label>
+                <input
+                  type="text"
+                  placeholder="उदा. 3 क्विंटल"
+                  value={formData.materials.steel}
+                  onChange={e => handleMaterialChange('steel', e.target.value)}
+                  className="w-full p-2 border rounded-lg"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] text-slate-600 mb-1">गिट्टी (Aggregate)</label>
+                <input
+                  type="text"
+                  placeholder="उदा. 1 ट्रैक्टर"
+                  value={formData.materials.aggregate}
+                  onChange={e => handleMaterialChange('aggregate', e.target.value)}
+                  className="w-full p-2 border rounded-lg"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] text-slate-600 mb-1">अन्य (Other)</label>
+                <input
+                  type="text"
+                  placeholder="अन्य निर्माण सामग्री..."
+                  value={formData.materials.other}
+                  onChange={e => handleMaterialChange('other', e.target.value)}
+                  className="w-full p-2 border rounded-lg"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* 4. Remarks */}
         <div>

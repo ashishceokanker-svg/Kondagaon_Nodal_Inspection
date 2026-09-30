@@ -3,9 +3,7 @@ import { Baby, Calendar, User, MapPin, Camera, Save, Send, CheckCircle2, ArrowLe
 import { API } from '../../api';
 import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../../constants';
 import GeoPhotoCapture from '../GeoPhotoCapture';
-
-
-
+import { useFormVisibility } from '../../utils/useFormVisibility';
 
 const DEFAULT_RATION_ROWS = [
   { id: 1, category: '06 माह से 03 वर्ष सामान्य बच्चे हेतु', supply: '', prevBalance: '', total: '', distributed: '', availablePackets: '' },
@@ -19,6 +17,7 @@ const DEFAULT_RATION_ROWS = [
 ];
 
 export default function AnganwadiForm({ officer, onBack, onSuccess, initialData = null }) {
+  const visibility = useFormVisibility();
   const isOfficer = officer && officer.role !== 'admin';
   const officerPanchayats = getOfficerPanchayats(officer);
   const today = getTodayDateString();
@@ -148,146 +147,206 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
 
       <div className="p-4 sm:p-6 space-y-6">
 
-        {/* 1. Preliminary Info */}
-        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
-          <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-            <User className="w-4 h-4 text-pink-600" /> प्रारंभिक जानकारी
-          </h3>
+        {/* 1. Preliminary Info / Center Details */}
+        {!visibility.hidePreliminaryInfo ? (
+          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+              <User className="w-4 h-4 text-pink-600" /> प्रारंभिक जानकारी
+            </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">दिनांक</label>
-              <input
-                type="date"
-                max={today}
-                value={formData.date}
-                onChange={e => {
-                  const val = e.target.value;
-                  if (val > today) {
-                    alert('भविष्य (आगे) की तारीख का चयन नहीं किया जा सकता। कृपया वर्तमान या पूर्व की तारीख चुनें।');
-                    return;
-                  }
-                  setFormData({ ...formData, date: val });
-                }}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">दिनांक</label>
+                <input
+                  type="date"
+                  max={today}
+                  value={formData.date}
+                  onChange={e => {
+                    const val = e.target.value;
+                    if (val > today) {
+                      alert('भविष्य (आगे) की तारीख का चयन नहीं किया जा सकता। कृपया वर्तमान या पूर्व की तारीख चुनें।');
+                      return;
+                    }
+                    setFormData({ ...formData, date: val });
+                  }}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">नोडल अधिकारी का नाम</label>
+                <input
+                  type="text"
+                  readOnly={isOfficer}
+                  value={formData.officerName}
+                  onChange={e => !isOfficer && setFormData({ ...formData, officerName: e.target.value })}
+                  className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-bold ${
+                    isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white text-slate-900'
+                  }`}
+                  title={isOfficer ? "नोडल अधिकारी का नाम बदला नहीं जा सकता" : ""}
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">पदनाम</label>
+                <input
+                  type="text"
+                  readOnly={isOfficer}
+                  value={formData.officerDesignation}
+                  onChange={e => !isOfficer && setFormData({ ...formData, officerDesignation: e.target.value })}
+                  className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 ${
+                    isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
+                  }`}
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">मोबाइल नंबर</label>
+                <input
+                  type="tel"
+                  readOnly={isOfficer}
+                  value={formData.officerMobile}
+                  onChange={e => !isOfficer && setFormData({ ...formData, officerMobile: e.target.value })}
+                  className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 ${
+                    isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
+                  }`}
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">नोडल अधिकारी का नाम</label>
-              <input
-                type="text"
-                readOnly={isOfficer}
-                value={formData.officerName}
-                onChange={e => !isOfficer && setFormData({ ...formData, officerName: e.target.value })}
-                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-bold ${
-                  isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white text-slate-900'
-                }`}
-                title={isOfficer ? "नोडल अधिकारी का नाम बदला नहीं जा सकता" : ""}
-              />
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-200">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">1. विकासखण्ड का नाम</label>
+                <select
+                  value={formData.block}
+                  disabled={isOfficer}
+                  onChange={e => {
+                    const newBlock = e.target.value;
+                    const panchs = getPanchayatsForBlock(newBlock);
+                    setFormData({ 
+                      ...formData, 
+                      block: newBlock, 
+                      panchayat: panchs[0] || '' 
+                    });
+                  }}
+                  className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-medium ${
+                    isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
+                  }`}
+                >
+                  {DISTRICT_BLOCKS.map(b => (
+                    <option key={b} value={b}>{b}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">ग्राम पंचायत *</label>
+                <select
+                  value={formData.panchayat}
+                  disabled={isOfficer && officerPanchayats.length <= 1}
+                  onChange={e => setFormData({ ...formData, panchayat: e.target.value })}
+                  className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-medium ${
+                    isOfficer && officerPanchayats.length <= 1 ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
+                  }`}
+                >
+                  {!isOfficer && <option value="">-- ग्राम पंचायत चुनें --</option>}
+                  {((isOfficer && officerPanchayats.length > 0) ? officerPanchayats : getPanchayatsForBlock(formData.block)).map(p => (
+                    <option key={p} value={p}>{p}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">2. आंगनबाड़ी केन्द्र का नाम *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="उदा. बांसकोट-1"
+                  value={formData.centerName}
+                  onChange={e => setFormData({ ...formData, centerName: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-pink-300 bg-pink-50/30 focus:bg-white font-semibold text-slate-800"
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">पदनाम</label>
-              <input
-                type="text"
-                readOnly={isOfficer}
-                value={formData.officerDesignation}
-                onChange={e => !isOfficer && setFormData({ ...formData, officerDesignation: e.target.value })}
-                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 ${
-                  isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
-                }`}
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">मोबाइल नंबर</label>
-              <input
-                type="tel"
-                readOnly={isOfficer}
-                value={formData.officerMobile}
-                onChange={e => !isOfficer && setFormData({ ...formData, officerMobile: e.target.value })}
-                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 ${
-                  isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
-                }`}
-              />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">3. आंगनबाड़ी कार्यकर्ता का नाम *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="कार्यकर्ता का नाम"
+                  value={formData.workerName}
+                  onChange={e => setFormData({ ...formData, workerName: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">कार्यकर्ता मोबाइल नंबर</label>
+                <input
+                  type="tel"
+                  placeholder="कार्यकर्ता मोबाइल"
+                  value={formData.workerMobile}
+                  onChange={e => setFormData({ ...formData, workerMobile: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                />
+              </div>
             </div>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-200">
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">1. विकासखण्ड का नाम</label>
-              <select
-                value={formData.block}
-                disabled={isOfficer}
-                onChange={e => {
-                  const newBlock = e.target.value;
-                  const panchs = getPanchayatsForBlock(newBlock);
-                  setFormData({ 
-                    ...formData, 
-                    block: newBlock, 
-                    panchayat: panchs[0] || '' 
-                  });
-                }}
-                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-medium ${
-                  isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
-                }`}
-              >
-                {DISTRICT_BLOCKS.map(b => (
-                  <option key={b} value={b}>{b}</option>
-                ))}
-              </select>
+        ) : (
+          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+              <Baby className="w-4 h-4 text-pink-600" /> आंगनबाड़ी केन्द्र विवरण
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">ग्राम पंचायत *</label>
+                <select
+                  value={formData.panchayat}
+                  disabled={isOfficer && officerPanchayats.length <= 1}
+                  onChange={e => setFormData({ ...formData, panchayat: e.target.value })}
+                  className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-medium ${
+                    isOfficer && officerPanchayats.length <= 1 ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
+                  }`}
+                >
+                  {!isOfficer && <option value="">-- ग्राम पंचायत चुनें --</option>}
+                  {((isOfficer && officerPanchayats.length > 0) ? officerPanchayats : getPanchayatsForBlock(formData.block)).map(p => (
+                    <option key={p} value={p}>{p}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">आंगनबाड़ी केन्द्र का नाम *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="उदा. बांसकोट-1"
+                  value={formData.centerName}
+                  onChange={e => setFormData({ ...formData, centerName: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-pink-300 bg-pink-50/30 focus:bg-white font-semibold text-slate-800"
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">ग्राम पंचायत *</label>
-              <select
-                value={formData.panchayat}
-                disabled={isOfficer && officerPanchayats.length <= 1}
-                onChange={e => setFormData({ ...formData, panchayat: e.target.value })}
-                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-medium ${
-                  isOfficer && officerPanchayats.length <= 1 ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white'
-                }`}
-              >
-                {!isOfficer && <option value="">-- ग्राम पंचायत चुनें --</option>}
-                {((isOfficer && officerPanchayats.length > 0) ? officerPanchayats : getPanchayatsForBlock(formData.block)).map(p => (
-                  <option key={p} value={p}>{p}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">2. आंगनबाड़ी केन्द्र का नाम *</label>
-              <input
-                type="text"
-                required
-                placeholder="उदा. बांसकोट-1"
-                value={formData.centerName}
-                onChange={e => setFormData({ ...formData, centerName: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-pink-300 bg-pink-50/30 focus:bg-white font-semibold text-slate-800"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">3. आंगनबाड़ी कार्यकर्ता का नाम *</label>
-              <input
-                type="text"
-                required
-                placeholder="कार्यकर्ता का नाम"
-                value={formData.workerName}
-                onChange={e => setFormData({ ...formData, workerName: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">कार्यकर्ता मोबाइल नंबर</label>
-              <input
-                type="tel"
-                placeholder="कार्यकर्ता मोबाइल"
-                value={formData.workerMobile}
-                onChange={e => setFormData({ ...formData, workerMobile: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">कार्यकर्ता का नाम *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="कार्यकर्ता का नाम"
+                  value={formData.workerName}
+                  onChange={e => setFormData({ ...formData, workerName: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">कार्यकर्ता मोबाइल नंबर</label>
+                <input
+                  type="tel"
+                  placeholder="कार्यकर्ता मोबाइल"
+                  value={formData.workerMobile}
+                  onChange={e => setFormData({ ...formData, workerMobile: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* 2. Registered Beneficiaries Table */}
         <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
@@ -375,83 +434,85 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
         </div>
 
         {/* 3. Ration & Nutrition Stock Table */}
-        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-          <div className="bg-slate-100 px-4 py-2.5 border-b border-slate-200">
-            <h3 className="text-xs font-bold text-slate-800">
-              सामग्री प्रदाय, बचत एवं वितरण की स्थिति (8 श्रेणियां)
-            </h3>
-            <p className="text-[10px] text-slate-500">पीडीएफ प्रपत्र अनुसार मात्रा व पैकेट विवरण</p>
-          </div>
+        {!visibility.hideAnganwadiRation && (
+          <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+            <div className="bg-slate-100 px-4 py-2.5 border-b border-slate-200">
+              <h3 className="text-xs font-bold text-slate-800">
+                सामग्री प्रदाय, बचत एवं वितरण की स्थिति (8 श्रेणियां)
+              </h3>
+              <p className="text-[10px] text-slate-500">पीडीएफ प्रपत्र अनुसार मात्रा व पैकेट विवरण</p>
+            </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-[11px] text-left">
-              <thead className="bg-slate-50 text-slate-700 border-b border-slate-200">
-                <tr>
-                  <th className="p-2 text-center w-8">क्र</th>
-                  <th className="p-2 min-w-[140px]">हितग्राही वर्ग</th>
-                  <th className="p-2 text-center">सामग्री प्रदाय</th>
-                  <th className="p-2 text-center">पूर्व बचत</th>
-                  <th className="p-2 text-center">कुल मात्रा</th>
-                  <th className="p-2 text-center">वितरण</th>
-                  <th className="p-2 text-center">उपलब्ध पैकेट</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200">
-                {formData.rationRows.map((row, idx) => (
-                  <tr key={row.id} className="hover:bg-slate-50/80">
-                    <td className="p-2 text-center font-bold text-slate-500">{row.id}</td>
-                    <td className="p-2 font-medium text-slate-800">{row.category}</td>
-                    <td className="p-1">
-                      <input
-                        type="text"
-                        placeholder="0"
-                        value={row.supply}
-                        onChange={e => handleRationChange(idx, 'supply', e.target.value)}
-                        className="w-16 mx-auto block p-1 text-center border border-slate-300 rounded text-xs"
-                      />
-                    </td>
-                    <td className="p-1">
-                      <input
-                        type="text"
-                        placeholder="0"
-                        value={row.prevBalance}
-                        onChange={e => handleRationChange(idx, 'prevBalance', e.target.value)}
-                        className="w-16 mx-auto block p-1 text-center border border-slate-300 rounded text-xs"
-                      />
-                    </td>
-                    <td className="p-1">
-                      <input
-                        type="text"
-                        placeholder="0"
-                        value={row.total}
-                        onChange={e => handleRationChange(idx, 'total', e.target.value)}
-                        className="w-16 mx-auto block p-1 text-center border border-slate-200 bg-slate-100 rounded text-xs font-semibold"
-                      />
-                    </td>
-                    <td className="p-1">
-                      <input
-                        type="text"
-                        placeholder="0"
-                        value={row.distributed}
-                        onChange={e => handleRationChange(idx, 'distributed', e.target.value)}
-                        className="w-16 mx-auto block p-1 text-center border border-slate-300 rounded text-xs"
-                      />
-                    </td>
-                    <td className="p-1">
-                      <input
-                        type="text"
-                        placeholder="0"
-                        value={row.availablePackets}
-                        onChange={e => handleRationChange(idx, 'availablePackets', e.target.value)}
-                        className="w-16 mx-auto block p-1 text-center border border-slate-300 rounded text-xs"
-                      />
-                    </td>
+            <div className="overflow-x-auto">
+              <table className="w-full text-[11px] text-left">
+                <thead className="bg-slate-50 text-slate-700 border-b border-slate-200">
+                  <tr>
+                    <th className="p-2 text-center w-8">क्र</th>
+                    <th className="p-2 min-w-[140px]">हितग्राही वर्ग</th>
+                    <th className="p-2 text-center">सामग्री प्रदाय</th>
+                    <th className="p-2 text-center">पूर्व बचत</th>
+                    <th className="p-2 text-center">कुल मात्रा</th>
+                    <th className="p-2 text-center">वितरण</th>
+                    <th className="p-2 text-center">उपलब्ध पैकेट</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-slate-200">
+                  {formData.rationRows.map((row, idx) => (
+                    <tr key={row.id} className="hover:bg-slate-50/80">
+                      <td className="p-2 text-center font-bold text-slate-500">{row.id}</td>
+                      <td className="p-2 font-medium text-slate-800">{row.category}</td>
+                      <td className="p-1">
+                        <input
+                          type="text"
+                          placeholder="0"
+                          value={row.supply}
+                          onChange={e => handleRationChange(idx, 'supply', e.target.value)}
+                          className="w-16 mx-auto block p-1 text-center border border-slate-300 rounded text-xs"
+                        />
+                      </td>
+                      <td className="p-1">
+                        <input
+                          type="text"
+                          placeholder="0"
+                          value={row.prevBalance}
+                          onChange={e => handleRationChange(idx, 'prevBalance', e.target.value)}
+                          className="w-16 mx-auto block p-1 text-center border border-slate-300 rounded text-xs"
+                        />
+                      </td>
+                      <td className="p-1">
+                        <input
+                          type="text"
+                          placeholder="0"
+                          value={row.total}
+                          onChange={e => handleRationChange(idx, 'total', e.target.value)}
+                          className="w-16 mx-auto block p-1 text-center border border-slate-200 bg-slate-100 rounded text-xs font-semibold"
+                        />
+                      </td>
+                      <td className="p-1">
+                        <input
+                          type="text"
+                          placeholder="0"
+                          value={row.distributed}
+                          onChange={e => handleRationChange(idx, 'distributed', e.target.value)}
+                          className="w-16 mx-auto block p-1 text-center border border-slate-300 rounded text-xs"
+                        />
+                      </td>
+                      <td className="p-1">
+                        <input
+                          type="text"
+                          placeholder="0"
+                          value={row.availablePackets}
+                          onChange={e => handleRationChange(idx, 'availablePackets', e.target.value)}
+                          className="w-16 mx-auto block p-1 text-center border border-slate-300 rounded text-xs"
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* 4. Notes / Remarks */}
         <div>

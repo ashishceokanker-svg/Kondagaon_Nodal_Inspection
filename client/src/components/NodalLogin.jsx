@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, MapPin, User, Briefcase, Calendar, KeyRound, Lock, ArrowRight, CheckCircle2, ShieldAlert, Building } from 'lucide-react';
+import { ShieldCheck, MapPin, User, Briefcase, Calendar, KeyRound, Lock, ArrowRight, CheckCircle2, ShieldAlert, Building, RefreshCw } from 'lucide-react';
 import { API } from '../api';
 import { DISTRICT_BLOCKS, MONTH_OPTIONS, matchBlock } from '../constants';
 
@@ -13,6 +13,9 @@ export default function NodalLogin({ onLoginSuccess }) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
+  // App Update State
+  const [isUpdatingApp, setIsUpdatingApp] = useState(false);
+  const [updateMsg, setUpdateMsg] = useState('');
 
   // Admin state
   const [adminUsername, setAdminUsername] = useState('admin');
@@ -132,6 +135,25 @@ export default function NodalLogin({ onLoginSuccess }) {
       setErrorMsg('सर्वर से संपर्क नहीं हो सका।');
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Handle App & Data Update (Sync with cloud and refresh)
+  const handleAppUpdate = async () => {
+    setIsUpdatingApp(true);
+    setUpdateMsg('नवीनतम डेटा एवं सेटिंग्स ऑनलाइन सिंक हो रही हैं...');
+    try {
+      await API.refreshAllData();
+      await loadOfficers();
+      setUpdateMsg('✅ ऐप एवं डेटा सफलतापूर्वक अपडेट हो गया!');
+      setTimeout(() => {
+        setUpdateMsg('');
+        window.location.reload();
+      }, 1000);
+    } catch (e) {
+      setUpdateMsg('⚠️ अपडेट में समस्या आई, कृपया इंटरनेट कनेक्शन जांचें।');
+    } finally {
+      setIsUpdatingApp(false);
     }
   };
 
@@ -383,6 +405,25 @@ export default function NodalLogin({ onLoginSuccess }) {
               </button>
             </form>
           )}
+
+          {/* App / Web Update & Sync Button */}
+          <div className="pt-3 border-t border-slate-100 mt-4">
+            <button
+              type="button"
+              onClick={handleAppUpdate}
+              disabled={isUpdatingApp}
+              className="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 text-xs transition active:scale-[0.99] shadow-sm"
+              title="नवीनतम अपडेट, फॉर्म सेटिंग्स एवं डेटा तुरंत लोड करें"
+            >
+              <RefreshCw className={`w-4 h-4 text-emerald-600 ${isUpdatingApp ? 'animate-spin' : ''}`} />
+              <span>{isUpdatingApp ? 'अपडेट हो रहा है...' : 'ऐप एवं ऑनलाइन डेटा अपडेट करें (Update App & Sync)'}</span>
+            </button>
+            {updateMsg && (
+              <p className="text-[11px] text-center font-bold text-emerald-700 mt-1.5 animate-pulse">
+                {updateMsg}
+              </p>
+            )}
+          </div>
 
         </div>
 

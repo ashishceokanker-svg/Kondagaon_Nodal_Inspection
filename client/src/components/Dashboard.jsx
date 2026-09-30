@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Baby, GraduationCap, Building, Wheat, Landmark, Activity, Home, FileSpreadsheet, ChevronRight, Clock, PlusCircle, MapPin, CheckCircle, AlertTriangle, ClipboardCheck, Users, UserPlus, RefreshCw } from 'lucide-react';
+import { Baby, GraduationCap, Building, Wheat, Landmark, Activity, Home, FileSpreadsheet, ChevronRight, Clock, PlusCircle, MapPin, CheckCircle, AlertTriangle, ClipboardCheck, Users, UserPlus, RefreshCw, Sliders } from 'lucide-react';
 import { API } from '../api';
+import AdminFieldControlModal from './AdminFieldControlModal';
 
 export default function Dashboard({ officer, onSelectModule, onViewGoswara, onViewDetail, onViewCompliance, onViewOfficers }) {
   const isAdmin = officer?.role === 'admin' || officer?.id === 'admin';
   const [stats, setStats] = useState(null);
   const [recentList, setRecentList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showFieldControl, setShowFieldControl] = useState(false);
 
   useEffect(() => {
     loadDashboardData();
@@ -138,6 +140,14 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
                   <ClipboardCheck className="w-4 h-4 text-slate-950" />
                   <span>माहवार समीक्षा</span>
                 </button>
+                <button
+                  onClick={() => setShowFieldControl(true)}
+                  className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs py-2.5 px-3 rounded-xl shadow-md flex items-center justify-center gap-1.5 transition active:scale-95"
+                  title="विशेष पासवर्ड ashish#123 द्वारा फॉर्म फ़ील्ड दृश्यता नियंत्रित करें"
+                >
+                  <Sliders className="w-4 h-4 text-purple-200" />
+                  <span>विशेष फ़ील्ड नियंत्रण</span>
+                </button>
               </>
             )}
 
@@ -262,7 +272,7 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
             {/* 3. Consolidated Goswara Reports & Excel Export Card */}
             <div
               onClick={onViewGoswara}
-              className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 hover:border-amber-400 hover:shadow-md cursor-pointer transition flex items-start justify-between gap-3 group relative overflow-hidden active:scale-[0.99] sm:col-span-2"
+              className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 hover:border-amber-400 hover:shadow-md cursor-pointer transition flex items-start justify-between gap-3 group relative overflow-hidden active:scale-[0.99]"
             >
               <div className="flex items-start gap-3.5">
                 <div className="p-3.5 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-md shrink-0 group-hover:scale-105 transition">
@@ -274,7 +284,7 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
                       समेकित गोसवारा
                     </span>
                     <h4 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-amber-700 transition">
-                      डिजिटल गोसवारा रिपोर्ट एवं शासकीय एक्सेल डाउनलोड
+                      गोसवारा रिपोर्ट व एक्सेल
                     </h4>
                   </div>
                   <p className="text-xs text-slate-500 mt-1">
@@ -282,7 +292,37 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
                   </p>
                   <div className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-amber-900 bg-amber-100 px-3 py-1.5 rounded-xl group-hover:bg-amber-500 group-hover:text-slate-950 transition">
                     <FileSpreadsheet className="w-3.5 h-3.5" />
-                    <span>गोसवारा रिपोर्ट व एक्सेल खोलें</span>
+                    <span>गोसवारा रिपोर्ट खोलें</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 4. Special Field Visibility Control Card */}
+            <div
+              onClick={() => setShowFieldControl(true)}
+              className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-purple-200 hover:border-purple-500 hover:shadow-md cursor-pointer transition flex items-start justify-between gap-3 group relative overflow-hidden active:scale-[0.99]"
+            >
+              <div className="flex items-start gap-3.5">
+                <div className="p-3.5 rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-700 text-white shadow-md shrink-0 group-hover:scale-105 transition">
+                  <Sliders className="w-7 h-7" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] bg-purple-100 text-purple-900 font-black px-2 py-0.5 rounded">
+                      विशेष नियंत्रण
+                    </span>
+                    <h4 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-purple-700 transition">
+                      विशेष फ़ील्ड नियंत्रण (Hide/Unhide)
+                    </h4>
+                  </div>
+                  <p className="text-xs text-slate-500 mt-1">
+                    पासवर्ड <span className="font-mono font-bold text-purple-700">ashish#123</span> द्वारा 7 फॉर्मों में प्रारंभिक जानकारी, राशन, स्टाफ विवरण आदि हाइड या अनहाइड करें।
+                  </p>
+                  <div className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-purple-700 bg-purple-50 px-3 py-1.5 rounded-xl group-hover:bg-purple-600 group-hover:text-white transition">
+                    <Sliders className="w-3.5 h-3.5" />
+                    <span>फ़ील्ड नियंत्रण खोलें</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
@@ -393,6 +433,11 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
         )}
       </div>
 
+      {/* Special Field Control Modal */}
+      <AdminFieldControlModal
+        isOpen={showFieldControl}
+        onClose={() => setShowFieldControl(false)}
+      />
     </div>
   );
 }

@@ -3,9 +3,10 @@ import { Activity, HeartPulse, User, Camera, Save, Send, ArrowLeft, CheckCircle2
 import { API } from '../../api';
 import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../../constants';
 import GeoPhotoCapture from '../GeoPhotoCapture';
-
+import { useFormVisibility } from '../../utils/useFormVisibility';
 
 export default function HealthForm({ officer, onBack, onSuccess, initialData = null }) {
+  const visibility = useFormVisibility();
   const isOfficer = officer && officer.role !== 'admin';
   const officerPanchayats = getOfficerPanchayats(officer);
   const today = getTodayDateString();
@@ -191,49 +192,51 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
             <HeartPulse className="w-4 h-4 text-red-600" /> 1 से 4. स्वास्थ्य केन्द्र एवं अधिकारी उपस्थिति
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">निरीक्षण दिनांक</label>
-              <input
-                type="date"
-                max={today}
-                value={formData.date}
-                onChange={e => {
-                  const val = e.target.value;
-                  if (val > today) {
-                    alert('भविष्य (आगे) की तारीख का चयन नहीं किया जा सकता। कृपया वर्तमान या पूर्व की तारीख चुनें।');
-                    return;
-                  }
-                  setFormData({ ...formData, date: val });
-                }}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
-              />
+          {!visibility.hidePreliminaryInfo && (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">निरीक्षण दिनांक</label>
+                <input
+                  type="date"
+                  max={today}
+                  value={formData.date}
+                  onChange={e => {
+                    const val = e.target.value;
+                    if (val > today) {
+                      alert('भविष्य (आगे) की तारीख का चयन नहीं किया जा सकता। कृपया वर्तमान या पूर्व की तारीख चुनें।');
+                      return;
+                    }
+                    setFormData({ ...formData, date: val });
+                  }}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">नोडल अधिकारी का नाम</label>
+                <input
+                  type="text"
+                  readOnly={isOfficer}
+                  value={formData.officerName}
+                  onChange={e => !isOfficer && setFormData({ ...formData, officerName: e.target.value })}
+                  className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-bold ${
+                    isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white text-slate-900'
+                  }`}
+                  title={isOfficer ? "नोडल अधिकारी का नाम बदला नहीं जा सकता" : ""}
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">पदनाम व मोबाइल</label>
+                <input
+                  type="text"
+                  readOnly
+                  value={`${formData.officerDesignation || ''} (${formData.officerMobile || ''})`}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-slate-100 text-slate-700 cursor-not-allowed font-medium"
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">नोडल अधिकारी का नाम</label>
-              <input
-                type="text"
-                readOnly={isOfficer}
-                value={formData.officerName}
-                onChange={e => !isOfficer && setFormData({ ...formData, officerName: e.target.value })}
-                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-bold ${
-                  isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white text-slate-900'
-                }`}
-                title={isOfficer ? "नोडल अधिकारी का नाम बदला नहीं जा सकता" : ""}
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">पदनाम व मोबाइल</label>
-              <input
-                type="text"
-                readOnly
-                value={`${formData.officerDesignation || ''} (${formData.officerMobile || ''})`}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-slate-100 text-slate-700 cursor-not-allowed font-medium"
-              />
-            </div>
-          </div>
+          )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-200">
+          <div className={`grid grid-cols-1 sm:grid-cols-2 gap-3 ${!visibility.hidePreliminaryInfo ? 'pt-2 border-t border-slate-200' : ''}`}>
             <div>
               <label className="block text-[11px] font-semibold text-slate-600 mb-1">1. स्वास्थ्य केन्द्र का नाम *</label>
               <input

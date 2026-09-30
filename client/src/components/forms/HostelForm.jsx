@@ -3,9 +3,10 @@ import { Building, Shield, User, Camera, Save, Send, ArrowLeft, CheckCircle2 } f
 import { API } from '../../api';
 import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../../constants';
 import GeoPhotoCapture from '../GeoPhotoCapture';
-
+import { useFormVisibility } from '../../utils/useFormVisibility';
 
 export default function HostelForm({ officer, onBack, onSuccess, initialData = null }) {
+  const visibility = useFormVisibility();
   const isOfficer = officer && officer.role !== 'admin';
   const officerPanchayats = getOfficerPanchayats(officer);
   const today = getTodayDateString();
@@ -201,52 +202,54 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
       <div className="p-4 sm:p-6 space-y-6">
 
         {/* Preliminary Date & Officer Info */}
-        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
-          <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-            <User className="w-4 h-4 text-emerald-600" /> प्रारंभिक जानकारी
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">निरीक्षण दिनांक</label>
-              <input
-                type="date"
-                max={today}
-                value={formData.date}
-                onChange={e => {
-                  const val = e.target.value;
-                  if (val > today) {
-                    alert('भविष्य (आगे) की तारीख का चयन नहीं किया जा सकता। कृपया वर्तमान या पूर्व की तारीख चुनें।');
-                    return;
-                  }
-                  setFormData({ ...formData, date: val });
-                }}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">नोडल अधिकारी का नाम</label>
-              <input
-                type="text"
-                readOnly={isOfficer}
-                value={formData.officerName}
-                onChange={e => !isOfficer && setFormData({ ...formData, officerName: e.target.value })}
-                className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-bold ${
-                  isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white text-slate-900'
-                }`}
-                title={isOfficer ? "नोडल अधिकारी का नाम बदला नहीं जा सकता" : ""}
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">पदनाम व मोबाइल</label>
-              <input
-                type="text"
-                readOnly
-                value={`${formData.officerDesignation || ''} (${formData.officerMobile || ''})`}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-slate-100 text-slate-700 cursor-not-allowed font-medium"
-              />
+        {!visibility.hidePreliminaryInfo && (
+          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+              <User className="w-4 h-4 text-emerald-600" /> प्रारंभिक जानकारी
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">निरीक्षण दिनांक</label>
+                <input
+                  type="date"
+                  max={today}
+                  value={formData.date}
+                  onChange={e => {
+                    const val = e.target.value;
+                    if (val > today) {
+                      alert('भविष्य (आगे) की तारीख का चयन नहीं किया जा सकता। कृपया वर्तमान या पूर्व की तारीख चुनें।');
+                      return;
+                    }
+                    setFormData({ ...formData, date: val });
+                  }}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">नोडल अधिकारी का नाम</label>
+                <input
+                  type="text"
+                  readOnly={isOfficer}
+                  value={formData.officerName}
+                  onChange={e => !isOfficer && setFormData({ ...formData, officerName: e.target.value })}
+                  className={`w-full text-xs p-2.5 rounded-lg border border-slate-300 font-bold ${
+                    isOfficer ? 'bg-slate-100 text-slate-700 cursor-not-allowed' : 'bg-white text-slate-900'
+                  }`}
+                  title={isOfficer ? "नोडल अधिकारी का नाम बदला नहीं जा सकता" : ""}
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">पदनाम व मोबाइल</label>
+                <input
+                  type="text"
+                  readOnly
+                  value={`${formData.officerDesignation || ''} (${formData.officerMobile || ''})`}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-slate-100 text-slate-700 cursor-not-allowed font-medium"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Section 4: Hostel Info */}
         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
@@ -417,131 +420,135 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
         </div>
 
         {/* Section 5: Superintendent Info & Residency */}
-        <div className="border border-slate-200 rounded-xl p-4 space-y-3">
-          <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 text-emerald-900">
-            <User className="w-4 h-4 text-emerald-600" /> 5. अधीक्षक / अधीक्षिका की जानकारी
-          </h3>
+        {!visibility.hideHostelSuperintendent && (
+          <div className="border border-slate-200 rounded-xl p-4 space-y-3">
+            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 text-emerald-900">
+              <User className="w-4 h-4 text-emerald-600" /> 5. अधीक्षक / अधीक्षिका की जानकारी
+            </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">(5.1) अधीक्षक का नाम</label>
-              <input
-                type="text"
-                placeholder="अधीक्षक का नाम"
-                value={formData.superintendentName}
-                onChange={e => setFormData({ ...formData, superintendentName: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">(5.1) अधीक्षक का नाम</label>
+                <input
+                  type="text"
+                  placeholder="अधीक्षक का नाम"
+                  value={formData.superintendentName}
+                  onChange={e => setFormData({ ...formData, superintendentName: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white font-medium"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">(5.2) मोबाइल नंबर</label>
+                <input
+                  type="tel"
+                  placeholder="मोबाइल नंबर"
+                  value={formData.superintendentMobile}
+                  onChange={e => setFormData({ ...formData, superintendentMobile: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">(5.2) मोबाइल नंबर</label>
-              <input
-                type="tel"
-                placeholder="मोबाइल नंबर"
-                value={formData.superintendentMobile}
-                onChange={e => setFormData({ ...formData, superintendentMobile: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
-              />
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
+              <div>
+                <label className="block font-medium text-slate-700 mb-1">(5.3) क्या आवास गृह उपलब्ध है?</label>
+                <select
+                  value={formData.hasStaffQuarter}
+                  onChange={e => setFormData({ ...formData, hasStaffQuarter: e.target.value })}
+                  className="w-full p-2 border border-slate-300 rounded-lg bg-white"
+                >
+                  <option value="हाँ">हाँ</option>
+                  <option value="नहीं">नहीं</option>
+                </select>
+              </div>
+              <div>
+                <label className="block font-medium text-slate-700 mb-1">(5.4) क्या परिसर में निवास करते हैं?</label>
+                <select
+                  value={formData.superintendentResiding}
+                  onChange={e => setFormData({ ...formData, superintendentResiding: e.target.value })}
+                  className="w-full p-2 border border-slate-300 rounded-lg bg-white font-bold"
+                >
+                  <option value="हाँ">हाँ</option>
+                  <option value="नहीं">नहीं</option>
+                </select>
+              </div>
+              <div>
+                <label className="block font-medium text-slate-700 mb-1">(5.7) पृथक प्रवेश द्वार निर्मित है?</label>
+                <select
+                  value={formData.separateEntrance}
+                  onChange={e => setFormData({ ...formData, separateEntrance: e.target.value })}
+                  className="w-full p-2 border border-slate-300 rounded-lg bg-white"
+                >
+                  <option value="हाँ">हाँ</option>
+                  <option value="नहीं">नहीं</option>
+                </select>
+              </div>
             </div>
+
+            {formData.superintendentResiding === 'नहीं' && (
+              <div>
+                <label className="block text-[11px] font-semibold text-rose-700 mb-1">(5.5) अगर नहीं, तो कारण बताएं</label>
+                <input
+                  type="text"
+                  placeholder="परिसर में निवास न करने का कारण..."
+                  value={formData.residingReasonIfNot}
+                  onChange={e => setFormData({ ...formData, residingReasonIfNot: e.target.value })}
+                  className="w-full text-xs p-2 rounded-lg border border-rose-300 bg-rose-50"
+                />
+              </div>
+            )}
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
-            <div>
-              <label className="block font-medium text-slate-700 mb-1">(5.3) क्या आवास गृह उपलब्ध है?</label>
-              <select
-                value={formData.hasStaffQuarter}
-                onChange={e => setFormData({ ...formData, hasStaffQuarter: e.target.value })}
-                className="w-full p-2 border border-slate-300 rounded-lg bg-white"
-              >
-                <option value="हाँ">हाँ</option>
-                <option value="नहीं">नहीं</option>
-              </select>
-            </div>
-            <div>
-              <label className="block font-medium text-slate-700 mb-1">(5.4) क्या परिसर में निवास करते हैं?</label>
-              <select
-                value={formData.superintendentResiding}
-                onChange={e => setFormData({ ...formData, superintendentResiding: e.target.value })}
-                className="w-full p-2 border border-slate-300 rounded-lg bg-white font-bold"
-              >
-                <option value="हाँ">हाँ</option>
-                <option value="नहीं">नहीं</option>
-              </select>
-            </div>
-            <div>
-              <label className="block font-medium text-slate-700 mb-1">(5.7) पृथक प्रवेश द्वार निर्मित है?</label>
-              <select
-                value={formData.separateEntrance}
-                onChange={e => setFormData({ ...formData, separateEntrance: e.target.value })}
-                className="w-full p-2 border border-slate-300 rounded-lg bg-white"
-              >
-                <option value="हाँ">हाँ</option>
-                <option value="नहीं">नहीं</option>
-              </select>
-            </div>
-          </div>
-
-          {formData.superintendentResiding === 'नहीं' && (
-            <div>
-              <label className="block text-[11px] font-semibold text-rose-700 mb-1">(5.5) अगर नहीं, तो कारण बताएं</label>
-              <input
-                type="text"
-                placeholder="परिसर में निवास न करने का कारण..."
-                value={formData.residingReasonIfNot}
-                onChange={e => setFormData({ ...formData, residingReasonIfNot: e.target.value })}
-                className="w-full text-xs p-2 rounded-lg border border-rose-300 bg-rose-50"
-              />
-            </div>
-          )}
-        </div>
+        )}
 
         {/* Section 7: Staff Table (Matrix from PDF Page 2) */}
-        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-          <div className="bg-slate-100 px-4 py-2.5 border-b border-slate-200">
-            <h3 className="text-xs font-bold text-slate-800">
-              7. वर्तमान में कार्यरत कर्मचारियों की जानकारी (संख्या)
-            </h3>
-            <p className="text-[10px] text-slate-500">भृत्य, रसोईयां, चौकीदार, होमगार्ड (पुरुष / महिला)</p>
-          </div>
+        {!visibility.hideHostelStaff && (
+          <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+            <div className="bg-slate-100 px-4 py-2.5 border-b border-slate-200">
+              <h3 className="text-xs font-bold text-slate-800">
+                7. वर्तमान में कार्यरत कर्मचारियों की जानकारी (संख्या)
+              </h3>
+              <p className="text-[10px] text-slate-500">भृत्य, रसोईयां, चौकीदार, होमगार्ड (पुरुष / महिला)</p>
+            </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-[11px] text-center">
-              <thead className="bg-slate-50 border-b border-slate-200">
-                <tr>
-                  <th rowSpan={2} className="p-2 text-left min-w-[100px] border-r">कर्मचारी प्रकार</th>
-                  <th colSpan={3} className="p-1 bg-blue-50/50 border-r text-blue-900 font-bold">पुरुष</th>
-                  <th colSpan={3} className="p-1 bg-rose-50/50 text-rose-900 font-bold">महिला</th>
-                </tr>
-                <tr className="border-b border-slate-200 text-[10px] text-slate-600">
-                  <th className="p-1">स्थायी</th>
-                  <th className="p-1">संविदा</th>
-                  <th className="p-1 border-r">दैनिक</th>
-                  <th className="p-1">स्थायी</th>
-                  <th className="p-1">संविदा</th>
-                  <th className="p-1">दैनिक</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200">
-                {[
-                  { key: 'peon', label: 'भृत्य' },
-                  { key: 'cook', label: 'रसोईयां' },
-                  { key: 'guard', label: 'चौकीदार' },
-                  { key: 'homeguard', label: 'होमगार्ड' }
-                ].map(r => (
-                  <tr key={r.key} className="hover:bg-slate-50">
-                    <td className="p-2 text-left font-semibold text-slate-700 border-r">{r.label}</td>
-                    <td className="p-1"><input type="number" min="0" value={formData.staff[r.key].mReg} onChange={e => handleStaffChange(r.key, 'mReg', e.target.value)} className="w-10 text-center border rounded p-0.5" /></td>
-                    <td className="p-1"><input type="number" min="0" value={formData.staff[r.key].mCont} onChange={e => handleStaffChange(r.key, 'mCont', e.target.value)} className="w-10 text-center border rounded p-0.5" /></td>
-                    <td className="p-1 border-r"><input type="number" min="0" value={formData.staff[r.key].mDaily} onChange={e => handleStaffChange(r.key, 'mDaily', e.target.value)} className="w-10 text-center border rounded p-0.5" /></td>
-                    <td className="p-1"><input type="number" min="0" value={formData.staff[r.key].fReg} onChange={e => handleStaffChange(r.key, 'fReg', e.target.value)} className="w-10 text-center border rounded p-0.5" /></td>
-                    <td className="p-1"><input type="number" min="0" value={formData.staff[r.key].fCont} onChange={e => handleStaffChange(r.key, 'fCont', e.target.value)} className="w-10 text-center border rounded p-0.5" /></td>
-                    <td className="p-1"><input type="number" min="0" value={formData.staff[r.key].fDaily} onChange={e => handleStaffChange(r.key, 'fDaily', e.target.value)} className="w-10 text-center border rounded p-0.5" /></td>
+            <div className="overflow-x-auto">
+              <table className="w-full text-[11px] text-center">
+                <thead className="bg-slate-50 border-b border-slate-200">
+                  <tr>
+                    <th rowSpan={2} className="p-2 text-left min-w-[100px] border-r">कर्मचारी प्रकार</th>
+                    <th colSpan={3} className="p-1 bg-blue-50/50 border-r text-blue-900 font-bold">पुरुष</th>
+                    <th colSpan={3} className="p-1 bg-rose-50/50 text-rose-900 font-bold">महिला</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                  <tr className="border-b border-slate-200 text-[10px] text-slate-600">
+                    <th className="p-1">स्थायी</th>
+                    <th className="p-1">संविदा</th>
+                    <th className="p-1 border-r">दैनिक</th>
+                    <th className="p-1">स्थायी</th>
+                    <th className="p-1">संविदा</th>
+                    <th className="p-1">दैनिक</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200">
+                  {[
+                    { key: 'peon', label: 'भृत्य' },
+                    { key: 'cook', label: 'रसोईयां' },
+                    { key: 'guard', label: 'चौकीदार' },
+                    { key: 'homeguard', label: 'होमगार्ड' }
+                  ].map(r => (
+                    <tr key={r.key} className="hover:bg-slate-50">
+                      <td className="p-2 text-left font-semibold text-slate-700 border-r">{r.label}</td>
+                      <td className="p-1"><input type="number" min="0" value={formData.staff[r.key].mReg} onChange={e => handleStaffChange(r.key, 'mReg', e.target.value)} className="w-10 text-center border rounded p-0.5" /></td>
+                      <td className="p-1"><input type="number" min="0" value={formData.staff[r.key].mCont} onChange={e => handleStaffChange(r.key, 'mCont', e.target.value)} className="w-10 text-center border rounded p-0.5" /></td>
+                      <td className="p-1 border-r"><input type="number" min="0" value={formData.staff[r.key].mDaily} onChange={e => handleStaffChange(r.key, 'mDaily', e.target.value)} className="w-10 text-center border rounded p-0.5" /></td>
+                      <td className="p-1"><input type="number" min="0" value={formData.staff[r.key].fReg} onChange={e => handleStaffChange(r.key, 'fReg', e.target.value)} className="w-10 text-center border rounded p-0.5" /></td>
+                      <td className="p-1"><input type="number" min="0" value={formData.staff[r.key].fCont} onChange={e => handleStaffChange(r.key, 'fCont', e.target.value)} className="w-10 text-center border rounded p-0.5" /></td>
+                      <td className="p-1"><input type="number" min="0" value={formData.staff[r.key].fDaily} onChange={e => handleStaffChange(r.key, 'fDaily', e.target.value)} className="w-10 text-center border rounded p-0.5" /></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Section 9: Infrastructure & Amenities */}
         <div className="border border-slate-200 rounded-xl p-4 space-y-3">

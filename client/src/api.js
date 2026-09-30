@@ -6,6 +6,15 @@ import { matchBlock, getPanchayatsForBlock } from './constants';
 
 const API_BASE = '/api';
 
+export const DEFAULT_FORM_VISIBILITY = {
+  hidePreliminaryInfo: true,
+  hideAnganwadiRation: true,
+  hideSchoolAcademicExtra: true,
+  hideHostelSuperintendent: true,
+  hideHostelStaff: true,
+  hideAwasMaterials: true,
+};
+
 // Helper to convert inspection DB row to frontend object
 function mapDbRowToInspection(row) {
   if (!row) return null;
@@ -356,6 +365,101 @@ export const API = {
 
   logout() {
     localStorage.removeItem('current_officer');
+  },
+
+  // Form Visibility Settings (Controlled by Admin with password ashish#123)
+  getFormVisibilitySettings() {
+    try {
+      const cached = localStorage.getItem('form_visibility_settings');
+      if (cached) {
+        return { ...DEFAULT_FORM_VISIBILITY, ...JSON.parse(cached) };
+      }
+    } catch (e) {
+      console.warn('Error reading form visibility cache:', e);
+    }
+    return { ...DEFAULT_FORM_VISIBILITY };
+  },
+
+  async fetchFormVisibilitySettings() {
+    if (isSupabaseConfigured() && supabase) {
+      try {
+        const { data, error } = await supabase
+          .from('masters')
+          .select('panchayats')
+          .eq('id', 'app_config')
+          .single();
+        if (!error && data && data.panchayats) {
+          const settings = { ...DEFAULT_FORM_VISIBILITY, ...data.panchayats };
+          localStorage.setItem('form_visibility_settings', JSON.stringify(settings));
+          window.dispatchEvent(new CustomEvent('form_visibility_changed', { detail: settings }));
+          return settings;
+        }
+      } catch (err) {
+        console.warn('Supabase fetchFormVisibilitySettings failed:', err);
+      }
+    }
+    return this.getFormVisibilitySettings();
+  },
+
+  async saveFormVisibilitySettings(settings) {
+    const updated = { ...this.getFormVisibilitySettings(), ...settings };
+    localStorage.setItem('form_visibility_settings', JSON.stringify(updated));
+    window.dispatchEvent(new CustomEvent('form_visibility_changed', { detail: updated }));
+
+    if (isSupabaseConfigured() && supabase) {
+      try {
+        const { error } = await supabase.from('masters').upsert({
+          id: 'app_config',
+          district: 'config',
+          panchayats: updated,
+          updated_at: new Date().toISOString()
+        });
+        if (error) {
+          console.warn('Supabase saveFormVisibilitySettings error:', error);
+        }
+      } catch (err) {
+        console.warn('Supabase saveFormVisibilitySettings exception:', err);
+      }
+    }
+    return { success: true, settings: updated };
+  },
+
+  async refreshAllData() {
+    // 1. Fetch latest visibility settings from Supabase
+    await this.fetchFormVisibilitySettings();
+
+    // 2. Fetch latest masters
+    try {
+      if (isSupabaseConfigured() && supabase) {
+        const { data } = await supabase.from('masters').select('*').eq('id', 'kondagaon_master').single();
+        if (data) {
+          localStorage.setItem('cached_masters', JSON.stringify(data));
+        }
+      }
+    } catch (e) {}
+
+    // 3. Fetch latest officers
+    try {
+      if (isSupabaseConfigured() && supabase) {
+        const { data: officersData } = await supabase.from('nodal_officers').select('*').order('sno', { ascending: true });
+        if (officersData && officersData.length > 0) {
+          localStorage.setItem('cached_officers', JSON.stringify(officersData));
+        }
+      }
+    } catch (e) {}
+
+    // 4. Invalidate goswara cache
+    localStorage.removeItem('cached_goswara');
+
+    // 5. Clear browser cache storage if available
+    if ('caches' in window) {
+      try {
+        const keys = await caches.keys();
+        await Promise.all(keys.map(k => caches.delete(k)));
+      } catch (e) {}
+    }
+
+    return { success: true };
   },
 
   // Masters Data
