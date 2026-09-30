@@ -232,6 +232,7 @@ def transliterate_word(w):
     ]
     for k, v in char_map:
         res = res.replace(k, v)
+    res = re.sub(r'[A-Za-z]', '', res)
     return res
 
 def get_hindi_panchayat(en_p, block_hi):
@@ -335,11 +336,64 @@ js_content = f"""// Schools Master Dataset grouped by Block & Gram Panchayat
 
 export const SCHOOL_MASTER_DATA = {json.dumps(master, ensure_ascii=False, indent=2)};
 
+const matchBlock = (b1, b2) => {{
+  if (!b1 || !b2) return false;
+  if (b1 === b2) return true;
+  const s1 = b1.replace(/[\\u093c\\s]/g, '').replace(/ड़/g, 'ड').replace(/ि/g, 'ी');
+  const s2 = b2.replace(/[\\u093c\\s]/g, '').replace(/ड़/g, 'ड').replace(/ि/g, 'ी');
+  if (s1 === s2) return true;
+  if (s1.includes('फरस') && s2.includes('फरस')) return true;
+  if (s1.includes('राजपुर') && s2.includes('राजपुर')) return true;
+  if ((s1.includes('कोण्डा') || s1.includes('कोंडा')) && (s2.includes('कोण्डा') || s2.includes('कोंडा'))) return true;
+  if (s1.includes('माकड') && s2.includes('माकड')) return true;
+  if (s1.includes('केश') && s2.includes('केश')) return true;
+  return false;
+}};
+
+const normalizeStr = (str) => {{
+  if (!str) return '';
+  let s = str.trim();
+  return s
+    .replace(/['"()]/g, '')
+    .replace(/[\\u093c]/g, '') // strip nukta
+    .replace(/\\s+/g, '')
+    .replace(/िं/g, 'ी')
+    .replace(/ि/g, 'ी')
+    .replace(/ुं/g, 'ू')
+    .replace(/ु/g, 'ू')
+    .replace(/ण्ड/g, 'ंड')
+    .replace(/ड़/g, 'ड')
+    .replace(/ढ़/g, 'ढ');
+}};
+
 export const getSchoolsForPanchayat = (blockName, panchayatName) => {{
   if (!blockName || !panchayatName) return [];
-  const blockData = SCHOOL_MASTER_DATA[blockName];
+
+  // Match block key
+  const blockKey = Object.keys(SCHOOL_MASTER_DATA).find(b => matchBlock(b, blockName));
+  if (!blockKey) return [];
+
+  const blockData = SCHOOL_MASTER_DATA[blockKey];
   if (!blockData) return [];
-  return blockData[panchayatName] || [];
+
+  // Direct match
+  if (blockData[panchayatName]) return blockData[panchayatName];
+
+  // Normalized match
+  const normPanch = normalizeStr(panchayatName);
+  for (const [pName, list] of Object.entries(blockData)) {{
+    if (normalizeStr(pName) === normPanch) return list;
+  }}
+
+  // Partial substring match fallback
+  for (const [pName, list] of Object.entries(blockData)) {{
+    const normKey = normalizeStr(pName);
+    if ((normKey.includes(normPanch) || normPanch.includes(normKey)) && normKey.length >= 4 && normPanch.length >= 4) {{
+      return list;
+    }}
+  }}
+
+  return [];
 }};
 """
 

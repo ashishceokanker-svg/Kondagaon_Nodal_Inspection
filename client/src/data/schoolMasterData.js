@@ -116,12 +116,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "M.S. UIकापाराबानसकोत",
+        "name": "M.S. कापाराबानसकोत",
         "raw": "GOVT.UPS UIKAPARABANSKOT",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. UIकापाराबानसकोत",
+        "name": "P.S. कापाराबानसकोत",
         "raw": "GOVT. PS UIKAPARABANSKOT",
         "category": "1 - Primary"
       }
@@ -202,12 +202,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. AAमाडीही",
+        "name": "P.S. माडीही",
         "raw": "GOVT.TWD.PS AAMADIHI",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. Aयपुरडीही",
+        "name": "P.S. यपुरडीही",
         "raw": "GOVT.PS AYPURDIHI",
         "category": "1 - Primary"
       }
@@ -283,7 +283,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. मानदोकिखAरगांव",
+        "name": "P.S. मानदोकिखरगांव",
         "raw": "GOVT.PS MANDOKIKHARGAON",
         "category": "1 - Primary"
       }
@@ -346,7 +346,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. सेचOनदेरय कोरगांव",
+        "name": "H.S.S. सेचनदेरय कोरगांव",
         "raw": "GOVT.HIGHER SECONDERY  SCHOOL KORGAON",
         "category": "3 - Pr. with Up.Pr. sec. and H.Sec."
       },
@@ -582,7 +582,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "U.P.S. कुररुभAत",
+        "name": "U.P.S. कुररुभत",
         "raw": "GOVT.UPS KURRUBHAT",
         "category": "2 - Primary with Upper Primary"
       }
@@ -841,7 +841,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. दिहिपारानोUकाबेड़ा",
+        "name": "P.S. दिहिपारानोकाबेड़ा",
         "raw": "GOVT.GJ PS DIHIPARANOUKABEDA",
         "category": "1 - Primary"
       }
@@ -922,7 +922,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "U.P.S. Aमागुहान",
+        "name": "U.P.S. मागुहान",
         "raw": "GOVT UPS AMAGUHAN",
         "category": "2 - Primary with Upper Primary"
       }
@@ -1037,7 +1037,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. तिकरापारा कोUनदकेरा",
+        "name": "P.S. तिकरापारा कोनदकेरा",
         "raw": "GOVT.SSA.NAVIN PS TIKRAPARA KOUNDKERA",
         "category": "1 - Primary"
       },
@@ -1073,12 +1073,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "आमगांव": [
       {
-        "name": "U.P.S. AAमगांव",
+        "name": "U.P.S. मगांव",
         "raw": "GOVT UPS AAMGAON",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. नवीन AAमगांव",
+        "name": "P.S. नवीन मगांव",
         "raw": "GOVT.PS NAVIN AAMGAON",
         "category": "1 - Primary"
       }
@@ -1102,7 +1102,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. पितेचUवA",
+        "name": "M.S. पितेचव",
         "raw": "GOVT.MS PITECHUWA",
         "category": "2 - Primary with Upper Primary"
       }
@@ -1111,24 +1111,24 @@ export const SCHOOL_MASTER_DATA = {
   "केशकाल": {
     "सवाला": [
       {
-        "name": "U.P.S. सावAला",
+        "name": "U.P.S. सावला",
         "raw": "GOVT.UPS SAWALA",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. कोतपारा सावAला",
+        "name": "P.S. कोतपारा सावला",
         "raw": "GOVT.SSA PS KOTPARA SAWALA",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. गुदरापारा सावAला",
+        "name": "P.S. गुदरापारा सावला",
         "raw": "GOVT.SSA PS GUDRAPARA SAWALA",
         "category": "1 - Primary"
       }
     ],
     "गढ़धनोरा": [
       {
-        "name": "P.S. रानधA",
+        "name": "P.S. रानध",
         "raw": "GOVT.SSA PS RANDHA",
         "category": "1 - Primary"
       },
@@ -1138,7 +1138,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. गारहधAनोरा",
+        "name": "U.P.S. गारहधनोरा",
         "raw": "GOVT. UPS GARHDHANORA",
         "category": "2 - Primary with Upper Primary"
       }
@@ -1150,7 +1150,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. AवAसपाराचहेरबेड़ा",
+        "name": "P.S. वसपाराचहेरबेड़ा",
         "raw": "GOVT.TWD PS AWASPARACHHERBEDA",
         "category": "1 - Primary"
       },
@@ -1175,14 +1175,14 @@ export const SCHOOL_MASTER_DATA = {
         "category": "8 - Secondary Only"
       },
       {
-        "name": "M.S. चEरबेड़ा",
+        "name": "M.S. चरबेड़ा",
         "raw": "GOVT.TWD UPS CHERBEDA",
         "category": "4 - Upper Primary only"
       }
     ],
     "बिन्झे": [
       {
-        "name": "H.S. बिनझE",
+        "name": "H.S. बिनझ",
         "raw": "GOVT. HIGH SCHOOL BINJHE",
         "category": "8 - Secondary Only"
       },
@@ -1192,49 +1192,49 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. चIखलाडीही बिनझE",
+        "name": "P.S. चखलाडीही बिनझ",
         "raw": "GOVT.TWD PS CHIKHLADIHI BINJHE",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बिनझE",
+        "name": "P.S. बिनझ",
         "raw": "GOVT.TWD PS BINJHE",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. बिनझE",
+        "name": "M.S. बिनझ",
         "raw": "GOVT. MIDDLE SCHOOL BINJHE",
         "category": "4 - Upper Primary only"
       }
     ],
     "धनोरा": [
       {
-        "name": "U.P.S. धAनोरा",
+        "name": "U.P.S. धनोरा",
         "raw": "GOVT.UPS DHANORA",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. धरुवAपारा",
+        "name": "P.S. धरुवपारा",
         "raw": "GOVT.TWD PS DHRUWAPARA",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. AAचलापारा धAनोरा",
+        "name": "P.S. चलापारा धनोरा",
         "raw": "GOVT.PS AACHLAPARA  DHANORA",
         "category": "1 - Primary"
       },
       {
-        "name": "स्वामी आत्मानंद H.S.S. धAनोरा",
+        "name": "स्वामी आत्मानंद H.S.S. धनोरा",
         "raw": "SWAMI ATMANAND GOVT ENGLISH MEDIUM SCHOOL DHANORA",
         "category": "3 - Pr. with Up.Pr. sec. and H.Sec."
       },
       {
-        "name": "M.S. धरुवAपारा धAनोरा",
+        "name": "M.S. धरुवपारा धनोरा",
         "raw": "GOVT.SSA. UPS DHRUWAPARA DHANORA",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "कन्या आश्रम कन्या आश्रम धAनोरा",
+        "name": "कन्या आश्रम कन्या आश्रम धनोरा",
         "raw": "GOVT.TWD MS KANYA ASHRAM DHANORA",
         "category": "4 - Upper Primary only"
       }
@@ -1251,12 +1251,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "U.P.S. राOबेड़ा बाहिगांव",
+        "name": "U.P.S. राबेड़ा बाहिगांव",
         "raw": "GOVT. UPS RAOBEDA BAHIGAON",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. OरकिवAहिपिपरा",
+        "name": "P.S. रकिवहिपिपरा",
         "raw": "GOVT.TWD PS ORKIWAHIPIPRA",
         "category": "1 - Primary"
       },
@@ -1278,17 +1278,17 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "कोरकोटी": [
       {
-        "name": "P.S. चUदावA",
+        "name": "P.S. चदाव",
         "raw": "GOVT.SSA PS CHUDAWA",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. खAलेबेदि",
+        "name": "M.S. खलेबेदि",
         "raw": "GOVT.SSA UPS KHALEBEDI",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. खAलेबेदि",
+        "name": "P.S. खलेबेदि",
         "raw": "GOVT.SSA PS KHALEBEDI",
         "category": "1 - Primary"
       },
@@ -1305,22 +1305,22 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "बड़ेठेमली": [
       {
-        "name": "P.S. चहोतेथEमालि",
+        "name": "P.S. चहोतेथमालि",
         "raw": "GOVT.TWD PS CHHOTETHEMALI",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. नाचAनडीही",
+        "name": "U.P.S. नाचनडीही",
         "raw": "GOVT.UPS NACHANDIHI",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "U.P.S. बादेथEमालि",
+        "name": "U.P.S. बादेथमालि",
         "raw": "GOVT.UPS BADETHEMALI",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. बादेथEमालि",
+        "name": "P.S. बादेथमालि",
         "raw": "GOVT.EDU JPS BADETHEMALI",
         "category": "1 - Primary"
       }
@@ -1337,7 +1337,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स चहुIपारा",
+        "name": "P.S. प स चहुपारा",
         "raw": "GOVT.TWD P.S. CHHUIPARA",
         "category": "1 - Primary"
       },
@@ -1352,7 +1352,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. चहुIपारा",
+        "name": "M.S. चहुपारा",
         "raw": "GOVT. SSA MS CHHUIPARA",
         "category": "4 - Upper Primary only"
       }
@@ -1364,24 +1364,24 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "M.S. दाधIपारा",
+        "name": "M.S. दाधपारा",
         "raw": "GOVT.TWD MS DADHIPARA",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. दाधIपारा",
+        "name": "P.S. दाधपारा",
         "raw": "GOVT.SSA PS DADHIPARA",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. Oगलाडीही भAरिपारा",
+        "name": "P.S. गलाडीही भरिपारा",
         "raw": "GOVT.SSA PS OGLADIHI BHARIPARA",
         "category": "1 - Primary"
       }
     ],
     "हिचका": [
       {
-        "name": "P.S. कोथOदि",
+        "name": "P.S. कोथदि",
         "raw": "GOVT.TWD PS KOTHODI",
         "category": "1 - Primary"
       },
@@ -1408,12 +1408,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. कुदादवAहि",
+        "name": "P.S. कुदादवहि",
         "raw": "GOVT.SSA PS KUDADWAHI",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. भAनदारपाल",
+        "name": "P.S. भनदारपाल",
         "raw": "GOVT.TWD PS BHANDARPAL",
         "category": "1 - Primary"
       }
@@ -1430,7 +1430,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. कोरगोAन",
+        "name": "P.S. कोरगोन",
         "raw": "GOVT.TWD  PS KORGOAN",
         "category": "1 - Primary"
       }
@@ -1442,7 +1442,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. राउतपारा बुIकि जुनगानार",
+        "name": "P.S. राउतपारा बुकि जुनगानार",
         "raw": "GOVT.SSA PS RAUTPARA BUIKI JUNGANAR",
         "category": "1 - Primary"
       },
@@ -1452,21 +1452,21 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बुIकि जुगानार",
+        "name": "P.S. बुकि जुगानार",
         "raw": "GOVT.TWD PS  BUIKI JUGANAR",
         "category": "1 - Primary"
       }
     ],
     "एटेकोन्हाडी": [
       {
-        "name": "U.P.S. Aतेकोनहादि Aदेनगा",
+        "name": "U.P.S. तेकोनहादि देनगा",
         "raw": "GOVT.UPS ATEKONHADI ADENGA",
         "category": "2 - Primary with Upper Primary"
       }
     ],
     "निराछिन्दली": [
       {
-        "name": "U.P.S. काचAरपारा निराचIनदलि",
+        "name": "U.P.S. काचरपारा निराचनदलि",
         "raw": "GOVT. UPS KACHARPARA NIRACHINDLI",
         "category": "2 - Primary with Upper Primary"
       },
@@ -1490,51 +1490,51 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "ईरागांव": [
       {
-        "name": "H.S.S. Eरागांव",
+        "name": "H.S.S. रागांव",
         "raw": "GOVT.HIGHER SECONDARY SCHOOL ERAGAON",
         "category": "5 - Up. Pr. Secondary and Higher Sec"
       },
       {
-        "name": "कन्या आश्रम कन्या AAशराम Eरागांव",
+        "name": "कन्या आश्रम कन्या शराम रागांव",
         "raw": "GOVT.TWD KANYA  AASHRAM ERAGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. Eरागांव",
+        "name": "P.S. रागांव",
         "raw": "GOVT.EDU PS ERAGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बादेपारा Eरागांव",
+        "name": "P.S. बादेपारा रागांव",
         "raw": "GOVT.SSA PS BADEPARA ERAGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. पातेलपारा Eरागांव",
+        "name": "P.S. पातेलपारा रागांव",
         "raw": "GOVT.SSA PS   PATELPARA ERAGAON",
         "category": "1 - Primary"
       }
     ],
     "तेन्दूभाटा": [
       {
-        "name": "M.S. तेनदुभAता",
+        "name": "M.S. तेनदुभता",
         "raw": "GOVT.SSA MS TENDUBHATA",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. तेनदुभAता",
+        "name": "P.S. तेनदुभता",
         "raw": "GOVT.EDU PS TENDUBHATA",
         "category": "1 - Primary"
       }
     ],
     "कोदोभाट": [
       {
-        "name": "P.S. प स कोदोभAत",
+        "name": "P.S. प स कोदोभत",
         "raw": "GOVT.TWD P.S. KODOBHAT",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. खAसपारा बायालपुर",
+        "name": "U.P.S. खसपारा बायालपुर",
         "raw": "GOVT. UPS KHASPARA BAYALPUR",
         "category": "2 - Primary with Upper Primary"
       }
@@ -1563,7 +1563,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. Uनदारि",
+        "name": "P.S. नदारि",
         "raw": "GOVT.TWD PS UNDARI",
         "category": "1 - Primary"
       },
@@ -1575,12 +1575,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "पलोरा": [
       {
-        "name": "P.S. भAररिपारा",
+        "name": "P.S. भररिपारा",
         "raw": "GOVT.EDU PS BHARRIPARA",
         "category": "1 - Primary"
       },
       {
-        "name": "H.S. भAरिपारा",
+        "name": "H.S. भरिपारा",
         "raw": "GOVT.HIGH SCHOOL.BHARIPARA",
         "category": "7 - Upper Pr. and Secondary"
       }
@@ -1594,7 +1594,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "गारावण्डी": [
       {
-        "name": "P.S. कुम्हारपारा गारावAनदि",
+        "name": "P.S. कुम्हारपारा गारावनदि",
         "raw": "GOVT.SSA PS.KUMHARPARA GARAWANDI",
         "category": "1 - Primary"
       },
@@ -1604,7 +1604,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. नायापारा गारावAनदि",
+        "name": "P.S. नायापारा गारावनदि",
         "raw": "GOVT.SSA PS NAYAPARA GARAWANDI",
         "category": "1 - Primary"
       },
@@ -1621,51 +1621,51 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. चUरेगांव",
+        "name": "P.S. चरेगांव",
         "raw": "GOVT.TWD PS CHUREGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. सावAलवAहि",
+        "name": "U.P.S. सावलवहि",
         "raw": "GOVT.UPS SAWALWAHI",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. कावAगांव",
+        "name": "P.S. कावगांव",
         "raw": "GOVT.EDU PS KAWAGAON",
         "category": "1 - Primary"
       }
     ],
     "बड़ेखौली": [
       {
-        "name": "U.P.S. बितालखOलि",
+        "name": "U.P.S. बितालखलि",
         "raw": "GOVT. UPS BITALKHOLI",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "H.S. बादेखOUलि",
+        "name": "H.S. बादेखलि",
         "raw": "GOVT.HIGH SCHOOL. BADEKHOULI",
         "category": "8 - Secondary Only"
       },
       {
-        "name": "P.S. Uपेरपारा बादेखOUलि",
+        "name": "P.S. पेरपारा बादेखलि",
         "raw": "GOVT.TWD PS UPERPARA BADEKHOULI",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. बादेखOUलि",
+        "name": "M.S. बादेखलि",
         "raw": "GOVT.MIDDLE SCHOOL BADEKHOULI",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. प स बादेखOUलि",
+        "name": "P.S. प स बादेखलि",
         "raw": "GOVT.TWD P.S. BADEKHOULI",
         "category": "1 - Primary"
       }
     ],
     "सिकागांव": [
       {
-        "name": "U.P.S. Aमोदा",
+        "name": "U.P.S. मोदा",
         "raw": "GOVT. UPS AMODA",
         "category": "2 - Primary with Upper Primary"
       },
@@ -1680,12 +1680,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "U.P.S. सालेभAत सिकागांव",
+        "name": "U.P.S. सालेभत सिकागांव",
         "raw": "GOVT.UPS SALEBHAT (SIKAGAON)",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. कोलियाबेड़ा सालेभAत",
+        "name": "P.S. कोलियाबेड़ा सालेभत",
         "raw": "GOVT.SSA PS KOLIYABEDA  SALEBHAT",
         "category": "1 - Primary"
       },
@@ -1697,12 +1697,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "आंवराभाटा": [
       {
-        "name": "P.S. चहोतेताराIबेड़ा",
+        "name": "P.S. चहोतेताराबेड़ा",
         "raw": "GOVT.SSA PS CHHOTETARAIBEDA",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. AAनवAराभAता",
+        "name": "U.P.S. नवराभता",
         "raw": "GOVT. UPS AANWARABHATA",
         "category": "2 - Primary with Upper Primary"
       },
@@ -1712,14 +1712,14 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. AAनवAराभAता",
+        "name": "P.S. नवराभता",
         "raw": "GOVT.EDU PS AANWARABHATA",
         "category": "1 - Primary"
       }
     ],
     "पीपरा": [
       {
-        "name": "P.S. धOरगापारापिपरा",
+        "name": "P.S. धरगापारापिपरा",
         "raw": "GOVT.SSA PS DHORGAPARAPIPRA",
         "category": "1 - Primary"
       },
@@ -1729,7 +1729,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "5 - Up. Pr. Secondary and Higher Sec"
       },
       {
-        "name": "U.P.S. पावAरास पिपरा",
+        "name": "U.P.S. पावरास पिपरा",
         "raw": "GOVT. UPS PAWARAS  PIPRA",
         "category": "2 - Primary with Upper Primary"
       },
@@ -1739,7 +1739,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. पावAरास पिपरा",
+        "name": "P.S. पावरास पिपरा",
         "raw": "GOVT PS PAWARAS  PIPRA",
         "category": "1 - Primary"
       },
@@ -1756,12 +1756,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "खालेमुरवेण्ड": [
       {
-        "name": "स्वामी आत्मानंद H.S.S. खAलेमुरवेनद",
+        "name": "स्वामी आत्मानंद H.S.S. खलेमुरवेनद",
         "raw": "SWAMI ATMANAND GOVT HINDI MEDIUM SCHOOL KHALEMURVEND",
         "category": "10 - Secondary with Higher Secondary"
       },
       {
-        "name": "P.S. खAलेमुरवेनद",
+        "name": "P.S. खलेमुरवेनद",
         "raw": "GOVT.EDU PS KHALEMURVEND",
         "category": "1 - Primary"
       },
@@ -1776,19 +1776,19 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. नायापारा खAलेमुरवेनद",
+        "name": "P.S. नायापारा खलेमुरवेनद",
         "raw": "GOVT.SSA PS NAYAPARA KHALEMURVEND",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. खAलेमुरवेनद",
+        "name": "M.S. खलेमुरवेनद",
         "raw": "GOVT.TWD MS KHALEMURVEND",
         "category": "4 - Upper Primary only"
       }
     ],
     "चिपरेल": [
       {
-        "name": "P.S. चOतेपारा चIपरेल",
+        "name": "P.S. चतेपारा चपरेल",
         "raw": "GOVT.SSA PS  CHOTEPARA CHIPREL",
         "category": "1 - Primary"
       },
@@ -1803,12 +1803,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. चIपरेल",
+        "name": "M.S. चपरेल",
         "raw": "GOVT.SSA  UPS CHIPREL",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. चIपरेल",
+        "name": "P.S. चपरेल",
         "raw": "GOVT.TWD PS CHIPREL",
         "category": "1 - Primary"
       }
@@ -1820,7 +1820,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. Uमारदाह",
+        "name": "P.S. मारदाह",
         "raw": "GOVT.SSA PS UMARDAH",
         "category": "1 - Primary"
       },
@@ -1869,7 +1869,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "U.P.S. मानझAपारा माससुकोकोदा",
+        "name": "U.P.S. मानझपारा माससुकोकोदा",
         "raw": "GOVT.UPS MANJHAPARA MASSUKOKODA",
         "category": "2 - Primary with Upper Primary"
       }
@@ -1908,12 +1908,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "होनहेड़": [
       {
-        "name": "P.S. Uपारमुरवेनद",
+        "name": "P.S. पारमुरवेनद",
         "raw": "GOVT.TWD PS UPARMURVEND",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. कालेचAनदेल",
+        "name": "P.S. कालेचनदेल",
         "raw": "GOVT.SSA PS KALECHANDEL",
         "category": "1 - Primary"
       },
@@ -1923,7 +1923,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. घOदाझAर",
+        "name": "P.S. घदाझर",
         "raw": "GOVT.EDU PS GHODAJHAR",
         "category": "1 - Primary"
       }
@@ -1935,7 +1935,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "H.S. सालेभAत",
+        "name": "H.S. सालेभत",
         "raw": "GOVT HIGH SCHOOL SALEBHAT",
         "category": "7 - Upper Pr. and Secondary"
       },
@@ -1945,46 +1945,46 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. सालेभAत",
+        "name": "P.S. सालेभत",
         "raw": "GOVT.EDU PS SALEBHAT",
         "category": "1 - Primary"
       }
     ],
     "चारभाटा": [
       {
-        "name": "P.S. चAरभAता",
+        "name": "P.S. चरभता",
         "raw": "GOVT.TWD PS CHARBHATA",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. नायापारा चAरभAता",
+        "name": "U.P.S. नायापारा चरभता",
         "raw": "GOVT.SSA UPS NAYAPARA CHARBHATA",
         "category": "2 - Primary with Upper Primary"
       }
     ],
     "अड़ेंगा": [
       {
-        "name": "U.P.S. खAसपारा Aदेनगा",
+        "name": "U.P.S. खसपारा देनगा",
         "raw": "GOVT.UPS KHASPARA ADENGA",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. खAसपारादोहालापाराAदेनगा",
+        "name": "P.S. खसपारादोहालापारादेनगा",
         "raw": "GOVT.TWD PS KHASPARADOHALAPARAADENGA",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. पलातपारा Aदेनगा",
+        "name": "U.P.S. पलातपारा देनगा",
         "raw": "GOVT. UPS PLATPARA ADENGA",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. बातरालि Aदेनगा",
+        "name": "P.S. बातरालि देनगा",
         "raw": "GOVT.SSA PS BATRALI  ADENGA",
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. Aदेनगा",
+        "name": "H.S.S. देनगा",
         "raw": "GOVT.HIGHER SECONDARY SCHOOL ADENGA",
         "category": "10 - Secondary with Higher Secondary"
       }
@@ -1998,17 +1998,17 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "खुटपदर": [
       {
-        "name": "P.S. खUतपादार",
+        "name": "P.S. खतपादार",
         "raw": "GOVT.TWD PS KHUTPADAR",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. खUतपादार",
+        "name": "U.P.S. खतपादार",
         "raw": "GOVT.UPS KHUTPADAR",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. धOनगाIपारा",
+        "name": "P.S. धनगापारा",
         "raw": "GOVT.TWD PS DHONGAIPARA",
         "category": "1 - Primary"
       }
@@ -2032,12 +2032,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "रावबेड़ा": [
       {
-        "name": "P.S. UपारचAनदेलि",
+        "name": "P.S. पारचनदेलि",
         "raw": "GOVT.TWD PS UPARCHANDELI",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. तुतारि राOबेड़ा",
+        "name": "U.P.S. तुतारि राबेड़ा",
         "raw": "GOVT. UPS TUTARI RAOBEDA",
         "category": "2 - Primary with Upper Primary"
       },
@@ -2047,17 +2047,17 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. चEरबेड़ा मारी",
+        "name": "P.S. चरबेड़ा मारी",
         "raw": "GOVT.TWD PS CHERBEDA MARI",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. राOबेदामारि",
+        "name": "U.P.S. राबेदामारि",
         "raw": "GOVT. UPS RAOBEDAMARI",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. Uपारबेदि",
+        "name": "P.S. पारबेदि",
         "raw": "GOVT.SSA PS UPARBEDI",
         "category": "1 - Primary"
       },
@@ -2074,12 +2074,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "आंवरी": [
       {
-        "name": "P.S. तिपपारा AAनवAरि",
+        "name": "P.S. तिपपारा नवरि",
         "raw": "GOVT.SSA PS TIPPARA AANWARI",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. AAनवAरि",
+        "name": "U.P.S. नवरि",
         "raw": "GOVT.UPS AANWARI",
         "category": "2 - Primary with Upper Primary"
       }
@@ -2096,7 +2096,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       }
     ],
-    "केशकाल 5 - Uप. पर.  Aनद  सेच": [
+    "केशकाल 5 - प. पर.  नद  सेच": [
       {
         "name": "H.S.S. कन्या",
         "raw": "GOVT.GIRLS HIGHER SECONDARY SCHOOL",
@@ -2105,19 +2105,19 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "अरण्डी": [
       {
-        "name": "H.S.S. Aरानदि",
+        "name": "H.S.S. रानदि",
         "raw": "GOVT. HIGHER SECONDRY SCHOOL  ARANDI",
         "category": "3 - Pr. with Up.Pr. sec. and H.Sec."
       },
       {
-        "name": "P.S. बाकानभAता",
+        "name": "P.S. बाकानभता",
         "raw": "GOVT SSA PS BAKANBHATA",
         "category": "1 - Primary"
       }
     ],
     "सिंगनपुर": [
       {
-        "name": "P.S. मानझपारा सिनघAनपुर",
+        "name": "P.S. मानझपारा सिनघनपुर",
         "raw": "GOVT.SSA PS MANJHPARA SINGHANPUR",
         "category": "1 - Primary"
       },
@@ -2127,7 +2127,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. सिनघAनपुर",
+        "name": "H.S.S. सिनघनपुर",
         "raw": "GOVT.HIGHER SECONDARY SCHOOL SINGHANPUR",
         "category": "3 - Pr. with Up.Pr. sec. and H.Sec."
       }
@@ -2149,7 +2149,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. Aदानबेड़ा",
+        "name": "P.S. दानबेड़ा",
         "raw": "GOVT.TWD PS ADANBEDA",
         "category": "1 - Primary"
       }
@@ -2221,26 +2221,26 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "डोहलापारा": [
       {
-        "name": "U.P.S. धOलापाराAदेनगा",
+        "name": "U.P.S. धलापारादेनगा",
         "raw": "GOVT.UPS DHOLAPARAADENGA",
         "category": "2 - Primary with Upper Primary"
       }
     ],
     "खेतरपाल": [
       {
-        "name": "P.S. खEतारपाल",
+        "name": "P.S. खतारपाल",
         "raw": "GOVT.EDU PS KHETARPAL",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. खEतारपाल",
+        "name": "M.S. खतारपाल",
         "raw": "GOVT.SSA UPS KHETARPAL",
         "category": "4 - Upper Primary only"
       }
     ],
     "प्रधानचेर्रा": [
       {
-        "name": "U.P.S. पराधAनचEररा",
+        "name": "U.P.S. पराधनचररा",
         "raw": "GOVT. UPS PRADHANCHERRA",
         "category": "2 - Primary with Upper Primary"
       }
@@ -2264,9 +2264,9 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       }
     ],
-    "नावAगारह": [
+    "नावगारह": [
       {
-        "name": "P.S. हारवAकोदो",
+        "name": "P.S. हारवकोदो",
         "raw": "GOVT.TWD PS HARWAKODO",
         "category": "1 - Primary"
       },
@@ -2285,24 +2285,24 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "गौरगांव": [
       {
-        "name": "U.P.S. गोUरगांव",
+        "name": "U.P.S. गोरगांव",
         "raw": "GOVT. UPS GOURGAON",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. चIकलादेहि",
+        "name": "P.S. चकलादेहि",
         "raw": "GOVT.TWD PS  CHIKLADEHI",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. चIखलामेता",
+        "name": "P.S. चखलामेता",
         "raw": "GOVT.SSA PS CHIKHLAMETA",
         "category": "1 - Primary"
       }
     ],
     "भाटगांव": [
       {
-        "name": "U.P.S. भAतगांव",
+        "name": "U.P.S. भतगांव",
         "raw": "GOVT. UPS BHATGAON",
         "category": "2 - Primary with Upper Primary"
       }
@@ -2314,14 +2314,14 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. नेलाझAर",
+        "name": "P.S. नेलाझर",
         "raw": "GOVT.  TWD.PS NELAJHAR",
         "category": "1 - Primary"
       }
     ],
     "बानदापारा": [
       {
-        "name": "P.S. बांधापारा Aदेनगा",
+        "name": "P.S. बांधापारा देनगा",
         "raw": "GOVT.EDU PS BANDHAPARA ADENGA",
         "category": "1 - Primary"
       }
@@ -2335,19 +2335,19 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "डुण्डाबेड़मा": [
       {
-        "name": "P.S. धUनधA बेदमा",
+        "name": "P.S. धनध बेदमा",
         "raw": "GOVT.TWD PS DHUNDHA BEDMA",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. Uमला",
+        "name": "U.P.S. मला",
         "raw": "GOVT.UPS UMLA",
         "category": "2 - Primary with Upper Primary"
       }
     ],
     "सिवनीपाल": [
       {
-        "name": "P.S. खAसपारा जरण्डी",
+        "name": "P.S. खसपारा जरण्डी",
         "raw": "GOVT.TWD PS KHASPARA JARANDI",
         "category": "1 - Primary"
       },
@@ -2366,7 +2366,7 @@ export const SCHOOL_MASTER_DATA = {
   "कोण्डागांव": {
     "सोनाबाल": [
       {
-        "name": "P.S. खUतपारासोनाबाल",
+        "name": "P.S. खतपारासोनाबाल",
         "raw": "GOVT.TWD PS KHUTPARASONABAL",
         "category": "1 - Primary"
       },
@@ -2376,12 +2376,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बानधA पारा सोनाबाल",
+        "name": "P.S. बानध पारा सोनाबाल",
         "raw": "GOVT. SSA PS  BANDHA PARA SONABAL",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. खUतपारा सोनाबाल",
+        "name": "M.S. खतपारा सोनाबाल",
         "raw": "GOVT. TWD MS  KHUTPARA SONABAL",
         "category": "4 - Upper Primary only"
       },
@@ -2408,7 +2408,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. कादाI दोबरा सामबालपुर",
+        "name": "P.S. कादा दोबरा सामबालपुर",
         "raw": "GOVT.SSA PS - KADAI DOBRA SAMBALPUR",
         "category": "1 - Primary"
       },
@@ -2435,7 +2435,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "हंगवा": [
       {
-        "name": "कन्या आश्रम नवीन कन्या आश्रम हानगवA",
+        "name": "कन्या आश्रम नवीन कन्या आश्रम हानगव",
         "raw": "GOVT.TWD NAVEEN KANYA ASRAM HANGWA",
         "category": "1 - Primary"
       },
@@ -2445,19 +2445,19 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. हानगवA",
+        "name": "H.S.S. हानगव",
         "raw": "GOVT. HIGHER SECONDARY  SCHOOL HANGWA",
         "category": "3 - Pr. with Up.Pr. sec. and H.Sec."
       },
       {
-        "name": "P.S. कोदकापारा हानगवA",
+        "name": "P.S. कोदकापारा हानगव",
         "raw": "GOVT.SSA PS KODKAPARA HANGWA",
         "category": "1 - Primary"
       }
     ],
     "बनजुगानी": [
       {
-        "name": "M.S. U प स AलवAद",
+        "name": "M.S. प स लवद",
         "raw": "GOVT.SSA  U.P.S. ALWAD",
         "category": "4 - Upper Primary only"
       },
@@ -2467,7 +2467,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. AलवAद",
+        "name": "P.S. लवद",
         "raw": "GOVT.EDU PS ALWAD",
         "category": "1 - Primary"
       },
@@ -2501,7 +2501,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "दहीकोंगा": [
       {
-        "name": "P.S. मिचIपारा दहीकोंगा",
+        "name": "P.S. मिचपारा दहीकोंगा",
         "raw": "GOVT.TWD PS MICHIPARA(DAHIKONGA)",
         "category": "1 - Primary"
       },
@@ -2511,7 +2511,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. मानझIपारा दहीकोंगा",
+        "name": "P.S. मानझपारा दहीकोंगा",
         "raw": "GOVT.SSA PS MANJHIPARA DAHIKONGA",
         "category": "1 - Primary"
       },
@@ -2543,7 +2543,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "7 - Upper Pr. and Secondary"
       },
       {
-        "name": "P.S. FAरासगांव बफना",
+        "name": "P.S. रासगांव बफना",
         "raw": "GOVT.SSA PS FARASGAON BAFNA",
         "category": "1 - Primary"
       },
@@ -2555,19 +2555,19 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "नेवता": [
       {
-        "name": "U.P.S. बेAच पारानेवता",
+        "name": "U.P.S. बेच पारानेवता",
         "raw": "GOVT.SSA UPS  BEACH PARANEWTA",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. मिरचIपलोत पारा नेवता",
+        "name": "P.S. मिरचपलोत पारा नेवता",
         "raw": "GOVT.SSA PS MIRCHIPLOT PARA NEWTA",
         "category": "1 - Primary"
       }
     ],
     "मसोरा": [
       {
-        "name": "P.S. धOदि पारा मसोरा",
+        "name": "P.S. धदि पारा मसोरा",
         "raw": "GOVT.SSA PS DHODI PARA MASORA",
         "category": "1 - Primary"
       },
@@ -2607,7 +2607,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. स स A प स सादाकपारा मसोरा",
+        "name": "P.S. स स  प स सादाकपारा मसोरा",
         "raw": "GOVT.S.S.A. P.S. SADAKPARA  MASORA",
         "category": "1 - Primary"
       },
@@ -2629,7 +2629,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. पिकादभAता मुलमुला",
+        "name": "P.S. पिकादभता मुलमुला",
         "raw": "GOVT.TWD PS PIKADBHATA (MULMULA)",
         "category": "1 - Primary"
       },
@@ -2644,12 +2644,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. धAनपुर मुलमुला",
+        "name": "P.S. धनपुर मुलमुला",
         "raw": "GOVT.EDU PS DHANPUR(MULMULA)",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. AवAसपलात पारा मुलमुला",
+        "name": "P.S. वसपलात पारा मुलमुला",
         "raw": "SSA PS AWASPLAT PARA MULMULA",
         "category": "1 - Primary"
       },
@@ -2696,12 +2696,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. Uपपेर शIवनाभAता",
+        "name": "M.S. पपेर शवनाभता",
         "raw": "GOVT SSA UPPER PRIMARY  SCHOOL SHIVNABHATA",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. खUतगुदा",
+        "name": "P.S. खतगुदा",
         "raw": "GOVT SSA PRIMARY SCHOOL KHUTGUDA",
         "category": "1 - Primary"
       },
@@ -2736,7 +2736,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "10 - Secondary with Higher Secondary"
       },
       {
-        "name": "P.S. प स ज्ञानज्योति शAनकारनागार",
+        "name": "P.S. प स ज्ञानज्योति शनकारनागार",
         "raw": "GOVT.SSA P.S. GYANJYOTI SHANKARNAGAR",
         "category": "1 - Primary"
       },
@@ -2748,7 +2748,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "बयानार": [
       {
-        "name": "P.S. जोगि AलवAद बायानार",
+        "name": "P.S. जोगि लवद बायानार",
         "raw": "GOVT.TWD PS JOGI ALWAD BAYANAR",
         "category": "1 - Primary"
       },
@@ -2780,7 +2780,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. पातेल पारा गुलभA",
+        "name": "P.S. पातेल पारा गुलभ",
         "raw": "GOVT.SSA PS PATEL PARA GULBHA",
         "category": "1 - Primary"
       },
@@ -2807,27 +2807,27 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "कुधुर": [
       {
-        "name": "M.S. कुधUर",
+        "name": "M.S. कुधर",
         "raw": "GOVT.SSA UPS KUDHUR",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. UहोOपाल",
+        "name": "P.S. होपाल",
         "raw": "GOVT.SSA PS UHOOPAL",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. कुधUर",
+        "name": "P.S. कुधर",
         "raw": "GOVT.EDU PRI.SCH.KUDHUR",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. राकासमेता कुधUर",
+        "name": "P.S. राकासमेता कुधर",
         "raw": "GOVT.SSA PS RAKASMETA KUDHUR",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. मानझAनार",
+        "name": "P.S. मानझनार",
         "raw": "GOVT. TWD PRI.SCH.MANJHANAR",
         "category": "1 - Primary"
       },
@@ -2849,34 +2849,34 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. पुराना बाZAर पारा मुनगापादार",
+        "name": "P.S. पुराना बार पारा मुनगापादार",
         "raw": "GOVT.TWD PS PURANA BAZAR PARA MUNGAPADAR",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बाघधOदा",
+        "name": "P.S. बाघधदा",
         "raw": "GOVT.SSA PS  BAGHDHODA",
         "category": "1 - Primary"
       }
     ],
     "उमरगांव ब": [
       {
-        "name": "कन्या आश्रम कन्या आश्रम शाला UAमारगांव ब",
+        "name": "कन्या आश्रम कन्या आश्रम शाला मारगांव ब",
         "raw": "GOVT TWD KANYA ASHRAM SHALA UAMARGAON B",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. Uमारगांव ब",
+        "name": "P.S. मारगांव ब",
         "raw": "GOVT TWD PS UMARGAON B",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. UमारगाO \"ब\"",
+        "name": "M.S. मारगा \"ब\"",
         "raw": "GOVT TWD MS UMARGAO \"B\"",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. Aरापारा Uमारगांव ब",
+        "name": "P.S. रापारा मारगांव ब",
         "raw": "GOVT SSA PS ARAPARA UMARGAON B",
         "category": "1 - Primary"
       }
@@ -2893,7 +2893,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. प स चOते बंजोड़ा",
+        "name": "P.S. प स चते बंजोड़ा",
         "raw": "GOVT.TWD P.S. CHOTE BANJODA",
         "category": "1 - Primary"
       }
@@ -2917,7 +2917,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. चIलपुति",
+        "name": "H.S.S. चलपुति",
         "raw": "GOVT. HIGHER SECONDARY  SCHOOL CHILPUTI",
         "category": "10 - Secondary with Higher Secondary"
       },
@@ -2927,78 +2927,78 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. चIलपुति",
+        "name": "U.P.S. चलपुति",
         "raw": "GOVT.UPS CHILPUTI",
         "category": "2 - Primary with Upper Primary"
       }
     ],
     "घोड़ागांव": [
       {
-        "name": "P.S. ज्ञानज्योति तोनदरेपाराघOदागांव",
+        "name": "P.S. ज्ञानज्योति तोनदरेपाराघदागांव",
         "raw": "GOVT.SSA PS GYANJYOTI TONDREPARAGHODAGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. खAसपारा घOदागांव",
+        "name": "U.P.S. खसपारा घदागांव",
         "raw": "GOVT. UPS KHASPARA GHODAGAON",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. ज्ञानज्योति तानदवAहि घOदागांव",
+        "name": "P.S. ज्ञानज्योति तानदवहि घदागांव",
         "raw": "GOVT.SSA PS GYANJYOTI TANDWAHI GHODAGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स मुनदिपारा घOदागांव",
+        "name": "P.S. प स मुनदिपारा घदागांव",
         "raw": "GOVT.TWD P.S. MUNDIPARA GHODAGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "H.S. घOदागांव",
+        "name": "H.S. घदागांव",
         "raw": "GOVT. HIGH SCHOOL GHODAGAON",
         "category": "7 - Upper Pr. and Secondary"
       },
       {
-        "name": "P.S. पुराना पारा घOदागांव",
+        "name": "P.S. पुराना पारा घदागांव",
         "raw": "GOVT.SSA PS PURANA SCHOOL PARA (GHODAGAON)",
         "category": "1 - Primary"
       }
     ],
     "चिपावण्ड": [
       {
-        "name": "M.S. चIपावण्ड",
+        "name": "M.S. चपावण्ड",
         "raw": "GOVT.TWD MS CHIPAWAND",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "U.P.S. डोंगरीपारा चIपावण्ड",
+        "name": "U.P.S. डोंगरीपारा चपावण्ड",
         "raw": "GOVT.  UPS DONGRIPARA CHIPAWAND",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. नायापरा चIपावण्ड",
+        "name": "P.S. नायापरा चपावण्ड",
         "raw": "GOVT.SSA PS NAYAPRA CHIPAWAND",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. काकदाबेड़ा चIपावण्ड",
+        "name": "U.P.S. काकदाबेड़ा चपावण्ड",
         "raw": "GOVT. UPS KAKDABEDA CHIPAWAND",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. प स चIपावण्ड",
+        "name": "P.S. प स चपावण्ड",
         "raw": "GOVT.EDU JANPAD P.S. CHIPAWAND",
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. चIपावण्ड",
+        "name": "H.S.S. चपावण्ड",
         "raw": "GOVT.HIGHER SECONDARY SCHOOL CHIPAWAND",
         "category": "10 - Secondary with Higher Secondary"
       }
     ],
     "उमरगांव अ": [
       {
-        "name": "P.S. सालFI पादार केवनति",
+        "name": "P.S. साल पादार केवनति",
         "raw": "GOVT.SSA PS SALFI PADAR (KEWNTI)",
         "category": "1 - Primary"
       },
@@ -3008,12 +3008,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "U.P.S. Uमारगांव A",
+        "name": "U.P.S. मारगांव",
         "raw": "GOVT. UPS UMARGAON  A",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "U.P.S. केवAनति",
+        "name": "U.P.S. केवनति",
         "raw": "GOVT. UPS KEWANTI",
         "category": "2 - Primary with Upper Primary"
       }
@@ -3054,12 +3054,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "चिखलपुटी": [
       {
-        "name": "P.S. चIचपोलानग",
+        "name": "P.S. चचपोलानग",
         "raw": "GOVT (TWD) PRIMARY SCHOOL CHICHPOLANG",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. चIखAलपुति",
+        "name": "U.P.S. चखलपुति",
         "raw": "GOVT. UPS CHIKHALPUTI",
         "category": "2 - Primary with Upper Primary"
       },
@@ -3071,7 +3071,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "पुसपाल": [
       {
-        "name": "P.S. न प स फAरासपाल पुसपाल",
+        "name": "P.S. न प स फरासपाल पुसपाल",
         "raw": "GOVT.SSA N P.S. PHARASPAL PUSPAL",
         "category": "1 - Primary"
       },
@@ -3123,7 +3123,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. मालगाO",
+        "name": "M.S. मालगा",
         "raw": "GOVT.EDU MS MALGAO",
         "category": "4 - Upper Primary only"
       },
@@ -3152,7 +3152,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "मालाकोट": [
       {
-        "name": "P.S. बानधA पारा मालाकोत",
+        "name": "P.S. बानध पारा मालाकोत",
         "raw": "GOVT.SSA PS BANDHA PARA MALAKOT",
         "category": "1 - Primary"
       },
@@ -3162,7 +3162,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "5 - Up. Pr. Secondary and Higher Sec"
       },
       {
-        "name": "P.S. पारचIपारा मालाकोत",
+        "name": "P.S. पारचपारा मालाकोत",
         "raw": "GOVT.TWD PS PARCHIPARA MALAKOT",
         "category": "1 - Primary"
       },
@@ -3172,12 +3172,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. U प स बुदाकाशA मालाकोत",
+        "name": "U.P.S. प स बुदाकाश मालाकोत",
         "raw": "GOVT.SSA U.P.S BUDAKASHA MALAKOT",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. खAले पारा मालाकोत",
+        "name": "P.S. खले पारा मालाकोत",
         "raw": "GOVT.SSA PS KHALE PARA MALAKOT",
         "category": "1 - Primary"
       },
@@ -3187,14 +3187,14 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बालक AशAरम मालाकोत",
+        "name": "P.S. बालक शरम मालाकोत",
         "raw": "GOVT.TWD BALAK  ASHARM MALAKOT",
         "category": "1 - Primary"
       }
     ],
     "बड़ेबेन्दरी": [
       {
-        "name": "P.S. कोतवAर पारा बड़े बेनदरि",
+        "name": "P.S. कोतवर पारा बड़े बेनदरि",
         "raw": "GOVT.SSA  PS  KOTWAR PARA BADE BENDRI",
         "category": "1 - Primary"
       },
@@ -3214,7 +3214,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. प स झAनदा पारा बड़े बानदरि",
+        "name": "P.S. प स झनदा पारा बड़े बानदरि",
         "raw": "GOVT.SSA  P.S. JHANDA PARA BADE BANDRI",
         "category": "1 - Primary"
       },
@@ -3234,7 +3234,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       }
     ],
-    "कोनदागांव 5 - Uप. पर.  Aनद  सेच": [
+    "कोनदागांव 5 - प. पर.  नद  सेच": [
       {
         "name": "H.S.S. कन्या",
         "raw": "GOVT.GIRLS HIGHER SECONDARY SCHOOL",
@@ -3253,7 +3253,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. मादाI भाटा राजागांव",
+        "name": "P.S. मादा भाटा राजागांव",
         "raw": "GOVT.SSA PS MADAI BHATA (RAJAGAON)",
         "category": "1 - Primary"
       },
@@ -3275,7 +3275,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. घOदापारा केजंग",
+        "name": "P.S. घदापारा केजंग",
         "raw": "GOVT.SSA PS GHODAPARA KEJANG",
         "category": "1 - Primary"
       }
@@ -3287,7 +3287,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. सिधAवण्ड",
+        "name": "P.S. सिधवण्ड",
         "raw": "GOVT.TWD PS SIDHAWAND",
         "category": "1 - Primary"
       },
@@ -3314,7 +3314,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स धAकादपारा पालारि",
+        "name": "P.S. प स धकादपारा पालारि",
         "raw": "GOVT.TWD P.S. DHAKADPARA PALARI",
         "category": "1 - Primary"
       },
@@ -3331,14 +3331,14 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बड़े भIरावण्ड",
+        "name": "P.S. बड़े भरावण्ड",
         "raw": "GOVT.TWD  PS  BADE BHIRAWAND",
         "category": "1 - Primary"
       }
     ],
     "बेचा": [
       {
-        "name": "U.P.S. बेचA",
+        "name": "U.P.S. बेच",
         "raw": "GOVT. UPS BECHA",
         "category": "2 - Primary with Upper Primary"
       },
@@ -3365,7 +3365,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. खAसपारा पल्ली",
+        "name": "P.S. खसपारा पल्ली",
         "raw": "GOVT.SSA PS KHASPARA PALLI",
         "category": "1 - Primary"
       },
@@ -3375,12 +3375,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "8 - Secondary Only"
       },
       {
-        "name": "P.S. माहुभAता",
+        "name": "P.S. माहुभता",
         "raw": "GOVT.TWD PS MAHUBHATA",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. कोशAमचहिददि",
+        "name": "U.P.S. कोशमचहिददि",
         "raw": "GOVT. UPS KOSHAMCHHIDDI",
         "category": "2 - Primary with Upper Primary"
       },
@@ -3407,7 +3407,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स धEलापारा मारदापाल",
+        "name": "P.S. प स धलापारा मारदापाल",
         "raw": "GOVT.SSA P.S. DHELAPARA MARDAPAL",
         "category": "1 - Primary"
       },
@@ -3417,7 +3417,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "U.P.S. बड़े झUलाना",
+        "name": "U.P.S. बड़े झलाना",
         "raw": "GOVT.SSA UPS BADE JHULANA",
         "category": "2 - Primary with Upper Primary"
       },
@@ -3437,7 +3437,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. प स Uसलिकोनतामारदापाल",
+        "name": "P.S. प स सलिकोनतामारदापाल",
         "raw": "GOVT.SSA P.S. USLIKONTAMARDAPAL",
         "category": "1 - Primary"
       },
@@ -3464,12 +3464,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. मोहालाI",
+        "name": "H.S.S. मोहाला",
         "raw": "GOVT.HIGHER SECONDARY SCHOOL MOHALAI",
         "category": "5 - Up. Pr. Secondary and Higher Sec"
       },
       {
-        "name": "P.S. P.S. कुहुचIपारा मोहलि",
+        "name": "P.S. P.S. कुहुचपारा मोहलि",
         "raw": "GOVT.SSA) PS KUHUCHIPARA MOHLI",
         "category": "1 - Primary"
       },
@@ -3491,7 +3491,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "बोरगांव": [
       {
-        "name": "M.S. U प स बोरगांव",
+        "name": "M.S. प स बोरगांव",
         "raw": "GOVT. SSA U.P.S. BOARGAON",
         "category": "4 - Upper Primary only"
       },
@@ -3535,7 +3535,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. खUतदोबरा",
+        "name": "U.P.S. खतदोबरा",
         "raw": "GOVT. UPS KHUTDOBRA",
         "category": "2 - Primary with Upper Primary"
       },
@@ -3545,7 +3545,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. कारानजेE कोकोड़ी",
+        "name": "H.S.S. कारानजे कोकोड़ी",
         "raw": "GOVT. HIGHER SECONDARY SCHOOL KARANJEE KOKODI",
         "category": "5 - Up. Pr. Secondary and Higher Sec"
       },
@@ -3572,7 +3572,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. Aमगांव",
+        "name": "P.S. मगांव",
         "raw": "GOVT TWD PRIMARY SCHOOL AMGAON",
         "category": "1 - Primary"
       },
@@ -3589,7 +3589,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. पातेल पारा मुनगवAल",
+        "name": "P.S. पातेल पारा मुनगवल",
         "raw": "GOVT.TWD PS PATEL PARA (MUNGWAL)",
         "category": "1 - Primary"
       }
@@ -3601,12 +3601,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बालक AशAरमा शाला निलजि",
+        "name": "P.S. बालक शरमा शाला निलजि",
         "raw": "GOVT.TWD PS BALAK ASHARMA SHALA NILJI",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. AAनदुलबेड़ा",
+        "name": "P.S. नदुलबेड़ा",
         "raw": "GOVT.SSA PS .AANDULBEDA",
         "category": "1 - Primary"
       },
@@ -3657,27 +3657,27 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "मटवाल": [
       {
-        "name": "U.P.S. U प स हथकली",
+        "name": "U.P.S. प स हथकली",
         "raw": "GOVT. SSA U.P.S HATHKALI",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "M.S. मातवAल",
+        "name": "M.S. मातवल",
         "raw": "GOVT. MIDDLE SCHOOL  MATWAL",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. मातवAल",
+        "name": "P.S. मातवल",
         "raw": "GOVT.EDU PS MATWAL",
         "category": "1 - Primary"
       },
       {
-        "name": "बालक आश्रम बालक आश्रम शाला मातवAल",
+        "name": "बालक आश्रम बालक आश्रम शाला मातवल",
         "raw": "GOVT.TWD  BOYS ASHRAM  SHALA MATWAL",
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. मातवAल",
+        "name": "H.S.S. मातवल",
         "raw": "GOVT. HIGHER SECONDARY  SCHOOL MATWAL",
         "category": "10 - Secondary with Higher Secondary"
       }
@@ -3699,7 +3699,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. EरानदवAल",
+        "name": "U.P.S. रानदवल",
         "raw": "GOVT. UPS ERANDWAL",
         "category": "2 - Primary with Upper Primary"
       }
@@ -3711,12 +3711,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. चAनगेर",
+        "name": "U.P.S. चनगेर",
         "raw": "GOVT.UPS CHANGER",
         "category": "2 - Primary with Upper Primary"
       }
     ],
-    "चहोतेUसारि": [
+    "चहोतेसारि": [
       {
         "name": "P.S. कोहकड़ी",
         "raw": "GOVT.(TWD) PRIMARY SCHOOL KOHKADI",
@@ -3728,19 +3728,19 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. पाराचहोते Uसरि",
+        "name": "P.S. पाराचहोते सरि",
         "raw": "GOVT.TWD PS SCHOOL PARACHHOTE USRI",
         "category": "1 - Primary"
       }
     ],
     "गोलावण्ड": [
       {
-        "name": "P.S. कन्या AशAरम शाला गोलावण्ड",
+        "name": "P.S. कन्या शरम शाला गोलावण्ड",
         "raw": "GOVT.TWD KANYA ASHARM SHALA  GOLAWAND",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बाZAरपारा गोलावण्ड",
+        "name": "P.S. बारपारा गोलावण्ड",
         "raw": "GOVT. EDU PS BAZARPARA GOLAWAND",
         "category": "1 - Primary"
       },
@@ -3775,7 +3775,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स भEजरिपादारगोलावण्ड",
+        "name": "P.S. प स भजरिपादारगोलावण्ड",
         "raw": "GOVT.SSA P.S. BHEJRIPADARGOLAWAND",
         "category": "1 - Primary"
       }
@@ -3787,7 +3787,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. मानझIपारा सिनगानपुर",
+        "name": "P.S. मानझपारा सिनगानपुर",
         "raw": "GOVT.SSA PS MANJHIPARA SINGANPUR",
         "category": "1 - Primary"
       },
@@ -3812,7 +3812,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. मोहानबेड़ा सिनघAनपुर",
+        "name": "P.S. मोहानबेड़ा सिनघनपुर",
         "raw": "GOVT.SSA PS MOHANBEDA SINGHANPUR",
         "category": "1 - Primary"
       }
@@ -3892,7 +3892,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. बालेनगापाराकिबाIबालेनगा",
+        "name": "U.P.S. बालेनगापाराकिबाबालेनगा",
         "raw": "GOVT.SSA UPS  BALENGAPARAKIBAIBALENGA",
         "category": "2 - Primary with Upper Primary"
       },
@@ -3907,12 +3907,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. किबाI बालेंगा",
+        "name": "H.S.S. किबा बालेंगा",
         "raw": "GOVT.HIGHER SECONDRY KIBAI BALENGA",
         "category": "5 - Up. Pr. Secondary and Higher Sec"
       },
       {
-        "name": "U.P.S. किबाI बालेंगा",
+        "name": "U.P.S. किबा बालेंगा",
         "raw": "GOVT. UPS KIBAI BALENGA",
         "category": "2 - Primary with Upper Primary"
       }
@@ -3951,7 +3951,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "6 - Pr. Up Pr. and Secondary Only"
       },
       {
-        "name": "P.S. थAनागुदि पारा माकड़ी",
+        "name": "P.S. थनागुदि पारा माकड़ी",
         "raw": "GOVT.SSA PS THANAGUDI PARA (MAKDI)",
         "category": "1 - Primary"
       },
@@ -3961,7 +3961,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. FAरसापादार माकड़ी",
+        "name": "P.S. रसापादार माकड़ी",
         "raw": "GOVT.SSA PS FARSAPADAR (MAKDI)",
         "category": "1 - Primary"
       }
@@ -3975,7 +3975,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "हड़ेली": [
       {
-        "name": "P.S. प स ज्ञानज्योति मारकामपाल EAहकालि",
+        "name": "P.S. प स ज्ञानज्योति मारकामपाल हकालि",
         "raw": "GOVT.SSA P.S. GYANJYOTI MARKAMPAL( EAHKALI)",
         "category": "1 - Primary"
       },
@@ -3990,19 +3990,19 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. EAहकालि",
+        "name": "P.S. हकालि",
         "raw": "GOVT.TWD PS EAHKALI",
         "category": "1 - Primary"
       }
     ],
     "भीरागांव ब": [
       {
-        "name": "P.S. नायापारा देवखAरगांव",
+        "name": "P.S. नायापारा देवखरगांव",
         "raw": "GOVT.TWD NAYAPARA DEWKHARGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. भीरागांव A",
+        "name": "U.P.S. भीरागांव",
         "raw": "GOVT.SSA UPS BHIRAGAON A",
         "category": "2 - Primary with Upper Primary"
       },
@@ -4012,19 +4012,19 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. देवखAरगांव",
+        "name": "P.S. देवखरगांव",
         "raw": "GOVT.TWD PS DEVKHARGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. नायापारा भीरागांव A",
+        "name": "P.S. नायापारा भीरागांव",
         "raw": "GOVT.SSA PS NAYAPARA(BHIRAGAON A",
         "category": "1 - Primary"
       }
     ],
     "कडेनार": [
       {
-        "name": "P.S. बालक AAशरारम कडेनार",
+        "name": "P.S. बालक शरारम कडेनार",
         "raw": "GOVT.TWD BALAK AASHRARM KADENAR",
         "category": "1 - Primary"
       },
@@ -4034,7 +4034,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "कन्या आश्रम कन्या AAशराम कडेनार",
+        "name": "कन्या आश्रम कन्या शराम कडेनार",
         "raw": "GOVT.TWD KANYA AASHRAM  KADENAR",
         "category": "1 - Primary"
       },
@@ -4051,12 +4051,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "इसलनार": [
       {
-        "name": "U.P.S. धAनसुलि",
+        "name": "U.P.S. धनसुलि",
         "raw": "GOVT.SSA UPS DHANSULI",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "H.S.S. Eसालनार",
+        "name": "H.S.S. सालनार",
         "raw": "GOVT. HIGHER SECONDRY SCHOOL ESALNAR",
         "category": "10 - Secondary with Higher Secondary"
       },
@@ -4068,7 +4068,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "खचगांव": [
       {
-        "name": "P.S. Aमागुदा पारा खचगांव",
+        "name": "P.S. मागुदा पारा खचगांव",
         "raw": "GOVT.SSA PS AMAGUDA PARA KHACHGAON",
         "category": "1 - Primary"
       },
@@ -4090,12 +4090,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "बानसिरासि": [
       {
-        "name": "P.S. माथAनिबेड़ा",
+        "name": "P.S. माथनिबेड़ा",
         "raw": "GOVT.SSA PS MATHANIBEDA",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. नवीन बानशIरसि",
+        "name": "P.S. नवीन बानशरसि",
         "raw": "GOVT.SSA NAVIN PRI.SCH.BANSHIRSI",
         "category": "1 - Primary"
       }
@@ -4134,12 +4134,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "M.S. मिददिलेसचOOल गिरोला",
+        "name": "M.S. मिददिलेसचल गिरोला",
         "raw": "GOVT. TWD MIDDILESCHOOL GIROLA",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. AवAश पलाते गिरोला",
+        "name": "P.S. वश पलाते गिरोला",
         "raw": "GOVT.TWD PS AWASH PLATE  GIROLA",
         "category": "1 - Primary"
       },
@@ -4166,7 +4166,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बड़े Uसरि",
+        "name": "P.S. बड़े सरि",
         "raw": "GOVT.SSA PS BADE USRI",
         "category": "1 - Primary"
       },
@@ -4176,7 +4176,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "7 - Upper Pr. and Secondary"
       },
       {
-        "name": "P.S. कोतवAरपारा जोबा",
+        "name": "P.S. कोतवरपारा जोबा",
         "raw": "GOVT.SSA PS  KOTWARPARA JOBA",
         "category": "1 - Primary"
       },
@@ -4193,7 +4193,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "मादागांव": [
       {
-        "name": "P.S. बावAदि",
+        "name": "P.S. बावदि",
         "raw": "GOVT.TWD PS BAWADI",
         "category": "1 - Primary"
       },
@@ -4213,19 +4213,19 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       }
     ],
-    "खAदका": [
+    "खदका": [
       {
-        "name": "M.S. खAदका",
+        "name": "M.S. खदका",
         "raw": "GOVT.SSA UPS KHADKA",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. खAदका",
+        "name": "P.S. खदका",
         "raw": "GOVT.EDU PS KHADKA",
         "category": "1 - Primary"
       }
     ],
-    "AAदनार": [
+    "दनार": [
       {
         "name": "P.S. नालापारा आदनार",
         "raw": "GOVT.EDU  PS NALAPARA (ADNAR)",
@@ -4283,14 +4283,14 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       }
     ],
-    "काAरसिनग": [
+    "कारसिनग": [
       {
         "name": "U.P.S. कारसिंग",
         "raw": "GOVT. UPS KARSING",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. प स बालक AशAरम शाला कारसिंग",
+        "name": "P.S. प स बालक शरम शाला कारसिंग",
         "raw": "GOVT.SSA P.S.BOYS ASHARM SHALA KARSING",
         "category": "1 - Primary"
       }
@@ -4307,7 +4307,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "बालक आश्रम बालक AAशराम खड़पड़ी",
+        "name": "बालक आश्रम बालक शराम खड़पड़ी",
         "raw": "GOVT. TWD PS BOYS AASHRAM KHADPADI",
         "category": "1 - Primary"
       },
@@ -4317,7 +4317,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. AAदवAल",
+        "name": "P.S. दवल",
         "raw": "GOVT. TWD PRI.SCH.AADWAL",
         "category": "1 - Primary"
       }
@@ -4353,7 +4353,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "लखापुरी": [
       {
-        "name": "P.S. नाया पारा गागानताराIलाखAपुरि",
+        "name": "P.S. नाया पारा गागानतारालाखपुरि",
         "raw": "GOVT.TWD PS NAYA PARA GAGANTARAILAKHAPURI",
         "category": "1 - Primary"
       },
@@ -4368,7 +4368,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. प स गयान जयोति P.S. Eहरा",
+        "name": "P.S. प स गयान जयोति P.S. हरा",
         "raw": "GOVT.SSA P.S. GYAN JYOTI PS  EHRA",
         "category": "1 - Primary"
       }
@@ -4395,7 +4395,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. सेचOनरय मडानार",
+        "name": "H.S.S. सेचनरय मडानार",
         "raw": "GOVT. HIGHER SECONRY SCHOOL MADANAR",
         "category": "10 - Secondary with Higher Secondary"
       },
@@ -4417,7 +4417,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. चOतेकुरुसनार",
+        "name": "P.S. चतेकुरुसनार",
         "raw": "GOVT. TWD PRI.SCH.CHOTEKURUSNAR",
         "category": "1 - Primary"
       }
@@ -4429,24 +4429,24 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       }
     ],
-    "चEरानग": [
+    "चरानग": [
       {
-        "name": "M.S. चEरेनग",
+        "name": "M.S. चरेनग",
         "raw": "GOVT.SSA MS. CHERENG",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. चEरानग",
+        "name": "P.S. चरानग",
         "raw": "GOVT.TWD PS CHERANG",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. पुजारी पारा चEरानग",
+        "name": "P.S. पुजारी पारा चरानग",
         "raw": "GOVT.SSA PS PUJARI PARA CHERANG",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स पानकापारा चEरानग",
+        "name": "P.S. प स पानकापारा चरानग",
         "raw": "GOVT.SSA P.S. PANKAPARA CHERANG",
         "category": "1 - Primary"
       }
@@ -4463,12 +4463,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "M.S. सातगाO",
+        "name": "M.S. सातगा",
         "raw": "GOVT TWD MS SATGAO",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. चहिनदभAता",
+        "name": "P.S. चहिनदभता",
         "raw": "GOVT.SSA PS CHHINDBHATA",
         "category": "1 - Primary"
       },
@@ -4502,7 +4502,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "5 - Up. Pr. Secondary and Higher Sec"
       },
       {
-        "name": "P.S. तोनदेभAता बम्हनी",
+        "name": "P.S. तोनदेभता बम्हनी",
         "raw": "GOVT.TWD PS TONDEBHATA BAMHANI",
         "category": "1 - Primary"
       },
@@ -4522,7 +4522,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. चAरगांव",
+        "name": "U.P.S. चरगांव",
         "raw": "GOVT. UPS CHARGAON",
         "category": "2 - Primary with Upper Primary"
       },
@@ -4544,7 +4544,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. Iनदागांव",
+        "name": "P.S. नदागांव",
         "raw": "GOVT.TWD PS INDAGAON",
         "category": "1 - Primary"
       }
@@ -4561,7 +4561,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. धOधAपारा बानियागांव",
+        "name": "P.S. धधपारा बानियागांव",
         "raw": "GOVT.TWD PS DHODHAPARA (BANIYAGAON)",
         "category": "1 - Primary"
       },
@@ -4571,7 +4571,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. कुदुमभAता",
+        "name": "P.S. कुदुमभता",
         "raw": "GOVT.SSA PS  KUDUMBHATA",
         "category": "1 - Primary"
       },
@@ -4588,7 +4588,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. भEलवAपारा सुकूरपाल",
+        "name": "P.S. भलवपारा सुकूरपाल",
         "raw": "GOVT. SSA PS BHELWAPARA SUKURPAL",
         "category": "1 - Primary"
       }
@@ -4636,19 +4636,19 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "फूकागिरोला": [
       {
-        "name": "H.S. FUकागिरोला",
+        "name": "H.S. कागिरोला",
         "raw": "GOVT. HIGH SCHOOL FUKAGIROLA",
         "category": "8 - Secondary Only"
       },
       {
-        "name": "U.P.S. FUकागिरोला",
+        "name": "U.P.S. कागिरोला",
         "raw": "GOVT. UPS FUKAGIROLA",
         "category": "2 - Primary with Upper Primary"
       }
     ],
     "चमई": [
       {
-        "name": "P.S. न प स कोकोदभAनता चमई",
+        "name": "P.S. न प स कोकोदभनता चमई",
         "raw": "GOVT.TWD N-P-S- KOKODBHANTA CHAMAI",
         "category": "1 - Primary"
       },
@@ -4658,34 +4658,34 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       }
     ],
-    "चAलका": [
+    "चलका": [
       {
-        "name": "P.S. चAलका",
+        "name": "P.S. चलका",
         "raw": "GOVT.TWD PS CHALKA",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. मानझनिपारा चAलका",
+        "name": "P.S. मानझनिपारा चलका",
         "raw": "GOVT.SSA PS MANJHNIPARA CHALKA",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स नाया पारा चAलका",
+        "name": "P.S. प स नाया पारा चलका",
         "raw": "GOVT.TWD P.S. NAYA PARA CHALKA",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स Iमालिपारा चAलका",
+        "name": "P.S. प स मालिपारा चलका",
         "raw": "GOVT.SSA  P.S. IMALIPARA CHALKA",
         "category": "1 - Primary"
       },
       {
-        "name": "H.S. चAलका",
+        "name": "H.S. चलका",
         "raw": "GOVT. HIGH SCHOOL CHALKA",
         "category": "7 - Upper Pr. and Secondary"
       }
     ],
-    "तुमादिवAल": [
+    "तुमादिवल": [
       {
         "name": "P.S. बेदमा",
         "raw": "GOVT. SSA PRI.SCH.BEDMA",
@@ -4697,16 +4697,16 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       }
     ],
-    "बादालोOर": [
+    "बादालोर": [
       {
-        "name": "U.P.S. बादालोOर",
+        "name": "U.P.S. बादालोर",
         "raw": "GOVT. UPS BADALOOR",
         "category": "2 - Primary with Upper Primary"
       }
     ],
     "बोतिकानेरा": [
       {
-        "name": "P.S. थEमरुपादार",
+        "name": "P.S. थमरुपादार",
         "raw": "GOVT.SSA PS THEMRUPADAR",
         "category": "1 - Primary"
       },
@@ -4716,9 +4716,9 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       }
     ],
-    "कोनदागांव 4 - Uपपेर  Oनलय": [
+    "कोनदागांव 4 - पपेर  नलय": [
       {
-        "name": "M.S. म स माहातमा गानधI वAरद",
+        "name": "M.S. म स माहातमा गानध वरद",
         "raw": "GOVT. TWD M.S. MAHATMA GANDHI WARD",
         "category": "Other"
       }
@@ -4730,19 +4730,19 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. देवAनगान पारा भगदेवा",
+        "name": "P.S. देवनगान पारा भगदेवा",
         "raw": "GOVT.TWD PS DEWANGAN PARA BHAGDEVA",
         "category": "1 - Primary"
       }
     ],
-    "भOगादि": [
+    "भगादि": [
       {
-        "name": "P.S. नपस पलोत पारा भOगादि",
+        "name": "P.S. नपस पलोत पारा भगादि",
         "raw": "GOVT.SSA NPS PLOT PARA (BHOGADI)",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. भOगादि",
+        "name": "U.P.S. भगादि",
         "raw": "GOVT.  UPS BHOGADI",
         "category": "2 - Primary with Upper Primary"
       }
@@ -4759,7 +4759,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. पातेल पारा चIचदोनगारि",
+        "name": "P.S. पातेल पारा चचदोनगारि",
         "raw": "GOVT.TWD PS PATEL PARA CHICHDONGARI",
         "category": "1 - Primary"
       }
@@ -4810,14 +4810,14 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       }
     ],
-    "नावAगांव": [
+    "नावगांव": [
       {
         "name": "P.S. बादेपारा नावागांव",
         "raw": "GOVT.SSA PS BADEPARA NAVAGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "बालक आश्रम बालक आश्रम नावAगांव",
+        "name": "बालक आश्रम बालक आश्रम नावगांव",
         "raw": "GOVT.TWD. PS BALAK ASHRAM  NAWAGAON",
         "category": "1 - Primary"
       },
@@ -4837,7 +4837,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. खOदसानार",
+        "name": "P.S. खदसानार",
         "raw": "GOVT.TWD PS KHODSANAR",
         "category": "1 - Primary"
       }
@@ -4861,7 +4861,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. लाखAनपुरि",
+        "name": "P.S. लाखनपुरि",
         "raw": "GOVT.SSA PS LAKHANPURI",
         "category": "1 - Primary"
       },
@@ -4871,9 +4871,9 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       }
     ],
-    "धAनपुर": [
+    "धनपुर": [
       {
-        "name": "P.S. नेताम पारा धAनपु",
+        "name": "P.S. नेताम पारा धनपु",
         "raw": "GOVT.SSA PS NETAM PARA DHANPU",
         "category": "1 - Primary"
       }
@@ -4892,7 +4892,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. मानगवAल",
+        "name": "P.S. मानगवल",
         "raw": "GOVT. TWD PRI.SCH.MANGWAL",
         "category": "1 - Primary"
       }
@@ -4906,7 +4906,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "कुसमा": [
       {
-        "name": "P.S. भAततिपारा",
+        "name": "P.S. भततिपारा",
         "raw": "GOVT.SSA PS BHATTIPARA",
         "category": "1 - Primary"
       },
@@ -4921,14 +4921,14 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स चIखAलपादार कुसमा",
+        "name": "P.S. प स चखलपादार कुसमा",
         "raw": "GOVT.SSA  P.S. CHIKHALPADAR  KUSMA",
         "category": "1 - Primary"
       }
     ],
     "तोदाम": [
       {
-        "name": "U.P.S. U प स तोदाम",
+        "name": "U.P.S. प स तोदाम",
         "raw": "GOVT. U.P.S TODAM",
         "category": "2 - Primary with Upper Primary"
       }
@@ -4945,26 +4945,26 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       }
     ],
-    "कुलझAर": [
+    "कुलझर": [
       {
         "name": "P.S. प स ज्ञानज्योति फरसगांवबेड़ा",
         "raw": "GOVT.SSA P.S.GYANJYOTI PHARASGAONBEDA",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. पुजारी पारा कुलझAर",
+        "name": "P.S. पुजारी पारा कुलझर",
         "raw": "GOVT.SSA PS PUJARI PARA KULJHAR",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. कुलझAर",
+        "name": "U.P.S. कुलझर",
         "raw": "GOVT. UPS KULJHAR",
         "category": "2 - Primary with Upper Primary"
       }
     ],
     "लेमदि": [
       {
-        "name": "M.S. पिकादभAनता मुलमुला",
+        "name": "M.S. पिकादभनता मुलमुला",
         "raw": "GOVT.SSA UPS PIKADBHANTA MULMULA",
         "category": "4 - Upper Primary only"
       },
@@ -4974,7 +4974,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       }
     ],
-    "जोगि AAदवAल": [
+    "जोगि दवल": [
       {
         "name": "P.S. कानिसत P.S. कालार पारा कोरहोबेड़ा",
         "raw": "GOVT.TWD KANIST PS KALAR PARA (KORHOBEDA)",
@@ -4988,21 +4988,21 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       }
     ],
-    "चIमदि": [
+    "चमदि": [
       {
-        "name": "U.P.S. चIमदि",
+        "name": "U.P.S. चमदि",
         "raw": "GOVT.SSA UPS CHIMDI",
         "category": "2 - Primary with Upper Primary"
       }
     ],
-    "खAनदाम": [
+    "खनदाम": [
       {
-        "name": "U.P.S. U प स खAनदाम",
+        "name": "U.P.S. प स खनदाम",
         "raw": "GOVT.SSA U.P.S. KHANDAM",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. Aतारिकोत पारा खAनदाम",
+        "name": "P.S. तारिकोत पारा खनदाम",
         "raw": "GOVT.SSA PS  ATARIKOT PARA KHANDAM",
         "category": "1 - Primary"
       }
@@ -5011,7 +5011,7 @@ export const SCHOOL_MASTER_DATA = {
   "माकड़ी": {
     "कुरलूबहार": [
       {
-        "name": "U.P.S. कुरलूबहार खAसपारा",
+        "name": "U.P.S. कुरलूबहार खसपारा",
         "raw": "GOVT.UPS KURLUBAHAR KHASPARA",
         "category": "2 - Primary with Upper Primary"
       },
@@ -5028,32 +5028,32 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "अनतपुर": [
       {
-        "name": "P.S. नाकापारा Aनानतपुर",
+        "name": "P.S. नाकापारा नानतपुर",
         "raw": "GOVT. TWD PS NAKAPARA  ANANTPUR",
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. Aनानतपुर",
+        "name": "H.S.S. नानतपुर",
         "raw": "GOVT.HIGHER SECONDARY SCHOOL ANANTPUR",
         "category": "3 - Pr. with Up.Pr. sec. and H.Sec."
       },
       {
-        "name": "U.P.S. Aनगाकोना Aनानतपुर",
+        "name": "U.P.S. नगाकोना नानतपुर",
         "raw": "GOVT. UPS ANGAKONA ANANTPUR",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. प स नायापारा Aनानतपुर",
+        "name": "P.S. प स नायापारा नानतपुर",
         "raw": "GOVT. SSA P.S. NAYAPARA  ANANTPUR",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. खAसपारा Aनानतपुर",
+        "name": "P.S. खसपारा नानतपुर",
         "raw": "GOVT. SSA PS  KHASPARA ANANTPUR",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स खAतरिपारा Aनानतपुर",
+        "name": "P.S. प स खतरिपारा नानतपुर",
         "raw": "GOVT.SSA P.S. KHATRIPARA ANANTPUR",
         "category": "1 - Primary"
       }
@@ -5070,7 +5070,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. धAरलिपारा तौरेंगा",
+        "name": "P.S. धरलिपारा तौरेंगा",
         "raw": "GOVT. SSA DHARLIPARA TORENGA",
         "category": "1 - Primary"
       },
@@ -5099,7 +5099,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "बीजापुर": [
       {
-        "name": "कन्या आश्रम प स कन्या आश्रम हिरलाभAत",
+        "name": "कन्या आश्रम प स कन्या आश्रम हिरलाभत",
         "raw": "GOVT. TWD. P.S. KANYA ASHRAM HIRLABHAT",
         "category": "1 - Primary"
       },
@@ -5109,19 +5109,19 @@ export const SCHOOL_MASTER_DATA = {
         "category": "5 - Up. Pr. Secondary and Higher Sec"
       },
       {
-        "name": "U.P.S. हिरलाभAत",
+        "name": "U.P.S. हिरलाभत",
         "raw": "GOVT.  UPS HIRLABHAT",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. प स खAसपारा बीजापुर",
+        "name": "P.S. प स खसपारा बीजापुर",
         "raw": "GOVT. EDU P.S. KHASPARA BIJAPUR",
         "category": "1 - Primary"
       }
     ],
     "बालोण्ड": [
       {
-        "name": "U.P.S. धAरमारपारा बालोण्ड",
+        "name": "U.P.S. धरमारपारा बालोण्ड",
         "raw": "GOVT.SSA UPS DHARMARPARA BALOND",
         "category": "2 - Primary with Upper Primary"
       },
@@ -5143,7 +5143,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स बाIबेड़ा पारा करण्डी",
+        "name": "P.S. प स बाबेड़ा पारा करण्डी",
         "raw": "GOVT. SSA P.S. BAIBEDA PARA KARANDI",
         "category": "1 - Primary"
       },
@@ -5194,12 +5194,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "छिनारी": [
       {
-        "name": "P.S. प स बामानदाI पारा कशAमतापुर",
+        "name": "P.S. प स बामानदा पारा कशमतापुर",
         "raw": "GOVT.SSA P.S. BAMANDAI PARA KSHAMTAPUR",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स डोंगरीपारा कशAमतापुर",
+        "name": "P.S. प स डोंगरीपारा कशमतापुर",
         "raw": "GOVT. TWD P.S. DONGRIPARA KSHAMTAPUR",
         "category": "1 - Primary"
       },
@@ -5214,12 +5214,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "H.S.S. कशAमतापुर",
+        "name": "H.S.S. कशमतापुर",
         "raw": "GOVT.HIGHER SECONDARY SCHOOL KSHAMTAPUR",
         "category": "10 - Secondary with Higher Secondary"
       },
       {
-        "name": "U.P.S. कशAमतापुर",
+        "name": "U.P.S. कशमतापुर",
         "raw": "GOVT. UPS KSHAMTAPUR",
         "category": "2 - Primary with Upper Primary"
       },
@@ -5229,14 +5229,14 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "बालक आश्रम प स बालक आश्रम कशAमतापुर",
+        "name": "बालक आश्रम प स बालक आश्रम कशमतापुर",
         "raw": "GOVT. TWD P.S. BALAK ASHRAM  KSHAMTAPUR",
         "category": "1 - Primary"
       }
     ],
     "लुभा": [
       {
-        "name": "P.S. प स खAसपारा लुभा",
+        "name": "P.S. प स खसपारा लुभा",
         "raw": "GOVT. EDU. P.S. KHASPARA LUBHA",
         "category": "1 - Primary"
       },
@@ -5295,7 +5295,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "M.S. माAकदि",
+        "name": "M.S. माकदि",
         "raw": "GOVT. EDU JANPAD MS MAAKDI",
         "category": "4 - Upper Primary only"
       },
@@ -5320,7 +5320,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "5 - Up. Pr. Secondary and Higher Sec"
       },
       {
-        "name": "P.S. प स भIमाबेड़ा माकड़ी",
+        "name": "P.S. प स भमाबेड़ा माकड़ी",
         "raw": "GOVT. SSA P.S. BHIMABEDA MAKDI",
         "category": "1 - Primary"
       },
@@ -5335,31 +5335,31 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       }
     ],
-    "मानझIबोरानद": [
+    "मानझबोरानद": [
       {
-        "name": "U.P.S. तोयापारा मानझIबोराद",
+        "name": "U.P.S. तोयापारा मानझबोराद",
         "raw": "GOVT. SSA UPS TOYAPARA MANJHIBORAD",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "M.S. खAसपारामानझIबोरानद",
+        "name": "M.S. खसपारामानझबोरानद",
         "raw": "GOVT. SSA UPS KHASPARAMANJHIBORAND",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "U.P.S. पातेलपारा माझIबोरानद",
+        "name": "U.P.S. पातेलपारा माझबोरानद",
         "raw": "GOVT. SSA UPS PATELPARA  MAJHIBORAND",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. मानझIबोरानद",
+        "name": "P.S. मानझबोरानद",
         "raw": "GOVT. TWD PS MANJHIBORAND",
         "category": "1 - Primary"
       }
     ],
     "कावरा": [
       {
-        "name": "P.S. प स चIनदपारा कावरा",
+        "name": "P.S. प स चनदपारा कावरा",
         "raw": "GOVT.SSA P.S. CHINDPARA KAVRA",
         "category": "1 - Primary"
       },
@@ -5376,7 +5376,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "पीढ़ापाल": [
       {
-        "name": "U.P.S. Aरानगुला",
+        "name": "U.P.S. रानगुला",
         "raw": "GOVT.SSA UPS ARANGULA",
         "category": "2 - Primary with Upper Primary"
       },
@@ -5410,17 +5410,17 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "बवई": [
       {
-        "name": "P.S. बाZAरपाराबावAI",
+        "name": "P.S. बारपाराबाव",
         "raw": "GOVT. EDU JANPAD PS BAZARPARABAWAI",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. म स बाजारपारा बावAI",
+        "name": "M.S. म स बाजारपारा बाव",
         "raw": "GOVT.TWD M.S. BAJARPARA BAWAI",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "H.S. बावAI",
+        "name": "H.S. बाव",
         "raw": "GOVT.HIGH SCHOOL BAWAI",
         "category": "8 - Secondary Only"
       },
@@ -5430,7 +5430,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. FAरसापादार बावAI",
+        "name": "P.S. रसापादार बाव",
         "raw": "GOVT. SSA PSFARSAPADAR BAWAI",
         "category": "1 - Primary"
       }
@@ -5442,7 +5442,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स नायापारा रानधAना",
+        "name": "P.S. प स नायापारा रानधना",
         "raw": "GOVT. SSA P.S. NAYAPARA RANDHANA",
         "category": "1 - Primary"
       },
@@ -5452,12 +5452,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "M.S. नायापारा रानधAना",
+        "name": "M.S. नायापारा रानधना",
         "raw": "GOVT. SSA UPS NAYAPARA RANDHANA",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. Aमोदिपारा रानधना",
+        "name": "P.S. मोदिपारा रानधना",
         "raw": "GOVT. TWD PS AMODIPARA RANDHNA",
         "category": "1 - Primary"
       },
@@ -5472,7 +5472,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. रानधAना",
+        "name": "H.S.S. रानधना",
         "raw": "GOVT.HIGHER SECONDARY SCHOOL RANDHANA",
         "category": "5 - Up. Pr. Secondary and Higher Sec"
       }
@@ -5494,12 +5494,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. खAसपारा ओटेण्डा",
+        "name": "M.S. खसपारा ओटेण्डा",
         "raw": "GOVT. TWD MS KHASPARA OTENDA",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. खAसपारा ओटेण्डा",
+        "name": "P.S. खसपारा ओटेण्डा",
         "raw": "GOVT. EDU PS KHASPARA OTENDA",
         "category": "1 - Primary"
       },
@@ -5519,19 +5519,19 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       }
     ],
-    "भIरगांव": [
+    "भरगांव": [
       {
         "name": "P.S. ज्ञानज्योति सादाक पारा भीरागांव",
         "raw": "GOVT. SSA GYANJYOTI SADAK PARA BHIRAGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बादेपारा भAतागांव",
+        "name": "P.S. बादेपारा भतागांव",
         "raw": "GOVT EDU PS BADEPARA BHATAGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बिजादिहिभAतागांव",
+        "name": "P.S. बिजादिहिभतागांव",
         "raw": "GOVT SSA PS BIJADIHIBHATAGAON",
         "category": "1 - Primary"
       },
@@ -5546,7 +5546,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "7 - Upper Pr. and Secondary"
       },
       {
-        "name": "M.S. बादेपारा भAतागांव",
+        "name": "M.S. बादेपारा भतागांव",
         "raw": "GOVT SSA UPS BADEPARA BHATAGAON",
         "category": "4 - Upper Primary only"
       }
@@ -5612,7 +5612,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. ज्ञानज्योति भOगादपाराकेरावAहि",
+        "name": "P.S. ज्ञानज्योति भगादपाराकेरावहि",
         "raw": "GOVT. SSA GYANJYOTI BHOGADPARAKERAWAHI",
         "category": "1 - Primary"
       },
@@ -5637,7 +5637,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. Uसरिबेड़ा केरावाही",
+        "name": "P.S. सरिबेड़ा केरावाही",
         "raw": "GOVT. SSA PS USRIBEDA KERAWAHI",
         "category": "1 - Primary"
       }
@@ -5649,7 +5649,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. सचOOलपारासोनाबेड़ा",
+        "name": "P.S. सचलपारासोनाबेड़ा",
         "raw": "GOVT. EDU PS SCHOOLPARASONABEDA",
         "category": "1 - Primary"
       },
@@ -5671,7 +5671,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "लभा": [
       {
-        "name": "P.S. खAसपारा लभा",
+        "name": "P.S. खसपारा लभा",
         "raw": "GOVT. TWD PS KHASPARA LABHA",
         "category": "1 - Primary"
       },
@@ -5725,7 +5725,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "छतोड़ी": [
       {
-        "name": "P.S. प स बाZAर पारा छतोड़ी",
+        "name": "P.S. प स बार पारा छतोड़ी",
         "raw": "GOVT. TWD P.S. BAZAR PARA  CHHATODI",
         "category": "1 - Primary"
       },
@@ -5769,22 +5769,22 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "स्वामी आत्मानंद H.S.S. शAमपुर",
+        "name": "स्वामी आत्मानंद H.S.S. शमपुर",
         "raw": "SWAMI ATMANAND GOVT ENGLISH MEDIUM SCHOOL SHAMPUR",
         "category": "3 - Pr. with Up.Pr. sec. and H.Sec."
       },
       {
-        "name": "P.S. डोंगरीपारा शAमपुर",
+        "name": "P.S. डोंगरीपारा शमपुर",
         "raw": "GOVT. SSA PS DONGRIPARA  SHAMPUR",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. पलातपारा शAमपुर",
+        "name": "U.P.S. पलातपारा शमपुर",
         "raw": "GOVT. SSA UPS PLATPARA SHAMPUR",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. जपस शAमपुर",
+        "name": "P.S. जपस शमपुर",
         "raw": "GOVT. EDU JPS SHAMPUR",
         "category": "1 - Primary"
       }
@@ -5796,7 +5796,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. प स रोUतपारा",
+        "name": "P.S. प स रोतपारा",
         "raw": "GOVT.SSA P.S ROUTPARA",
         "category": "1 - Primary"
       },
@@ -5806,7 +5806,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स जिराकाशA इंगरा",
+        "name": "P.S. प स जिराकाश इंगरा",
         "raw": "GOVT. SSA P.S. JIRAKASHA INGRA",
         "category": "1 - Primary"
       }
@@ -5823,7 +5823,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. खAसपारा काटागांव",
+        "name": "P.S. खसपारा काटागांव",
         "raw": "GOVT. EDU. PS KHASPARA KATAGAON",
         "category": "1 - Primary"
       },
@@ -5860,17 +5860,17 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "H.S.S. UदिदागोAन",
+        "name": "H.S.S. दिदागोन",
         "raw": "GOVT. HIGHER SECONDARY SCHOOL UDIDAGOAN",
         "category": "3 - Pr. with Up.Pr. sec. and H.Sec."
       },
       {
-        "name": "P.S. प स भAततिपारा उड़िदगांव",
+        "name": "P.S. प स भततिपारा उड़िदगांव",
         "raw": "GOVT. SSA P.S. BHATTIPARA UDIDGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स मानझIपारा उड़िदगांव",
+        "name": "P.S. प स मानझपारा उड़िदगांव",
         "raw": "GOVT. SSA P.S. MANJHIPARA UDIDGAON",
         "category": "1 - Primary"
       }
@@ -5892,7 +5892,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. प स साराIपाल",
+        "name": "P.S. प स सारापाल",
         "raw": "GOVT. TWD P.S. SARAIPAL",
         "category": "1 - Primary"
       }
@@ -5904,24 +5904,24 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. पाथAरि",
+        "name": "P.S. पाथरि",
         "raw": "GOVT. EDU PS PATHARI",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. पाथAरि",
+        "name": "M.S. पाथरि",
         "raw": "GOVT. SSA UPS PATHARI",
         "category": "4 - Upper Primary only"
       }
     ],
     "तरईबेड़ा": [
       {
-        "name": "M.S. तरईबेड़ा Oदारगांव",
+        "name": "M.S. तरईबेड़ा दारगांव",
         "raw": "GOVT.SSA  UPS TARAIBEDA ODARGAON",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. प स तरईबेड़ा Oनदारगांव",
+        "name": "P.S. प स तरईबेड़ा नदारगांव",
         "raw": "GOVT. TWD P.S. TARAIBEDA  ONDARGAON",
         "category": "1 - Primary"
       },
@@ -5938,12 +5938,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "3 - Pr. with Up.Pr. sec. and H.Sec."
       },
       {
-        "name": "U.P.S. फAरसापादार हीरापुर",
+        "name": "U.P.S. फरसापादार हीरापुर",
         "raw": "GOVT.SSA UPS  PHARSAPADAR HIRAPUR",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. हीरापुर खAसपारा",
+        "name": "P.S. हीरापुर खसपारा",
         "raw": "GOVT. EDU PSHIRAPUR KHASPARA",
         "category": "1 - Primary"
       },
@@ -5955,34 +5955,34 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "ठेमगांव": [
       {
-        "name": "P.S. प स पातेलपारा थEमगांव",
+        "name": "P.S. प स पातेलपारा थमगांव",
         "raw": "GOVT. TWD P.S. PATELPARA THEMGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "H.S. थEमगांव",
+        "name": "H.S. थमगांव",
         "raw": "GOVT HIGH SCHOOL  THEMGAON",
         "category": "6 - Pr. Up Pr. and Secondary Only"
       },
       {
-        "name": "P.S. प स डोंगरीपारा थEमगांव",
+        "name": "P.S. प स डोंगरीपारा थमगांव",
         "raw": "GOVT. SSA P.S. DONGRIPARA THEMGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "कन्या आश्रम प स कन्या आश्रम थEमगांव",
+        "name": "कन्या आश्रम प स कन्या आश्रम थमगांव",
         "raw": "GOVT. TWD P.S. KANYA ASHRAM THEMGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स मारिपारा थEमगांव",
+        "name": "P.S. प स मारिपारा थमगांव",
         "raw": "GOVT. SSA P.S. MARIPARA THEMGAON",
         "category": "1 - Primary"
       }
     ],
     "मारागांव": [
       {
-        "name": "U.P.S. सवIनिपारा मारागांव",
+        "name": "U.P.S. सवनिपारा मारागांव",
         "raw": "GOVT. SSA UPS SWINIPARA  MARAGAON",
         "category": "2 - Primary with Upper Primary"
       },
@@ -6021,12 +6021,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "उदेंगा": [
       {
-        "name": "P.S. प स Uदेनगा",
+        "name": "P.S. प स देनगा",
         "raw": "GOVT. TWD P.S. UDENGA",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. खAसपारा जादकोनगा",
+        "name": "U.P.S. खसपारा जादकोनगा",
         "raw": "GOVT.SSA UPS KHASPARA JADKONGA",
         "category": "2 - Primary with Upper Primary"
       }
@@ -6038,7 +6038,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "बालक आश्रम बालक आश्रम AमरावAति",
+        "name": "बालक आश्रम बालक आश्रम मरावति",
         "raw": "GOVT. TWD PS BALAK ASHRAM AMRAWATI",
         "category": "1 - Primary"
       },
@@ -6048,12 +6048,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. नाकापारा EAरला",
+        "name": "P.S. नाकापारा रला",
         "raw": "GOVT. TWD PS NAKAPARA EARLA",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. खAसपारा AमरावAति",
+        "name": "U.P.S. खसपारा मरावति",
         "raw": "GOVT. UPS. KHASPARA AMRAWATI",
         "category": "2 - Primary with Upper Primary"
       },
@@ -6063,36 +6063,36 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. भAततिपारा EAरला",
+        "name": "P.S. भततिपारा रला",
         "raw": "GOVT. SSA PS BHATTIPARA EARLA",
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. EAरला",
+        "name": "H.S.S. रला",
         "raw": "GOVT  HIGHER SECONDARY SCHOOL EARLA",
         "category": "5 - Up. Pr. Secondary and Higher Sec"
       }
     ],
     "बड़ेघोड़सोड़ा": [
       {
-        "name": "P.S. प स चहोते घOदसोदा",
+        "name": "P.S. प स चहोते घदसोदा",
         "raw": "TWD P.S. CHHOTE GHODSODA",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स बड़े घOदसोदा",
+        "name": "P.S. प स बड़े घदसोदा",
         "raw": "GOVT.EDU P.S. BADE GHODSODA",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. म स बड़े घOदसोदा",
+        "name": "M.S. म स बड़े घदसोदा",
         "raw": "GOVT.TWD M.S. BADE GHODSODA",
         "category": "4 - Upper Primary only"
       }
     ],
     "तमरावण्ड": [
       {
-        "name": "U.P.S. खUतबेड़ा तमरावण्ड",
+        "name": "U.P.S. खतबेड़ा तमरावण्ड",
         "raw": "GOVT.UPS KHUTBEDA TAMRAWAND",
         "category": "2 - Primary with Upper Primary"
       },
@@ -6146,12 +6146,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स निचEपारा ओण्डरी",
+        "name": "P.S. प स निचपारा ओण्डरी",
         "raw": "GOVT. SSA P.S.NICHEPARA ONDRI",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. खAसपारा ओण्डरी",
+        "name": "U.P.S. खसपारा ओण्डरी",
         "raw": "GOVT. SSA UPS KHASPARA ONDRI",
         "category": "2 - Primary with Upper Primary"
       }
@@ -6163,7 +6163,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. भUसारकालि मिरमिंडा",
+        "name": "P.S. भसारकालि मिरमिंडा",
         "raw": "GOVT.TWD PS BHUSARKALI MIRMINDA",
         "category": "1 - Primary"
       },
@@ -6180,7 +6180,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. खAसपारागुहाबोरानद",
+        "name": "P.S. खसपारागुहाबोरानद",
         "raw": "GOVT.TWD PS KHASPARAGUHABORAND",
         "category": "1 - Primary"
       },
@@ -6207,7 +6207,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. प स खUदि",
+        "name": "P.S. प स खदि",
         "raw": "GOVT. TWD P.S. KHUDI",
         "category": "1 - Primary"
       },
@@ -6222,7 +6222,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "U.P.S. खAसपारा बागबेड़ा",
+        "name": "U.P.S. खसपारा बागबेड़ा",
         "raw": "GOVT. UPS KHASPARA BAGBEDA",
         "category": "2 - Primary with Upper Primary"
       },
@@ -6232,29 +6232,29 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स नायापारा खUदि",
+        "name": "P.S. प स नायापारा खदि",
         "raw": "GOVT. SSA P.S. NAYAPARA KHUDI",
         "category": "1 - Primary"
       },
       {
-        "name": "H.S. शOOल बागबेड़ा",
+        "name": "H.S. शल बागबेड़ा",
         "raw": "GOVT.HIGH SHOOL BAGBEDA",
         "category": "8 - Secondary Only"
       }
     ],
-    "Oनदेरगांव": [
+    "नदेरगांव": [
       {
-        "name": "U.P.S. Oनदारगांव",
+        "name": "U.P.S. नदारगांव",
         "raw": "GOVT. SSA UPS ONDARGAON",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. हिराबाघ Oनदारगांव",
+        "name": "P.S. हिराबाघ नदारगांव",
         "raw": "GOVT. SSA PS HIRABAGH ONDARGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स नायापारा Oनदारगांव",
+        "name": "P.S. प स नायापारा नदारगांव",
         "raw": "GOVT. SSA P.S. NAYAPARA ONDARGAON",
         "category": "1 - Primary"
       }
@@ -6281,7 +6281,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. चIखAलापारा हादिगांव",
+        "name": "U.P.S. चखलापारा हादिगांव",
         "raw": "GOVT. SSA UPS CHIKHALAPARA HADIGAON",
         "category": "2 - Primary with Upper Primary"
       },
@@ -6310,12 +6310,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "बेलगांव": [
       {
-        "name": "P.S. प स धAवदामाल बेलगांव",
+        "name": "P.S. प स धवदामाल बेलगांव",
         "raw": "GOVT.SSA GJ P.S. DHAWDAMAL BELGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. साराIबेड़ा बेलगांव",
+        "name": "U.P.S. साराबेड़ा बेलगांव",
         "raw": "GOVT.UPS SARAIBEDA BELGAON",
         "category": "2 - Primary with Upper Primary"
       },
@@ -6325,19 +6325,19 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       }
     ],
-    "Uमारगांव": [
+    "मारगांव": [
       {
-        "name": "P.S. प स Uमारगांव",
+        "name": "P.S. प स मारगांव",
         "raw": "GOVT. TWD P.S.UMARGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. प स ग ज पलातपारा Uमारगांव",
+        "name": "P.S. प स ग ज पलातपारा मारगांव",
         "raw": "GOVT. SSA P.S. G.J. PLATPARA UMARGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "H.S. Uमारगांव",
+        "name": "H.S. मारगांव",
         "raw": "GOVT. HIGH SCHOOL UMARGAON",
         "category": "7 - Upper Pr. and Secondary"
       },
@@ -6347,9 +6347,9 @@ export const SCHOOL_MASTER_DATA = {
         "category": "6 - Pr. Up Pr. and Secondary Only"
       }
     ],
-    "धAरलि": [
+    "धरलि": [
       {
-        "name": "P.S. धAरलि",
+        "name": "P.S. धरलि",
         "raw": "GOVT. EDU PS DHARLI",
         "category": "1 - Primary"
       },
@@ -6359,7 +6359,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "M.S. धAरलि",
+        "name": "M.S. धरलि",
         "raw": "GOVT. SSA UPS DHARLI",
         "category": "4 - Upper Primary only"
       }
@@ -6378,21 +6378,21 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       }
     ],
-    "हिरावAनदि": [
+    "हिरावनदि": [
       {
-        "name": "P.S. बादेचOUरापारा हिरावAनदि",
+        "name": "P.S. बादेचरापारा हिरावनदि",
         "raw": "GOVT. SSA PS BADECHOURAPARA HIRAWANDI",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. खAसपारा हिरावAनदि",
+        "name": "U.P.S. खसपारा हिरावनदि",
         "raw": "GOVT UPS KHASPARA HIRAWANDI",
         "category": "2 - Primary with Upper Primary"
       }
     ],
     "बाडरा": [
       {
-        "name": "P.S. थOतापादार",
+        "name": "P.S. थतापादार",
         "raw": "GOVT. TWD PRIMARY SCHOOL THOTAPADAR",
         "category": "1 - Primary"
       },
@@ -6419,46 +6419,46 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       }
     ],
-    "Uलेरा": [
+    "लेरा": [
       {
-        "name": "U.P.S. पातेलपारा Uलेरा",
+        "name": "U.P.S. पातेलपारा लेरा",
         "raw": "GOVT. SSA UPS PATELPARA ULERA",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "U.P.S. Uलेरा",
+        "name": "U.P.S. लेरा",
         "raw": "GOVT. SSA UPS ULERA",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. प स नायापारा Uलेरा",
+        "name": "P.S. प स नायापारा लेरा",
         "raw": "GOVT. SSA P.S. NAYAPARA ULERA",
         "category": "1 - Primary"
       }
     ],
-    "बारकाI": [
+    "बारका": [
       {
-        "name": "P.S. ज्ञानज्योति रोUतपारानालाझAर",
+        "name": "P.S. ज्ञानज्योति रोतपारानालाझर",
         "raw": "GOVT. SSA GYANJYOTI ROUTPARANALAJHAR",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बालोनदियापारा बारकाI",
+        "name": "P.S. बालोनदियापारा बारका",
         "raw": "GOVT. TWD PS BALONDIYAPARA BARKAI",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. सचOOलपारानालाझAर",
+        "name": "P.S. सचलपारानालाझर",
         "raw": "GOVT.TWD PS SCHOOLPARANALAJHAR",
         "category": "1 - Primary"
       },
       {
-        "name": "U.P.S. भAनधAपारा बारकाI",
+        "name": "U.P.S. भनधपारा बारका",
         "raw": "GOVT. SSA UPS BHANDHAPARA BARKAI",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "H.S.S. सेचOनदेरय बारकाI",
+        "name": "H.S.S. सेचनदेरय बारका",
         "raw": "GOVT.HIGHER  SECONDERY SCHOOL BARKAI",
         "category": "3 - Pr. with Up.Pr. sec. and H.Sec."
       },
@@ -6468,7 +6468,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "M.S. सचOOलपारा नालाझAर",
+        "name": "M.S. सचलपारा नालाझर",
         "raw": "GOVT. SSA UPS SCHOOLPARA NALAJHAR",
         "category": "4 - Upper Primary only"
       }
@@ -6480,12 +6480,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "U.P.S. खAसपारा मगेदा",
+        "name": "U.P.S. खसपारा मगेदा",
         "raw": "GOVT.TWD UPS KHASPARA MAGEDA",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "U.P.S. खAसपारा भAतवA",
+        "name": "U.P.S. खसपारा भतव",
         "raw": "GOVT. SSA UPS KHASPARA BHATWA",
         "category": "2 - Primary with Upper Primary"
       },
@@ -6526,66 +6526,66 @@ export const SCHOOL_MASTER_DATA = {
     ]
   },
   "फरसगांव": {
-    "AAलोर": [
+    "लोर": [
       {
-        "name": "H.S.S. AAलोर",
+        "name": "H.S.S. लोर",
         "raw": "GOVT. HIGHER SECONDARY SCHOOL AALOR",
         "category": "10 - Secondary with Higher Secondary"
       },
       {
-        "name": "M.S. AAलोर",
+        "name": "M.S. लोर",
         "raw": "GOVT. EDU MS AALOR",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. पारचहिपारा AAलोर",
+        "name": "P.S. पारचहिपारा लोर",
         "raw": "GOVT. SSA PS PARCHHIPARA AALOR",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. घOदसोदापारा AAलोर",
+        "name": "M.S. घदसोदापारा लोर",
         "raw": "GOVT. MIDDLE SCHOOL GHODSODAPARA AALOR",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. AAलोर",
+        "name": "P.S. लोर",
         "raw": "GOVT. EDU PS AALOR",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. कानदबेड़ा AAलोर",
+        "name": "P.S. कानदबेड़ा लोर",
         "raw": "GOVT. TWD PS KANDBEDA AALOR",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. भIमाभAता AAलोर",
+        "name": "M.S. भमाभता लोर",
         "raw": "GOVT. MIDDLE SCHOOL BHIMABHATA AALOR",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. कोनादिडीही AAलोर",
+        "name": "P.S. कोनादिडीही लोर",
         "raw": "GOVT. SSA PS KONADIDIHI AALOR",
         "category": "1 - Primary"
       }
     ],
     "बड़ेडोंगर": [
       {
-        "name": "P.S. चOलोनय बड़ेडोंगर",
+        "name": "P.S. चलोनय बड़ेडोंगर",
         "raw": "GOVT. TWD PS COLONY BADEDONGAR",
         "category": "1 - Primary"
       },
       {
-        "name": "कन्या आश्रम कन्या AAशराम भAIनसाबेड़ा बड़ेडोंगर",
+        "name": "कन्या आश्रम कन्या शराम भनसाबेड़ा बड़ेडोंगर",
         "raw": "GOVT. TWD PS GIRLS  AASHRAM BHAINSABEDA BADEDONGAR",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. भAIनसाबेड़ा बड़ेडोंगर",
+        "name": "M.S. भनसाबेड़ा बड़ेडोंगर",
         "raw": "GOVT. SSA MS  BHAINSABEDA BADEDONGAR",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. भAनदारिपारा बड़ेडोंगर",
+        "name": "P.S. भनदारिपारा बड़ेडोंगर",
         "raw": "GOVT. TWD PS BHANDARIPARA BADEDONGAR",
         "category": "1 - Primary"
       },
@@ -6625,7 +6625,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "कन्या आश्रम कन्या AAशराम बड़ेडोंगर",
+        "name": "कन्या आश्रम कन्या शराम बड़ेडोंगर",
         "raw": "GOVT. TWD PS GIRLS AASHRAM BADEDONGAR",
         "category": "1 - Primary"
       },
@@ -6635,7 +6635,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. बेलभAता बड़ेडोंगर",
+        "name": "M.S. बेलभता बड़ेडोंगर",
         "raw": "GOVT. SSA MS BELBHATA BADEDONGAR",
         "category": "2 - Primary with Upper Primary"
       }
@@ -6662,7 +6662,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. झUलनाडीही कोलिया बेड़ा चिचाड़ी",
+        "name": "P.S. झलनाडीही कोलिया बेड़ा चिचाड़ी",
         "raw": "GOVT. SSA PS JHULNADIHI (KOLIYA BEDA) CHICHADI",
         "category": "1 - Primary"
       },
@@ -6674,12 +6674,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "शंकरपुर": [
       {
-        "name": "M.S. पाIनसरा",
+        "name": "M.S. पानसरा",
         "raw": "GOVT. SSA MS PAINSRA",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. पाIनसरा",
+        "name": "P.S. पानसरा",
         "raw": "GOVT. TWD PS PAINSRA",
         "category": "1 - Primary"
       },
@@ -6689,7 +6689,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "5 - Up. Pr. Secondary and Higher Sec"
       },
       {
-        "name": "P.S. गायनतापारा पाIनसरा",
+        "name": "P.S. गायनतापारा पानसरा",
         "raw": "GOVT. SSA PS GAYNTAPARA PAINSRA",
         "category": "1 - Primary"
       },
@@ -6735,22 +6735,22 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "फूफगांव": [
       {
-        "name": "P.S. FUपगांव",
+        "name": "P.S. पगांव",
         "raw": "GOVT. TWD PS FUPGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. निचEपारा FUपगांव",
+        "name": "P.S. निचपारा पगांव",
         "raw": "GOVT. SSA PS NICHEPARA FUPGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. काIतपादार",
+        "name": "P.S. कातपादार",
         "raw": "GOVT. TWD PS KAITPADAR",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. FUपगांव",
+        "name": "M.S. पगांव",
         "raw": "GOVT. TWD MS FUPGAON",
         "category": "4 - Upper Primary only"
       }
@@ -6782,7 +6782,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "बालक आश्रम बालक AAशराम कोनगुड़",
+        "name": "बालक आश्रम बालक शराम कोनगुड़",
         "raw": "GOVT. TWD PS BOYS AASHRAM KONGUD",
         "category": "1 - Primary"
       },
@@ -6865,36 +6865,36 @@ export const SCHOOL_MASTER_DATA = {
         "category": "8 - Secondary Only"
       }
     ],
-    "मानझIAAतगांव": [
+    "मानझतगांव": [
       {
-        "name": "P.S. पलातपारा मुंडापारा मानझIAAथगांव",
+        "name": "P.S. पलातपारा मुंडापारा मानझथगांव",
         "raw": "GOVT. SSA PS PLATPARA (MUNDAPARA) MANJHIAATHGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. मानझAपारा मानझIAAथगांव",
+        "name": "M.S. मानझपारा मानझथगांव",
         "raw": "GOVT. MIDDLE SCHOOL MANJHAPARA MANJHIAATHGAON",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. पातेलपारा मानझIAAथगांव",
+        "name": "P.S. पातेलपारा मानझथगांव",
         "raw": "GOVT. SSA PS PATELPARA MANJHIAATHGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. मानझIAAथगांव",
+        "name": "P.S. मानझथगांव",
         "raw": "GOVT. TWD PS MANJHIAATHGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. मानझIAथगांव",
+        "name": "H.S.S. मानझथगांव",
         "raw": "GOVT. HIGHER SECONDARY  SCHOOL. MANJHIATHGAON",
         "category": "5 - Up. Pr. Secondary and Higher Sec"
       }
     ],
     "भोंगापाल": [
       {
-        "name": "P.S. पाथरिपारा AAलमेर",
+        "name": "P.S. पाथरिपारा लमेर",
         "raw": "GOVT. SSA PS PATHRIPARA AALMER",
         "category": "1 - Primary"
       },
@@ -6914,14 +6914,14 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. AAलमेर",
+        "name": "M.S. लमेर",
         "raw": "GOVT. MIDDLE SCHOOL AALMER",
         "category": "2 - Primary with Upper Primary"
       }
     ],
     "खण्डसरा": [
       {
-        "name": "P.S. शAनतिनागार खण्डसरा",
+        "name": "P.S. शनतिनागार खण्डसरा",
         "raw": "GOVT. SSA PS SHANTINAGAR KHANDSARA",
         "category": "1 - Primary"
       },
@@ -6970,34 +6970,34 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. चAनदाबेलगांव",
+        "name": "P.S. चनदाबेलगांव",
         "raw": "GOVT. SSA PS CHANDABELGAON",
         "category": "1 - Primary"
       }
     ],
-    "भAनदारबानदि": [
+    "भनदारबानदि": [
       {
-        "name": "P.S. पाथरिपारा भAनदारवAनदि",
+        "name": "P.S. पाथरिपारा भनदारवनदि",
         "raw": "GOVT. SSA PS PATHRIPARA BHANDARWANDI",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बाIलगांव",
+        "name": "P.S. बालगांव",
         "raw": "GOVT. TWD PS BAILGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. भAनदारवAनदि",
+        "name": "P.S. भनदारवनदि",
         "raw": "GOVT. TWD PS BHANDARWANDI",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. बाIलगांव",
+        "name": "M.S. बालगांव",
         "raw": "GOVT. SSA MS BAILGAON",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "M.S. भAनदारवAनदि",
+        "name": "M.S. भनदारवनदि",
         "raw": "GOVT. MIDDLE SCHOOL BHANDARWANDI",
         "category": "2 - Primary with Upper Primary"
       }
@@ -7009,7 +7009,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "M.S. FUतानचAनदागांव",
+        "name": "M.S. तानचनदागांव",
         "raw": "GOVT. SSA MS FUTANCHANDAGAON",
         "category": "2 - Primary with Upper Primary"
       },
@@ -7026,7 +7026,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "M.S. कादाIबेड़ा जैतपुरी",
+        "name": "M.S. कादाबेड़ा जैतपुरी",
         "raw": "GOVT. SSA MS KADAIBEDA JAITPURI",
         "category": "4 - Upper Primary only"
       },
@@ -7036,12 +7036,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "कन्या आश्रम कन्या AAशराम जैतपुरी",
+        "name": "कन्या आश्रम कन्या शराम जैतपुरी",
         "raw": "GOVT. TWD PS GIRLS  AASHRAM JAITPURI",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. कादाIबेड़ा जैतपुरी",
+        "name": "P.S. कादाबेड़ा जैतपुरी",
         "raw": "GOVT. EDU PS KADAIBEDA JAITPURI",
         "category": "1 - Primary"
       },
@@ -7056,19 +7056,19 @@ export const SCHOOL_MASTER_DATA = {
         "category": "3 - Pr. with Up.Pr. sec. and H.Sec."
       },
       {
-        "name": "M.S. सुवAदोनगारि जैतपुरी",
+        "name": "M.S. सुवदोनगारि जैतपुरी",
         "raw": "GOVT. SSA MS SUWADONGARI JAITPURI",
         "category": "2 - Primary with Upper Primary"
       }
     ],
     "पाण्डेआठगांव": [
       {
-        "name": "P.S. डीहीपारा पानदेAथगांव",
+        "name": "P.S. डीहीपारा पानदेथगांव",
         "raw": "GOVT. SSA PS DIHIPARA PANDEATHGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. गुदरिपारा पानदेAथगांव",
+        "name": "P.S. गुदरिपारा पानदेथगांव",
         "raw": "GOVT. SSA PS GUDRIPARA PANDEATHGAON",
         "category": "1 - Primary"
       },
@@ -7080,7 +7080,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "बनचपई": [
       {
-        "name": "कन्या आश्रम कन्या AAशराम बनचपई",
+        "name": "कन्या आश्रम कन्या शराम बनचपई",
         "raw": "GOVT. TWD PS GIRLS  AASHRAM BANCHAPAI",
         "category": "1 - Primary"
       },
@@ -7090,7 +7090,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. AAमापारा बनचपई",
+        "name": "P.S. मापारा बनचपई",
         "raw": "GOVT. SSA PS AAMAPARA BANCHAPAI",
         "category": "1 - Primary"
       },
@@ -7141,7 +7141,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "लंजोड़ा": [
       {
-        "name": "P.S. सालफIपादार लंजोड़ा",
+        "name": "P.S. सालफपादार लंजोड़ा",
         "raw": "GOVT. TWD PS SALPHIPADAR LANJODA",
         "category": "1 - Primary"
       },
@@ -7161,7 +7161,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. बाZAरपारा लंजोड़ा",
+        "name": "P.S. बारपारा लंजोड़ा",
         "raw": "GOVT. SSA PS BAZARPARA LANJODA",
         "category": "1 - Primary"
       },
@@ -7171,12 +7171,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. सिनघराIपारा लंजोड़ा",
+        "name": "P.S. सिनघरापारा लंजोड़ा",
         "raw": "GOVT. SSA PS SINGHRAIPARA LANJODA",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. मिचIपारा लंजोड़ा",
+        "name": "P.S. मिचपारा लंजोड़ा",
         "raw": "GOVT. EDU PS MICHIPARA LANJODA",
         "category": "1 - Primary"
       },
@@ -7215,7 +7215,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. हाथIपाखAना सिरसीकलार",
+        "name": "M.S. हाथपाखना सिरसीकलार",
         "raw": "GOVT. MIDDLE SCHOOL HATHIPAKHANA SIRSIKALAR",
         "category": "2 - Primary with Upper Primary"
       },
@@ -7227,12 +7227,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "बंजोड़ा": [
       {
-        "name": "P.S. माराIपारा बंजोड़ा",
+        "name": "P.S. मारापारा बंजोड़ा",
         "raw": "GOVT. TWD PS MARAIPARA  BANJODA",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. मानझAपारा बंजोड़ा",
+        "name": "M.S. मानझपारा बंजोड़ा",
         "raw": "GOVT. SSA MS MANJHAPARA  BANJODA",
         "category": "4 - Upper Primary only"
       },
@@ -7254,37 +7254,37 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "भण्डारसिवनी": [
       {
-        "name": "P.S. नायापारा भAनदारसिवनि",
+        "name": "P.S. नायापारा भनदारसिवनि",
         "raw": "GOVT. SSA PS NAYAPARA BHANDARSIVNI",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. भUरकाभAता भAनदारसिवनि",
+        "name": "P.S. भरकाभता भनदारसिवनि",
         "raw": "GOVT. SSA PS BHURKABHATA BHANDARSIVNI",
         "category": "1 - Primary"
       },
       {
-        "name": "H.S.S. भAनदारसिवनि",
+        "name": "H.S.S. भनदारसिवनि",
         "raw": "GOVT. HIGHER SECONDARY SCHOOL BHANDARSIVNI",
         "category": "5 - Up. Pr. Secondary and Higher Sec"
       },
       {
-        "name": "P.S. भAनदारसिवनि",
+        "name": "P.S. भनदारसिवनि",
         "raw": "GOVT. TWD PS BHANDARSIVNI",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. सिवनाभAता भAनदारसिवनि",
+        "name": "M.S. सिवनाभता भनदारसिवनि",
         "raw": "GOVT. SSA MS SIVNABHATA BHANDARSIVNI",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. जादापादार भAनदारसिवनि",
+        "name": "P.S. जादापादार भनदारसिवनि",
         "raw": "GOVT. EDU PS JADAPADAR BHANDARSIVNI",
         "category": "1 - Primary"
       },
       {
-        "name": "बालक आश्रम बालक AAशराम भAनदारसिवनि",
+        "name": "बालक आश्रम बालक शराम भनदारसिवनि",
         "raw": "GOVT. TWD PS BOYS AASHRAM BHANDARSIVNI",
         "category": "1 - Primary"
       }
@@ -7306,7 +7306,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. चIयानार",
+        "name": "M.S. चयानार",
         "raw": "GOVT. MIDDLE SCHOOL CHIYANAR",
         "category": "2 - Primary with Upper Primary"
       },
@@ -7318,7 +7318,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "कोसागांव": [
       {
-        "name": "बालक आश्रम बालक AAशराम कोसागांव",
+        "name": "बालक आश्रम बालक शराम कोसागांव",
         "raw": "GOVT. TWD PS BOYS  AASHRAM KOSAGAON",
         "category": "1 - Primary"
       },
@@ -7340,7 +7340,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. बोथA",
+        "name": "M.S. बोथ",
         "raw": "GOVT. MIDDLE SCHOOL BOTHA",
         "category": "2 - Primary with Upper Primary"
       }
@@ -7352,7 +7352,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. खOहदापारा चनियागांव",
+        "name": "P.S. खहदापारा चनियागांव",
         "raw": "GOVT. SSA PS KHOHDAPARA CHANIYAGAON",
         "category": "1 - Primary"
       },
@@ -7362,14 +7362,14 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. चAनियाफAरासगांव",
+        "name": "P.S. चनियाफरासगांव",
         "raw": "GOVT. TWD PS CHANIYAPHARASGAON",
         "category": "1 - Primary"
       }
     ],
     "जुगानीकलार": [
       {
-        "name": "बालक आश्रम बालक A आश्रम जुगानि",
+        "name": "बालक आश्रम बालक  आश्रम जुगानि",
         "raw": "GOVT. TWD PS BOYS A ASHRAM JUGANI",
         "category": "1 - Primary"
       },
@@ -7379,7 +7379,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. जुगानि चAमप",
+        "name": "P.S. जुगानि चमप",
         "raw": "GOVT. EDU PS JUGANI CAMP",
         "category": "1 - Primary"
       },
@@ -7389,7 +7389,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "7 - Upper Pr. and Secondary"
       },
       {
-        "name": "M.S. जुगानि चAमप",
+        "name": "M.S. जुगानि चमप",
         "raw": "GOVT. SSA MS JUGANI CAMP",
         "category": "4 - Upper Primary only"
       }
@@ -7401,12 +7401,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. भAततिपारा बंगोली",
+        "name": "P.S. भततिपारा बंगोली",
         "raw": "GOVT. TWD PS BHATTIPARA BANGOLI",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. सालहेभAत बंगोली",
+        "name": "P.S. सालहेभत बंगोली",
         "raw": "GOVT. SSA PS SALHEBHAT BANGOLI",
         "category": "1 - Primary"
       },
@@ -7433,12 +7433,12 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "मोहापाल": [
       {
-        "name": "P.S. निचEपारा मोहपाल",
+        "name": "P.S. निचपारा मोहपाल",
         "raw": "GOVT. SSA PS NICHEPARA MOHPAL",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. गाOUरिपादार मोहपाल",
+        "name": "P.S. गारिपादार मोहपाल",
         "raw": "GOVT. SSA PS GAOURIPADAR MOHPAL",
         "category": "1 - Primary"
       },
@@ -7465,7 +7465,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "बोरगांव": [
       {
-        "name": "P.S. पाशचIम बोरगांव",
+        "name": "P.S. पाशचम बोरगांव",
         "raw": "GOVT. EDU PS PASHCHIM BORGAON",
         "category": "1 - Primary"
       },
@@ -7489,12 +7489,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. कासाIFAरासगांव",
+        "name": "P.S. कासारासगांव",
         "raw": "GOVT. TWD PS KASAIFARASGAON",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. कासाIपारा गोहदा",
+        "name": "M.S. कासापारा गोहदा",
         "raw": "GOVT. MIDDLE SCHOOL KASAIPARA GOHDA",
         "category": "2 - Primary with Upper Primary"
       }
@@ -7506,7 +7506,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. Aमगांव",
+        "name": "P.S. मगांव",
         "raw": "GOVT. TWD PS AMGAON",
         "category": "1 - Primary"
       },
@@ -7516,19 +7516,19 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. Aमगांव",
+        "name": "M.S. मगांव",
         "raw": "GOVT. SSA MS AMGAON",
         "category": "4 - Upper Primary only"
       }
     ],
     "झाटीबन": [
       {
-        "name": "P.S. झाटीबन AAलोर",
+        "name": "P.S. झाटीबन लोर",
         "raw": "GOVT. EDU PS JHATIBAN AALOR",
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. झाटीबन AAलोर",
+        "name": "M.S. झाटीबन लोर",
         "raw": "GOVT. SSA MS JHATIBAN AALOR",
         "category": "4 - Upper Primary only"
       },
@@ -7545,7 +7545,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       }
     ],
-    "बोरगांव EAसत": [
+    "बोरगांव सत": [
       {
         "name": "P.S. माधयाम बोरगांव",
         "raw": "GOVT. SSA PS MADHYAM BORGAON",
@@ -7569,7 +7569,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "चांदाबेड़ा": [
       {
-        "name": "M.S. घOतियामुनदा चांदाबेड़ा",
+        "name": "M.S. घतियामुनदा चांदाबेड़ा",
         "raw": "GOVT. MIDDLE SCHOOL GHOTIYAMUNDA CHANDABEDA",
         "category": "2 - Primary with Upper Primary"
       },
@@ -7611,7 +7611,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "7 - Upper Pr. and Secondary"
       },
       {
-        "name": "P.S. मावलिभAता भानपुरी",
+        "name": "P.S. मावलिभता भानपुरी",
         "raw": "GOVT. EDU PS MAWLIBHATA BHANPURI",
         "category": "1 - Primary"
       }
@@ -7647,7 +7647,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "चुरेगांव": [
       {
-        "name": "M.S. चUरेगांव",
+        "name": "M.S. चरेगांव",
         "raw": "GOVT. MIDDLE SCHOOL CHUREGAON",
         "category": "2 - Primary with Upper Primary"
       }
@@ -7698,7 +7698,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. Uदुमपारा चिंगनार",
+        "name": "P.S. दुमपारा चिंगनार",
         "raw": "GOVT. SSA PS UDUMPARA CHINGNAR",
         "category": "1 - Primary"
       },
@@ -7710,7 +7710,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "कुल्हाड़गांव": [
       {
-        "name": "P.S. खAसपारा सारबेड़ा",
+        "name": "P.S. खसपारा सारबेड़ा",
         "raw": "GOVT. SSA PS KHASPARA SARBEDA",
         "category": "1 - Primary"
       },
@@ -7747,7 +7747,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. चहोतेOदागांव",
+        "name": "P.S. चहोतेदागांव",
         "raw": "GOVT. TWD PS CHHOTEODAGAON",
         "category": "1 - Primary"
       }
@@ -7805,7 +7805,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. Aलिबेड़ा सिरपुर",
+        "name": "M.S. लिबेड़ा सिरपुर",
         "raw": "GOVT. MIDDLE SCHOOL ALIBEDA SIRPUR",
         "category": "2 - Primary with Upper Primary"
       },
@@ -7839,7 +7839,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. पातथAरिपारा गोड़मा",
+        "name": "M.S. पातथरिपारा गोड़मा",
         "raw": "GOVT. MIDDLE SCHOOL PATTHARIPARA GODMA",
         "category": "2 - Primary with Upper Primary"
       }
@@ -7866,7 +7866,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. चAनदापारा सोड़मा",
+        "name": "P.S. चनदापारा सोड़मा",
         "raw": "GOVT. SSA PS CHANDAPARA SODMA",
         "category": "1 - Primary"
       }
@@ -7885,7 +7885,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "भूमका": [
       {
-        "name": "M.S. मिचIपारा भूमका",
+        "name": "M.S. मिचपारा भूमका",
         "raw": "GOVT. SSA MS MICHIPARA BHUMKA",
         "category": "2 - Primary with Upper Primary"
       },
@@ -7895,34 +7895,34 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       }
     ],
-    "फUनदेर": [
+    "फनदेर": [
       {
         "name": "M.S. दावदे",
         "raw": "GOVT. SSA MS DAWDE",
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "H.S. FUनदेर",
+        "name": "H.S. नदेर",
         "raw": "GOVT. HIGH SCHOOL FUNDER",
         "category": "7 - Upper Pr. and Secondary"
       },
       {
-        "name": "P.S. भAततिपारा FUनदेर",
+        "name": "P.S. भततिपारा नदेर",
         "raw": "GOVT. SSA PS BHATTIPARA FUNDER",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. पातेलपारा FUनदेर",
+        "name": "P.S. पातेलपारा नदेर",
         "raw": "GOVT. SSA PS PATELPARA FUNDER",
         "category": "1 - Primary"
       },
       {
-        "name": "P.S. FUनदेर",
+        "name": "P.S. नदेर",
         "raw": "GOVT. EDU PS FUNDER",
         "category": "1 - Primary"
       }
     ],
-    "चIनदलिबेड़ा": [
+    "चनदलिबेड़ा": [
       {
         "name": "M.S. चहिनदालिबेड़ा",
         "raw": "GOVT. MIDDLE SCHOOL CHHINDALIBEDA",
@@ -7936,7 +7936,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "झाकरी": [
       {
-        "name": "P.S. AAदवAल",
+        "name": "P.S. दवल",
         "raw": "GOVT. SSA PS AADWAL",
         "category": "1 - Primary"
       },
@@ -7946,12 +7946,12 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       },
       {
-        "name": "M.S. झAकरि",
+        "name": "M.S. झकरि",
         "raw": "GOVT. SSA MS JHAKRI",
         "category": "4 - Upper Primary only"
       },
       {
-        "name": "P.S. झAकरि",
+        "name": "P.S. झकरि",
         "raw": "GOVT. EDU PS JHAKRI",
         "category": "1 - Primary"
       }
@@ -8009,7 +8009,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "3 - Pr. with Up.Pr. sec. and H.Sec."
       }
     ],
-    "Uरनदाबेड़ा": [
+    "रनदाबेड़ा": [
       {
         "name": "H.S. उरन्दाबेड़ा",
         "raw": "GOVT. HIGH SCHOOL URANDABEDA",
@@ -8023,7 +8023,7 @@ export const SCHOOL_MASTER_DATA = {
     ],
     "चहिनदालि": [
       {
-        "name": "M.S. भAIनसाबोद चहिनदालि",
+        "name": "M.S. भनसाबोद चहिनदालि",
         "raw": "GOVT. MIDDLE SCHOOL BHAINSABOD CHHINDALI",
         "category": "2 - Primary with Upper Primary"
       },
@@ -8040,7 +8040,7 @@ export const SCHOOL_MASTER_DATA = {
         "category": "2 - Primary with Upper Primary"
       },
       {
-        "name": "P.S. धरुवAपारा कोकोदाजुगानार",
+        "name": "P.S. धरुवपारा कोकोदाजुगानार",
         "raw": "GOVT. SSA PS DHRUWAPARA KOKODAJUGANAR",
         "category": "1 - Primary"
       },
@@ -8062,9 +8062,9 @@ export const SCHOOL_MASTER_DATA = {
         "category": "1 - Primary"
       }
     ],
-    "फAरासगांव 5 - Uप. पर.  Aनद  सेच": [
+    "फरासगांव 5 - प. पर.  नद  सेच": [
       {
-        "name": "H.S.S. AAदारश",
+        "name": "H.S.S. दारश",
         "raw": "GOVT. AADARSH HIGHER SECONDARY SCHOOL",
         "category": "Other"
       }
@@ -8072,9 +8072,62 @@ export const SCHOOL_MASTER_DATA = {
   }
 };
 
+const matchBlock = (b1, b2) => {
+  if (!b1 || !b2) return false;
+  if (b1 === b2) return true;
+  const s1 = b1.replace(/[\u093c\s]/g, '').replace(/ड़/g, 'ड').replace(/ि/g, 'ी');
+  const s2 = b2.replace(/[\u093c\s]/g, '').replace(/ड़/g, 'ड').replace(/ि/g, 'ी');
+  if (s1 === s2) return true;
+  if (s1.includes('फरस') && s2.includes('फरस')) return true;
+  if (s1.includes('राजपुर') && s2.includes('राजपुर')) return true;
+  if ((s1.includes('कोण्डा') || s1.includes('कोंडा')) && (s2.includes('कोण्डा') || s2.includes('कोंडा'))) return true;
+  if (s1.includes('माकड') && s2.includes('माकड')) return true;
+  if (s1.includes('केश') && s2.includes('केश')) return true;
+  return false;
+};
+
+const normalizeStr = (str) => {
+  if (!str) return '';
+  let s = str.trim();
+  return s
+    .replace(/['"()]/g, '')
+    .replace(/[\u093c]/g, '') // strip nukta
+    .replace(/\s+/g, '')
+    .replace(/िं/g, 'ी')
+    .replace(/ि/g, 'ी')
+    .replace(/ुं/g, 'ू')
+    .replace(/ु/g, 'ू')
+    .replace(/ण्ड/g, 'ंड')
+    .replace(/ड़/g, 'ड')
+    .replace(/ढ़/g, 'ढ');
+};
+
 export const getSchoolsForPanchayat = (blockName, panchayatName) => {
   if (!blockName || !panchayatName) return [];
-  const blockData = SCHOOL_MASTER_DATA[blockName];
+
+  // Match block key
+  const blockKey = Object.keys(SCHOOL_MASTER_DATA).find(b => matchBlock(b, blockName));
+  if (!blockKey) return [];
+
+  const blockData = SCHOOL_MASTER_DATA[blockKey];
   if (!blockData) return [];
-  return blockData[panchayatName] || [];
+
+  // Direct match
+  if (blockData[panchayatName]) return blockData[panchayatName];
+
+  // Normalized match
+  const normPanch = normalizeStr(panchayatName);
+  for (const [pName, list] of Object.entries(blockData)) {
+    if (normalizeStr(pName) === normPanch) return list;
+  }
+
+  // Partial substring match fallback
+  for (const [pName, list] of Object.entries(blockData)) {
+    const normKey = normalizeStr(pName);
+    if ((normKey.includes(normPanch) || normPanch.includes(normKey)) && normKey.length >= 4 && normPanch.length >= 4) {
+      return list;
+    }
+  }
+
+  return [];
 };
