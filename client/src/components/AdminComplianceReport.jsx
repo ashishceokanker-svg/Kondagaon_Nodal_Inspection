@@ -14,8 +14,6 @@ export default function AdminComplianceReport({ officer, onBack }) {
   const [selectedBlock, setSelectedBlock] = useState('फरसगांव');
   const [selectedPanchayat, setSelectedPanchayat] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('सितम्बर 2026');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
   const [activeListTab, setActiveListTab] = useState('all'); // 'all' | 'completed' | 'pending'
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
@@ -23,16 +21,14 @@ export default function AdminComplianceReport({ officer, onBack }) {
 
   useEffect(() => {
     fetchReport();
-  }, [selectedBlock, selectedMonth, startDate, endDate]);
+  }, [selectedBlock, selectedMonth]);
 
   const fetchReport = async () => {
     setLoading(true);
     try {
       const data = await API.getComplianceReport({
         block: selectedBlock,
-        month: selectedMonth,
-        startDate: startDate || undefined,
-        endDate: endDate || undefined
+        month: selectedMonth
       });
       setReportData(data);
     } catch (err) {
@@ -46,9 +42,7 @@ export default function AdminComplianceReport({ officer, onBack }) {
     try {
       await exportComplianceToExcelClient({
         block: selectedBlock,
-        month: selectedMonth,
-        startDate: startDate || undefined,
-        endDate: endDate || undefined
+        month: selectedMonth
       });
     } catch (err) {
       console.warn('Client compliance excel export fallback to server:', err);
@@ -101,16 +95,6 @@ export default function AdminComplianceReport({ officer, onBack }) {
     );
   }, [reportData, activeListTab, selectedPanchayat, searchQuery]);
 
-  const facilities = [
-    { key: 'anganwadi', name: 'आंगनबाड़ी केन्द्र', icon: Baby, color: 'text-pink-600 bg-pink-50 border-pink-200' },
-    { key: 'school', name: 'शाला निरीक्षण', icon: GraduationCap, color: 'text-blue-600 bg-blue-50 border-blue-200' },
-    { key: 'hostel', name: 'छात्रावास / आश्रम', icon: Building, color: 'text-emerald-600 bg-emerald-50 border-emerald-200' },
-    { key: 'pds', name: 'उचित मूल्य दुकान (PDS)', icon: Wheat, color: 'text-amber-600 bg-amber-50 border-amber-200' },
-    { key: 'chaupal', name: 'ग्राम चौपाल', icon: Landmark, color: 'text-purple-600 bg-purple-50 border-purple-200' },
-    { key: 'health', name: 'स्वास्थ्य केन्द्र', icon: Activity, color: 'text-red-600 bg-red-50 border-red-200' },
-    { key: 'awas', name: 'प्रधानमंत्री आवास', icon: Home, color: 'text-cyan-600 bg-cyan-50 border-cyan-200' },
-    { key: 'nirman', name: 'निर्माण कार्य', icon: HardHat, color: 'text-amber-800 bg-amber-50 border-amber-800/30' },
-  ];
 
   return (
     <div className="max-w-6xl mx-auto space-y-5 mb-16">
@@ -134,11 +118,10 @@ export default function AdminComplianceReport({ officer, onBack }) {
                 <h2 className="text-base sm:text-lg font-black text-slate-900 tracking-tight">
                   कार्यालय कलेक्टर, जिला-कोण्डागांव (छ०ग०)
                 </h2>
-                <p className="text-xs text-blue-800 font-semibold flex items-center gap-1.5 mt-0.5">
+                <p className="text-xs text-slate-500 font-semibold flex items-center gap-1.5 mt-0.5">
                   <span className="bg-blue-100 text-blue-900 px-2 py-0.5 rounded text-[11px] font-bold">
                     🛡️ एडमिन निगरानी मॉड्यूल
                   </span>
-                  <span>माहवार निरीक्षण अनुपालन एवं समीक्षा प्रतिवेदन</span>
                 </p>
               </div>
             </div>
@@ -176,171 +159,17 @@ export default function AdminComplianceReport({ officer, onBack }) {
         </div>
       </div>
 
-      {/* 2. Top Summary Stat Badges (Image Section) */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-2">
-        <div className="p-3 rounded-2xl border bg-slate-900 text-white text-center shadow-sm">
-          <span className="text-[11px] text-slate-300 block font-medium">कुल निरीक्षण</span>
-          <span className="text-xl sm:text-2xl font-black">{summary.totalInspections || 0}</span>
-        </div>
-
-        {facilities.map(f => {
-          const val = summary.typeStats?.[f.key];
-          const count = typeof val === 'object' ? (val?.count ?? val?.total ?? 0) : (val || 0);
-          return (
-            <div key={f.key} className={`p-3 rounded-2xl border text-center shadow-sm ${f.color}`}>
-              <span className="text-[11px] block font-bold truncate">{f.name}</span>
-              <span className="text-xl sm:text-2xl font-black">{count}</span>
-            </div>
-          );
-        })}
+      {/* 2. Title in Large Bold Letters above KPI Cards */}
+      <div className="pt-2 px-1">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
+          माहवार निरीक्षण अनुपालन एवं समीक्षा प्रतिवेदन
+        </h1>
+        <p className="text-xs sm:text-sm text-slate-500 font-semibold mt-0.5">
+          जिला कोण्डागांव (छ०ग०) • नोडल अधिकारियों द्वारा मासिक निरीक्षण एवं अनुपालन स्थिति
+        </p>
       </div>
 
-      {/* 3. Search & Filter Options (Directly Under Summary Badges) */}
-      <div className="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-200 no-print space-y-3">
-        <div className="flex items-center justify-between">
-          <span className="bg-amber-100 text-amber-950 border border-amber-300 font-bold px-2 py-0.5 rounded text-[11px] flex items-center gap-1.5">
-            <Search className="w-3.5 h-3.5 text-amber-700" />
-            <span>खोज एवं फ़िल्टर विकल्प (Search Options)</span>
-          </span>
-          {(selectedBlock !== 'सभी विकासखण्ड' || selectedPanchayat || startDate || endDate || searchQuery) && (
-            <button
-              onClick={() => {
-                setSelectedBlock('सभी विकासखण्ड');
-                setSelectedPanchayat('');
-                setStartDate('');
-                setEndDate('');
-                setSearchQuery('');
-              }}
-              className="text-xs text-rose-600 hover:underline font-bold"
-            >
-              फ़िल्टर रीसेट करें
-            </button>
-          )}
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 pt-1">
-          <div>
-            <label className="block text-[11px] font-bold text-slate-700 mb-1 flex items-center gap-1">
-              <Building className="w-3.5 h-3.5 text-blue-600" />
-              <span>विकासखण्ड (Block)</span>
-            </label>
-            <select
-              value={selectedBlock}
-              onChange={e => {
-                setSelectedBlock(e.target.value);
-                setSelectedPanchayat('');
-              }}
-              className="w-full p-2.5 border border-slate-300 rounded-xl bg-white text-slate-800 font-semibold text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            >
-              <option value="सभी विकासखण्ड">-- सभी विकासखण्ड --</option>
-              {DISTRICT_BLOCKS.map(b => (
-                <option key={b} value={b}>{b}</option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-[11px] font-bold text-slate-700 mb-1 flex items-center gap-1">
-              <MapPin className="w-3.5 h-3.5 text-red-600" />
-              <span>ग्राम पंचायत</span>
-            </label>
-            <select
-              value={selectedPanchayat}
-              onChange={e => setSelectedPanchayat(e.target.value)}
-              className="w-full p-2.5 border border-slate-300 rounded-xl bg-white text-slate-800 font-semibold text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            >
-              <option value="">-- सभी ग्राम पंचायतें --</option>
-              {getPanchayatsForBlock(selectedBlock).map(p => (
-                <option key={p} value={p}>{p}</option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-[11px] font-bold text-slate-700 mb-1 flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5 text-amber-600" />
-              <span>प्रारंभ दिनांक</span>
-            </label>
-            <input
-              type="date"
-              max={getTodayDateString()}
-              value={startDate}
-              onChange={e => setStartDate(e.target.value)}
-              className="w-full p-2.5 border border-slate-300 rounded-xl bg-white text-slate-800 font-semibold text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block text-[11px] font-bold text-slate-700 mb-1 flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5 text-amber-600" />
-              <span>समाप्ति दिनांक</span>
-            </label>
-            <input
-              type="date"
-              max={getTodayDateString()}
-              value={endDate}
-              onChange={e => setEndDate(e.target.value)}
-              className="w-full p-2.5 border border-slate-300 rounded-xl bg-white text-slate-800 font-semibold text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            />
-          </div>
-        </div>
-
-        {/* Secondary Filters: Month & Quick Search */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 border-t border-slate-100">
-          <div>
-            <label className="block text-[11px] font-bold text-slate-700 mb-1 flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5 text-blue-600" />
-              <span>माह का चयन करें (Month Filter)</span>
-            </label>
-            <select
-              value={selectedMonth}
-              onChange={e => setSelectedMonth(e.target.value)}
-              className="w-full p-2 border border-slate-300 rounded-xl bg-slate-50 text-slate-800 font-semibold text-xs focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            >
-              {MONTHS_LIST.map(m => (
-                <option key={m} value={m}>{m}</option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-[11px] font-bold text-slate-700 mb-1 flex items-center gap-1">
-              <Search className="w-3.5 h-3.5 text-emerald-600" />
-              <span>अधिकारी त्वरित खोज (Search by Name / Designation / Mobile)</span>
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="नाम, पदनाम, मोबाइल नं..."
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-                className="w-full p-2 pl-8 border border-slate-300 rounded-xl bg-slate-50 text-slate-800 text-xs focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              />
-              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-3" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Printable Official Header (Shown ONLY during print) */}
-      <div className="hidden print:block text-center border-b-2 border-black pb-4 mb-4">
-        <div className="flex items-center justify-center gap-3 mb-2">
-          <img src="/cg_logo.svg" alt="छत्तीसगढ़ शासन" className="w-14 h-14 object-contain" />
-          <div>
-            <h1 className="text-xl font-black text-black">कार्यालय कलेक्टर, जिला-कोण्डागांव (छ०ग०)</h1>
-            <p className="text-sm font-bold text-gray-800">
-              नोडल अधिकारी मासिक क्षेत्रीय निरीक्षण प्रगति एवं अनुपालन समीक्षा प्रतिवेदन
-            </p>
-          </div>
-        </div>
-        <div className="flex justify-between items-center text-xs font-semibold text-gray-700 mt-2 border-t border-gray-300 pt-1">
-          <span>विकासखण्ड: <b>{selectedBlock}</b></span>
-          <span>समीक्षा माह: <b>{selectedMonth}</b></span>
-          <span>प्रतिवेदन दिनांक: <b>{new Date().toLocaleDateString('hi-IN')}</b></span>
-        </div>
-      </div>
-
-      {/* 3. KPI Summary Indicators */}
+      {/* 3. KPI Summary Indicators (Image 2) */}
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
         {/* Total Officers */}
         <div className="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
@@ -421,6 +250,119 @@ export default function AdminComplianceReport({ officer, onBack }) {
           </p>
         </div>
       </div>
+
+      {/* 4. Search & Filter Options */}
+      <div className="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-200 no-print space-y-3">
+        <div className="flex items-center justify-between">
+          <span className="bg-amber-100 text-amber-950 border border-amber-300 font-bold px-2 py-0.5 rounded text-[11px] flex items-center gap-1.5">
+            <Search className="w-3.5 h-3.5 text-amber-700" />
+            <span>खोज एवं फ़िल्टर विकल्प (Search Options)</span>
+          </span>
+          {(selectedBlock !== 'सभी विकासखण्ड' || selectedPanchayat || searchQuery) && (
+            <button
+              onClick={() => {
+                setSelectedBlock('सभी विकासखण्ड');
+                setSelectedPanchayat('');
+                setSearchQuery('');
+              }}
+              className="text-xs text-rose-600 hover:underline font-bold"
+            >
+              फ़िल्टर रीसेट करें
+            </button>
+          )}
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 pt-1">
+          <div>
+            <label className="block text-[11px] font-bold text-slate-700 mb-1 flex items-center gap-1">
+              <Building className="w-3.5 h-3.5 text-blue-600" />
+              <span>विकासखण्ड (Block)</span>
+            </label>
+            <select
+              value={selectedBlock}
+              onChange={e => {
+                setSelectedBlock(e.target.value);
+                setSelectedPanchayat('');
+              }}
+              className="w-full p-2.5 border border-slate-300 rounded-xl bg-white text-slate-800 font-semibold text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            >
+              <option value="सभी विकासखण्ड">-- सभी विकासखण्ड --</option>
+              {DISTRICT_BLOCKS.map(b => (
+                <option key={b} value={b}>{b}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-[11px] font-bold text-slate-700 mb-1 flex items-center gap-1">
+              <MapPin className="w-3.5 h-3.5 text-red-600" />
+              <span>ग्राम पंचायत</span>
+            </label>
+            <select
+              value={selectedPanchayat}
+              onChange={e => setSelectedPanchayat(e.target.value)}
+              className="w-full p-2.5 border border-slate-300 rounded-xl bg-white text-slate-800 font-semibold text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            >
+              <option value="">-- सभी ग्राम पंचायतें --</option>
+              {getPanchayatsForBlock(selectedBlock).map(p => (
+                <option key={p} value={p}>{p}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-[11px] font-bold text-slate-700 mb-1 flex items-center gap-1">
+              <Calendar className="w-3.5 h-3.5 text-blue-600" />
+              <span>माह का चयन करें (Month Filter)</span>
+            </label>
+            <select
+              value={selectedMonth}
+              onChange={e => setSelectedMonth(e.target.value)}
+              className="w-full p-2.5 border border-slate-300 rounded-xl bg-white text-slate-800 font-semibold text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            >
+              {MONTHS_LIST.map(m => (
+                <option key={m} value={m}>{m}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-[11px] font-bold text-slate-700 mb-1 flex items-center gap-1">
+              <Search className="w-3.5 h-3.5 text-emerald-600" />
+              <span>अधिकारी त्वरित खोज</span>
+            </label>
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="नाम, पदनाम, मोबाइल नं..."
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                className="w-full p-2.5 pl-8 border border-slate-300 rounded-xl bg-white text-slate-800 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              />
+              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-3.5" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Printable Official Header (Shown ONLY during print) */}
+      <div className="hidden print:block text-center border-b-2 border-black pb-4 mb-4">
+        <div className="flex items-center justify-center gap-3 mb-2">
+          <img src="/cg_logo.svg" alt="छत्तीसगढ़ शासन" className="w-14 h-14 object-contain" />
+          <div>
+            <h1 className="text-xl font-black text-black">कार्यालय कलेक्टर, जिला-कोण्डागांव (छ०ग०)</h1>
+            <p className="text-sm font-bold text-gray-800">
+              नोडल अधिकारी मासिक क्षेत्रीय निरीक्षण प्रगति एवं अनुपालन समीक्षा प्रतिवेदन
+            </p>
+          </div>
+        </div>
+        <div className="flex justify-between items-center text-xs font-semibold text-gray-700 mt-2 border-t border-gray-300 pt-1">
+          <span>विकासखण्ड: <b>{selectedBlock}</b></span>
+          <span>समीक्षा माह: <b>{selectedMonth}</b></span>
+          <span>प्रतिवेदन दिनांक: <b>{new Date().toLocaleDateString('hi-IN')}</b></span>
+        </div>
+      </div>
+
 
 
       {/* 5. Filter Tabs: All vs Completed vs Pending */}
