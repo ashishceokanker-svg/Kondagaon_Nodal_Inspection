@@ -99,55 +99,35 @@ export default function AdminComplianceReport({ officer, onBack }) {
   return (
     <div className="max-w-6xl mx-auto space-y-5 mb-16">
       
-      {/* 1. Header & Quick Actions */}
-      <div className="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-200 no-print">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={onBack}
-              className="p-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-slate-600 transition"
-              title="वापस डैशबोर्ड"
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </button>
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-white p-1 shadow border border-amber-400 shrink-0">
-                <img src="/cg_logo.svg" alt="छत्तीसगढ़ शासन मोनो" className="w-full h-full object-contain" />
-              </div>
-              <div>
-                <h2 className="text-base sm:text-lg font-black text-slate-900 tracking-tight">
-                  कार्यालय कलेक्टर, जिला-कोण्डागांव (छ०ग०)
-                </h2>
-                <p className="text-xs text-slate-500 font-semibold flex items-center gap-1.5 mt-0.5">
-                  <span className="bg-blue-100 text-blue-900 px-2 py-0.5 rounded text-[11px] font-bold">
-                    🛡️ एडमिन निगरानी मॉड्यूल
-                  </span>
-                </p>
-              </div>
-            </div>
+      {/* 1. Header with Centered Title & Action Buttons */}
+      <div className="bg-white p-3.5 sm:p-4 rounded-2xl shadow-sm border border-slate-200 no-print">
+        <div className="flex items-center justify-between gap-3">
+          <button
+            onClick={onBack}
+            className="p-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-slate-700 transition shrink-0"
+            title="वापस डैशबोर्ड"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+
+          <div className="flex-1 text-center px-2">
+            <h1 className="text-base sm:text-lg md:text-xl font-black text-slate-900 tracking-tight leading-tight">
+              माहवार निरीक्षण अनुपालन एवं समीक्षा प्रतिवेदन
+            </h1>
+            <p className="text-[11px] sm:text-xs text-slate-600 font-semibold mt-0.5">
+              जिला कोण्डागांव (छ०ग०) • नोडल अधिकारियों द्वारा मासिक निरीक्षण एवं अनुपालन स्थिति
+            </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <button
-              onClick={fetchReport}
-              className="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold py-2.5 px-3 rounded-xl shadow-sm flex items-center gap-1.5 transition"
-              title="डेटा रिफ्रेश करें"
-            >
-              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-              <span className="hidden sm:inline">रिफ्रेश</span>
-            </button>
-          </div>
+          <button
+            onClick={fetchReport}
+            className="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold py-2 px-3 rounded-xl shadow-sm flex items-center gap-1.5 transition shrink-0"
+            title="डेटा रिफ्रेश करें"
+          >
+            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+            <span className="hidden sm:inline">रिफ्रेश</span>
+          </button>
         </div>
-      </div>
-
-      {/* 2. Title in Large Bold Letters above KPI Cards */}
-      <div className="pt-2 px-1">
-        <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
-          माहवार निरीक्षण अनुपालन एवं समीक्षा प्रतिवेदन
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-500 font-semibold mt-0.5">
-          जिला कोण्डागांव (छ०ग०) • नोडल अधिकारियों द्वारा मासिक निरीक्षण एवं अनुपालन स्थिति
-        </p>
       </div>
 
       {/* 3. KPI Summary Indicators (Image 2) */}
