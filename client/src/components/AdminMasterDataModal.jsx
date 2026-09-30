@@ -652,11 +652,34 @@ export default function AdminMasterDataModal({ isOpen, onClose }) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   
-                  {/* Field Control Item 1 */}
+                  {/* Field Control Item: Hostel Location & Date */}
                   <div className="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between">
                     <div>
-                      <h5 className="font-bold text-xs text-slate-800">1. प्रारंभिक जानकारी</h5>
-                      <p className="text-[11px] text-slate-500">विकासखण्ड, ग्राम पंचायत व दिनांक फ़ील्ड</p>
+                      <h5 className="font-bold text-xs text-slate-800">1. छात्रावास पता, ग्राम, विकासखण्ड व दिनांक</h5>
+                      <p className="text-[11px] text-slate-500">(4.2) छात्रावास का पता, ग्राम, विकासखण्ड एवं निरीक्षण दिनांक फ़ील्ड</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleToggleVisibilityKey('hideHostelLocationFields')}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 ${
+                        !visibilitySettings.hideHostelLocationFields
+                          ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+                          : 'bg-amber-100 text-amber-800 border border-amber-300'
+                      }`}
+                    >
+                      {!visibilitySettings.hideHostelLocationFields ? (
+                        <> <Eye className="w-3.5 h-3.5" /> अनहाइड (शो) </>
+                      ) : (
+                        <> <EyeOff className="w-3.5 h-3.5" /> हाइड </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Field Control Item 2 */}
+                  <div className="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between">
+                    <div>
+                      <h5 className="font-bold text-xs text-slate-800">2. अन्य फॉर्म प्रारंभिक जानकारी</h5>
+                      <p className="text-[11px] text-slate-500">विकासखण्ड, ग्राम पंचायत व दिनांक फ़ील्ड (अन्य फॉर्म)</p>
                     </div>
                     <button
                       type="button"

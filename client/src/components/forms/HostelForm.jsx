@@ -121,8 +121,9 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
 
   const [saving, setSaving] = useState(false);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
-  const [showPrelimFields, setShowPrelimFields] = useState(false);
   const [masterVersion, setMasterVersion] = useState(0);
+
+  const hideHostelLocation = visibility.hideHostelLocationFields ?? true;
 
   useEffect(() => {
     const handleUpdate = () => setMasterVersion(v => v + 1);
@@ -278,7 +279,7 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
                 />
               </div>
             </div>
-            {showPrelimFields && (
+            {!hideHostelLocation && (
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-200">
                 <div>
                   <label className="block text-[11px] font-semibold text-slate-600 mb-1">निरीक्षण दिनांक</label>
@@ -308,24 +309,7 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
             <Building className="w-4 h-4 text-emerald-600" /> {secIndex++}. छात्रावास की जानकारी
           </h3>
 
-          {!showPrelimFields ? (
-            <div className="pt-1 pb-1">
-              <button
-                type="button"
-                onClick={() => {
-                  const pwd = prompt('विकासखण्ड, ग्राम पंचायत व दिनांक देखने के लिए पासवर्ड दर्ज करें:');
-                  if (pwd === 'ashish#123') {
-                    setShowPrelimFields(true);
-                  } else if (pwd !== null) {
-                    alert('गलत पासवर्ड!');
-                  }
-                }}
-                className="text-[11px] text-emerald-700 hover:text-emerald-900 font-bold underline flex items-center gap-1"
-              >
-                🔒 विकासखण्ड / ग्राम पंचायत / दिनांक अनहाइड करें (पासवर्ड)
-              </button>
-            </div>
-          ) : (
+          {!hideHostelLocation && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-1 border-b border-slate-200">
               <div>
                 <label className="block text-[11px] font-semibold text-slate-600 mb-1">विकासखण्ड (Block) *</label>
@@ -370,7 +354,7 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
           )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
+            <div className={hideHostelLocation ? 'sm:col-span-2' : ''}>
               <label className="block text-[11px] font-semibold text-slate-600 mb-1">(4.1) छात्रावास का नाम *</label>
               {availableHostels.length > 0 ? (
                 <select
@@ -421,15 +405,17 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
                 />
               )}
             </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">(4.2) छात्रावास का पता / ग्राम</label>
-              <input
-                type="text"
-                value={formData.address}
-                onChange={e => setFormData({ ...formData, address: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
-              />
-            </div>
+            {!hideHostelLocation && (
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">(4.2) छात्रावास का पता / ग्राम</label>
+                <input
+                  type="text"
+                  value={formData.address}
+                  onChange={e => setFormData({ ...formData, address: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                />
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">

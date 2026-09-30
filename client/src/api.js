@@ -8,6 +8,7 @@ const API_BASE = '/api';
 
 export const DEFAULT_FORM_VISIBILITY = {
   hidePreliminaryInfo: true,
+  hideHostelLocationFields: true,
   hideAnganwadiRation: true,
   hideSchoolAcademicExtra: true,
   hideHostelSuperintendent: true,
