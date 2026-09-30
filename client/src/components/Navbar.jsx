@@ -41,7 +41,7 @@ export default function Navbar({ officer, onLogout, activeTab, setActiveTab }) {
   };
 
   return (
-    <header className="bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-950 text-white shadow-md sticky top-0 z-50">
+    <header className="bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-950 text-white shadow-md sticky top-0 z-50 no-print">
       {/* Main Header with Center Prominent Title and Logo */}
       <div className="max-w-7xl mx-auto px-3 py-2.5 flex flex-col md:flex-row items-center justify-between gap-3">
         <div 

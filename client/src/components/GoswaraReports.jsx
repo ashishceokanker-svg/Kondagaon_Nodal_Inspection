@@ -183,9 +183,23 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
     { key: 'nirman', name: 'निर्माण कार्य', icon: HardHat, color: 'text-amber-800 bg-amber-50' },
   ];
 
-  // Compute strictly officer's assigned panchayat(s) if not admin
+  // Compute strictly officer's assigned panchayat(s) or filtered block/panchayat
   const displayedPanchayatStats = React.useMemo(() => {
-    const list = goswaraData?.panchayatStats || [];
+    let list = goswaraData?.panchayatStats || [];
+
+    // 1. If block filter is selected, strictly filter to that block
+    if (filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड') {
+      list = list.filter(p => {
+        const blk = p.block || getBlockForPanchayat(p.panchayat);
+        return matchBlock(blk, filters.block);
+      });
+    }
+
+    // 2. If specific panchayat filter is selected, filter to that panchayat
+    if (filters.panchayat && filters.panchayat !== 'सभी ग्राम पंचायतें' && filters.panchayat !== 'समस्त पंचायतें') {
+      list = list.filter(p => p.panchayat === filters.panchayat);
+    }
+
     if (isAdmin) return list;
 
     const allowed = filters.panchayat ? [filters.panchayat] : officerPanchayats;
@@ -198,6 +212,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
       if (!filtered.some(f => f.panchayat === pName)) {
         filtered.push({
           panchayat: pName,
+          block: officer?.block || getBlockForPanchayat(pName),
           total: 0,
           anganwadi: 0,
           school: 0,
@@ -211,10 +226,10 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
       }
     });
     return filtered;
-  }, [goswaraData?.panchayatStats, isAdmin, filters.panchayat, officerPanchayats]);
+  }, [goswaraData?.panchayatStats, isAdmin, filters.block, filters.panchayat, officerPanchayats, officer?.block]);
 
   const { displayedTotalInspections, displayedTypeStats } = React.useMemo(() => {
-    if (isAdmin) {
+    if (isAdmin && !filters.block && !filters.panchayat) {
       const ts = {};
       facilities.forEach(f => {
         const raw = goswaraData?.typeStats?.[f.key];
@@ -238,7 +253,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
       displayedTotalInspections: total,
       displayedTypeStats: ts
     };
-  }, [isAdmin, goswaraData, displayedPanchayatStats]);
+  }, [isAdmin, goswaraData, displayedPanchayatStats, filters.block, filters.panchayat]);
 
   const displayedFacilityRecords = React.useMemo(() => {
     if (isAdmin) return facilityRecords;
@@ -273,9 +288,13 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
   const groupedPanchayatStats = React.useMemo(() => {
     const list = displayedPanchayatStats || [];
     if (filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड') {
+      const blockPanchayats = list.filter(p => {
+        const pBlock = p.block || getBlockForPanchayat(p.panchayat);
+        return matchBlock(pBlock, filters.block);
+      });
       return [{
         blockName: filters.block,
-        panchayats: list
+        panchayats: blockPanchayats.length > 0 ? blockPanchayats : list
       }];
     }
 
@@ -357,8 +376,8 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
         </div>
       </div>
 
-      {/* Top Summary Stat Badges (Image Section) */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-2">
+      {/* Top Summary Stat Badges (Hidden in Print/PDF) */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-2 no-print">
         <div className="p-3 rounded-2xl border bg-slate-900 text-white text-center shadow-sm">
           <span className="text-[11px] text-slate-300 block font-medium">कुल निरीक्षण</span>
           <span className="text-xl sm:text-2xl font-black">{displayedTotalInspections}</span>
@@ -506,7 +525,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
             print-color-adjust: exact !important;
             background: white !important;
           }
-          .no-print {
+          .no-print, header, nav {
             display: none !important;
           }
           .printable-report-card {
@@ -573,7 +592,9 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
           </p>
           <div className="pt-1">
             <span className="inline-block bg-blue-900 text-white text-xs font-extrabold px-4 py-1 rounded-full uppercase tracking-wider">
-              ग्राम पंचायतवार समेकित गोसवारा
+              {filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड'
+                ? `ग्राम पंचायतवार समेकित गोसवारा (विकासखण्ड: ${filters.block})`
+                : 'ग्राम पंचायतवार समेकित गोसवारा (समस्त विकासखण्ड)'}
             </span>
           </div>
         </div>

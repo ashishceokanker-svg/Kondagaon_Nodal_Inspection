@@ -862,13 +862,19 @@ export const API = {
 
       for (const type of TYPES) {
         const items = await this.getInspections(type, filters);
-        const count = items.length;
-        typeStats[type] = { count, total: count };
+        let validItemsCount = 0;
         items.forEach(item => {
           const pName = item.panchayat || 'अन्य';
           if (targetPanchayats && !targetPanchayats.includes(pName)) {
             return;
           }
+          if (filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड') {
+            const blk = item.block || getBlockForPanchayat(pName);
+            if (!matchBlock(blk, filters.block)) {
+              return;
+            }
+          }
+          validItemsCount++;
           allInspections.push({ ...item, _type: type });
           if (!panchayatMap[pName]) {
             panchayatMap[pName] = { panchayat: pName, block: item.block || getBlockForPanchayat(pName) || '', total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0, nirman: 0 };
@@ -876,6 +882,7 @@ export const API = {
           panchayatMap[pName].total++;
           panchayatMap[pName][type]++;
         });
+        typeStats[type] = { count: validItemsCount, total: validItemsCount };
       }
 
       allInspections.sort((a, b) => new Date(b.date || b.createdAt || 0) - new Date(a.date || a.createdAt || 0));
@@ -883,6 +890,12 @@ export const API = {
       let panchayatStats = Object.values(panchayatMap);
       if (targetPanchayats) {
         panchayatStats = panchayatStats.filter(p => targetPanchayats.includes(p.panchayat));
+      }
+      if (filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड') {
+        panchayatStats = panchayatStats.filter(p => {
+          const blk = p.block || getBlockForPanchayat(p.panchayat);
+          return matchBlock(blk, filters.block);
+        });
       }
       panchayatStats.sort((a, b) => b.total - a.total);
 

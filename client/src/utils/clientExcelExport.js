@@ -193,7 +193,12 @@ export async function exportGoswaraToExcelClient(filters = {}) {
     // Single block chosen
     const bName = filters.block;
     let bTot = { total: 0, anganwadi: 0, school: 0, hostel: 0, pds: 0, chaupal: 0, health: 0, awas: 0, nirman: 0 };
-    pStats.forEach((p, idx) => {
+    const targetBlockPanchayats = pStats.filter(p => {
+      const blk = p.block || getBlockForPanchayat(p.panchayat);
+      return matchBlock(blk, bName);
+    });
+    const listToExport = targetBlockPanchayats.length > 0 ? targetBlockPanchayats : pStats;
+    listToExport.forEach((p, idx) => {
       bTot.total += (Number(p.total) || 0);
       bTot.anganwadi += (Number(p.anganwadi) || 0);
       bTot.school += (Number(p.school) || 0);
