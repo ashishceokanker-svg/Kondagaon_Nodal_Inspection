@@ -134,6 +134,8 @@ export default function GramChaupalForm({ officer, onBack, onSuccess, initialDat
     }
   };
 
+  let secIndex = 1;
+
   return (
     <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden mb-12">
       {/* Header */}
@@ -163,7 +165,7 @@ export default function GramChaupalForm({ officer, onBack, onSuccess, initialDat
         {/* Demographics */}
         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-            <MapPin className="w-4 h-4 text-purple-600" /> ग्राम एवं जनसंख्या विवरण
+            <MapPin className="w-4 h-4 text-purple-600" /> {secIndex++}. ग्राम एवं जनसंख्या विवरण
           </h3>
 
           <div className={`grid grid-cols-1 ${!visibility.hidePreliminaryInfo ? 'sm:grid-cols-4' : 'sm:grid-cols-3'} gap-3`}>
@@ -345,7 +347,7 @@ export default function GramChaupalForm({ officer, onBack, onSuccess, initialDat
         {/* 21 Sectors Review - Tabbed or Grouped Accordions */}
         <div className="space-y-3">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center justify-between">
-            <span>21 विभागों / योजनाओं की समीक्षा</span>
+            <span>{secIndex++}. 21 विभागों / योजनाओं की समीक्षा</span>
             <span className="text-[10px] text-purple-700 font-normal">सभी 4 पृष्ठों का संकलन</span>
           </h3>
 
@@ -672,7 +674,7 @@ export default function GramChaupalForm({ officer, onBack, onSuccess, initialDat
         {/* Remarks & Instructions */}
         <div>
           <label className="block text-xs font-bold text-slate-700 mb-1">
-            टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश):
+            {secIndex++}. टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश):
           </label>
           <textarea
             rows={3}
@@ -686,7 +688,7 @@ export default function GramChaupalForm({ officer, onBack, onSuccess, initialDat
         {/* Complaints & Suggestions */}
         <div>
           <label className="block text-xs font-bold text-slate-700 mb-1">
-            अन्य विषय / सुझाव / शिकायत (ग्रामीणों द्वारा उठाई गई प्रमुख समस्याएं):
+            {secIndex++}. अन्य विषय / सुझाव / शिकायत (ग्रामीणों द्वारा उठाई गई प्रमुख समस्याएं):
           </label>
           <textarea
             rows={3}

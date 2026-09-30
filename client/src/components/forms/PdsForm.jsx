@@ -97,6 +97,8 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
     }
   };
 
+  let secIndex = 1;
+
   return (
     <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden mb-12">
       {/* Header */}
@@ -126,7 +128,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
         {/* 01 & 02 Preliminary */}
         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-            <Wheat className="w-4 h-4 text-amber-600" /> दुकान एवं जांच का विवरण
+            <Wheat className="w-4 h-4 text-amber-600" /> {secIndex++}. दुकान एवं जांच का विवरण
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -235,13 +237,13 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
         {/* 17 Inspection Points Checklist */}
         <div className="border border-slate-200 rounded-xl p-4 space-y-4">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider pb-2 border-b border-slate-200">
-            03 से 16. जांच बिन्दुवार स्थिति
+            {secIndex++}. जांच बिन्दुवार स्थिति
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                03. विगत 3 माह घोषणा पत्र आधार पर राशन सामग्री स्थिति सही पाई गई?
+                विगत 3 माह घोषणा पत्र आधार पर राशन सामग्री स्थिति सही पाई गई?
               </label>
               <select
                 value={formData.declarationPast3MonthsOk}
@@ -255,7 +257,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                04. विगत 3 माह में 'चावल उत्सव' आयोजन की स्थिति सही पाई गई?
+                विगत 3 माह में 'चावल उत्सव' आयोजन की स्थिति सही पाई गई?
               </label>
               <select
                 value={formData.riceFestivalHeld}
@@ -269,7 +271,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                05. माह की 06 तारीख तक राशन सामग्री का भण्डारण सही हो रहा है?
+                माह की 06 तारीख तक राशन सामग्री का भण्डारण सही हो रहा है?
               </label>
               <select
                 value={formData.stockBySixth}
@@ -283,7 +285,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                06. कॉल सेंटर टोल-फ्री नंबर व सूचनाओं का प्रदर्शन है?
+                कॉल सेंटर टोल-फ्री नंबर व सूचनाओं का प्रदर्शन है?
               </label>
               <select
                 value={formData.tollFreeBoardDisplayed}
@@ -297,7 +299,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                07. हितग्राहियों की सूची, स्टॉक आदि आवश्यक सूचना बोर्ड लगा है?
+                हितग्राहियों की सूची, स्टॉक आदि आवश्यक सूचना बोर्ड लगा है?
               </label>
               <select
                 value={formData.stockBeneficiaryListDisplayed}
@@ -311,7 +313,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                08. राशनकार्ड संख्या (एपीएल एवं बीपीएल):
+                राशनकार्ड संख्या (एपीएल एवं बीपीएल):
               </label>
               <div className="grid grid-cols-2 gap-2">
                 <input
@@ -335,7 +337,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                09. चर्चा किए गए BPL/अंत्योदय हितग्राहियों की संख्या:
+                चर्चा किए गए BPL/अंत्योदय हितग्राहियों की संख्या:
               </label>
               <input
                 type="number"
@@ -348,7 +350,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                10. दुकान नियमित रूप से खुल रही है?
+                दुकान नियमित रूप से खुल रही है?
               </label>
               <select
                 value={formData.shopOpensRegularly}
@@ -362,7 +364,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                11. माह के प्रथम सप्ताह में भण्डारण होता है?
+                माह के प्रथम सप्ताह में भण्डारण होता है?
               </label>
               <select
                 value={formData.stockInFirstWeek}
@@ -376,7 +378,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                12. निगरानी समिति वास्तविक राशन पहुंचने का सत्यापन करती है?
+                निगरानी समिति वास्तविक राशन पहुंचने का सत्यापन करती है?
               </label>
               <select
                 value={formData.vigilanceCommitteeVerifying}
@@ -390,7 +392,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                13. राशन की तौल एवं गुणवत्ता सही है?
+                राशन की तौल एवं गुणवत्ता सही है?
               </label>
               <select
                 value={formData.weightAndQualityOk}
@@ -404,7 +406,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                14. निर्धारित मात्रा व शासकीय दर पर सामग्री प्राप्त होती है?
+                निर्धारित मात्रा व शासकीय दर पर सामग्री प्राप्त होती है?
               </label>
               <select
                 value={formData.correctRateAndQtyGiven}
@@ -418,7 +420,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                15. दुकानदार का हितग्राहियों के प्रति व्यवहार:
+                दुकानदार का हितग्राहियों के प्रति व्यवहार:
               </label>
               <select
                 value={formData.dealerBehavior}
@@ -433,7 +435,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                16. क्या हितग्राहियों को किश्तों में सामग्री दी जाती है?
+                क्या हितग्राहियों को किश्तों में सामग्री दी जाती है?
               </label>
               <select
                 value={formData.givenInInstallments}
@@ -450,7 +452,7 @@ export default function PdsForm({ officer, onBack, onSuccess, initialData = null
         {/* 17. Remarks */}
         <div>
           <label className="block text-xs font-bold text-slate-700 mb-1">
-            17. टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश):
+            {secIndex++}. टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश):
           </label>
           <textarea
             rows={3}

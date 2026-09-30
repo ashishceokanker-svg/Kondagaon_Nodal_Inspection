@@ -115,6 +115,8 @@ export default function AwasForm({ officer, onBack, onSuccess, initialData = nul
     }
   };
 
+  let secIndex = 1;
+
   return (
     <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden mb-12">
       {/* Header */}
@@ -144,7 +146,7 @@ export default function AwasForm({ officer, onBack, onSuccess, initialData = nul
         {/* 1. Beneficiary Info */}
         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-            <User className="w-4 h-4 text-cyan-700" /> {visibility.hidePreliminaryInfo ? 'हितग्राही की जानकारी' : 'प्रारंभिक एवं हितग्राही की जानकारी'}
+            <User className="w-4 h-4 text-cyan-700" /> {secIndex++}. {visibility.hidePreliminaryInfo ? 'हितग्राही की जानकारी' : 'प्रारंभिक एवं हितग्राही की जानकारी'}
           </h3>
 
           {!visibility.hidePreliminaryInfo && (
@@ -345,7 +347,7 @@ export default function AwasForm({ officer, onBack, onSuccess, initialData = nul
         {/* 2. Construction Stage Selector */}
         <div className="border border-slate-200 rounded-xl p-4 bg-slate-50 space-y-3">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider text-cyan-900">
-            आवास की वर्तमान स्थिति (प्रगति स्तर):
+            {secIndex++}. आवास की वर्तमान स्थिति (प्रगति स्तर):
           </h3>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -373,7 +375,7 @@ export default function AwasForm({ officer, onBack, onSuccess, initialData = nul
         {!visibility.hideAwasMaterials && (
           <div className="border border-slate-200 rounded-xl p-4 space-y-3">
             <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider text-cyan-900">
-              उपलब्ध निर्माण सामग्री (मात्रा) :—
+              {secIndex++}. उपलब्ध निर्माण सामग्री (मात्रा) :—
             </h3>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
@@ -444,7 +446,7 @@ export default function AwasForm({ officer, onBack, onSuccess, initialData = nul
         {/* 4. Remarks */}
         <div>
           <label className="block text-xs font-bold text-slate-700 mb-1">
-            टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश):
+            {secIndex++}. टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश):
           </label>
           <textarea
             rows={3}

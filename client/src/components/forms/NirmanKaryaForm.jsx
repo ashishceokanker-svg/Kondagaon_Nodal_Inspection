@@ -175,6 +175,8 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
     }
   };
 
+  let secIndex = 1;
+
   return (
     <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden mb-12">
       {/* Header */}
@@ -213,7 +215,7 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-4">
             <h3 className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2">
               <Calendar className="w-4 h-4 text-amber-600" />
-              <span>प्रारंभिक जानकारी (दिनांक एवं नोडल अधिकारी)</span>
+              <span>{secIndex++}. प्रारंभिक जानकारी (दिनांक एवं नोडल अधिकारी)</span>
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
               <div>
@@ -277,7 +279,7 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
         <div className="bg-amber-50/50 border border-amber-200/80 rounded-xl p-4 space-y-4">
           <h3 className="text-xs font-bold text-amber-900 uppercase tracking-wider flex items-center gap-2">
             <MapPin className="w-4 h-4 text-amber-700" />
-            <span>कार्यस्थल एवं ग्राम पंचायत विवरण</span>
+            <span>{secIndex++}. कार्यस्थल एवं ग्राम पंचायत विवरण</span>
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
@@ -347,7 +349,7 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
         <div className="bg-white border border-slate-200 rounded-xl p-4 space-y-4 shadow-sm">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
             <Building2 className="w-4 h-4 text-amber-600" />
-            <span>1. निर्माण कार्य की आधारभूत जानकारी</span>
+            <span>{secIndex++}. निर्माण कार्य की आधारभूत जानकारी</span>
           </h3>
 
           <div className="space-y-3 text-xs">
@@ -492,7 +494,7 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
         <div className="bg-white border border-slate-200 rounded-xl p-4 space-y-4 shadow-sm">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
             <Layers className="w-4 h-4 text-emerald-600" />
-            <span>2. वर्तमान भौतिक प्रगति स्तर (Physical Progress)</span>
+            <span>{secIndex++}. वर्तमान भौतिक प्रगति स्तर (Physical Progress)</span>
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
@@ -573,7 +575,7 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
         <div className="bg-white border border-slate-200 rounded-xl p-4 space-y-4 shadow-sm">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-indigo-600" />
-            <span>3. गुणवत्ता एवं तकनीकी मानक मूल्यांकन</span>
+            <span>{secIndex++}. गुणवत्ता एवं तकनीकी मानक मूल्यांकन</span>
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
@@ -688,7 +690,7 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
           <div className="flex items-center gap-2">
             <FileText className="w-5 h-5 text-amber-800" />
             <h3 className="text-xs font-bold text-amber-950 uppercase tracking-wider">
-              4. टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश) <span className="text-red-500">*</span>
+              {secIndex++}. टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश) <span className="text-red-500">*</span>
             </h3>
           </div>
           <p className="text-xs text-amber-800">
@@ -707,7 +709,7 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
         <div className="bg-white border border-slate-200 rounded-xl p-4 space-y-3">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
             <MapPin className="w-4 h-4 text-emerald-600" />
-            <span>5. कार्यस्थल की लाइव फोटो एवं GPS लोकेशन</span>
+            <span>{secIndex++}. कार्यस्थल की लाइव फोटो एवं GPS लोकेशन</span>
           </h3>
 
           <GeoPhotoCapture

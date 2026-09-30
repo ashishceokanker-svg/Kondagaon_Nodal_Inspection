@@ -127,6 +127,8 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
     }
   };
 
+  let secIndex = 1;
+
   return (
     <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden mb-12">
       {/* Header */}
@@ -157,7 +159,7 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
         {!visibility.hidePreliminaryInfo ? (
           <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
             <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-              <User className="w-4 h-4 text-pink-600" /> प्रारंभिक जानकारी
+              <User className="w-4 h-4 text-pink-600" /> {secIndex++}. प्रारंभिक जानकारी
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -219,7 +221,7 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-200">
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">1. विकासखण्ड का नाम</label>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">विकासखण्ड का नाम</label>
                 <select
                   value={formData.block}
                   disabled={isOfficer}
@@ -258,7 +260,7 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
                 </select>
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">2. आंगनबाड़ी केन्द्र का नाम *</label>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">आंगनबाड़ी केन्द्र का नाम *</label>
                 <input
                   type="text"
                   required
@@ -272,7 +274,7 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">3. आंगनबाड़ी कार्यकर्ता का नाम *</label>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">आंगनबाड़ी कार्यकर्ता का नाम *</label>
                 <input
                   type="text"
                   required
@@ -297,7 +299,7 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
         ) : (
           <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
             <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-              <Baby className="w-4 h-4 text-pink-600" /> आंगनबाड़ी केन्द्र विवरण
+              <Baby className="w-4 h-4 text-pink-600" /> {secIndex++}. आंगनबाड़ी केन्द्र विवरण
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
@@ -357,7 +359,7 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
         {/* 2. Registered Beneficiaries Table */}
         <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
           <div className="bg-pink-50 px-4 py-2.5 border-b border-pink-200 flex items-center justify-between">
-            <h3 className="text-xs font-bold text-pink-950">दर्ज हितग्राहियों की संख्या (Registered Beneficiaries)</h3>
+            <h3 className="text-xs font-bold text-pink-950">{secIndex++}. दर्ज हितग्राहियों की संख्या (Registered Beneficiaries)</h3>
             <span className="text-[11px] text-pink-800 font-medium">कुल योग: {formData.beneficiaries.total || 0}</span>
           </div>
 
@@ -444,7 +446,7 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
           <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
             <div className="bg-slate-100 px-4 py-2.5 border-b border-slate-200">
               <h3 className="text-xs font-bold text-slate-800">
-                सामग्री प्रदाय, बचत एवं वितरण की स्थिति (8 श्रेणियां)
+                {secIndex++}. सामग्री प्रदाय, बचत एवं वितरण की स्थिति (8 श्रेणियां)
               </h3>
               <p className="text-[10px] text-slate-500">पीडीएफ प्रपत्र अनुसार मात्रा व पैकेट विवरण</p>
             </div>
@@ -525,7 +527,7 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
           <div className="flex items-center justify-between border-b border-rose-200 pb-2">
             <h3 className="text-xs font-bold text-rose-950 flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-rose-600"></span>
-              <span>एन.आर.सी. (Nutrition Rehabilitation Centre - NRC) विवरण</span>
+              <span>{secIndex++}. एन.आर.सी. (Nutrition Rehabilitation Centre - NRC) विवरण</span>
             </h3>
             <span className="text-[10px] font-bold bg-rose-100 text-rose-800 px-2 py-0.5 rounded-full border border-rose-200">
               गंभीर कुपोषित बच्चे
@@ -565,7 +567,7 @@ export default function AnganwadiForm({ officer, onBack, onSuccess, initialData 
         {/* 4. Notes / Remarks */}
         <div>
           <label className="block text-xs font-bold text-slate-700 mb-1">
-            टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश):
+            {secIndex++}. टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश):
           </label>
           <textarea
             rows={3}

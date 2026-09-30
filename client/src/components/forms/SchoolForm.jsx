@@ -110,6 +110,8 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
     }
   };
 
+  let secIndex = 1;
+
   return (
     <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden mb-12">
       {/* Header */}
@@ -140,12 +142,12 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
         {!visibility.hidePreliminaryInfo ? (
           <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
             <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-              <User className="w-4 h-4 text-blue-600" /> प्रारंभिक जानकारी
+              <User className="w-4 h-4 text-blue-600" /> {secIndex++}. प्रारंभिक जानकारी
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">1. निरीक्षण दिनांक</label>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">निरीक्षण दिनांक</label>
                 <input
                   type="date"
                   max={today}
@@ -187,7 +189,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-200">
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">2. विकासखण्ड</label>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">विकासखण्ड</label>
                 <select
                   value={formData.block}
                   disabled={isOfficer}
@@ -229,7 +231,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">3. शाला का नाम *</label>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">शाला का नाम *</label>
                 <input
                   type="text"
                   required
@@ -253,7 +255,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
                 </select>
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">4. संकुल का नाम</label>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">संकुल का नाम</label>
                 <input
                   type="text"
                   placeholder="संकुल का नाम"
@@ -267,7 +269,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
         ) : (
           <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
             <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-              <GraduationCap className="w-4 h-4 text-blue-600" /> शाला विवरण
+              <GraduationCap className="w-4 h-4 text-blue-600" /> {secIndex++}. शाला विवरण
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
@@ -287,7 +289,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
                 </select>
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">3. शाला का नाम *</label>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">शाला का नाम *</label>
                 <input
                   type="text"
                   required
@@ -313,7 +315,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
                 </select>
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">4. संकुल का नाम</label>
+                <label className="block text-[11px] font-semibold text-slate-600 mb-1">संकुल का नाम</label>
                 <input
                   type="text"
                   placeholder="संकुल का नाम"
@@ -330,7 +332,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="border border-slate-200 rounded-xl p-4 bg-slate-50">
             <h4 className="text-xs font-bold text-slate-800 mb-3 text-blue-900">
-              5 & 6. शिक्षक संख्या एवं उपस्थिति
+              {secIndex++}. शिक्षक एवं छात्र उपस्थिति
             </h4>
             <div className="grid grid-cols-2 gap-2 text-xs">
               <div>
@@ -381,7 +383,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
           <div className="border border-slate-200 rounded-xl p-4 bg-slate-50">
             <h4 className="text-xs font-bold text-slate-800 mb-3 text-blue-900">
-              7. शाला में दर्ज एवं छात्र उपस्थिति
+              शाला में दर्ज एवं छात्र उपस्थिति
             </h4>
             <div className="grid grid-cols-2 gap-2 text-xs">
               <div>
@@ -415,16 +417,16 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
           </div>
         </div>
 
-        {/* 3. 19-Points Questionnaire Checklist */}
+        {/* 3. Questionnaire Checklist */}
         <div className="border border-slate-200 rounded-xl p-4 space-y-4">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider pb-2 border-b border-slate-200">
-            8 से 18. मुख्य निरीक्षण बिन्दु
+            {secIndex++}. मुख्य निरीक्षण बिन्दु
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                8. क्या पाठ्य सामग्री एवं गणवेश वितरण किया गया?
+                क्या पाठ्य सामग्री एवं गणवेश वितरण किया गया?
               </label>
               <select
                 value={formData.booksUniformsDistributed}
@@ -439,7 +441,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                9. वार्षिक शैक्षणिक कैलेण्डर अनुरूप अध्ययन?
+                वार्षिक शैक्षणिक कैलेण्डर अनुरूप अध्ययन?
               </label>
               <select
                 value={formData.academicCalendarFollowed}
@@ -453,7 +455,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                10. शाला भवन की साफ-सफाई, रंगरोगन, रखरखाव:
+                शाला भवन की साफ-सफाई, रंगरोगन, रखरखाव:
               </label>
               <select
                 value={formData.buildingCondition}
@@ -469,7 +471,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                11. मूलभूत सुविधाएं (पानी / बिजली / शौचालय):
+                मूलभूत सुविधाएं (पानी / बिजली / शौचालय):
               </label>
               <div className="grid grid-cols-3 gap-1">
                 <select
@@ -501,7 +503,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                12. शाला विकास समिति (SMC) की नियमित बैठक?
+                शाला विकास समिति (SMC) की नियमित बैठक?
               </label>
               <select
                 value={formData.smcMeetingRegular}
@@ -515,7 +517,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                13. प्रयोगशाला एवं पुस्तकालय का उपयोग?
+                प्रयोगशाला एवं पुस्तकालय का उपयोग?
               </label>
               <select
                 value={formData.labLibraryUsed}
@@ -530,7 +532,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                14. विद्यार्थियों का अध्ययन स्तर (लिखने, पढ़ने, सीखने):
+                विद्यार्थियों का अध्ययन स्तर (लिखने, पढ़ने, सीखने):
               </label>
               <select
                 value={formData.studentLearningLevel}
@@ -545,7 +547,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                15. PM पोषण शक्ति (मध्यान्ह भोजन):
+                PM पोषण शक्ति (मध्यान्ह भोजन):
               </label>
               <select
                 value={formData.midDayMeal}
@@ -560,7 +562,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                16. बैग लेस डे (शनिवार) का नियमित आयोजन?
+                बैग लेस डे (शनिवार) का नियमित आयोजन?
               </label>
               <select
                 value={formData.baglessDay}
@@ -574,7 +576,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                17. शिक्षक दैनंदिनी नियमित संधारण?
+                शिक्षक दैनंदिनी नियमित संधारण?
               </label>
               <select
                 value={formData.teacherDiaryMaintained}
@@ -588,7 +590,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
             <div>
               <label className="block font-medium text-slate-700 mb-1">
-                18. विद्यार्थियों को नियमित गृहकार्य एवं जांच?
+                विद्यार्थियों को नियमित गृहकार्य एवं जांच?
               </label>
               <select
                 value={formData.homeworkGivenAndChecked}
@@ -602,10 +604,10 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
           </div>
         </div>
 
-        {/* 4. Item 19: Academic Remarks (Class-wise / Subject-wise) */}
+        {/* Academic Remarks */}
         <div className="border border-slate-200 rounded-xl p-4 bg-slate-50 space-y-2">
           <h4 className="text-xs font-bold text-slate-800">
-            19. बच्चों का कक्षावार / विषयवार, अकादमिक स्तर पर टिप्पणी:
+            {secIndex++}. बच्चों का कक्षावार / विषयवार, अकादमिक स्तर पर टिप्पणी:
           </h4>
           {(visibility.hideSchoolAcademicExtra ? [0] : [0, 1, 2, 3]).map(i => (
             <div key={i} className="flex items-center gap-2">
@@ -621,10 +623,10 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
           ))}
         </div>
 
-        {/* 20. Remarks / Directives */}
+        {/* Remarks / Directives */}
         <div>
           <label className="block text-xs font-bold text-slate-700 mb-1">
-            टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश):
+            {secIndex++}. टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश):
           </label>
           <textarea
             rows={3}

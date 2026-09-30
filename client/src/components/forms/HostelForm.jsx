@@ -211,6 +211,8 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
     }
   };
 
+  let secIndex = 1;
+
   return (
     <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden mb-12">
       {/* Header */}
@@ -241,7 +243,7 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
         {!visibility.hidePreliminaryInfo && (
           <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
             <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-              <User className="w-4 h-4 text-emerald-600" /> प्रारंभिक जानकारी
+              <User className="w-4 h-4 text-emerald-600" /> {secIndex++}. प्रारंभिक जानकारी
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div>
@@ -290,7 +292,7 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
         {/* Section 4: Hostel Info */}
         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-            <Building className="w-4 h-4 text-emerald-600" /> 4. छात्रावास की जानकारी
+            <Building className="w-4 h-4 text-emerald-600" /> {secIndex++}. छात्रावास की जानकारी
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-1">
@@ -501,7 +503,7 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
         {!visibility.hideHostelSuperintendent && (
           <div className="border border-slate-200 rounded-xl p-4 space-y-3">
             <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 text-emerald-900">
-              <User className="w-4 h-4 text-emerald-600" /> 5. अधीक्षक / अधीक्षिका की जानकारी
+              <User className="w-4 h-4 text-emerald-600" /> {secIndex++}. अधीक्षक / अधीक्षिका की जानकारी
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -583,7 +585,7 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
           <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
             <div className="bg-slate-100 px-4 py-2.5 border-b border-slate-200">
               <h3 className="text-xs font-bold text-slate-800">
-                7. वर्तमान में कार्यरत कर्मचारियों की जानकारी (संख्या)
+                {secIndex++}. वर्तमान में कार्यरत कर्मचारियों की जानकारी (संख्या)
               </h3>
               <p className="text-[10px] text-slate-500">भृत्य, रसोईयां, चौकीदार, होमगार्ड (पुरुष / महिला)</p>
             </div>
@@ -631,7 +633,7 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
         {/* Section 9: Infrastructure & Amenities */}
         <div className="border border-slate-200 rounded-xl p-4 space-y-3">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider text-emerald-900">
-            9. छात्रावास भवन एवं मूलभूत सुविधाएं
+            {secIndex++}. छात्रावास भवन एवं मूलभूत सुविधाएं
           </h3>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
@@ -679,7 +681,7 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
         {/* Section 11: Security & Modern Facilities */}
         <div className="border border-slate-200 rounded-xl p-4 bg-slate-50 space-y-3">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 text-emerald-900">
-            <Shield className="w-4 h-4 text-emerald-600" /> 11. CCTV, कंप्यूटर, RO एवं सुरक्षा
+            <Shield className="w-4 h-4 text-emerald-600" /> {secIndex++}. CCTV, कंप्यूटर, RO एवं सुरक्षा
           </h3>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
@@ -732,7 +734,7 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
         {/* Remarks */}
         <div>
           <label className="block text-xs font-bold text-slate-700 mb-1">
-            12. टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश):
+            {secIndex++}. टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश):
           </label>
           <textarea
             rows={3}

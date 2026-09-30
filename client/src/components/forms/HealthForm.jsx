@@ -160,6 +160,8 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
     }
   };
 
+  let secIndex = 1;
+
   return (
     <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden mb-12">
       {/* Header */}
@@ -189,7 +191,7 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
         {/* 1-4. Basic Information */}
         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-            <HeartPulse className="w-4 h-4 text-red-600" /> 1 से 4. स्वास्थ्य केन्द्र एवं अधिकारी उपस्थिति
+            <HeartPulse className="w-4 h-4 text-red-600" /> {secIndex++}. स्वास्थ्य केन्द्र एवं अधिकारी उपस्थिति
           </h3>
 
           {!visibility.hidePreliminaryInfo && (
@@ -358,7 +360,7 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
         <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
           <div className="bg-red-50 px-4 py-2.5 border-b border-red-200 flex items-center justify-between">
             <h3 className="text-xs font-bold text-red-950">
-              8. आवश्यक ड्रग सूची अनुसार 9 दवाइयों की उपलब्धता
+              {secIndex++}. आवश्यक ड्रग सूची अनुसार 9 दवाइयों की उपलब्धता
             </h3>
             <span className="text-[10px] text-red-800 font-medium">पीडीएफ प्रपत्र 1 अनुसार</span>
           </div>
@@ -390,7 +392,7 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
           </div>
 
           <div className="p-3 bg-red-50/50 border-t border-red-100 flex items-center justify-between text-xs">
-            <span className="font-semibold text-slate-800">9. क्या कोई एक्सपायरी दवाई उपस्थित है?</span>
+            <span className="font-semibold text-slate-800">क्या कोई एक्सपायरी दवाई उपस्थित है?</span>
             <select
               value={formData.expiredDrugsPresent}
               onChange={e => setFormData({ ...formData, expiredDrugsPresent: e.target.value })}
@@ -405,12 +407,12 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
         {/* 10-21. Delivery, Diagnostics & Facilities */}
         <div className="border border-slate-200 rounded-xl p-4 space-y-4">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider pb-2 border-b border-slate-200">
-            10 से 21. प्रसव, जननी सुरक्षा, लैब टेस्ट एवं एम्बुलेंस
+            {secIndex++}. प्रसव, जननी सुरक्षा, लैब टेस्ट एवं एम्बुलेंस
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
             <div>
-              <label className="block text-[11px] text-slate-600 mb-1">10 & 11. जीवनदीप / जन आरोग्य समिति बैठकें</label>
+              <label className="block text-[11px] text-slate-600 mb-1">जीवनदीप / जन आरोग्य समिति बैठकें</label>
               <input
                 type="number"
                 placeholder="बैठक संख्या"
@@ -420,7 +422,7 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
               />
             </div>
             <div>
-              <label className="block text-[11px] text-slate-600 mb-1">12. संस्थागत प्रसव (Deliveries count)</label>
+              <label className="block text-[11px] text-slate-600 mb-1">संस्थागत प्रसव (Deliveries count)</label>
               <input
                 type="number"
                 min="0"
@@ -431,7 +433,7 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
               />
             </div>
             <div>
-              <label className="block text-[11px] text-slate-600 mb-1">13. JSY भुगतान स्थिति</label>
+              <label className="block text-[11px] text-slate-600 mb-1">JSY भुगतान स्थिति</label>
               <select value={formData.jsyPaymentStatus} onChange={e => setFormData({ ...formData, jsyPaymentStatus: e.target.value })} className="w-full p-2 border rounded-lg bg-white">
                 <option value="नियमित">नियमित भुगतान</option>
                 <option value="लंबित">लंबित</option>
@@ -439,7 +441,7 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
             </div>
 
             <div className="sm:col-span-2">
-              <label className="block text-[11px] text-slate-600 mb-1">16. लैब टेस्ट (HB/Sickling/HIV/Malaria/Urine/BP)</label>
+              <label className="block text-[11px] text-slate-600 mb-1">लैब टेस्ट (HB/Sickling/HIV/Malaria/Urine/BP)</label>
               <select value={formData.labTestsAvailable} onChange={e => setFormData({ ...formData, labTestsAvailable: e.target.value })} className="w-full p-2 border rounded-lg bg-white font-medium">
                 <option value="सभी 6 टेस्ट उपलब्ध (HB/Sickling/HIV/Malaria/Urine/BP)">सभी 6 टेस्ट उपलब्ध</option>
                 <option value="आंशिक टेस्ट उपलब्ध">आंशिक टेस्ट उपलब्ध</option>
@@ -447,7 +449,7 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
               </select>
             </div>
             <div>
-              <label className="block text-[11px] text-slate-600 mb-1">21. एम्बुलेंस (108/महतारी) सुविधा</label>
+              <label className="block text-[11px] text-slate-600 mb-1">एम्बुलेंस (108/महतारी) सुविधा</label>
               <select value={formData.ambulanceAvailable} onChange={e => setFormData({ ...formData, ambulanceAvailable: e.target.value })} className="w-full p-2 border rounded-lg bg-white">
                 <option value="हाँ (108/महतारी एक्सप्रेस)">हाँ (सुलभ)</option>
                 <option value="नहीं">नहीं / विलंब</option>
@@ -459,7 +461,7 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
         {/* 22. Labour Room Amenities (Page 2 of PDF) */}
         <div className="border border-slate-200 rounded-xl p-4 bg-slate-50 space-y-3">
           <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider text-red-950">
-            22. प्रसव कक्ष (Labour Room) 9 आवश्यक सुविधाएं
+            {secIndex++}. प्रसव कक्ष (Labour Room) 9 आवश्यक सुविधाएं
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
@@ -490,14 +492,14 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs">
             <div>
-              <label className="block text-[11px] text-slate-600 mb-1">24. प्रसव कक्ष में पानी व टॉयलेट उपलब्धता</label>
+              <label className="block text-[11px] text-slate-600 mb-1">प्रसव कक्ष में पानी व टॉयलेट उपलब्धता</label>
               <select value={formData.waterInLabourRoomAndToilet} onChange={e => setFormData({ ...formData, waterInLabourRoomAndToilet: e.target.value })} className="w-full p-2 border rounded-lg bg-white">
                 <option value="हाँ (पर्याप्त)">हाँ (पर्याप्त जल व स्वच्छ शौचालय)</option>
                 <option value="नहीं">नहीं</option>
               </select>
             </div>
             <div>
-              <label className="block text-[11px] text-slate-600 mb-1">25. बिजली की उपलब्धता</label>
+              <label className="block text-[11px] text-slate-600 mb-1">बिजली की उपलब्धता</label>
               <select value={formData.electricityAvailable} onChange={e => setFormData({ ...formData, electricityAvailable: e.target.value })} className="w-full p-2 border rounded-lg bg-white">
                 <option value="हाँ (24 घंटे / इन्वर्टर)">हाँ (24 घंटे / बैकअप)</option>
                 <option value="अनियमित">अनियमित</option>
@@ -509,7 +511,7 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
         {/* 26. Remarks */}
         <div>
           <label className="block text-xs font-bold text-slate-700 mb-1">
-            टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश):
+            {secIndex++}. टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश):
           </label>
           <textarea
             rows={3}
