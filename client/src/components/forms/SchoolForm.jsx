@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GraduationCap, Calendar, User, BookOpen, Camera, Save, Send, ArrowLeft } from 'lucide-react';
 import { API } from '../../api';
 import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../../constants';
+import { getSchoolsForPanchayat } from '../../data/schoolMasterData';
 import GeoPhotoCapture from '../GeoPhotoCapture';
 import { useFormVisibility } from '../../utils/useFormVisibility';
 
@@ -61,6 +62,35 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
   const [saving, setSaving] = useState(false);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
+
+  const availableSchools = getSchoolsForPanchayat(formData.block, formData.panchayat);
+
+  // Auto-populate school details when Panchayat or Block changes
+  useEffect(() => {
+    if (initialData) return; // preserve when editing existing record
+    if (availableSchools.length > 0) {
+      const exists = availableSchools.some(s => s.name === formData.schoolName);
+      if (!exists && availableSchools[0]) {
+        const first = availableSchools[0];
+        let derivedLevel = formData.schoolLevel;
+        if (first.name.includes('P.S.')) derivedLevel = 'प्राथमिक';
+        else if (first.name.includes('M.S.') || first.name.includes('U.P.S.')) derivedLevel = 'माध्यमिक';
+        else if (first.name.includes('H.S.S.')) derivedLevel = 'हायर सेकेंडरी';
+        else if (first.name.includes('H.S.')) derivedLevel = 'हाई स्कूल';
+
+        setFormData(prev => ({
+          ...prev,
+          schoolName: first.name,
+          schoolLevel: derivedLevel
+        }));
+      }
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        schoolName: ''
+      }));
+    }
+  }, [formData.block, formData.panchayat]);
 
   const handleAcademicNoteChange = (idx, val) => {
     const updated = [...formData.academicNotes];
@@ -232,14 +262,49 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
               <div>
                 <label className="block text-[11px] font-semibold text-slate-600 mb-1">शाला का नाम *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="उदा. प्रा.शा. विश्रामपुरी"
-                  value={formData.schoolName}
-                  onChange={e => setFormData({ ...formData, schoolName: e.target.value })}
-                  className="w-full text-xs p-2.5 rounded-lg border border-blue-300 bg-blue-50/30 focus:bg-white font-semibold text-slate-800"
-                />
+                {availableSchools.length > 0 ? (
+                  <select
+                    value={availableSchools.some(s => s.name === formData.schoolName) ? formData.schoolName : (formData.schoolName ? "OTHER" : "")}
+                    onChange={e => {
+                      const val = e.target.value;
+                      if (val === "OTHER") {
+                        setFormData({ ...formData, schoolName: '' });
+                      } else {
+                        let derivedLevel = formData.schoolLevel;
+                        if (val.includes('P.S.')) derivedLevel = 'प्राथमिक';
+                        else if (val.includes('M.S.') || val.includes('U.P.S.')) derivedLevel = 'माध्यमिक';
+                        else if (val.includes('H.S.S.')) derivedLevel = 'हायर सेकेंडरी';
+                        else if (val.includes('H.S.')) derivedLevel = 'हाई स्कूल';
+
+                        setFormData({ ...formData, schoolName: val, schoolLevel: derivedLevel });
+                      }
+                    }}
+                    className="w-full text-xs p-2.5 rounded-lg border border-blue-300 bg-blue-50/30 focus:bg-white font-semibold text-slate-800"
+                  >
+                    {availableSchools.map(s => (
+                      <option key={s.name} value={s.name}>{s.name}</option>
+                    ))}
+                    <option value="OTHER">-- अन्य (कस्टम दर्ज करें) --</option>
+                  </select>
+                ) : (
+                  <input
+                    type="text"
+                    required
+                    placeholder="उदा. P.S. विश्रामपुरी"
+                    value={formData.schoolName}
+                    onChange={e => setFormData({ ...formData, schoolName: e.target.value })}
+                    className="w-full text-xs p-2.5 rounded-lg border border-blue-300 bg-blue-50/30 focus:bg-white font-semibold text-slate-800"
+                  />
+                )}
+                {(availableSchools.length > 0 && (!availableSchools.some(s => s.name === formData.schoolName) || formData.schoolName === '')) && (
+                  <input
+                    type="text"
+                    placeholder="शाला का नाम दर्ज करें"
+                    value={formData.schoolName}
+                    onChange={e => setFormData({ ...formData, schoolName: e.target.value })}
+                    className="w-full text-xs p-2.5 mt-1.5 rounded-lg border border-blue-300 bg-white font-semibold text-slate-800"
+                  />
+                )}
               </div>
               <div>
                 <label className="block text-[11px] font-semibold text-slate-600 mb-1">शाला स्तर</label>
@@ -290,14 +355,49 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
               </div>
               <div>
                 <label className="block text-[11px] font-semibold text-slate-600 mb-1">शाला का नाम *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="उदा. प्रा.शा. विश्रामपुरी"
-                  value={formData.schoolName}
-                  onChange={e => setFormData({ ...formData, schoolName: e.target.value })}
-                  className="w-full text-xs p-2.5 rounded-lg border border-blue-300 bg-blue-50/30 focus:bg-white font-semibold text-slate-800"
-                />
+                {availableSchools.length > 0 ? (
+                  <select
+                    value={availableSchools.some(s => s.name === formData.schoolName) ? formData.schoolName : (formData.schoolName ? "OTHER" : "")}
+                    onChange={e => {
+                      const val = e.target.value;
+                      if (val === "OTHER") {
+                        setFormData({ ...formData, schoolName: '' });
+                      } else {
+                        let derivedLevel = formData.schoolLevel;
+                        if (val.includes('P.S.')) derivedLevel = 'प्राथमिक';
+                        else if (val.includes('M.S.') || val.includes('U.P.S.')) derivedLevel = 'माध्यमिक';
+                        else if (val.includes('H.S.S.')) derivedLevel = 'हायर सेकेंडरी';
+                        else if (val.includes('H.S.')) derivedLevel = 'हाई स्कूल';
+
+                        setFormData({ ...formData, schoolName: val, schoolLevel: derivedLevel });
+                      }
+                    }}
+                    className="w-full text-xs p-2.5 rounded-lg border border-blue-300 bg-blue-50/30 focus:bg-white font-semibold text-slate-800"
+                  >
+                    {availableSchools.map(s => (
+                      <option key={s.name} value={s.name}>{s.name}</option>
+                    ))}
+                    <option value="OTHER">-- अन्य (कस्टम दर्ज करें) --</option>
+                  </select>
+                ) : (
+                  <input
+                    type="text"
+                    required
+                    placeholder="उदा. P.S. विश्रामपुरी"
+                    value={formData.schoolName}
+                    onChange={e => setFormData({ ...formData, schoolName: e.target.value })}
+                    className="w-full text-xs p-2.5 rounded-lg border border-blue-300 bg-blue-50/30 focus:bg-white font-semibold text-slate-800"
+                  />
+                )}
+                {(availableSchools.length > 0 && (!availableSchools.some(s => s.name === formData.schoolName) || formData.schoolName === '')) && (
+                  <input
+                    type="text"
+                    placeholder="शाला का नाम दर्ज करें"
+                    value={formData.schoolName}
+                    onChange={e => setFormData({ ...formData, schoolName: e.target.value })}
+                    className="w-full text-xs p-2.5 mt-1.5 rounded-lg border border-blue-300 bg-white font-semibold text-slate-800"
+                  />
+                )}
               </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
