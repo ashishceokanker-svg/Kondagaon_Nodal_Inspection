@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Baby, GraduationCap, Building, Wheat, Landmark, Activity, Home, FileSpreadsheet, ChevronRight, Clock, PlusCircle, MapPin, CheckCircle, AlertTriangle, ClipboardCheck, Users, UserPlus, RefreshCw, Sliders, HardHat } from 'lucide-react';
+import { Baby, GraduationCap, Building, Wheat, Landmark, Activity, Home, FileSpreadsheet, ChevronRight, Clock, PlusCircle, MapPin, CheckCircle, AlertTriangle, ClipboardCheck, Users, UserPlus, RefreshCw, Sliders, HardHat, Database } from 'lucide-react';
 import { API } from '../api';
 import AdminFieldControlModal from './AdminFieldControlModal';
+import AdminMasterDataModal from './AdminMasterDataModal';
 
 export default function Dashboard({ officer, onSelectModule, onViewGoswara, onViewDetail, onViewCompliance, onViewOfficers }) {
   const isAdmin = officer?.role === 'admin' || officer?.id === 'admin';
@@ -9,6 +10,7 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
   const [recentList, setRecentList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showFieldControl, setShowFieldControl] = useState(false);
+  const [showMasterDataControl, setShowMasterDataControl] = useState(false);
 
   useEffect(() => {
     loadDashboardData();
@@ -156,6 +158,14 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
                 >
                   <Sliders className="w-4 h-4 text-purple-200" />
                   <span>विशेष फ़ील्ड नियंत्रण</span>
+                </button>
+                <button
+                  onClick={() => setShowMasterDataControl(true)}
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs py-2.5 px-3 rounded-xl shadow-md flex items-center justify-center gap-1.5 transition active:scale-95"
+                  title="विशेष पासवर्ड ashish#123 द्वारा स्कूल व छात्रावास मास्टर डेटा प्रबंधित करें"
+                >
+                  <Database className="w-4 h-4 text-indigo-200" />
+                  <span>मास्टर डेटा प्रबंधन</span>
                 </button>
               </>
             )}
@@ -446,6 +456,12 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
       <AdminFieldControlModal
         isOpen={showFieldControl}
         onClose={() => setShowFieldControl(false)}
+      />
+
+      {/* Admin Master Data Management Modal */}
+      <AdminMasterDataModal
+        isOpen={showMasterDataControl}
+        onClose={() => setShowMasterDataControl(false)}
       />
     </div>
   );

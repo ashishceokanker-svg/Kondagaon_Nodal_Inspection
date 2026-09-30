@@ -8102,24 +8102,122 @@ const normalizeStr = (str) => {
     .replace(/ढ़/g, 'ढ');
 };
 
+
+const CUSTOM_SCHOOLS_KEY = 'custom_school_master_data_v1';
+const DELETED_SCHOOLS_KEY = 'deleted_school_master_data_v1';
+const EDITED_SCHOOLS_KEY = 'edited_school_master_data_v1';
+
+export const getCustomSchools = () => {
+  try {
+    return JSON.parse(localStorage.getItem(CUSTOM_SCHOOLS_KEY) || '[]');
+  } catch {
+    return [];
+  }
+};
+
+export const getDeletedSchools = () => {
+  try {
+    return JSON.parse(localStorage.getItem(DELETED_SCHOOLS_KEY) || '[]');
+  } catch {
+    return [];
+  }
+};
+
+export const getEditedSchools = () => {
+  try {
+    return JSON.parse(localStorage.getItem(EDITED_SCHOOLS_KEY) || '{}');
+  } catch {
+    return {};
+  }
+};
+
+export const addCustomSchool = (block, panchayat, schoolObj) => {
+  const custom = getCustomSchools();
+  const newItem = {
+    id: 'school_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+    block,
+    panchayat,
+    name: schoolObj.name,
+    raw: schoolObj.raw || schoolObj.name,
+    category: schoolObj.category || '1 - Primary'
+  };
+  custom.push(newItem);
+  localStorage.setItem(CUSTOM_SCHOOLS_KEY, JSON.stringify(custom));
+  window.dispatchEvent(new Event('masterDataUpdated'));
+  return newItem;
+};
+
+export const editSchoolMaster = (block, panchayat, originalName, updatedSchoolObj) => {
+  const edited = getEditedSchools();
+  const key = `${block}::${panchayat}::${originalName}`;
+  edited[key] = updatedSchoolObj;
+  localStorage.setItem(EDITED_SCHOOLS_KEY, JSON.stringify(edited));
+  window.dispatchEvent(new Event('masterDataUpdated'));
+};
+
+export const deleteSchoolMaster = (block, panchayat, schoolName) => {
+  const deleted = getDeletedSchools();
+  const key = `${block}::${panchayat}::${schoolName}`;
+  if (!deleted.includes(key)) {
+    deleted.push(key);
+    localStorage.setItem(DELETED_SCHOOLS_KEY, JSON.stringify(deleted));
+  }
+  const custom = getCustomSchools().filter(
+    s => !(matchBlock(s.block, block) && normalizeStr(s.panchayat) === normalizeStr(panchayat) && s.name === schoolName)
+  );
+  localStorage.setItem(CUSTOM_SCHOOLS_KEY, JSON.stringify(custom));
+  window.dispatchEvent(new Event('masterDataUpdated'));
+};
+
 export const getSchoolsForPanchayat = (blockName, panchayatName) => {
   if (!blockName || !panchayatName) return [];
 
-  // Match block key
+  let baseList = [];
   const blockKey = Object.keys(SCHOOL_MASTER_DATA).find(b => matchBlock(b, blockName));
-  if (!blockKey) return [];
-
-  const blockData = SCHOOL_MASTER_DATA[blockKey];
-  if (!blockData) return [];
-
-  // Direct match
-  if (blockData[panchayatName]) return blockData[panchayatName];
-
-  // Normalized match
-  const normPanch = normalizeStr(panchayatName);
-  for (const [pName, list] of Object.entries(blockData)) {
-    if (normalizeStr(pName) === normPanch) return list;
+  if (blockKey && SCHOOL_MASTER_DATA[blockKey]) {
+    const blockData = SCHOOL_MASTER_DATA[blockKey];
+    if (blockData[panchayatName]) {
+      baseList = blockData[panchayatName];
+    } else {
+      const normPanch = normalizeStr(panchayatName);
+      for (const [pName, list] of Object.entries(blockData)) {
+        if (normalizeStr(pName) === normPanch) {
+          baseList = list;
+          break;
+        }
+      }
+    }
   }
 
-  return [];
+  let result = baseList.map(item => ({ ...item }));
+
+  const deletedKeys = getDeletedSchools();
+  const editedDict = getEditedSchools();
+
+  result = result.filter(item => {
+    const delKey = `${blockName}::${panchayatName}::${item.name}`;
+    return !deletedKeys.includes(delKey);
+  }).map(item => {
+    const editKey = `${blockName}::${panchayatName}::${item.name}`;
+    if (editedDict[editKey]) {
+      return { ...item, ...editedDict[editKey] };
+    }
+    return item;
+  });
+
+  const customItems = getCustomSchools().filter(s => {
+    return matchBlock(s.block, blockName) && normalizeStr(s.panchayat) === normalizeStr(panchayatName);
+  });
+
+  for (const cItem of customItems) {
+    const delKey = `${blockName}::${panchayatName}::${cItem.name}`;
+    if (!deletedKeys.includes(delKey)) {
+      const editKey = `${blockName}::${panchayatName}::${cItem.name}`;
+      const finalItem = editedDict[editKey] ? { ...cItem, ...editedDict[editKey] } : cItem;
+      result.push(finalItem);
+    }
+  }
+
+  return result;
 };
+

@@ -63,6 +63,13 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
   const [saving, setSaving] = useState(false);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
   const [showExtraFields, setShowExtraFields] = useState(false);
+  const [masterVersion, setMasterVersion] = useState(0);
+
+  useEffect(() => {
+    const handleUpdate = () => setMasterVersion(v => v + 1);
+    window.addEventListener('masterDataUpdated', handleUpdate);
+    return () => window.removeEventListener('masterDataUpdated', handleUpdate);
+  }, []);
 
   const availableSchools = getSchoolsForPanchayat(formData.block, formData.panchayat);
 
