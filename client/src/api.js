@@ -547,6 +547,7 @@ export const API = {
             }
             if (filters.startDate) mapped = mapped.filter(item => (item.date || item.inspectionDate || '') >= filters.startDate);
             if (filters.endDate) mapped = mapped.filter(item => (item.date || item.inspectionDate || '') <= filters.endDate);
+            if (filters.month) mapped = mapped.filter(item => item.month === filters.month);
             mapped.sort((a, b) => new Date(b.date || b.createdAt || 0) - new Date(a.date || a.createdAt || 0));
 
             localStorage.setItem(`cached_inspections_${type}`, JSON.stringify(mapped));
@@ -556,6 +557,7 @@ export const API = {
             } else if (filters.panchayats && Array.isArray(filters.panchayats) && filters.panchayats.length > 0) {
               drafts = drafts.filter(item => filters.panchayats.includes(item.panchayat));
             }
+            if (filters.month) drafts = drafts.filter(item => item.month === filters.month);
             return [...drafts, ...mapped];
           }
         } else {
@@ -573,6 +575,7 @@ export const API = {
           }
           if (filters.startDate) query = query.gte('date', filters.startDate);
           if (filters.endDate) query = query.lte('date', filters.endDate);
+          if (filters.month) query = query.eq('month', filters.month);
           query = query.order('created_at', { ascending: false });
 
           const { data, error } = await query;
@@ -586,6 +589,7 @@ export const API = {
             } else if (filters.panchayats && Array.isArray(filters.panchayats) && filters.panchayats.length > 0) {
               mapped = mapped.filter(item => filters.panchayats.includes(item.panchayat));
             }
+            if (filters.month) mapped = mapped.filter(item => item.month === filters.month);
             localStorage.setItem(`cached_inspections_${type}`, JSON.stringify(mapped));
             // Merge any offline pending drafts
             let drafts = this.getOfflineDrafts(type);
@@ -594,6 +598,7 @@ export const API = {
             } else if (filters.panchayats && Array.isArray(filters.panchayats) && filters.panchayats.length > 0) {
               drafts = drafts.filter(item => filters.panchayats.includes(item.panchayat));
             }
+            if (filters.month) drafts = drafts.filter(item => item.month === filters.month);
             return [...drafts, ...mapped];
           }
         }
@@ -609,6 +614,7 @@ export const API = {
     if (filters.panchayat) params.append('panchayat', filters.panchayat);
     if (filters.startDate) params.append('startDate', filters.startDate);
     if (filters.endDate) params.append('endDate', filters.endDate);
+    if (filters.month) params.append('month', filters.month);
 
     try {
       const res = await fetch(`${API_BASE}/inspections/${type}?${params.toString()}`);
@@ -640,6 +646,9 @@ export const API = {
     }
     if (filters.endDate) {
       combined = combined.filter(item => (item.date || item.inspectionDate) <= filters.endDate);
+    }
+    if (filters.month) {
+      combined = combined.filter(item => item.month === filters.month);
     }
     return combined;
   },
@@ -809,6 +818,7 @@ export const API = {
     if (filters.panchayat) params.append('panchayat', filters.panchayat);
     if (filters.startDate) params.append('startDate', filters.startDate);
     if (filters.endDate) params.append('endDate', filters.endDate);
+    if (filters.month) params.append('month', filters.month);
 
     // 1. Try Local Server
     try {

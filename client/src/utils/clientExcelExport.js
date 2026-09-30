@@ -21,9 +21,11 @@ export async function exportGoswaraToExcelClient(filters = {}) {
   const goswara = await API.getGoswaraSummary(filters);
   const pStats = goswara.panchayatStats || [];
 
-  const dateText = filters.startDate || filters.endDate
-    ? `${filters.startDate || 'प्रारंभ'} से ${filters.endDate || 'आज तक'}`
-    : new Date().toLocaleDateString('hi-IN');
+  const dateText = filters.month
+    ? `माह: ${filters.month} • दिनांक: ${new Date().toLocaleDateString('hi-IN')}`
+    : (filters.startDate || filters.endDate
+      ? `दिनांक: ${filters.startDate || 'प्रारंभ'} से ${filters.endDate || 'आज तक'}`
+      : `दिनांक: ${new Date().toLocaleDateString('hi-IN')}`);
   const isAllBlocks = !filters.block || filters.block === 'सभी विकासखण्ड' || filters.block === 'समस्त विकासखण्ड';
   const blockTitleText = !isAllBlocks ? `विकासखण्ड: ${filters.block}` : 'समस्त विकासखण्ड';
 
@@ -33,7 +35,7 @@ export async function exportGoswaraToExcelClient(filters = {}) {
   const summaryRows = [
     ['कार्यालय कलेक्टर, जिला-कोण्डागांव (छत्तीसगढ़)'],
     ['नोडल अधिकारियों द्वारा क्षेत्रीय निरीक्षण का मासिक / पाक्षिक गोसवारा प्रतिवेदन'],
-    [`${blockTitleText} • दिनांक: ${dateText}`],
+    [`${blockTitleText} • ${dateText}`],
     ['ग्राम पंचायतवार समेकित गोसवारा'],
     [''],
     ['क्र.', 'विकासखण्ड', 'ग्राम पंचायत / स्थल', 'कुल निरीक्षण', 'आंगनबाड़ी', 'शाला', 'छात्रावास', 'उचित मूल्य दुकान', 'ग्राम चौपाल', 'स्वास्थ्य केन्द्र', 'पीएम आवास', 'निर्माण कार्य']
@@ -137,7 +139,7 @@ export async function exportGoswaraToExcelClient(filters = {}) {
       const bSheetRows = [
         ['कार्यालय कलेक्टर, जिला-कोण्डागांव (छत्तीसगढ़)'],
         ['नोडल अधिकारियों द्वारा क्षेत्रीय निरीक्षण का मासिक / पाक्षिक गोसवारा प्रतिवेदन'],
-        [`विकासखण्ड: ${bName} • दिनांक: ${dateText}`],
+        [`विकासखण्ड: ${bName} • ${dateText}`],
         ['ग्राम पंचायतवार समेकित गोसवारा'],
         [''],
         ['क्र.', 'ग्राम पंचायत', 'कुल निरीक्षण', 'आंगनबाड़ी', 'शाला', 'छात्रावास', 'उचित मूल्य दुकान', 'ग्राम चौपाल', 'स्वास्थ्य केन्द्र', 'पीएम आवास', 'निर्माण कार्य']

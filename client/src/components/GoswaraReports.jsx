@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FileSpreadsheet, Printer, Download, Filter, Eye, Trash2, Calendar, MapPin, Building, Baby, GraduationCap, Wheat, Landmark, Activity, Home, ArrowLeft, MessageSquare, RefreshCw, HardHat } from 'lucide-react';
 import { API } from '../api';
-import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats, matchBlock, getBlockForPanchayat } from '../constants';
+import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats, matchBlock, getBlockForPanchayat, MONTHS_LIST } from '../constants';
 import { exportGoswaraToExcelClient } from '../utils/clientExcelExport';
 
 
@@ -24,8 +24,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
       return {
         block: '',
         panchayat: '',
-        startDate: '',
-        endDate: '',
+        month: 'सितम्बर 2026',
         officerId: ''
       };
     } else {
@@ -33,8 +32,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
         block: officer?.block || '',
         panchayat: officerPanchayats.length === 1 ? officerPanchayats[0] : '',
         panchayats: officerPanchayats,
-        startDate: '',
-        endDate: '',
+        month: 'सितम्बर 2026',
         officerId: officer?.id || ''
       };
     }
@@ -257,6 +255,9 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
   }, [isAdmin, allRemarksRecords, filters.panchayat, officerPanchayats]);
 
   const dateRangeDisplay = React.useMemo(() => {
+    if (filters.month) {
+      return `${filters.month} (आज दिनांक: ${new Date().toLocaleDateString('hi-IN')})`;
+    }
     if (filters.startDate && filters.endDate) {
       return `${filters.startDate} से ${filters.endDate}`;
     }
@@ -267,7 +268,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
       return `प्रारंभ से ${filters.endDate}`;
     }
     return new Date().toLocaleDateString('hi-IN');
-  }, [filters.startDate, filters.endDate]);
+  }, [filters.month, filters.startDate, filters.endDate]);
 
   const groupedPanchayatStats = React.useMemo(() => {
     const list = displayedPanchayatStats || [];
@@ -326,58 +327,33 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
     <div className="max-w-6xl mx-auto space-y-6 mb-16">
       
       {/* Header & Controls (Hidden when printing) */}
-      <div className="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-200 no-print space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={onBack}
-              className="p-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-slate-600 transition"
-              title="वापस डैशबोर्ड"
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </button>
-            <div className="flex items-center gap-2">
-              <div>
-                <h2 className="text-base sm:text-lg font-black text-slate-900 tracking-tight flex items-center gap-2">
-                  <FileSpreadsheet className="w-5 h-5 text-emerald-600" />
-                  <span>नोडल अधिकारी निरीक्षण गोसवारा</span>
-                </h2>
-                <p className="text-xs text-slate-600 font-medium mt-0.5">
-                  समेकित एवं विस्तृत निरीक्षण प्रतिवेदन
-                </p>
-              </div>
-            </div>
+      <div className="bg-white p-3.5 sm:p-4 rounded-2xl shadow-sm border border-slate-200 no-print">
+        <div className="flex items-center justify-between gap-3">
+          <button
+            onClick={onBack}
+            className="p-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-slate-700 transition shrink-0"
+            title="वापस डैशबोर्ड"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+
+          <div className="flex-1 text-center px-2">
+            <h1 className="text-base sm:text-lg md:text-xl font-black text-slate-900 tracking-tight leading-tight">
+              नोडल अधिकारियों द्वारा क्षेत्रीय निरीक्षण का मासिक / पाक्षिक गोसवारा प्रतिवेदन
+            </h1>
+            <p className="text-[11px] sm:text-xs text-slate-600 font-semibold mt-0.5">
+              जिला कोण्डागांव (छ०ग०) • नोडल अधिकारियों द्वारा मासिक निरीक्षण एवं अनुपालन स्थिति
+            </p>
           </div>
 
-          {/* Action buttons */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={loadGoswaraData}
-              className="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold py-2.5 px-3 rounded-xl shadow-sm flex items-center gap-1.5 transition"
-              title="ताज़ा ऑनलाइन डेटा लोड करें"
-            >
-              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-              <span className="hidden sm:inline">रिफ्रेश</span>
-            </button>
-
-            <button
-              onClick={handleDownloadExcel}
-              className="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-sm flex items-center gap-1.5 transition"
-              title="ऑफिशियल मल्टी-शीट एक्सेल डाउनलोड करें"
-            >
-              <Download className="w-4 h-4" />
-              <span>एक्सेल डाउनलोड (.xlsx)</span>
-            </button>
-
-            <button
-              onClick={handlePrint}
-              className="bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-sm flex items-center gap-1.5 transition"
-              title="प्रिंट या पीडीएफ सुरक्षित करें"
-            >
-              <Printer className="w-4 h-4" />
-              <span>प्रिंट / PDF</span>
-            </button>
-          </div>
+          <button
+            onClick={loadGoswaraData}
+            className="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold py-2 px-3 rounded-xl shadow-sm flex items-center gap-1.5 transition shrink-0"
+            title="ताज़ा ऑनलाइन डेटा लोड करें"
+          >
+            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+            <span className="hidden sm:inline">रिफ्रेश</span>
+          </button>
         </div>
       </div>
 
@@ -407,16 +383,30 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
               <span className="bg-amber-100 text-amber-950 border border-amber-300 font-bold px-2 py-0.5 rounded text-[11px] flex items-center gap-1.5">
                 <span>🛡️ एडमिन खोज एवं फ़िल्टर (Search Options)</span>
               </span>
-              {(filters.block || filters.panchayat || filters.startDate || filters.endDate) && (
+              {(filters.block || filters.panchayat || (filters.month && filters.month !== 'सितम्बर 2026')) && (
                 <button
-                  onClick={() => setFilters({ ...filters, block: '', panchayat: '', startDate: '', endDate: '' })}
+                  onClick={() => setFilters({ ...filters, block: '', panchayat: '', month: 'सितम्बर 2026' })}
                   className="text-xs text-rose-600 hover:underline font-bold"
                 >
                   फ़िल्टर रीसेट करें
                 </button>
               )}
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+              <div>
+                <label className="block text-[11px] font-bold text-slate-700 mb-1">माह का चयन करें (Month Filter)</label>
+                <select
+                  value={filters.month || ''}
+                  onChange={e => setFilters({ ...filters, month: e.target.value })}
+                  className="w-full p-2.5 border border-slate-300 rounded-xl bg-white text-xs font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                >
+                  <option value="">-- समस्त माह (All Months) --</option>
+                  {MONTHS_LIST.map(m => (
+                    <option key={m} value={m}>{m}</option>
+                  ))}
+                </select>
+              </div>
+
               <div>
                 <label className="block text-[11px] font-bold text-slate-700 mb-1">विकासखण्ड (Block)</label>
                 <select
@@ -444,28 +434,6 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                   ))}
                 </select>
               </div>
-
-              <div>
-                <label className="block text-[11px] font-bold text-slate-700 mb-1">प्रारंभ दिनांक</label>
-                <input
-                  type="date"
-                  max={getTodayDateString()}
-                  value={filters.startDate}
-                  onChange={e => setFilters({ ...filters, startDate: e.target.value })}
-                  className="w-full p-2 border border-slate-300 rounded-xl bg-white text-xs font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold text-slate-700 mb-1">समाप्ति दिनांक</label>
-                <input
-                  type="date"
-                  max={getTodayDateString()}
-                  value={filters.endDate}
-                  onChange={e => setFilters({ ...filters, endDate: e.target.value })}
-                  className="w-full p-2 border border-slate-300 rounded-xl bg-white text-xs font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                />
-              </div>
             </div>
           </div>
         ) : (
@@ -484,7 +452,21 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div>
+                <label className="block text-[11px] font-bold text-slate-700 mb-1">माह का चयन करें (Month Filter)</label>
+                <select
+                  value={filters.month || ''}
+                  onChange={e => setFilters({ ...filters, month: e.target.value })}
+                  className="w-full p-2.5 border border-slate-300 rounded-xl bg-white text-xs font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                >
+                  <option value="">-- समस्त माह (All Months) --</option>
+                  {MONTHS_LIST.map(m => (
+                    <option key={m} value={m}>{m}</option>
+                  ))}
+                </select>
+              </div>
+
               {officerPanchayats.length > 1 && (
                 <div>
                   <label className="block text-[11px] font-bold text-slate-700 mb-1">आवंटित ग्राम पंचायत चुनें</label>
@@ -498,7 +480,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                         panchayats: val ? [val] : officerPanchayats
                       });
                     }}
-                    className="w-full p-2 border border-slate-300 rounded-xl bg-white text-xs font-semibold"
+                    className="w-full p-2.5 border border-slate-300 rounded-xl bg-white text-xs font-semibold"
                   >
                     <option value="">-- समस्त आवंटित पंचायतें ({officerPanchayats.length}) --</option>
                     {officerPanchayats.map(p => (
@@ -507,26 +489,6 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                   </select>
                 </div>
               )}
-              <div>
-                <label className="block text-[11px] font-bold text-slate-700 mb-1">प्रारंभ दिनांक से</label>
-                <input
-                  type="date"
-                  max={getTodayDateString()}
-                  value={filters.startDate}
-                  onChange={e => setFilters({ ...filters, startDate: e.target.value })}
-                  className="w-full p-2 border border-slate-300 rounded-xl bg-white text-xs font-semibold"
-                />
-              </div>
-              <div>
-                <label className="block text-[11px] font-bold text-slate-700 mb-1">समाप्ति दिनांक तक</label>
-                <input
-                  type="date"
-                  max={getTodayDateString()}
-                  value={filters.endDate}
-                  onChange={e => setFilters({ ...filters, endDate: e.target.value })}
-                  className="w-full p-2 border border-slate-300 rounded-xl bg-white text-xs font-semibold"
-                />
-              </div>
             </div>
           </div>
         )}
@@ -579,71 +541,101 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
       {/* Printable Report View (Visible during print or on screen) */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-6 printable-report-card">
         
-        {/* Official Header for Print & Screen */}
-        <div className="text-center pb-4 border-b-2 border-slate-300 mb-5 flex flex-col items-center justify-center space-y-1.5">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 mb-1 flex items-center justify-center">
+        {/* Web View: Only show 'ग्राम पंचायतवार समेकित गोसवारा' pill */}
+        <div className="no-print flex justify-center mb-4">
+          <span className="inline-block bg-blue-900 text-white text-xs sm:text-sm font-extrabold px-5 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+            ग्राम पंचायतवार समेकित गोसवारा
+          </span>
+        </div>
+
+        {/* Print / PDF Only: Full Official Header */}
+        <div className="hidden print:flex flex-col items-center justify-center text-center pb-3 border-b-2 border-black mb-4 space-y-1">
+          <div className="w-16 h-16 mb-1 flex items-center justify-center">
             <img 
               src="/cg_logo.svg" 
               alt="छत्तीसगढ़ शासन" 
               className="w-full h-full object-contain"
             />
           </div>
-          <h1 className="text-lg sm:text-2xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-xl font-black text-slate-900 tracking-tight">
             कार्यालय कलेक्टर, जिला-कोण्डागांव (छत्तीसगढ़)
           </h1>
-          <h2 className="text-sm sm:text-lg font-bold text-blue-950">
+          <h2 className="text-base font-bold text-blue-950">
             नोडल अधिकारियों द्वारा क्षेत्रीय निरीक्षण का मासिक / पाक्षिक गोसवारा प्रतिवेदन
           </h2>
-          <p className="text-xs sm:text-sm font-bold text-slate-700">
+          <p className="text-xs font-bold text-slate-700">
             {filters.block && filters.block !== 'सभी विकासखण्ड' && filters.block !== 'समस्त विकासखण्ड'
               ? `विकासखण्ड: ${filters.block}` 
               : 'समस्त विकासखण्ड'}
             {filters.panchayat ? ` • ग्राम पंचायत: ${filters.panchayat}` : ''}
             {' • '}
-            <span>दिनांक: {dateRangeDisplay}</span>
+            <span>{dateRangeDisplay}</span>
           </p>
-          <div className="pt-2">
-            <span className="inline-block bg-blue-900 text-white text-xs sm:text-sm font-extrabold px-5 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+          <div className="pt-1">
+            <span className="inline-block bg-blue-900 text-white text-xs font-extrabold px-4 py-1 rounded-full uppercase tracking-wider">
               ग्राम पंचायतवार समेकित गोसवारा
             </span>
           </div>
         </div>
 
-        {/* Mode Selector Tabs (Hidden in Print) */}
-        <div className="flex flex-wrap border-b border-slate-200 mb-4 no-print text-xs font-bold gap-1">
-          <button
-            onClick={() => setActiveSubTab('summary')}
-            className={`py-2 px-3 sm:px-4 border-b-2 transition flex items-center gap-1.5 ${
-              activeSubTab === 'summary'
-                ? 'border-blue-700 text-blue-800'
-                : 'border-transparent text-slate-500 hover:text-slate-700'
-            }`}
-          >
-            <FileSpreadsheet className="w-4 h-4" />
-            <span>1. ग्राम पंचायतवार समेकित गोसवारा</span>
-          </button>
-          <button
-            onClick={() => setActiveSubTab('facility')}
-            className={`py-2 px-3 sm:px-4 border-b-2 transition flex items-center gap-1.5 ${
-              activeSubTab === 'facility'
-                ? 'border-blue-700 text-blue-800'
-                : 'border-transparent text-slate-500 hover:text-slate-700'
-            }`}
-          >
-            <Building className="w-4 h-4" />
-            <span>2. सुविधावार विस्तृत पंजी</span>
-          </button>
-          <button
-            onClick={() => setActiveSubTab('remarks')}
-            className={`py-2 px-3 sm:px-4 border-b-2 transition flex items-center gap-1.5 ${
-              activeSubTab === 'remarks'
-                ? 'border-amber-600 text-amber-900 bg-amber-50/60'
-                : 'border-transparent text-slate-500 hover:text-slate-700'
-            }`}
-          >
-            <MessageSquare className="w-4 h-4 text-amber-700" />
-            <span>3. समस्त टीप एवं सुधार निर्देश (All Remarks)</span>
-          </button>
+        {/* Mode Selector Tabs & Action Buttons (Hidden in Print) */}
+        <div className="flex flex-wrap items-center justify-between border-b border-slate-200 mb-4 pb-1 no-print gap-2">
+          <div className="flex flex-wrap items-center gap-1 text-xs font-bold">
+            <button
+              onClick={() => setActiveSubTab('summary')}
+              className={`py-2 px-3 sm:px-4 border-b-2 transition flex items-center gap-1.5 ${
+                activeSubTab === 'summary'
+                  ? 'border-blue-700 text-blue-800'
+                  : 'border-transparent text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              <FileSpreadsheet className="w-4 h-4" />
+              <span>1. ग्राम पंचायतवार समेकित गोसवारा</span>
+            </button>
+            <button
+              onClick={() => setActiveSubTab('facility')}
+              className={`py-2 px-3 sm:px-4 border-b-2 transition flex items-center gap-1.5 ${
+                activeSubTab === 'facility'
+                  ? 'border-blue-700 text-blue-800'
+                  : 'border-transparent text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              <Building className="w-4 h-4" />
+              <span>2. सुविधावार विस्तृत पंजी</span>
+            </button>
+            <button
+              onClick={() => setActiveSubTab('remarks')}
+              className={`py-2 px-3 sm:px-4 border-b-2 transition flex items-center gap-1.5 ${
+                activeSubTab === 'remarks'
+                  ? 'border-amber-600 text-amber-900 bg-amber-50/60'
+                  : 'border-transparent text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              <MessageSquare className="w-4 h-4 text-amber-700" />
+              <span>3. समस्त टीप एवं सुधार निर्देश (All Remarks)</span>
+            </button>
+          </div>
+
+          {/* Action buttons beside All Remarks */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleDownloadExcel}
+              className="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold py-1.5 px-3 rounded-xl shadow-sm flex items-center gap-1.5 transition"
+              title="ऑफिशियल मल्टी-शीट एक्सेल डाउनलोड करें"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>एक्सेल डाउनलोड (.xlsx)</span>
+            </button>
+
+            <button
+              onClick={handlePrint}
+              className="bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold py-1.5 px-3 rounded-xl shadow-sm flex items-center gap-1.5 transition"
+              title="प्रिंट या पीडीएफ सुरक्षित करें"
+            >
+              <Printer className="w-3.5 h-3.5" />
+              <span>प्रिंट / PDF</span>
+            </button>
+          </div>
         </div>
 
         {/* VIEW 1: PANCHAYAT GOSWARA TABLE */}
