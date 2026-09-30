@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, MapPin, User, Briefcase, Calendar, KeyRound, Lock, ArrowRight, CheckCircle2, ShieldAlert, Building, RefreshCw } from 'lucide-react';
+import { 
+  ShieldCheck, MapPin, User, Briefcase, Calendar, KeyRound, Lock, 
+  ArrowRight, CheckCircle2, ShieldAlert, Building, RefreshCw, 
+  HelpCircle, X, BookOpen, FileText, Eye, PhoneCall, Layers
+} from 'lucide-react';
 import { API } from '../api';
 import { DISTRICT_BLOCKS, MONTH_OPTIONS, matchBlock } from '../constants';
 
@@ -12,6 +16,9 @@ export default function NodalLogin({ onLoginSuccess }) {
   const [selectedMonth, setSelectedMonth] = useState('सितम्बर 2026');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+
+  // Helpdesk State
+  const [showHelpdesk, setShowHelpdesk] = useState(false);
 
   // App Update State
   const [isUpdatingApp, setIsUpdatingApp] = useState(false);
@@ -406,8 +413,20 @@ export default function NodalLogin({ onLoginSuccess }) {
             </form>
           )}
 
-          {/* App / Web Update & Sync Button */}
-          <div className="pt-3 border-t border-slate-100 mt-4">
+          {/* Helpdesk & App Update Buttons */}
+          <div className="pt-3 border-t border-slate-100 mt-4 space-y-2">
+            {/* Helpdesk Button */}
+            <button
+              type="button"
+              onClick={() => setShowHelpdesk(true)}
+              className="w-full bg-blue-50 hover:bg-blue-100 text-blue-900 border-2 border-blue-300 font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 text-xs transition active:scale-[0.99] shadow-sm"
+              title="पोर्टल उपयोग एवं गोसवारा रिपोर्ट हेतु सहायता केंद्र"
+            >
+              <HelpCircle className="w-4 h-4 text-blue-700" />
+              <span>📖 नोडल अधिकारी सहायता केंद्र एवं उपयोग मार्गदर्शिका (Helpdesk)</span>
+            </button>
+
+            {/* App / Web Update & Sync Button */}
             <button
               type="button"
               onClick={handleAppUpdate}
@@ -433,6 +452,156 @@ export default function NodalLogin({ onLoginSuccess }) {
         </div>
 
       </div>
+
+      {/* Helpdesk & User Guide Modal */}
+      {showHelpdesk && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5 overflow-y-auto animate-fadeIn">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full border border-slate-200 overflow-hidden my-auto max-h-[90vh] flex flex-col">
+            
+            {/* Modal Header */}
+            <div className="bg-gradient-to-r from-blue-950 via-indigo-900 to-slate-950 text-white p-4 sm:p-5 flex items-start justify-between border-b-4 border-amber-400">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-amber-400/20 border border-amber-400/40 flex items-center justify-center text-amber-300 shrink-0">
+                  <BookOpen className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-black text-amber-300">
+                    नोडल अधिकारी सहायता केंद्र एवं उपयोग मार्गदर्शिका
+                  </h3>
+                  <p className="text-[11px] sm:text-xs text-blue-200 font-medium">
+                    लॉगिन से लेकर प्रविष्टि एवं गोसवारा रिपोर्ट तक की सम्पूर्ण चरणबद्ध जानकारी
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowHelpdesk(false)}
+                className="text-white/80 hover:text-white bg-white/10 hover:bg-white/20 p-1.5 rounded-lg transition"
+                title="बंद करें"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Body - Scrollable */}
+            <div className="p-4 sm:p-6 overflow-y-auto space-y-4 text-xs text-slate-700 leading-relaxed">
+              
+              {/* Step 1: Login */}
+              <div className="p-3.5 bg-blue-50/60 rounded-xl border border-blue-200">
+                <h4 className="font-bold text-blue-900 text-sm flex items-center gap-2 mb-2">
+                  <span className="w-5 h-5 rounded-full bg-blue-600 text-white text-[11px] flex items-center justify-center font-bold">1</span>
+                  लॉगिन कैसे करें (Login Process)
+                </h4>
+                <ul className="list-disc list-inside space-y-1.5 text-slate-700 ml-1">
+                  <li><strong>विकासखण्ड चुनें:</strong> अपना ब्लॉक (उदा. फरसगांव, बड़ेराजपुर, केशकाल, कोंडागांव, माकड़ी) ड्रॉपडाउन से चुनें।</li>
+                  <li><strong>ग्राम पंचायत चुनें:</strong> अपनी आवंटित ग्राम पंचायत चुनें। चयन करते ही आपका नाम व पद स्वतः प्रदर्शित होगा।</li>
+                  <li><strong>समीक्षा माह चुनें:</strong> जिस माह का निरीक्षण दर्ज कर रहे हैं (उदा. सितम्बर 2026)।</li>
+                  <li><strong>पासवर्ड:</strong> अपना <strong>10 अंकों का पंजीकृत मोबाइल नंबर</strong> पासवर्ड के रूप में दर्ज करें और <em>'नोडल लॉगिन करें'</em> बटन दबाएं।</li>
+                </ul>
+              </div>
+
+              {/* Step 2: Inspection Forms */}
+              <div className="p-3.5 bg-indigo-50/60 rounded-xl border border-indigo-200">
+                <h4 className="font-bold text-indigo-900 text-sm flex items-center gap-2 mb-2">
+                  <span className="w-5 h-5 rounded-full bg-indigo-600 text-white text-[11px] flex items-center justify-center font-bold">2</span>
+                  8 प्रमुख निरीक्षण प्रपत्र (8 Inspection Categories)
+                </h4>
+                <p className="mb-2 text-slate-600">डैशबोर्ड पर 8 प्रमुख निरीक्षण श्रेणियां उपलब्ध हैं, आवश्यकतानुसार संबंधित कार्ड पर क्लिक करें:</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-[11px] font-semibold text-slate-800 bg-white p-2.5 rounded-lg border border-indigo-100">
+                  <div className="flex items-center gap-1.5">🍼 1. आंगनबाड़ी केन्द्र निरीक्षण</div>
+                  <div className="flex items-center gap-1.5">🏫 2. शाला (प्राथमिक / मिडिल)</div>
+                  <div className="flex items-center gap-1.5">🏢 3. छात्रावास / आश्रम निरीक्षण</div>
+                  <div className="flex items-center gap-1.5">🏠 4. प्रधानमंत्री आवास योजना (PMAY)</div>
+                  <div className="flex items-center gap-1.5">🏥 5. उप स्वास्थ्य केंद्र / आरोग्य मंदिर</div>
+                  <div className="flex items-center gap-1.5">🌾 6. उचित मूल्य दुकान (राशन दुकान)</div>
+                  <div className="flex items-center gap-1.5">📜 7. राजस्व अभिलेख एवं नक्शा बटांकन</div>
+                  <div className="flex items-center gap-1.5">🏗️ 8. ग्राम पंचायत निर्माण कार्य (नया)</div>
+                </div>
+                <p className="mt-2 text-[11px] text-indigo-950 font-medium">
+                  <strong>नियम:</strong> निरीक्षण दिनांक में केवल वर्तमान (आज) या पूर्व की दिनांक मान्य है। आपकी आवंटित ग्राम पंचायत व आपका नाम फॉर्म में स्वतः लॉक रहेगा।
+                </p>
+              </div>
+
+              {/* Step 3: GPS & Photo */}
+              <div className="p-3.5 bg-emerald-50/60 rounded-xl border border-emerald-200">
+                <h4 className="font-bold text-emerald-900 text-sm flex items-center gap-2 mb-2">
+                  <span className="w-5 h-5 rounded-full bg-emerald-600 text-white text-[11px] flex items-center justify-center font-bold">3</span>
+                  लाइव GPS लोकेशन एवं फोटो (Live Location & Photo)
+                </h4>
+                <ul className="list-disc list-inside space-y-1.5 text-slate-700 ml-1">
+                  <li>कार्यस्थल अथवा संस्था पर पहुंचकर <strong>'स्थान (GPS) प्राप्त करें'</strong> बटन पर क्लिक करें।</li>
+                  <li>संस्था या निर्माण कार्य की स्पष्ट लाइव फोटो अपलोड करें (अक्षांश व देशांतर स्वतः दर्ज होंगे)।</li>
+                  <li>निर्माण कार्यों में कार्य का नाम, योजना, स्वीकृत लागत, भौतिक प्रगति (प्रतिशत) व सूचना पटल (CIB) की स्थिति अनिवार्य रूप से दर्ज करें।</li>
+                </ul>
+              </div>
+
+              {/* Step 4: Draft & Submit */}
+              <div className="p-3.5 bg-amber-50/60 rounded-xl border border-amber-200">
+                <h4 className="font-bold text-amber-900 text-sm flex items-center gap-2 mb-2">
+                  <span className="w-5 h-5 rounded-full bg-amber-600 text-white text-[11px] flex items-center justify-center font-bold">4</span>
+                  ड्राफ्ट सुरक्षित करें एवं अंतिम सबमिट (Draft & Final Submit)
+                </h4>
+                <ul className="list-disc list-inside space-y-1.5 text-slate-700 ml-1">
+                  <li><strong>ड्राफ्ट सुरक्षित करें (Save Draft):</strong> यदि निरीक्षण के दौरान जानकारी अधूरी है, तो इसे ड्राफ्ट के रूप में सुरक्षित कर बाद में पूरा कर सकते हैं।</li>
+                  <li><strong>सत्यापित कर सबमिट करें (Submit Final):</strong> सम्पूर्ण प्रविष्टि पूर्ण होने के बाद सबमिट करें। सबमिट होते ही डेटा तुरंत क्लाउड पर सुरक्षित हो जाएगा।</li>
+                </ul>
+              </div>
+
+              {/* Step 5: Goswara Reports & PDF */}
+              <div className="p-3.5 bg-purple-50/60 rounded-xl border border-purple-200">
+                <h4 className="font-bold text-purple-900 text-sm flex items-center gap-2 mb-2">
+                  <span className="w-5 h-5 rounded-full bg-purple-600 text-white text-[11px] flex items-center justify-center font-bold">5</span>
+                  गोसवारा रिपोर्ट, Eye 👁️ व्यू एवं PDF प्रिंट (Goswara Reports & PDF)
+                </h4>
+                <ul className="list-disc list-inside space-y-1.5 text-slate-700 ml-1">
+                  <li>ऊपरी पट्टी में <strong>'गोसवारा रिपोर्ट' (Goswara Reports)</strong> बटन पर क्लिक करें।</li>
+                  <li><strong>View 1 (विकासखण्डवार सारांश):</strong> सभी 8 श्रेणियों की ब्लॉकवार स्वीकृत व निरीक्षण प्रगति की सारांश तालिका।</li>
+                  <li><strong>View 2 (पंचायतवार विस्तृत पंजी):</strong> आपकी ग्राम पंचायत की सभी निरीक्षण प्रविष्टियों की सूची।</li>
+                  <li><strong>👁️ Eye Icon (कार्रवाई):</strong> किसी भी प्रविष्टि के '👁️' आइकन पर क्लिक करने पर मूल निरीक्षण प्रतिवेदन हूबहू प्रारूप में खुलेगा, जिसे <strong>'प्रिंट / PDF'</strong> बटन दबाकर सीधे A4 साइज में प्रिंट या PDF के रूप में सुरक्षित कर सकते हैं।</li>
+                  <li><strong>View 3 (टीप व निर्देश पंजी):</strong> नोडल अधिकारियों द्वारा दर्ज की गई सभी टीप व निर्देश एक साथ।</li>
+                  <li><strong>📊 संपूर्ण एक्सेल रिपोर्ट:</strong> इस बटन से सभी 8 श्रेणियों की प्रविष्टियां एक साथ एक्सेल फाइल (9 अलग-अलग शीट्स) में डाउनलोड हो जाती हैं।</li>
+                </ul>
+              </div>
+
+              {/* Step 6: Sync & App update */}
+              <div className="p-3.5 bg-cyan-50/60 rounded-xl border border-cyan-200">
+                <h4 className="font-bold text-cyan-900 text-sm flex items-center gap-2 mb-2">
+                  <span className="w-5 h-5 rounded-full bg-cyan-600 text-white text-[11px] flex items-center justify-center font-bold">6</span>
+                  डेटा सिंक एवं ऐप अपडेट (App Update & Cloud Sync)
+                </h4>
+                <p className="text-slate-700">
+                  यदि आपके मोबाइल या ब्राउज़र में कोई नया फॉर्म या नया डेटा तुरंत दिखाई न दे, तो लॉगिन स्क्रीन पर दिए गए 
+                  <strong> 'ऐप एवं ऑनलाइन डेटा अपडेट करें (Update App & Sync)'</strong> बटन को दबाएं। यह तुरंत क्लाउड से नवीनतम डेटा व सेटिंग्स लोड कर देता है।
+                </p>
+              </div>
+
+              {/* Contact / Support */}
+              <div className="p-3.5 bg-slate-100 rounded-xl border border-slate-300 text-slate-700">
+                <div className="flex items-center gap-2 font-bold text-slate-900 mb-1">
+                  <PhoneCall className="w-4 h-4 text-slate-700" />
+                  <span>तकनीकी सहायता एवं नोडल हेल्पलाइन:</span>
+                </div>
+                <p className="text-[11px] text-slate-600">
+                  कार्यालय कलेक्टर (नोडल निरीक्षण शाखा) / राष्ट्रीय सूचना विज्ञान केंद्र (NIC), जिला कोण्डागांव (छ०ग०)।
+                </p>
+              </div>
+
+            </div>
+
+            {/* Modal Footer */}
+            <div className="p-3.5 bg-slate-50 border-t border-slate-200 flex justify-end">
+              <button
+                type="button"
+                onClick={() => setShowHelpdesk(false)}
+                className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-5 rounded-xl text-xs transition shadow"
+              >
+                समझ गया / विंडो बंद करें
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
     </div>
   );
 }

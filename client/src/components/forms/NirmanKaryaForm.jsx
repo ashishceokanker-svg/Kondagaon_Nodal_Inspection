@@ -84,7 +84,6 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
       sanctionCost: '',
       expenditureCost: '',
       agencyName: 'ग्राम पंचायत',
-      agencyRepresentative: '',
       startDate: '',
       targetDate: '',
 
@@ -440,19 +439,6 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
                   value={formData.expenditureCost}
                   onChange={e => setFormData({ ...formData, expenditureCost: e.target.value })}
                   className="w-full p-2.5 border border-slate-300 rounded-lg bg-white font-bold text-slate-800"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-semibold text-slate-700 mb-1">
-                  एजेंसी प्रतिनिधि / सचिव का नाम
-                </label>
-                <input
-                  type="text"
-                  placeholder="सचिव / रोजगार सहायक का नाम"
-                  value={formData.agencyRepresentative}
-                  onChange={e => setFormData({ ...formData, agencyRepresentative: e.target.value })}
-                  className="w-full p-2.5 border border-slate-300 rounded-lg bg-white"
                 />
               </div>
 

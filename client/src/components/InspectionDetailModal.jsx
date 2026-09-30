@@ -120,7 +120,7 @@ export default function InspectionDetailModal({ data, onClose }) {
           dept: 'पंचायत एवं ग्रामीण विकास विभाग',
           title: 'ग्राम पंचायत में चल रहे निर्माण कार्यों का निरीक्षण प्रतिवेदन',
           leftSigner: 'सचिव / उप अभियंता / एजेंसी',
-          leftSignerName: record.agencyRepresentative || 'निर्माण एजेंसी'
+          leftSignerName: record.agencyName || 'ग्राम पंचायत'
         };
       default:
         return {
@@ -1050,7 +1050,6 @@ export default function InspectionDetailModal({ data, onClose }) {
                   <div>
                     <span className="text-slate-600 block text-[11px]">निर्माण एजेंसी:</span>
                     <strong className="text-slate-800">{record.agencyName || 'ग्राम पंचायत'}</strong>
-                    {record.agencyRepresentative && <span className="text-slate-500 text-[11px] block">({record.agencyRepresentative})</span>}
                   </div>
                 </div>
               </div>
