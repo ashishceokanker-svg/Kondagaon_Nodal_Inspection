@@ -283,30 +283,30 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
               </div>
             </div>
 
-            {/* 4. Special Field Visibility Control Card */}
+            {/* 4. Master Data Management Card */}
             <div
-              onClick={() => setShowFieldControl(true)}
-              className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-purple-200 hover:border-purple-500 hover:shadow-md cursor-pointer transition flex items-start justify-between gap-3 group relative overflow-hidden active:scale-[0.99]"
+              onClick={() => setShowMasterDataControl(true)}
+              className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-indigo-200 hover:border-indigo-500 hover:shadow-md cursor-pointer transition flex items-start justify-between gap-3 group relative overflow-hidden active:scale-[0.99]"
             >
               <div className="flex items-start gap-3.5">
-                <div className="p-3.5 rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-700 text-white shadow-md shrink-0 group-hover:scale-105 transition">
-                  <Sliders className="w-7 h-7" />
+                <div className="p-3.5 rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-700 text-white shadow-md shrink-0 group-hover:scale-105 transition">
+                  <Database className="w-7 h-7" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] bg-purple-100 text-purple-900 font-black px-2 py-0.5 rounded">
-                      विशेष नियंत्रण
+                    <span className="text-[10px] bg-indigo-100 text-indigo-900 font-black px-2 py-0.5 rounded">
+                      मास्टर डेटा
                     </span>
-                    <h4 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-purple-700 transition">
-                      विशेष फ़ील्ड नियंत्रण (Hide/Unhide)
+                    <h4 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-indigo-700 transition">
+                      मास्टर डेटा प्रबंधन
                     </h4>
                   </div>
                   <p className="text-xs text-slate-500 mt-1">
-                    पासवर्ड <span className="font-mono font-bold text-purple-700">ashish#123</span> द्वारा प्रपत्रों में प्रारंभिक जानकारी, राशन, स्टाफ विवरण आदि हाइड या अनहाइड करें।
+                    जिले की समस्त शालाओं एवं छात्रावासों की सूची देखें, नया जोड़ें, संशोधित करें, हटाएं एवं विशेष फ़ील्ड दृश्यता नियंत्रित करें।
                   </p>
-                  <div className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-purple-700 bg-purple-50 px-3 py-1.5 rounded-xl group-hover:bg-purple-600 group-hover:text-white transition">
-                    <Sliders className="w-3.5 h-3.5" />
-                    <span>फ़ील्ड नियंत्रण खोलें</span>
+                  <div className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-indigo-700 bg-indigo-50 px-3 py-1.5 rounded-xl group-hover:bg-indigo-600 group-hover:text-white transition">
+                    <Database className="w-3.5 h-3.5" />
+                    <span>मास्टर डेटा खोलें</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
