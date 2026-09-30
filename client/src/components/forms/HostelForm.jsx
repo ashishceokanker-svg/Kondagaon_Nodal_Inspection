@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Building, Shield, User, Camera, Save, Send, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { API } from '../../api';
 import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../../constants';
+import { getHostelsForPanchayat } from '../../data/hostelMasterData';
 import GeoPhotoCapture from '../GeoPhotoCapture';
 import { useFormVisibility } from '../../utils/useFormVisibility';
 
@@ -120,6 +121,35 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
 
   const [saving, setSaving] = useState(false);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
+
+  const availableHostels = getHostelsForPanchayat(formData.block, formData.panchayat);
+
+  // Auto-populate hostel details when Panchayat or Block changes
+  useEffect(() => {
+    if (initialData) return; // preserve when editing existing record
+    if (availableHostels.length === 1) {
+      const h = availableHostels[0];
+      setFormData(prev => ({
+        ...prev,
+        hostelName: h.name,
+        address: h.village || prev.panchayat || '',
+        category: h.category || prev.category,
+        hostelType: h.hostelType || prev.hostelType
+      }));
+    } else if (availableHostels.length > 1) {
+      const exists = availableHostels.some(h => h.name === formData.hostelName);
+      if (!exists && availableHostels[0]) {
+        const first = availableHostels[0];
+        setFormData(prev => ({
+          ...prev,
+          hostelName: first.name,
+          address: first.village || prev.panchayat || '',
+          category: first.category || prev.category,
+          hostelType: first.hostelType || prev.hostelType
+        }));
+      }
+    }
+  }, [formData.block, formData.panchayat]);
 
   const handleStaffChange = (role, key, val) => {
     setFormData(prev => ({
@@ -257,30 +287,7 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
             <Building className="w-4 h-4 text-emerald-600" /> 4. छात्रावास की जानकारी
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">(4.1) छात्रावास का नाम *</label>
-              <input
-                type="text"
-                required
-                placeholder="उदा. बालक आश्रम विश्रामपुरी"
-                value={formData.hostelName}
-                onChange={e => setFormData({ ...formData, hostelName: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-emerald-300 bg-emerald-50/30 focus:bg-white font-semibold text-slate-800"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">(4.2) छात्रावास का पता / ग्राम</label>
-              <input
-                type="text"
-                value={formData.address}
-                onChange={e => setFormData({ ...formData, address: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-1">
             <div>
               <label className="block text-[11px] font-semibold text-slate-600 mb-1">विकासखण्ड (Block) *</label>
               <select
@@ -319,6 +326,71 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
                   <option key={p} value={p}>{p}</option>
                 ))}
               </select>
+            </div>
+          </div>
+
+          {/* Combobox selection when Hostels exist for Gram Panchayat */}
+          {availableHostels.length > 0 && (
+            <div className="bg-emerald-50 border border-emerald-300 p-3 rounded-xl space-y-1.5 shadow-xs">
+              <div className="flex items-center justify-between">
+                <label className="block text-[11px] font-bold text-emerald-950">
+                  ग्राम पंचायत '{formData.panchayat}' के अंतर्गत संचालित आश्रम / छात्रावास चुनें:
+                </label>
+                <span className="text-[10px] bg-emerald-700 text-white font-bold px-2 py-0.5 rounded-full shadow-xs">
+                  {availableHostels.length} संस्थाएं मिलीं
+                </span>
+              </div>
+              <select
+                value={availableHostels.some(h => h.name === formData.hostelName) ? formData.hostelName : 'other'}
+                onChange={e => {
+                  const val = e.target.value;
+                  if (val === 'other') {
+                    setFormData({ ...formData, hostelName: '', address: formData.panchayat || '' });
+                  } else {
+                    const h = availableHostels.find(item => item.name === val);
+                    if (h) {
+                      setFormData({
+                        ...formData,
+                        hostelName: h.name,
+                        address: h.village || formData.panchayat || '',
+                        category: h.category || formData.category,
+                        hostelType: h.hostelType || formData.hostelType
+                      });
+                    }
+                  }
+                }}
+                className="w-full text-xs p-2.5 rounded-lg border border-emerald-400 bg-white font-bold text-slate-900 shadow-sm"
+              >
+                {availableHostels.map(h => (
+                  <option key={h.name} value={h.name}>
+                    {h.name} ({h.village}) - {h.category} {h.hostelType}
+                  </option>
+                ))}
+                <option value="other">-- अन्य (कस्टम प्रविष्टि) --</option>
+              </select>
+            </div>
+          )}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-[11px] font-semibold text-slate-600 mb-1">(4.1) छात्रावास का नाम *</label>
+              <input
+                type="text"
+                required
+                placeholder="उदा. बालक आश्रम विश्रामपुरी"
+                value={formData.hostelName}
+                onChange={e => setFormData({ ...formData, hostelName: e.target.value })}
+                className="w-full text-xs p-2.5 rounded-lg border border-emerald-300 bg-emerald-50/30 focus:bg-white font-semibold text-slate-800"
+              />
+            </div>
+            <div>
+              <label className="block text-[11px] font-semibold text-slate-600 mb-1">(4.2) छात्रावास का पता / ग्राम</label>
+              <input
+                type="text"
+                value={formData.address}
+                onChange={e => setFormData({ ...formData, address: e.target.value })}
+                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+              />
             </div>
           </div>
 
