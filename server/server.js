@@ -255,7 +255,9 @@ app.get('/api/reports/compliance', (req, res) => {
   try {
     const filters = {
       block: req.query.block,
-      month: req.query.month
+      month: req.query.month,
+      startDate: req.query.startDate,
+      endDate: req.query.endDate
     };
     const report = DB.getComplianceReport(filters);
     res.json({ success: true, ...report });

@@ -906,13 +906,17 @@ export const API = {
     const params = new URLSearchParams();
     if (filters.block) params.append('block', filters.block);
     if (filters.month) params.append('month', filters.month);
+    if (filters.startDate) params.append('startDate', filters.startDate);
+    if (filters.endDate) params.append('endDate', filters.endDate);
+
+    const cacheKey = `cached_compliance_${filters.block || 'all'}_${filters.month || 'all'}_${filters.startDate || ''}_${filters.endDate || ''}`;
 
     // 1. Try Local Server
     try {
       const res = await fetch(`${API_BASE}/reports/compliance?${params.toString()}`);
       if (res.ok) {
         const data = await res.json();
-        localStorage.setItem(`cached_compliance_${filters.block || 'all'}_${filters.month || 'all'}`, JSON.stringify(data));
+        localStorage.setItem(cacheKey, JSON.stringify(data));
         return data;
       }
     } catch (err) {
@@ -940,10 +944,13 @@ export const API = {
         const list = await this.getInspections(type);
         list.forEach(item => {
           const itemMonth = (item.month || '').trim();
-          const matchesMonth = !targetMonth || itemMonth === targetMonth;
+          const itemDate = item.date || item.inspectionDate || '';
+          const matchesDateRange = (!filters.startDate || (itemDate && itemDate >= filters.startDate)) &&
+                                   (!filters.endDate || (itemDate && itemDate <= filters.endDate));
+          const matchesMonth = (filters.startDate || filters.endDate) ? true : (!targetMonth || itemMonth === targetMonth);
           const matchesBlock = !targetBlock || item.block === targetBlock;
 
-          if (matchesMonth && matchesBlock) {
+          if (matchesMonth && matchesBlock && matchesDateRange) {
             const offId = item.officerId || (item.officerMobile ? `mob-${item.officerMobile}` : null);
             if (offId) {
               if (!officerInspections[offId]) {

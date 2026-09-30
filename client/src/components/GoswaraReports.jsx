@@ -260,7 +260,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
     <div className="max-w-6xl mx-auto space-y-6 mb-16">
       
       {/* Header & Controls (Hidden when printing) */}
-      <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200 no-print space-y-4">
+      <div className="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-200 no-print space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <button
@@ -313,22 +313,50 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
             </button>
           </div>
         </div>
+      </div>
 
-        {/* Filter bar: Admin controls vs Nodal Officer view */}
-        {isAdmin ? (
-          <div className="pt-3 border-t border-slate-100 text-xs space-y-2">
-            <div className="flex items-center gap-2">
-              <span className="bg-amber-100 text-amber-950 border border-amber-300 font-bold px-2 py-0.5 rounded text-[11px]">
-                🛡️ एडमिन दृश्य (Admin View)
-              </span>
+      {/* Top Summary Stat Badges (Image Section) */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-2">
+        <div className="p-3 rounded-2xl border bg-slate-900 text-white text-center shadow-sm">
+          <span className="text-[11px] text-slate-300 block font-medium">कुल निरीक्षण</span>
+          <span className="text-xl sm:text-2xl font-black">{displayedTotalInspections}</span>
+        </div>
+
+        {facilities.map(f => {
+          const count = displayedTypeStats[f.key] || 0;
+          return (
+            <div key={f.key} className={`p-3 rounded-2xl border text-center shadow-sm ${f.color}`}>
+              <span className="text-[11px] block font-bold truncate">{f.name}</span>
+              <span className="text-xl sm:text-2xl font-black">{count}</span>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          );
+        })}
+      </div>
+
+      {/* Search & Filter Options (Directly Under Summary Badges) */}
+      <div className="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-200 no-print space-y-3">
+        {isAdmin ? (
+          <div className="text-xs space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="bg-amber-100 text-amber-950 border border-amber-300 font-bold px-2 py-0.5 rounded text-[11px] flex items-center gap-1.5">
+                <span>🛡️ एडमिन खोज एवं फ़िल्टर (Search Options)</span>
+              </span>
+              {(filters.block || filters.panchayat || filters.startDate || filters.endDate) && (
+                <button
+                  onClick={() => setFilters({ ...filters, block: '', panchayat: '', startDate: '', endDate: '' })}
+                  className="text-xs text-rose-600 hover:underline font-bold"
+                >
+                  फ़िल्टर रीसेट करें
+                </button>
+              )}
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 pt-1">
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">विकासखण्ड (Block)</label>
+                <label className="block text-[11px] font-bold text-slate-700 mb-1">विकासखण्ड (Block)</label>
                 <select
                   value={filters.block}
                   onChange={e => setFilters({ ...filters, block: e.target.value, panchayat: '' })}
-                  className="w-full p-2 border border-slate-300 rounded-lg bg-white"
+                  className="w-full p-2.5 border border-slate-300 rounded-xl bg-white text-xs font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 >
                   <option value="">-- सभी विकासखंड --</option>
                   {(masters?.blocks && masters.blocks.length > 0 ? masters.blocks : DISTRICT_BLOCKS).map(b => (
@@ -338,11 +366,11 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
               </div>
 
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">ग्राम पंचायत</label>
+                <label className="block text-[11px] font-bold text-slate-700 mb-1">ग्राम पंचायत</label>
                 <select
                   value={filters.panchayat}
                   onChange={e => setFilters({ ...filters, panchayat: e.target.value })}
-                  className="w-full p-2 border border-slate-300 rounded-lg bg-white"
+                  className="w-full p-2.5 border border-slate-300 rounded-xl bg-white text-xs font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 >
                   <option value="">-- सभी ग्राम पंचायतें --</option>
                   {getPanchayatsForBlock(filters.block).map(p => (
@@ -352,30 +380,30 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
               </div>
 
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">प्रारंभ दिनांक</label>
+                <label className="block text-[11px] font-bold text-slate-700 mb-1">प्रारंभ दिनांक</label>
                 <input
                   type="date"
                   max={getTodayDateString()}
                   value={filters.startDate}
                   onChange={e => setFilters({ ...filters, startDate: e.target.value })}
-                  className="w-full p-2 border border-slate-300 rounded-lg bg-white"
+                  className="w-full p-2 border border-slate-300 rounded-xl bg-white text-xs font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">समाप्ति दिनांक</label>
+                <label className="block text-[11px] font-bold text-slate-700 mb-1">समाप्ति दिनांक</label>
                 <input
                   type="date"
                   max={getTodayDateString()}
                   value={filters.endDate}
                   onChange={e => setFilters({ ...filters, endDate: e.target.value })}
-                  className="w-full p-2 border border-slate-300 rounded-lg bg-white"
+                  className="w-full p-2 border border-slate-300 rounded-xl bg-white text-xs font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
             </div>
           </div>
         ) : (
-          <div className="pt-3 border-t border-slate-100 text-xs space-y-2.5">
+          <div className="text-xs space-y-2.5">
             <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 flex flex-col sm:flex-row items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <span className="bg-blue-700 text-white font-bold px-2 py-0.5 rounded text-[11px]">
@@ -393,7 +421,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
               {officerPanchayats.length > 1 && (
                 <div>
-                  <label className="block text-[11px] font-semibold text-slate-600 mb-1">आवंटित पंचायत चुनें</label>
+                  <label className="block text-[11px] font-bold text-slate-700 mb-1">आवंटित ग्राम पंचायत चुनें</label>
                   <select
                     value={filters.panchayat}
                     onChange={e => {
@@ -404,7 +432,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                         panchayats: val ? [val] : officerPanchayats
                       });
                     }}
-                    className="w-full p-2 border border-slate-300 rounded-lg bg-white"
+                    className="w-full p-2 border border-slate-300 rounded-xl bg-white text-xs font-semibold"
                   >
                     <option value="">-- समस्त आवंटित पंचायतें ({officerPanchayats.length}) --</option>
                     {officerPanchayats.map(p => (
@@ -414,23 +442,23 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                 </div>
               )}
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">प्रारंभ दिनांक से</label>
+                <label className="block text-[11px] font-bold text-slate-700 mb-1">प्रारंभ दिनांक से</label>
                 <input
                   type="date"
                   max={getTodayDateString()}
                   value={filters.startDate}
                   onChange={e => setFilters({ ...filters, startDate: e.target.value })}
-                  className="w-full p-2 border border-slate-300 rounded-lg bg-white"
+                  className="w-full p-2 border border-slate-300 rounded-xl bg-white text-xs font-semibold"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">समाप्ति दिनांक तक</label>
+                <label className="block text-[11px] font-bold text-slate-700 mb-1">समाप्ति दिनांक तक</label>
                 <input
                   type="date"
                   max={getTodayDateString()}
                   value={filters.endDate}
                   onChange={e => setFilters({ ...filters, endDate: e.target.value })}
-                  className="w-full p-2 border border-slate-300 rounded-lg bg-white"
+                  className="w-full p-2 border border-slate-300 rounded-xl bg-white text-xs font-semibold"
                 />
               </div>
             </div>
@@ -454,23 +482,6 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
           </p>
         </div>
 
-        {/* Top Summary Stat Badges */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-2 mb-6">
-          <div className="p-3 rounded-xl border bg-slate-900 text-white text-center">
-            <span className="text-[10px] text-slate-300 block font-medium">कुल निरीक्षण</span>
-            <span className="text-xl font-black">{displayedTotalInspections}</span>
-          </div>
-
-          {facilities.map(f => {
-            const count = displayedTypeStats[f.key] || 0;
-            return (
-              <div key={f.key} className={`p-3 rounded-xl border text-center ${f.color}`}>
-                <span className="text-[10px] block font-semibold truncate">{f.name}</span>
-                <span className="text-xl font-bold">{count}</span>
-              </div>
-            );
-          })}
-        </div>
 
         {/* Mode Selector Tabs (Hidden in Print) */}
         <div className="flex flex-wrap border-b border-slate-200 mb-4 no-print text-xs font-bold gap-1">

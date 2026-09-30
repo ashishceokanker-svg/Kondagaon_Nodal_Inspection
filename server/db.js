@@ -369,11 +369,21 @@ const DB = {
       { key: 'nirman', name: 'निर्माण कार्य' }
     ];
 
+    const matchesRecord = (record) => {
+      const recDate = record.date || record.inspectionDate;
+      if (filters.startDate && recDate && recDate < filters.startDate) return false;
+      if (filters.endDate && recDate && recDate > filters.endDate) return false;
+      if (!filters.startDate && !filters.endDate && targetMonth) {
+        return matchesMonth(record, targetMonth);
+      }
+      return true;
+    };
+
     const monthInspections = [];
     for (const t of types) {
       const records = this.getAllInspections(t.key);
       for (const r of records) {
-        if (matchesMonth(r, targetMonth)) {
+        if (matchesRecord(r)) {
           monthInspections.push({ ...r, facilityType: t.key });
         }
       }
