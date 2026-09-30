@@ -90,6 +90,13 @@ export const getTodayDateString = () => {
   return `${year}-${month}-${day}`;
 };
 
+export const getCurrentMonthString = () => {
+  const d = new Date();
+  const monthName = d.toLocaleString('hi-IN', { month: 'long' });
+  const year = d.getFullYear();
+  return `${monthName} ${year}`;
+};
+
 export const getOfficerPanchayats = (officer) => {
   if (!officer) return [];
   const list = [];

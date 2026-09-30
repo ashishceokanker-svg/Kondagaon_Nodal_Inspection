@@ -105,7 +105,7 @@ WORD_MAP = {
     'GOVT': '', 'SSA': '', 'TWD': '', 'EDU': '', 'JANPAD': '', 'GJ': '', 'PRI': '', 'SCH': '', 'SCHOOL': '',
     'PRIMARY': '', 'MIDDLE': '', 'HIGH': '', 'HIGHER': '', 'SECONDARY': '', 'SECONDRY': '',
     'SWAMI': 'स्वामी', 'ATMANAND': 'आत्मानंद', 'ENGLISH': 'अंग्रेजी', 'MEDIUM': 'माध्यम', 'HINDI': 'हिंदी',
-    'PS': 'P.S.', 'UPS': 'U.P.S.', 'MS': 'M.S.', 'HS': 'H.S.', 'HSS': 'H.S.S.',
+    'PS': 'प्रा.शा.', 'UPS': 'मा.शा.', 'MS': 'मा.शा.', 'HS': 'शा.हाई स्कूल', 'HSS': 'शा.उ.मा.वि.',
     'KGBV': 'के.जी.बी.वी.', 'ASHRAM': 'आश्रम', 'ASHRAMA': 'आश्रम', 'ASRAM': 'आश्रम', 'ASRAMA': 'आश्रम',
     'KANYA': 'कन्या', 'BALAK': 'बालक', 'BOYS': 'बालक', 'GIRLS': 'कन्या', 'SHALA': 'शाला',
     'NAVEEN': 'नवीन', 'NAVIN': 'नवीन', 'NAV': 'नवीन', 'CENTRAL': 'केंद्रीय',
@@ -257,17 +257,17 @@ def format_school_name(raw_name, cat_raw, panchayat_hi):
     
     level_prefix = ''
     if 'HIGHER SECONDARY' in u_raw or 'HIGHER SECONDRY' in u_raw or 'H.S.S.' in u_raw or '10 -' in c_raw or '5 -' in c_raw or '3 -' in c_raw:
-        level_prefix = 'H.S.S.'
+        level_prefix = 'शा.उ.मा.वि.'
     elif 'HIGH SCHOOL' in u_raw or 'H.S.' in u_raw or '8 -' in c_raw or '7 -' in c_raw or '6 -' in c_raw:
-        level_prefix = 'H.S.'
+        level_prefix = 'शा.हाई स्कूल'
     elif 'MIDDLE SCHOOL' in u_raw or ' M.S.' in u_raw or 'MS ' in u_raw or '4 -' in c_raw:
-        level_prefix = 'M.S.'
+        level_prefix = 'मा.शा.'
     elif 'UPS' in u_raw or 'UPPER PRIMARY' in u_raw or '2 -' in c_raw:
-        level_prefix = 'U.P.S.'
+        level_prefix = 'मा.शा.'
     elif 'PS' in u_raw or 'PRIMARY' in u_raw or '1 -' in c_raw:
-        level_prefix = 'P.S.'
+        level_prefix = 'प्रा.शा.'
     else:
-        level_prefix = 'P.S.'
+        level_prefix = 'प्रा.शा.'
     
     is_atmanand = 'SWAMI ATMANAND' in u_raw
     is_ashram = 'ASHRAM' in u_raw or 'ASRAM' in u_raw

@@ -337,59 +337,57 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
             </div>
           </div>
 
-          {/* Combobox selection when Hostels exist for Gram Panchayat */}
-          {availableHostels.length > 0 && (
-            <div className="bg-emerald-50 border border-emerald-300 p-3 rounded-xl space-y-1.5 shadow-xs">
-              <div className="flex items-center justify-between">
-                <label className="block text-[11px] font-bold text-emerald-950">
-                  ग्राम पंचायत '{formData.panchayat}' के अंतर्गत संचालित आश्रम / छात्रावास चुनें:
-                </label>
-                <span className="text-[10px] bg-emerald-700 text-white font-bold px-2 py-0.5 rounded-full shadow-xs">
-                  {availableHostels.length} संस्थाएं मिलीं
-                </span>
-              </div>
-              <select
-                value={availableHostels.some(h => h.name === formData.hostelName) ? formData.hostelName : 'other'}
-                onChange={e => {
-                  const val = e.target.value;
-                  if (val === 'other') {
-                    setFormData({ ...formData, hostelName: '', address: formData.panchayat || '' });
-                  } else {
-                    const h = availableHostels.find(item => item.name === val);
-                    if (h) {
-                      setFormData({
-                        ...formData,
-                        hostelName: h.name,
-                        address: h.village || formData.panchayat || '',
-                        category: h.category || formData.category,
-                        hostelType: h.hostelType || formData.hostelType
-                      });
-                    }
-                  }
-                }}
-                className="w-full text-xs p-2.5 rounded-lg border border-emerald-400 bg-white font-bold text-slate-900 shadow-sm"
-              >
-                {availableHostels.map(h => (
-                  <option key={h.name} value={h.name}>
-                    {h.name} ({h.village}) - {h.category} {h.hostelType}
-                  </option>
-                ))}
-                <option value="other">-- अन्य (कस्टम प्रविष्टि) --</option>
-              </select>
-            </div>
-          )}
-
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="block text-[11px] font-semibold text-slate-600 mb-1">(4.1) छात्रावास का नाम *</label>
-              <input
-                type="text"
-                required
-                placeholder="उदा. बालक आश्रम विश्रामपुरी"
-                value={formData.hostelName}
-                onChange={e => setFormData({ ...formData, hostelName: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-lg border border-emerald-300 bg-emerald-50/30 focus:bg-white font-semibold text-slate-800"
-              />
+              {availableHostels.length > 0 ? (
+                <select
+                  value={availableHostels.some(h => h.name === formData.hostelName) ? formData.hostelName : 'other'}
+                  onChange={e => {
+                    const val = e.target.value;
+                    if (val === 'other') {
+                      setFormData({ ...formData, hostelName: '', address: formData.panchayat || '' });
+                    } else {
+                      const h = availableHostels.find(item => item.name === val);
+                      if (h) {
+                        setFormData({
+                          ...formData,
+                          hostelName: h.name,
+                          address: h.village || formData.panchayat || '',
+                          category: h.category || formData.category,
+                          hostelType: h.hostelType || formData.hostelType
+                        });
+                      }
+                    }
+                  }}
+                  className="w-full text-xs p-2.5 rounded-lg border border-emerald-400 bg-white font-bold text-slate-900 shadow-sm"
+                >
+                  {availableHostels.map(h => (
+                    <option key={h.name} value={h.name}>
+                      {h.name} ({h.village}) - {h.category} {h.hostelType}
+                    </option>
+                  ))}
+                  <option value="other">-- अन्य (कस्टम प्रविष्टि) --</option>
+                </select>
+              ) : (
+                <input
+                  type="text"
+                  required
+                  placeholder="उदा. बालक आश्रम विश्रामपुरी"
+                  value={formData.hostelName}
+                  onChange={e => setFormData({ ...formData, hostelName: e.target.value })}
+                  className="w-full text-xs p-2.5 rounded-lg border border-emerald-300 bg-emerald-50/30 focus:bg-white font-semibold text-slate-800"
+                />
+              )}
+              {availableHostels.length > 0 && (!availableHostels.some(h => h.name === formData.hostelName) || formData.hostelName === '') && (
+                <input
+                  type="text"
+                  placeholder="छात्रावास का नाम दर्ज करें"
+                  value={formData.hostelName}
+                  onChange={e => setFormData({ ...formData, hostelName: e.target.value })}
+                  className="w-full text-xs p-2.5 mt-1.5 rounded-lg border border-emerald-300 bg-white font-semibold text-slate-800"
+                />
+              )}
             </div>
             <div>
               <label className="block text-[11px] font-semibold text-slate-600 mb-1">(4.2) छात्रावास का पता / ग्राम</label>

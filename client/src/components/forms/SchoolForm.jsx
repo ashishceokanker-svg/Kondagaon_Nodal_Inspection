@@ -62,6 +62,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
 
   const [saving, setSaving] = useState(false);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
+  const [showExtraFields, setShowExtraFields] = useState(false);
 
   const availableSchools = getSchoolsForPanchayat(formData.block, formData.panchayat);
 
@@ -73,10 +74,10 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
       if (!exists && availableSchools[0]) {
         const first = availableSchools[0];
         let derivedLevel = formData.schoolLevel;
-        if (first.name.includes('P.S.')) derivedLevel = 'प्राथमिक';
-        else if (first.name.includes('M.S.') || first.name.includes('U.P.S.')) derivedLevel = 'माध्यमिक';
-        else if (first.name.includes('H.S.S.')) derivedLevel = 'हायर सेकेंडरी';
-        else if (first.name.includes('H.S.')) derivedLevel = 'हाई स्कूल';
+        if (first.name.includes('प्रा.शा.') || first.name.includes('P.S.')) derivedLevel = 'प्राथमिक';
+        else if (first.name.includes('मा.शा.') || first.name.includes('M.S.') || first.name.includes('U.P.S.')) derivedLevel = 'माध्यमिक';
+        else if (first.name.includes('शा.उ.मा.वि.') || first.name.includes('H.S.S.')) derivedLevel = 'हायर सेकेंडरी';
+        else if (first.name.includes('शा.हाई स्कूल') || first.name.includes('H.S.')) derivedLevel = 'हाई स्कूल';
 
         setFormData(prev => ({
           ...prev,
@@ -259,7 +260,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+            <div className="grid grid-cols-1 gap-3 pt-2">
               <div>
                 <label className="block text-[11px] font-semibold text-slate-600 mb-1">शाला का नाम *</label>
                 {availableSchools.length > 0 ? (
@@ -271,10 +272,10 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
                         setFormData({ ...formData, schoolName: '' });
                       } else {
                         let derivedLevel = formData.schoolLevel;
-                        if (val.includes('P.S.')) derivedLevel = 'प्राथमिक';
-                        else if (val.includes('M.S.') || val.includes('U.P.S.')) derivedLevel = 'माध्यमिक';
-                        else if (val.includes('H.S.S.')) derivedLevel = 'हायर सेकेंडरी';
-                        else if (val.includes('H.S.')) derivedLevel = 'हाई स्कूल';
+                        if (val.includes('प्रा.शा.') || val.includes('P.S.')) derivedLevel = 'प्राथमिक';
+                        else if (val.includes('मा.शा.') || val.includes('M.S.') || val.includes('U.P.S.')) derivedLevel = 'माध्यमिक';
+                        else if (val.includes('शा.उ.मा.वि.') || val.includes('H.S.S.')) derivedLevel = 'हायर सेकेंडरी';
+                        else if (val.includes('शा.हाई स्कूल') || val.includes('H.S.')) derivedLevel = 'हाई स्कूल';
 
                         setFormData({ ...formData, schoolName: val, schoolLevel: derivedLevel });
                       }
@@ -290,7 +291,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
                   <input
                     type="text"
                     required
-                    placeholder="उदा. P.S. विश्रामपुरी"
+                    placeholder="उदा. प्रा.शा. विश्रामपुरी"
                     value={formData.schoolName}
                     onChange={e => setFormData({ ...formData, schoolName: e.target.value })}
                     className="w-full text-xs p-2.5 rounded-lg border border-blue-300 bg-blue-50/30 focus:bg-white font-semibold text-slate-800"
@@ -306,29 +307,51 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
                   />
                 )}
               </div>
-              <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">शाला स्तर</label>
-                <select
-                  value={formData.schoolLevel}
-                  onChange={e => setFormData({ ...formData, schoolLevel: e.target.value })}
-                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
-                >
-                  <option value="प्राथमिक">प्राथमिक शाला</option>
-                  <option value="माध्यमिक">माध्यमिक शाला</option>
-                  <option value="हाई स्कूल">हाई स्कूल</option>
-                  <option value="हायर सेकेंडरी">हायर सेकेंडरी स्कूल</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">संकुल का नाम</label>
-                <input
-                  type="text"
-                  placeholder="संकुल का नाम"
-                  value={formData.sankul}
-                  onChange={e => setFormData({ ...formData, sankul: e.target.value })}
-                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
-                />
-              </div>
+
+              {!showExtraFields ? (
+                <div className="pt-1">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const pwd = prompt('शाला स्तर व संकुल देखने के लिए पासवर्ड दर्ज करें:');
+                      if (pwd === 'ashish#123') {
+                        setShowExtraFields(true);
+                      } else if (pwd !== null) {
+                        alert('गलत पासवर्ड!');
+                      }
+                    }}
+                    className="text-[11px] text-blue-600 hover:text-blue-800 font-bold underline flex items-center gap-1"
+                  >
+                    🔒 शाला स्तर / संकुल अनहाइड करें (पासवर्ड)
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-200">
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">शाला स्तर</label>
+                    <select
+                      value={formData.schoolLevel}
+                      onChange={e => setFormData({ ...formData, schoolLevel: e.target.value })}
+                      className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                    >
+                      <option value="प्राथमिक">प्राथमिक शाला</option>
+                      <option value="माध्यमिक">माध्यमिक शाला</option>
+                      <option value="हाई स्कूल">हाई स्कूल</option>
+                      <option value="हायर सेकेंडरी">हायर सेकेंडरी स्कूल</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">संकुल का नाम</label>
+                    <input
+                      type="text"
+                      placeholder="संकुल का नाम"
+                      value={formData.sankul}
+                      onChange={e => setFormData({ ...formData, sankul: e.target.value })}
+                      className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         ) : (
@@ -364,10 +387,10 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
                         setFormData({ ...formData, schoolName: '' });
                       } else {
                         let derivedLevel = formData.schoolLevel;
-                        if (val.includes('P.S.')) derivedLevel = 'प्राथमिक';
-                        else if (val.includes('M.S.') || val.includes('U.P.S.')) derivedLevel = 'माध्यमिक';
-                        else if (val.includes('H.S.S.')) derivedLevel = 'हायर सेकेंडरी';
-                        else if (val.includes('H.S.')) derivedLevel = 'हाई स्कूल';
+                        if (val.includes('प्रा.शा.') || val.includes('P.S.')) derivedLevel = 'प्राथमिक';
+                        else if (val.includes('मा.शा.') || val.includes('M.S.') || val.includes('U.P.S.')) derivedLevel = 'माध्यमिक';
+                        else if (val.includes('शा.उ.मा.वि.') || val.includes('H.S.S.')) derivedLevel = 'हायर सेकेंडरी';
+                        else if (val.includes('शा.हाई स्कूल') || val.includes('H.S.')) derivedLevel = 'हाई स्कूल';
 
                         setFormData({ ...formData, schoolName: val, schoolLevel: derivedLevel });
                       }
@@ -383,7 +406,7 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
                   <input
                     type="text"
                     required
-                    placeholder="उदा. P.S. विश्रामपुरी"
+                    placeholder="उदा. प्रा.शा. विश्रामपुरी"
                     value={formData.schoolName}
                     onChange={e => setFormData({ ...formData, schoolName: e.target.value })}
                     className="w-full text-xs p-2.5 rounded-lg border border-blue-300 bg-blue-50/30 focus:bg-white font-semibold text-slate-800"
@@ -400,31 +423,50 @@ export default function SchoolForm({ officer, onBack, onSuccess, initialData = n
                 )}
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">शाला स्तर</label>
-                <select
-                  value={formData.schoolLevel}
-                  onChange={e => setFormData({ ...formData, schoolLevel: e.target.value })}
-                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+            {!showExtraFields ? (
+              <div className="pt-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const pwd = prompt('शाला स्तर व संकुल देखने के लिए पासवर्ड दर्ज करें:');
+                    if (pwd === 'ashish#123') {
+                      setShowExtraFields(true);
+                    } else if (pwd !== null) {
+                      alert('गलत पासवर्ड!');
+                    }
+                  }}
+                  className="text-[11px] text-blue-600 hover:text-blue-800 font-bold underline flex items-center gap-1"
                 >
-                  <option value="प्राथमिक">प्राथमिक शाला</option>
-                  <option value="माध्यमिक">माध्यमिक शाला</option>
-                  <option value="हाई स्कूल">हाई स्कूल</option>
-                  <option value="हायर सेकेंडरी">हायर सेकेंडरी स्कूल</option>
-                </select>
+                  🔒 शाला स्तर / संकुल अनहाइड करें (पासवर्ड)
+                </button>
               </div>
-              <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">संकुल का नाम</label>
-                <input
-                  type="text"
-                  placeholder="संकुल का नाम"
-                  value={formData.sankul}
-                  onChange={e => setFormData({ ...formData, sankul: e.target.value })}
-                  className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
-                />
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-200">
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-600 mb-1">शाला स्तर</label>
+                  <select
+                    value={formData.schoolLevel}
+                    onChange={e => setFormData({ ...formData, schoolLevel: e.target.value })}
+                    className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                  >
+                    <option value="प्राथमिक">प्राथमिक शाला</option>
+                    <option value="माध्यमिक">माध्यमिक शाला</option>
+                    <option value="हाई स्कूल">हाई स्कूल</option>
+                    <option value="हायर सेकेंडरी">हायर सेकेंडरी स्कूल</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-600 mb-1">संकुल का नाम</label>
+                  <input
+                    type="text"
+                    placeholder="संकुल का नाम"
+                    value={formData.sankul}
+                    onChange={e => setFormData({ ...formData, sankul: e.target.value })}
+                    className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         )}
 

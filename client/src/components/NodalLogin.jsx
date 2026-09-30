@@ -5,7 +5,7 @@ import {
   HelpCircle, X, BookOpen, FileText, Eye, PhoneCall, Layers
 } from 'lucide-react';
 import { API } from '../api';
-import { DISTRICT_BLOCKS, MONTH_OPTIONS, matchBlock } from '../constants';
+import { DISTRICT_BLOCKS, MONTH_OPTIONS, matchBlock, getCurrentMonthString } from '../constants';
 
 export default function NodalLogin({ onLoginSuccess }) {
   const [loginMode, setLoginMode] = useState('officer'); // 'officer' | 'admin'
@@ -13,7 +13,7 @@ export default function NodalLogin({ onLoginSuccess }) {
   const [selectedBlock, setSelectedBlock] = useState('फरसगांव');
   const [selectedPanchayat, setSelectedPanchayat] = useState('');
   const [matchedOfficer, setMatchedOfficer] = useState(null);
-  const [selectedMonth, setSelectedMonth] = useState('सितम्बर 2026');
+  const [selectedMonth, setSelectedMonth] = useState(getCurrentMonthString());
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
@@ -264,7 +264,7 @@ export default function NodalLogin({ onLoginSuccess }) {
                     .filter(o => matchBlock(o.block, selectedBlock) && !o.panchayat?.includes('रिजर्व'))
                     .map((o, idx) => (
                       <option key={o.id || idx} value={o.panchayat}>
-                        {idx + 1}. {o.panchayat}
+                        {o.panchayat}
                       </option>
                     ))}
                 </select>
@@ -307,13 +307,12 @@ export default function NodalLogin({ onLoginSuccess }) {
                   माह का चयन करें (किस माह का निरीक्षण दर्ज कर रहे हैं): *
                 </label>
                 <select
-                  value={selectedMonth}
+                  value={getCurrentMonthString()}
+                  disabled
                   onChange={(e) => setSelectedMonth(e.target.value)}
-                  className="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-purple-500 font-medium text-slate-800"
+                  className="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-slate-100 font-bold text-slate-800 cursor-not-allowed"
                 >
-                  {MONTH_OPTIONS.map(m => (
-                    <option key={m} value={m}>{m}</option>
-                  ))}
+                  <option value={getCurrentMonthString()}>{getCurrentMonthString()}</option>
                 </select>
               </div>
 
