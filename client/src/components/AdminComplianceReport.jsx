@@ -136,25 +136,6 @@ export default function AdminComplianceReport({ officer, onBack }) {
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
               <span className="hidden sm:inline">रिफ्रेश</span>
             </button>
-
-            <button
-              onClick={handleExportExcel}
-              disabled={loading}
-              className="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-sm flex items-center gap-1.5 transition"
-              title="अनुपालन रिपोर्ट एक्सेल डाउनलोड करें"
-            >
-              <Download className="w-4 h-4" />
-              <span>एक्सेल रिपोर्ट (.xlsx)</span>
-            </button>
-
-            <button
-              onClick={handlePrint}
-              className="bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-sm flex items-center gap-1.5 transition"
-              title="प्रिंट या पीडीएफ बनाएं"
-            >
-              <Printer className="w-4 h-4" />
-              <span>प्रिंट / PDF</span>
-            </button>
           </div>
         </div>
       </div>
@@ -345,30 +326,32 @@ export default function AdminComplianceReport({ officer, onBack }) {
         </div>
       </div>
 
-      {/* Printable Official Header (Shown ONLY during print) */}
-      <div className="hidden print:block text-center border-b-2 border-black pb-4 mb-4">
-        <div className="flex items-center justify-center gap-3 mb-2">
-          <img src="/cg_logo.svg" alt="छत्तीसगढ़ शासन" className="w-14 h-14 object-contain" />
-          <div>
-            <h1 className="text-xl font-black text-black">कार्यालय कलेक्टर, जिला-कोण्डागांव (छ०ग०)</h1>
-            <p className="text-sm font-bold text-gray-800">
-              नोडल अधिकारी मासिक क्षेत्रीय निरीक्षण प्रगति एवं अनुपालन समीक्षा प्रतिवेदन
-            </p>
-          </div>
+      {/* Printable Official Header (Shown ONLY during print / PDF) */}
+      <div className="hidden print:block text-center border-b-2 border-black pb-3 mb-4">
+        {/* Chhattisgarh Shashan Mono */}
+        <div className="flex justify-center mb-1.5">
+          <img src="/cg_logo.svg" alt="छत्तीसगढ़ शासन मोनो" className="w-16 h-16 object-contain" />
         </div>
-        <div className="flex justify-between items-center text-xs font-semibold text-gray-700 mt-2 border-t border-gray-300 pt-1">
+        {/* Karyalay Collector Jila Kondagaon */}
+        <h1 className="text-xl font-black text-black tracking-tight leading-tight">
+          कार्यालय कलेक्टर, जिला-कोण्डागांव (छ०ग०)
+        </h1>
+        {/* Mahawar Nirikshan Anupalan evam Samiksha Prativedan */}
+        <h2 className="text-sm font-bold text-black mt-1">
+          माहवार निरीक्षण अनुपालन एवं समीक्षा प्रतिवेदन
+        </h2>
+        {/* Dinank & Details */}
+        <div className="flex justify-between items-center text-xs font-bold text-black mt-2.5 border-t border-black pt-1 px-2">
           <span>विकासखण्ड: <b>{selectedBlock}</b></span>
           <span>समीक्षा माह: <b>{selectedMonth}</b></span>
-          <span>प्रतिवेदन दिनांक: <b>{new Date().toLocaleDateString('hi-IN')}</b></span>
+          <span>दिनांक: <b>{new Date().toLocaleDateString('hi-IN')}</b></span>
         </div>
       </div>
-
-
 
       {/* 5. Filter Tabs: All vs Completed vs Pending */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="p-3 sm:p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3 no-print">
-          <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl text-xs font-bold">
+          <div className="flex flex-wrap items-center gap-1.5 bg-slate-100 p-1 rounded-xl text-xs font-bold">
             <button
               onClick={() => setActiveListTab('all')}
               className={`px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 ${
@@ -418,8 +401,29 @@ export default function AdminComplianceReport({ officer, onBack }) {
             </button>
           </div>
 
-          <div className="text-xs text-slate-500 font-medium">
-            प्रदर्शित अधिकारी: <b className="text-slate-800">{displayedOfficers.length}</b>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs text-slate-500 font-medium mr-1 hidden sm:inline">
+              प्रदर्शित: <b className="text-slate-800">{displayedOfficers.length}</b>
+            </span>
+
+            <button
+              onClick={handleExportExcel}
+              disabled={loading}
+              className="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold py-2 px-3 rounded-xl shadow-sm flex items-center gap-1.5 transition"
+              title="अनुपालन रिपोर्ट एक्सेल डाउनलोड करें"
+            >
+              <Download className="w-4 h-4" />
+              <span>एक्सेल रिपोर्ट (.xlsx)</span>
+            </button>
+
+            <button
+              onClick={handlePrint}
+              className="bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold py-2 px-3 rounded-xl shadow-sm flex items-center gap-1.5 transition"
+              title="प्रिंट या पीडीएफ बनाएं"
+            >
+              <Printer className="w-4 h-4" />
+              <span>प्रिंट / PDF</span>
+            </button>
           </div>
         </div>
 

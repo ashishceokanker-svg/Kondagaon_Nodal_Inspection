@@ -367,9 +367,12 @@ export async function exportComplianceToExcelClient(filters = {}) {
 
   // 1. Summary Sheet
   const sum = data.summary || {};
+  const dateStr = new Date().toLocaleDateString('hi-IN');
   const summaryRows = [
-    ['कार्यालय कलेक्टर, जिला-कोण्डागांव (छ०ग०) — नोडल अधिकारी मासिक निरीक्षण अनुपालन प्रतिवेदन'],
-    ['माह:', sum.selectedMonth || '', 'विकासखण्ड:', sum.selectedBlock || ''],
+    ['कार्यालय कलेक्टर, जिला-कोण्डागांव (छ०ग०)'],
+    ['माहवार निरीक्षण अनुपालन एवं समीक्षा प्रतिवेदन'],
+    [`विकासखण्ड: ${sum.selectedBlock || filters.block || 'सभी विकासखण्ड'} • समीक्षा माह: ${sum.selectedMonth || filters.month || ''} • दिनांक: ${dateStr}`],
+    [''],
     ['कुल नोडल अधिकारी', 'निरीक्षण पूर्ण करने वाले', 'लंबित नोडल अधिकारी', 'अनुपालन प्रतिशत (%)', 'कुल दर्ज निरीक्षण'],
     [sum.totalOfficers || 0, sum.completedCount || 0, sum.pendingCount || 0, `${sum.completionRate || 0}%`, sum.totalInspections || 0]
   ];

@@ -553,18 +553,26 @@ async function generateComplianceExcel(filters = {}) {
   const summarySheet = workbook.addWorksheet('प्रगति समीक्षा सारांश');
   summarySheet.mergeCells('A1:H1');
   const title1 = summarySheet.getCell('A1');
-  title1.value = 'कार्यालय कलेक्टर, जिला-कोण्डागांव (छ०ग०) • नोडल अधिकारी मासिक निरीक्षण अनुपालन प्रतिवेदन';
+  title1.value = 'कार्यालय कलेक्टर, जिला-कोण्डागांव (छ०ग०)';
   title1.font = { name: 'Arial', size: 13, bold: true, color: { argb: 'FFFFFFFF' } };
   title1.fill = navyHeader;
   title1.alignment = { horizontal: 'center', vertical: 'middle' };
-  summarySheet.getRow(1).height = 30;
+  summarySheet.getRow(1).height = 28;
 
   summarySheet.mergeCells('A2:H2');
-  const subTitle = summarySheet.getCell('A2');
-  subTitle.value = `विकासखण्ड: ${data.block} | निरीक्षण माह: ${data.month} | रिपोर्ट दिनांक: ${new Date().toLocaleDateString('hi-IN')}`;
+  const title2 = summarySheet.getCell('A2');
+  title2.value = 'माहवार निरीक्षण अनुपालन एवं समीक्षा प्रतिवेदन';
+  title2.font = { name: 'Arial', size: 12, bold: true, color: { argb: 'FFFFFFFF' } };
+  title2.fill = navyHeader;
+  title2.alignment = { horizontal: 'center', vertical: 'middle' };
+  summarySheet.getRow(2).height = 24;
+
+  summarySheet.mergeCells('A3:H3');
+  const subTitle = summarySheet.getCell('A3');
+  subTitle.value = `विकासखण्ड: ${data.block} | समीक्षा माह: ${data.month} | दिनांक: ${new Date().toLocaleDateString('hi-IN')}`;
   subTitle.font = { name: 'Arial', size: 10, bold: true, color: { argb: 'FF1E293B' } };
   subTitle.alignment = { horizontal: 'center', vertical: 'middle' };
-  summarySheet.getRow(2).height = 20;
+  summarySheet.getRow(3).height = 20;
 
   summarySheet.addRow([]); // Blank row
 
