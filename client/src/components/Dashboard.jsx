@@ -133,40 +133,15 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
 
           {/* Action Buttons */}
           <div className="flex flex-wrap items-center gap-2 self-start sm:self-center">
-            {isAdmin && (
-              <>
-                <button
-                  onClick={onViewOfficers}
-                  className="bg-sky-500 hover:bg-sky-600 text-slate-950 font-bold text-xs py-2.5 px-3 rounded-xl shadow-md flex items-center justify-center gap-1.5 transition active:scale-95"
-                >
-                  <Users className="w-4 h-4 text-slate-950" />
-                  <span>नोडल अधिकारी प्रबंधन</span>
-                </button>
-                <button
-                  onClick={onViewCompliance}
-                  className="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-xs py-2.5 px-3 rounded-xl shadow-md flex items-center justify-center gap-1.5 transition active:scale-95"
-                >
-                  <ClipboardCheck className="w-4 h-4 text-slate-950" />
-                  <span>माहवार समीक्षा</span>
-                </button>
-                <button
-                  onClick={() => setShowMasterDataControl(true)}
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs py-2.5 px-3 rounded-xl shadow-md flex items-center justify-center gap-1.5 transition active:scale-95"
-                  title="मास्टर डेटा एवं फ़ील्ड दृश्यता नियंत्रित करें"
-                >
-                  <Database className="w-4 h-4 text-indigo-200" />
-                  <span>मास्टर डेटा प्रबंधन</span>
-                </button>
-              </>
+            {!isAdmin && (
+              <button
+                onClick={onViewGoswara}
+                className="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs py-2.5 px-3 rounded-xl shadow-md flex items-center justify-center gap-1.5 transition active:scale-95"
+              >
+                <FileSpreadsheet className="w-4 h-4 text-emerald-800" />
+                <span>गोसवारा रिपोर्ट</span>
+              </button>
             )}
-
-            <button
-              onClick={onViewGoswara}
-              className="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs py-2.5 px-3 rounded-xl shadow-md flex items-center justify-center gap-1.5 transition active:scale-95"
-            >
-              <FileSpreadsheet className="w-4 h-4 text-emerald-800" />
-              <span>गोसवारा रिपोर्ट</span>
-            </button>
 
             <button
               onClick={loadDashboardData}
@@ -387,60 +362,6 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
           </div>
         </>
       )}
-
-      {/* Recent Inspections Timeline */}
-      <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 space-y-3">
-        <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-          <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-            <Clock className="w-4 h-4 text-blue-600" />
-            हाल ही में किए गए निरीक्षण (Recent Activity)
-          </h3>
-          <button
-            onClick={onViewGoswara}
-            className="text-xs text-blue-700 hover:underline font-semibold"
-          >
-            सभी देखें
-          </button>
-        </div>
-
-        {recentList.length > 0 ? (
-          <div className="divide-y divide-slate-100">
-            {recentList.slice(0, 6).map((item, idx) => (
-              <div
-                key={item.id || idx}
-                onClick={() => onViewDetail({ type: item.typeKey, record: item })}
-                className="py-2.5 flex items-center justify-between gap-3 hover:bg-slate-50 px-2 rounded-xl cursor-pointer transition"
-              >
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold text-slate-900 truncate">
-                      {item.centerName || item.schoolName || item.hostelName || item.shopName || item.village || item.beneficiaryName || 'निरीक्षण'}
-                    </span>
-                    <span className="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.2 rounded-full font-medium shrink-0">
-                      {item.typeNameHindi}
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-slate-500 truncate">
-                    {item.panchayat || item.village || 'ग्राम'} • {item.date || item.inspectionDate} • द्वारा: {item.officerName}
-                  </p>
-                </div>
-
-                <div className="text-right shrink-0">
-                  <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${
-                    item.isDraft ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'
-                  }`}>
-                    {item.status || 'पूर्ण'}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="py-8 text-center text-slate-400 text-xs">
-            अभी तक कोई निरीक्षण दर्ज नहीं किया गया है। ऊपर दिए गए प्रपत्रों से पहला निरीक्षण दर्ज करें।
-          </div>
-        )}
-      </div>
 
       {/* Admin Master Data Management & Field Control Modal */}
       <AdminMasterDataModal
