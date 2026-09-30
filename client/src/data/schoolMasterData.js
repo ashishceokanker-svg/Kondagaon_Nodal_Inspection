@@ -8169,6 +8169,76 @@ export const deleteSchoolMaster = (block, panchayat, schoolName) => {
   window.dispatchEvent(new Event('masterDataUpdated'));
 };
 
+export const getAllSchoolsList = (blockFilter = 'ALL', panchayatFilter = 'ALL', searchQuery = '') => {
+  let list = [];
+  const blocks = blockFilter === 'ALL' ? Object.keys(SCHOOL_MASTER_DATA) : [blockFilter];
+
+  const deletedKeys = getDeletedSchools();
+  const editedDict = getEditedSchools();
+
+  blocks.forEach(bKey => {
+    const actualBlockKey = Object.keys(SCHOOL_MASTER_DATA).find(b => matchBlock(b, bKey)) || bKey;
+    const blockData = SCHOOL_MASTER_DATA[actualBlockKey] || {};
+
+    let panchayats = [];
+    if (panchayatFilter === 'ALL') {
+      panchayats = Object.keys(blockData);
+    } else {
+      const normP = normalizeStr(panchayatFilter);
+      const foundP = Object.keys(blockData).find(p => normalizeStr(p) === normP) || panchayatFilter;
+      panchayats = [foundP];
+    }
+
+    panchayats.forEach(pName => {
+      let baseSchools = blockData[pName] || [];
+      if (baseSchools.length === 0) {
+        const normP = normalizeStr(pName);
+        for (const [k, v] of Object.entries(blockData)) {
+          if (normalizeStr(k) === normP) {
+            baseSchools = v;
+            break;
+          }
+        }
+      }
+
+      baseSchools.forEach(s => {
+        const delKey = `${actualBlockKey}::${pName}::${s.name}`;
+        if (!deletedKeys.includes(delKey)) {
+          const editKey = `${actualBlockKey}::${pName}::${s.name}`;
+          const item = editedDict[editKey] ? { ...s, ...editedDict[editKey] } : { ...s };
+          list.push({ ...item, block: actualBlockKey, panchayat: pName });
+        }
+      });
+    });
+  });
+
+  const customSchools = getCustomSchools();
+  customSchools.forEach(cs => {
+    const matchesBlock = blockFilter === 'ALL' || matchBlock(cs.block, blockFilter);
+    const matchesPanch = panchayatFilter === 'ALL' || normalizeStr(cs.panchayat) === normalizeStr(panchayatFilter);
+    if (matchesBlock && matchesPanch) {
+      const delKey = `${cs.block}::${cs.panchayat}::${cs.name}`;
+      if (!deletedKeys.includes(delKey)) {
+        const editKey = `${cs.block}::${cs.panchayat}::${cs.name}`;
+        const item = editedDict[editKey] ? { ...cs, ...editedDict[editKey] } : { ...cs };
+        list.push({ ...item, isCustom: true });
+      }
+    }
+  });
+
+  if (searchQuery.trim()) {
+    const q = searchQuery.toLowerCase().trim();
+    list = list.filter(s =>
+      s.name.toLowerCase().includes(q) ||
+      s.block.toLowerCase().includes(q) ||
+      s.panchayat.toLowerCase().includes(q) ||
+      (s.category && s.category.toLowerCase().includes(q))
+    );
+  }
+
+  return list;
+};
+
 export const getSchoolsForPanchayat = (blockName, panchayatName) => {
   if (!blockName || !panchayatName) return [];
 

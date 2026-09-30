@@ -396,7 +396,7 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
                 >
                   {availableHostels.map(h => (
                     <option key={h.name} value={h.name}>
-                      {h.name} ({h.village}) - {h.category} {h.hostelType}
+                      {h.name}
                     </option>
                   ))}
                   <option value="other">-- अन्य (कस्टम प्रविष्टि) --</option>

@@ -335,6 +335,78 @@ export const deleteHostelMaster = (block, panchayat, hostelName) => {
   window.dispatchEvent(new Event('masterDataUpdated'));
 };
 
+export const getAllHostelsList = (blockFilter = 'ALL', panchayatFilter = 'ALL', searchQuery = '') => {
+  let list = [];
+  const blocks = blockFilter === 'ALL' ? Object.keys(HOSTEL_MASTER_DATA) : [blockFilter];
+
+  const deletedKeys = getDeletedHostels();
+  const editedDict = getEditedHostels();
+
+  blocks.forEach(bKey => {
+    const actualBlockKey = Object.keys(HOSTEL_MASTER_DATA).find(b => matchBlock(b, bKey)) || bKey;
+    const blockData = HOSTEL_MASTER_DATA[actualBlockKey] || {};
+
+    let panchayats = [];
+    if (panchayatFilter === 'ALL') {
+      panchayats = Object.keys(blockData);
+    } else {
+      const normP = normalizeStr(panchayatFilter);
+      const foundP = Object.keys(blockData).find(p => normalizeStr(p) === normP) || panchayatFilter;
+      panchayats = [foundP];
+    }
+
+    panchayats.forEach(pName => {
+      let baseHostels = blockData[pName] || [];
+      if (baseHostels.length === 0) {
+        const normP = normalizeStr(pName);
+        for (const [k, v] of Object.entries(blockData)) {
+          if (normalizeStr(k) === normP) {
+            baseHostels = v;
+            break;
+          }
+        }
+      }
+
+      baseHostels.forEach(h => {
+        const delKey = `${actualBlockKey}::${pName}::${h.name}`;
+        if (!deletedKeys.includes(delKey)) {
+          const editKey = `${actualBlockKey}::${pName}::${h.name}`;
+          const item = editedDict[editKey] ? { ...h, ...editedDict[editKey] } : { ...h };
+          list.push({ ...item, block: actualBlockKey, panchayat: pName });
+        }
+      });
+    });
+  });
+
+  const customHostels = getCustomHostels();
+  customHostels.forEach(ch => {
+    const matchesBlock = blockFilter === 'ALL' || matchBlock(ch.block, blockFilter);
+    const matchesPanch = panchayatFilter === 'ALL' || normalizeStr(ch.panchayat) === normalizeStr(panchayatFilter);
+    if (matchesBlock && matchesPanch) {
+      const delKey = `${ch.block}::${ch.panchayat}::${ch.name}`;
+      if (!deletedKeys.includes(delKey)) {
+        const editKey = `${ch.block}::${ch.panchayat}::${ch.name}`;
+        const item = editedDict[editKey] ? { ...ch, ...editedDict[editKey] } : { ...ch };
+        list.push({ ...item, isCustom: true });
+      }
+    }
+  });
+
+  if (searchQuery.trim()) {
+    const q = searchQuery.toLowerCase().trim();
+    list = list.filter(h =>
+      h.name.toLowerCase().includes(q) ||
+      h.block.toLowerCase().includes(q) ||
+      h.panchayat.toLowerCase().includes(q) ||
+      (h.village && h.village.toLowerCase().includes(q)) ||
+      (h.category && h.category.toLowerCase().includes(q)) ||
+      (h.hostelType && h.hostelType.toLowerCase().includes(q))
+    );
+  }
+
+  return list;
+};
+
 export function getHostelsForPanchayat(block, panchayat) {
   if (!block || !panchayat) return [];
   
