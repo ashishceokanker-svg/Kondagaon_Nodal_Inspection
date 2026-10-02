@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   ShieldCheck, MapPin, User, Briefcase, Calendar, KeyRound, Lock, 
   ArrowRight, CheckCircle2, ShieldAlert, Building, RefreshCw, 
-  HelpCircle, X, BookOpen, FileText, Eye, PhoneCall, Layers, Download, Smartphone, Search
+  HelpCircle, X, BookOpen, FileText, Eye, PhoneCall, Layers, Download, Smartphone
 } from 'lucide-react';
 import { API } from '../api';
 import { DISTRICT_BLOCKS, MONTH_OPTIONS, matchBlock, getCurrentMonthString } from '../constants';
@@ -12,7 +12,6 @@ export default function NodalLogin({ onLoginSuccess }) {
   const [officers, setOfficers] = useState([]);
   const [selectedBlock, setSelectedBlock] = useState('फरसगांव');
   const [selectedPanchayat, setSelectedPanchayat] = useState('');
-  const [panchayatSearch, setPanchayatSearch] = useState('');
   const [matchedOfficer, setMatchedOfficer] = useState(null);
   const [selectedMonth, setSelectedMonth] = useState(getCurrentMonthString());
   const [password, setPassword] = useState('');
@@ -54,7 +53,6 @@ export default function NodalLogin({ onLoginSuccess }) {
 
   const handleBlockChange = (blockName) => {
     setSelectedBlock(blockName);
-    setPanchayatSearch('');
     setErrorMsg('');
     setPassword('');
     const blockOfficers = officers.filter(o => matchBlock(o.block, blockName) && !o.panchayat?.includes('रिजर्व'));
@@ -257,50 +255,12 @@ export default function NodalLogin({ onLoginSuccess }) {
                 </select>
               </div>
 
-              {/* Step 2: Select Gram Panchayat with Search Option */}
+              {/* Step 2: Select Gram Panchayat */}
               <div>
-                <div className="flex items-center justify-between mb-1">
-                  <label className="block text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                    <MapPin className="w-4 h-4 text-blue-600" />
-                    ग्राम पंचायत का चयन करें: *
-                  </label>
-                  {panchayatSearch && (
-                    <button
-                      type="button"
-                      onClick={() => setPanchayatSearch('')}
-                      className="text-[10px] text-rose-600 hover:underline font-semibold"
-                    >
-                      हटाएं (Clear)
-                    </button>
-                  )}
-                </div>
-
-                {/* Gram Panchayat Search Box */}
-                <div className="relative mb-2">
-                  <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-                  <input
-                    type="text"
-                    placeholder="🔍 ग्राम पंचायत या अधिकारी का नाम खोजें..."
-                    value={panchayatSearch}
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      setPanchayatSearch(val);
-                      if (val.trim()) {
-                        const term = val.trim().toLowerCase();
-                        const matches = officers.filter(o => 
-                          matchBlock(o.block, selectedBlock) && 
-                          !o.panchayat?.includes('रिजर्व') &&
-                          ((o.panchayat || '').toLowerCase().includes(term) || (o.name || '').toLowerCase().includes(term))
-                        );
-                        if (matches.length === 1) {
-                          handlePanchayatChange(matches[0].panchayat, matches[0]);
-                        }
-                      }
-                    }}
-                    className="w-full text-xs pl-8 pr-3 py-2 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition placeholder:text-slate-400 font-medium shadow-2xs"
-                  />
-                </div>
-
+                <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                  <MapPin className="w-4 h-4 text-blue-600" />
+                  ग्राम पंचायत का चयन करें: *
+                </label>
                 <select
                   value={selectedPanchayat}
                   onChange={(e) => {
@@ -312,15 +272,10 @@ export default function NodalLogin({ onLoginSuccess }) {
                 >
                   <option value="">-- ग्राम पंचायत चुनें --</option>
                   {officers
-                    .filter(o => {
-                      if (!matchBlock(o.block, selectedBlock) || o.panchayat?.includes('रिजर्व')) return false;
-                      if (!panchayatSearch.trim()) return true;
-                      const term = panchayatSearch.trim().toLowerCase();
-                      return (o.panchayat || '').toLowerCase().includes(term) || (o.name || '').toLowerCase().includes(term);
-                    })
+                    .filter(o => matchBlock(o.block, selectedBlock) && !o.panchayat?.includes('रिजर्व'))
                     .map((o, idx) => (
                       <option key={o.id || idx} value={o.panchayat}>
-                        {o.panchayat} — ({o.name})
+                        {idx + 1}. {o.panchayat}
                       </option>
                     ))}
                 </select>
