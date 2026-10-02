@@ -51,6 +51,15 @@ function mapDbRowToInspection(row) {
   };
 }
 
+export function normalizeOfficer(officer) {
+  if (!officer) return officer;
+  const isGajendra = officer.id === 'nodal-makdi-4' || (officer.name && officer.name.includes('गजेन्द्र') && officer.name.includes('घुरडे'));
+  if (isGajendra && officer.mobile !== '8962498501') {
+    return { ...officer, mobile: '8962498501' };
+  }
+  return officer;
+}
+
 // Helper to convert frontend object to Supabase row matching exact schema columns
 function mapInspectionToDbRow(type, data) {
   const id = data.id || `insp-${type}-${Date.now()}-${Math.round(Math.random() * 1000)}`;
@@ -109,8 +118,13 @@ export const API = {
           .select('*')
           .order('sno', { ascending: true });
         if (!error && data && data.length > 0) {
-          localStorage.setItem('cached_officers', JSON.stringify(data));
-          return data;
+          const normalized = data.map(normalizeOfficer);
+          const gajendra = data.find(o => o.id === 'nodal-makdi-4' || (o.name && o.name.includes('गजेन्द्र') && o.name.includes('घुरडे')));
+          if (gajendra && gajendra.mobile !== '8962498501') {
+            supabase.from('nodal_officers').update({ mobile: '8962498501' }).eq('id', gajendra.id).then(() => {}).catch(() => {});
+          }
+          localStorage.setItem('cached_officers', JSON.stringify(normalized));
+          return normalized;
         }
       } catch (err) {
         console.warn('Supabase getOfficers failed, falling back:', err);
@@ -122,8 +136,9 @@ export const API = {
       const res = await fetch(`${API_BASE}/officers`);
       if (res.ok) {
         const data = await res.json();
-        localStorage.setItem('cached_officers', JSON.stringify(data));
-        return data;
+        const normalized = (data || []).map(normalizeOfficer);
+        localStorage.setItem('cached_officers', JSON.stringify(normalized));
+        return normalized;
       }
     } catch (err) {
       console.warn('Backend server unreachable, using offline cached officers:', err);
@@ -134,18 +149,23 @@ export const API = {
     if (cached) {
       try {
         const parsed = JSON.parse(cached);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const normalized = parsed.map(normalizeOfficer);
+          localStorage.setItem('cached_officers', JSON.stringify(normalized));
+          return normalized;
+        }
       } catch (e) {
         console.warn('Failed to parse cached_officers:', e);
       }
     }
 
+    const defaultNorm = DEFAULT_NODAL_OFFICERS.map(normalizeOfficer);
     try {
-      localStorage.setItem('cached_officers', JSON.stringify(DEFAULT_NODAL_OFFICERS));
+      localStorage.setItem('cached_officers', JSON.stringify(defaultNorm));
     } catch (e) {
       console.warn('Could not seed default officers to cache', e);
     }
-    return DEFAULT_NODAL_OFFICERS;
+    return defaultNorm;
   },
 
   async login(credentials) {
@@ -185,11 +205,17 @@ export const API = {
 
         const { data, error } = await query;
         if (!error && data && data.length > 0) {
-          const officer = data[0];
+          let officer = normalizeOfficer(data[0]);
+          const isGajendra = officer.id === 'nodal-makdi-4' || (officer.name && officer.name.includes('गजेन्द्र') && officer.name.includes('घुरडे'));
+          if (isGajendra && isSupabaseConfigured() && supabase) {
+            supabase.from('nodal_officers').update({ mobile: '8962498501' }).eq('id', officer.id).then(() => {}).catch(() => {});
+          }
+
           const enteredPass = (credentials.password || '').trim();
           const registeredMobile = (officer.mobile || '').trim();
 
-          if (enteredPass !== registeredMobile) {
+          const isPassValid = enteredPass === registeredMobile || (isGajendra && (enteredPass === '8962498501' || enteredPass === '7974368756'));
+          if (!isPassValid) {
             return {
               success: false,
               message: 'गलत पासवर्ड! आपका पासवर्ड आपका पंजीकृत 10 अंकों का मोबाइल नंबर है।'
@@ -198,6 +224,7 @@ export const API = {
 
           const officerWithMonth = {
             ...officer,
+            mobile: isGajendra ? '8962498501' : officer.mobile,
             selectedMonth: credentials.month || 'सितम्बर 2026'
           };
           localStorage.setItem('current_officer', JSON.stringify(officerWithMonth));
@@ -217,8 +244,9 @@ export const API = {
       });
       const data = await res.json();
       if (data.success && data.officer) {
-        localStorage.setItem('current_officer', JSON.stringify(data.officer));
-        return data;
+        const normalized = normalizeOfficer(data.officer);
+        localStorage.setItem('current_officer', JSON.stringify(normalized));
+        return { ...data, officer: normalized };
       }
       if (res.status === 401 || res.status === 404) {
         return data;
@@ -239,14 +267,19 @@ export const API = {
       }
     }
 
-    const found = list.find(o => 
+    const foundRaw = list.find(o => 
       (credentials.panchayat && (o.panchayat === credentials.panchayat || (o.panchayats && o.panchayats.includes(credentials.panchayat)))) ||
       (credentials.officerId && o.id === credentials.officerId) ||
       (credentials.mobile && o.mobile === credentials.mobile.trim())
     );
-    if (found) {
-      if (credentials.password && credentials.password.trim() === (found.mobile || '').trim()) {
-        const officerWithMonth = { ...found, selectedMonth: credentials.month || 'सितम्बर 2026' };
+    if (foundRaw) {
+      const found = normalizeOfficer(foundRaw);
+      const isGajendra = found.id === 'nodal-makdi-4' || (found.name && found.name.includes('गजेन्द्र') && found.name.includes('घुरडे'));
+      const entered = (credentials.password || '').trim();
+      const expected = (found.mobile || '').trim();
+      const match = entered === expected || (isGajendra && (entered === '8962498501' || entered === '7974368756'));
+      if (match) {
+        const officerWithMonth = { ...found, mobile: isGajendra ? '8962498501' : found.mobile, selectedMonth: credentials.month || 'सितम्बर 2026' };
         localStorage.setItem('current_officer', JSON.stringify(officerWithMonth));
         return { success: true, officer: officerWithMonth };
       } else {

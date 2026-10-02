@@ -51,6 +51,7 @@ const AGENCIES = [
 const STAGES = [
   'अप्रारंभ (Not Started)',
   'ले-आउट / प्रारंभिक स्तर (Layout)',
+  'प्रगतिरत (In Progress)',
   // भवन निर्माण स्तर
   'भवन - नींव / खुदाई स्तर (Foundation / Excavation)',
   'भवन - प्लिंथ स्तर (Plinth Level)',
@@ -448,7 +449,7 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
 
               <div>
                 <label className="block text-[11px] font-semibold text-slate-700 mb-1">
-                  स्वीकृत लागत राशि (लाख ₹ में)
+                  स्वीकृत लागत राशि (लाख ₹ में) <span className="text-slate-400 font-normal">(ऐच्छिक / Optional)</span>
                 </label>
                 <input
                   type="number"
@@ -462,7 +463,7 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
 
               <div>
                 <label className="block text-[11px] font-semibold text-slate-700 mb-1">
-                  आहरित / व्यय राशि (लाख ₹ में)
+                  आहरित / व्यय राशि (लाख ₹ में) <span className="text-slate-400 font-normal">(ऐच्छिक / Optional)</span>
                 </label>
                 <input
                   type="number"
@@ -549,8 +550,8 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
               <label className="block text-[11px] font-semibold text-slate-700 mb-1">
                 कार्य की स्थिति (Status)
               </label>
-              <div className="flex gap-2">
-                {['चालू', 'बंद / बाधित', 'पूर्ण'].map(statusOption => (
+              <div className="flex gap-2 flex-wrap">
+                {['अप्रारंभ', 'चालू', 'बंद / बाधित', 'पूर्ण'].map(statusOption => (
                   <label key={statusOption} className="flex items-center gap-1.5 cursor-pointer text-xs font-semibold">
                     <input
                       type="radio"
