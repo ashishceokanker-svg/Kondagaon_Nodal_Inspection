@@ -157,13 +157,23 @@ export default function NodalLogin({ onLoginSuccess }) {
     setIsUpdatingApp(true);
     setUpdateMsg('नवीनतम डेटा एवं सेटिंग्स ऑनलाइन सिंक हो रही हैं...');
     try {
+      localStorage.removeItem('cached_officers');
+      localStorage.removeItem('cached_goswara');
+      sessionStorage.clear();
+      if ('caches' in window) {
+        try {
+          const keys = await caches.keys();
+          await Promise.all(keys.map(k => caches.delete(k)));
+        } catch (ce) {}
+      }
+
       await API.refreshAllData();
       await loadOfficers();
       setUpdateMsg('✅ ऐप एवं डेटा सफलतापूर्वक अपडेट हो गया!');
       setTimeout(() => {
         setUpdateMsg('');
-        window.location.reload();
-      }, 1000);
+        window.location.href = window.location.origin + window.location.pathname + '?v=' + Date.now();
+      }, 800);
     } catch (e) {
       setUpdateMsg('⚠️ अपडेट में समस्या आई, कृपया इंटरनेट कनेक्शन जांचें।');
     } finally {
@@ -450,13 +460,13 @@ export default function NodalLogin({ onLoginSuccess }) {
 
             {/* Download Latest APK Button */}
             <a
-              href="/Kondagaon_Nodal_Inspection.apk"
+              href="/Kondagaon_Nodal_Inspection.apk?v=1.6"
               download="Kondagaon_Nodal_Inspection.apk"
               className="w-full bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 text-xs transition active:scale-[0.99] shadow-sm text-center"
               title="नवीनतम एंड्रॉइड ऐप (.apk) डाउनलोड करें"
             >
               <Smartphone className="w-4 h-4 text-amber-700" />
-              <span>📱 नवीनतम एंड्रॉइड ऐप डाउनलोड करें (.apk)</span>
+              <span>📱 नवीनतम एंड्रॉइड ऐप डाउनलोड करें (.apk v1.6)</span>
             </a>
             {updateMsg && (
               <p className="text-[11px] text-center font-bold text-emerald-700 mt-1.5 animate-pulse">
