@@ -795,7 +795,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                     <th className="p-2.5 border-r">संस्था / केन्द्र का नाम</th>
                     <th className="p-2.5 border-r">ग्राम पंचायत / ग्राम</th>
                     <th className="p-2.5 border-r">निरीक्षणकर्ता अधिकारी</th>
-                    <th className="p-2.5 border-r text-center w-16">स्थिति</th>
+                    <th className="p-2.5 border-r text-center w-16 no-print">स्थिति</th>
                     <th className="p-2.5 border-r min-w-[280px] bg-amber-50/80 text-amber-950 font-bold">टीप (निरीक्षणकर्ता की विस्तृत टिप्पणी एवं सुधार हेतु निर्देश)</th>
                     <th className="p-2.5 text-center no-print w-20">कार्रवाई</th>
                   </tr>
@@ -827,7 +827,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
                             <span className="font-semibold text-slate-900">{rec.officerName}</span>
                             {rec.officerDesignation && <span className="text-[11px] text-slate-500 block">{rec.officerDesignation}</span>}
                           </td>
-                          <td className="p-2 border-r text-center">
+                          <td className="p-2 border-r text-center no-print">
                             <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-semibold ${
                               rec.isDraft ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'
                             }`}>

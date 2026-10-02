@@ -50,17 +50,28 @@ const AGENCIES = [
 const STAGES = [
   'अप्रारंभ (Not Started)',
   'ले-आउट / प्रारंभिक स्तर (Layout)',
-  'नींव / खुदाई स्तर (Foundation / Excavation)',
-  'प्लिंथ स्तर (Plinth Level)',
-  'दीवार / लिंटल स्तर (Wall / Lintel)',
-  'छत ढलाई स्तर (Roof / Slab)',
-  'सड़क - सबग्रेड / अर्थवर्क स्तर (Subgrade)',
-  'सड़क - GSB / WBM स्तर (GSB/WBM)',
-  'सड़क - कंक्रीट / डामरीकरण स्तर (Concrete/BT)',
-  'सड़क - साइड शोल्डर / फिनिशिंग स्तर',
+  // भवन निर्माण स्तर
+  'भवन - नींव / खुदाई स्तर (Foundation / Excavation)',
+  'भवन - प्लिंथ स्तर (Plinth Level)',
+  'भवन - दीवार / लिंटल स्तर (Wall / Lintel)',
+  'भवन - छत ढलाई स्तर (Roof / Slab)',
+  'भवन - प्लास्टर / फिनिशिंग स्तर (Finishing)',
+  // सीसी सड़क निर्माण स्तर
+  'सीसी सड़क - अर्थवर्क / सबग्रेड स्तर (Earthwork / Subgrade)',
+  'सीसी सड़क - बेस कोर्स / GSB / WBM लेयर स्तर',
+  'सीसी सड़क - सब-बेस / PCC कंक्रीटिंग स्तर',
+  'सीसी सड़क - मुख्य CC पैनल ढलाई स्तर (CC Pavement)',
+  'सीसी सड़क - जॉइंट कटिंग, क्योरिंग एवं साइड शोल्डर स्तर',
+  // पुलिया / रपटा निर्माण स्तर
+  'पुलिया - नींव खुदाई / अर्थवर्क स्तर (Excavation & Base)',
+  'पुलिया - राफ्ट / बेस कंक्रीट स्तर (Raft / Bed Concrete)',
+  'पुलिया - अबटमेंट / पियर वॉल चिनाई व कंक्रीटिंग (Abutment / Pier Wall)',
+  'पुलिया - स्लैब ढलाई / सुपरस्ट्रक्चर स्तर (Deck Slab Casting)',
+  'पुलिया - विंग वॉल, एप्रोच रोड एवं सुरक्षा दीवार स्तर',
+  // नाली निर्माण स्तर
   'नाली - बेस कंक्रीट / खुदाई स्तर (Drain Bed)',
-  'नाली - साइड वॉल कंक्रीटिंग स्तर (Drain Wall)',
-  'प्लास्टर / फिनिशिंग स्तर (Finishing)',
+  'नाली - साइड वॉल कंक्रीटिंग / फिनिशिंग स्तर',
+  // सामान्य एवं पूर्ण
   'कार्य पूर्ण (Completed)',
   'कार्य बंद / बाधित (Stalled)'
 ];
@@ -421,18 +432,6 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
                 )}
               </div>
 
-              <div>
-                <label className="block text-[11px] font-semibold text-slate-700 mb-1">
-                  प्रशासकीय स्वीकृति (AS) क्र. व दिनांक
-                </label>
-                <input
-                  type="text"
-                  placeholder="उदा. 452/जि.पं./2024-25 दि. 15.01.2025"
-                  value={formData.asNumberDate}
-                  onChange={e => setFormData({ ...formData, asNumberDate: e.target.value })}
-                  className="w-full p-2.5 border border-slate-300 rounded-lg bg-white"
-                />
-              </div>
 
               <div>
                 <label className="block text-[11px] font-semibold text-slate-700 mb-1">

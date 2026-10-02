@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   ShieldCheck, MapPin, User, Briefcase, Calendar, KeyRound, Lock, 
   ArrowRight, CheckCircle2, ShieldAlert, Building, RefreshCw, 
-  HelpCircle, X, BookOpen, FileText, Eye, PhoneCall, Layers
+  HelpCircle, X, BookOpen, FileText, Eye, PhoneCall, Layers, Download, Smartphone
 } from 'lucide-react';
 import { API } from '../api';
 import { DISTRICT_BLOCKS, MONTH_OPTIONS, matchBlock, getCurrentMonthString } from '../constants';
@@ -436,6 +436,17 @@ export default function NodalLogin({ onLoginSuccess }) {
               <RefreshCw className={`w-4 h-4 text-emerald-600 ${isUpdatingApp ? 'animate-spin' : ''}`} />
               <span>{isUpdatingApp ? 'अपडेट हो रहा है...' : 'ऐप एवं ऑनलाइन डेटा अपडेट करें (Update App & Sync)'}</span>
             </button>
+
+            {/* Download Latest APK Button */}
+            <a
+              href="/Kondagaon_Nodal_Inspection.apk"
+              download="Kondagaon_Nodal_Inspection.apk"
+              className="w-full bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 text-xs transition active:scale-[0.99] shadow-sm text-center"
+              title="नवीनतम एंड्रॉइड ऐप (.apk) डाउनलोड करें"
+            >
+              <Smartphone className="w-4 h-4 text-amber-700" />
+              <span>📱 नवीनतम एंड्रॉइड ऐप डाउनलोड करें (.apk)</span>
+            </a>
             {updateMsg && (
               <p className="text-[11px] text-center font-bold text-emerald-700 mt-1.5 animate-pulse">
                 {updateMsg}

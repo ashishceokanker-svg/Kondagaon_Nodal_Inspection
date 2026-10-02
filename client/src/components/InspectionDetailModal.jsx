@@ -136,6 +136,76 @@ export default function InspectionDetailModal({ data, onClose }) {
 
   return (
     <div className="inspection-modal-backdrop fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+      {/* Print Styles for Single Inspection Document */}
+      <style>{`
+        @media print {
+          @page {
+            size: A4 portrait;
+            margin: 10mm 8mm;
+          }
+          body {
+            background: white !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          body * {
+            visibility: hidden;
+          }
+          .inspection-modal-backdrop,
+          .inspection-modal-backdrop * {
+            visibility: visible;
+          }
+          .inspection-modal-backdrop {
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
+            width: 100% !important;
+            min-height: 100% !important;
+            height: auto !important;
+            background: white !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            overflow: visible !important;
+            z-index: 9999999 !important;
+            display: block !important;
+          }
+          .inspection-modal-box {
+            position: static !important;
+            max-width: 100% !important;
+            max-height: none !important;
+            width: 100% !important;
+            height: auto !important;
+            border: none !important;
+            box-shadow: none !important;
+            overflow: visible !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            display: block !important;
+          }
+          .inspection-modal-body {
+            max-height: none !important;
+            overflow: visible !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            display: block !important;
+          }
+          .no-print {
+            display: none !important;
+          }
+          table {
+            page-break-inside: auto;
+            width: 100% !important;
+          }
+          tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
+          }
+          .break-inside-avoid {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+          }
+        }
+      `}</style>
       <div className="inspection-modal-box bg-white rounded-2xl shadow-2xl border border-slate-300 max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden my-auto">
         
         {/* MODAL CONTROL HEADER (Hidden when printing) */}

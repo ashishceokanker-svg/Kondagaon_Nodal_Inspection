@@ -81,13 +81,15 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col selection:bg-blue-600 selection:text-white pb-16 sm:pb-6">
       
-      {/* Top Navbar */}
-      <Navbar
-        officer={officer}
-        onLogout={handleLogout}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-      />
+      {/* Top Navbar (Only visible when logged in, hidden on login page) */}
+      {officer && (
+        <Navbar
+          officer={officer}
+          onLogout={handleLogout}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
+      )}
 
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-5">
