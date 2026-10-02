@@ -195,17 +195,25 @@ export const API = {
     if (isSupabaseConfigured() && supabase) {
       try {
         let query = supabase.from('nodal_officers').select('*');
-        if (credentials.panchayat) {
-          query = query.or(`panchayat.eq.${credentials.panchayat},panchayats.cs.["${credentials.panchayat}"]`);
-        } else if (credentials.officerId) {
+        if (credentials.officerId) {
           query = query.eq('id', credentials.officerId);
+        } else if (credentials.panchayat) {
+          query = query.or(`panchayat.eq.${credentials.panchayat},panchayats.cs.["${credentials.panchayat}"]`);
         } else if (credentials.mobile) {
           query = query.eq('mobile', credentials.mobile.trim());
         }
 
         const { data, error } = await query;
         if (!error && data && data.length > 0) {
-          let officer = normalizeOfficer(data[0]);
+          // Find matching officer if multiple returned (e.g. identical panchayat names across blocks)
+          let matched = data[0];
+          if (credentials.officerId) {
+            matched = data.find(o => o.id === credentials.officerId) || matched;
+          } else if (credentials.block) {
+            matched = data.find(o => matchBlock(o.block, credentials.block)) || matched;
+          }
+
+          let officer = normalizeOfficer(matched);
           const isGajendra = officer.id === 'nodal-makdi-4' || (officer.name && officer.name.includes('गजेन्द्र') && officer.name.includes('घुरडे'));
           if (isGajendra && isSupabaseConfigured() && supabase) {
             supabase.from('nodal_officers').update({ mobile: '8962498501' }).eq('id', officer.id).then(() => {}).catch(() => {});
