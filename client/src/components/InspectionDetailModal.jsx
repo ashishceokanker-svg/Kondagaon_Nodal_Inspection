@@ -1135,14 +1135,28 @@ export default function InspectionDetailModal({ data, onClose }) {
                     <span className="text-slate-600 block text-[11px]">योजना / मद:</span>
                     <strong className="text-slate-900">{record.schemeName || '-'}</strong>
                   </div>
-                  <div>
-                    <span className="text-slate-600 block text-[11px]">प्रशासकीय स्वीकृति क्र. व दिनांक:</span>
-                    <strong className="text-slate-800">{record.asNumberDate || '-'}</strong>
-                  </div>
+                  {record.asNumberDate && (
+                    <div>
+                      <span className="text-slate-600 block text-[11px]">प्रशासकीय स्वीकृति क्र. व दिनांक:</span>
+                      <strong className="text-slate-800">{record.asNumberDate}</strong>
+                    </div>
+                  )}
                   <div>
                     <span className="text-slate-600 block text-[11px]">निर्माण एजेंसी:</span>
                     <strong className="text-slate-800">{record.agencyName || 'ग्राम पंचायत'}</strong>
                   </div>
+                  {record.startDate && (
+                    <div>
+                      <span className="text-slate-600 block text-[11px]">कार्य प्रारंभ दिनांक:</span>
+                      <strong className="text-slate-800">{record.startDate}</strong>
+                    </div>
+                  )}
+                  {record.targetDate && (
+                    <div>
+                      <span className="text-slate-600 block text-[11px]">लक्षित पूर्णता दिनांक:</span>
+                      <strong className="text-slate-800">{record.targetDate}</strong>
+                    </div>
+                  )}
                 </div>
               </div>
 
