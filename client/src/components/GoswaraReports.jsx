@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FileSpreadsheet, Printer, Download, Filter, Eye, Trash2, Calendar, MapPin, Building, Baby, GraduationCap, Wheat, Landmark, Activity, Home, ArrowLeft, MessageSquare, RefreshCw, HardHat } from 'lucide-react';
 import { API } from '../api';
-import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats, matchBlock, getBlockForPanchayat, MONTHS_LIST } from '../constants';
+import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats, matchBlock, getBlockForPanchayat, MONTHS_LIST, getCurrentMonthString } from '../constants';
 import { exportGoswaraToExcelClient } from '../utils/clientExcelExport';
 
 
@@ -19,12 +19,13 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
   const [allRemarksLoading, setAllRemarksLoading] = useState(false);
 
   // Filters: Locked to officer unless Admin
+  const defaultMonth = officer?.selectedMonth || getCurrentMonthString();
   const [filters, setFilters] = useState(() => {
     if (isAdmin) {
       return {
         block: '',
         panchayat: '',
-        month: 'सितम्बर 2026',
+        month: defaultMonth,
         officerId: ''
       };
     } else {
@@ -32,7 +33,7 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
         block: officer?.block || '',
         panchayat: officerPanchayats.length === 1 ? officerPanchayats[0] : '',
         panchayats: officerPanchayats,
-        month: 'सितम्बर 2026',
+        month: defaultMonth,
         officerId: officer?.id || ''
       };
     }
@@ -54,6 +55,16 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
     } else if (activeSubTab === 'remarks') {
       loadAllRemarks();
     }
+  }, [activeSubTab, selectedFacilityType, filters]);
+
+  useEffect(() => {
+    const handleUpdated = () => {
+      loadGoswaraData();
+      if (activeSubTab === 'facility') loadFacilityRecords(selectedFacilityType);
+      else if (activeSubTab === 'remarks') loadAllRemarks();
+    };
+    window.addEventListener('inspections_updated', handleUpdated);
+    return () => window.removeEventListener('inspections_updated', handleUpdated);
   }, [activeSubTab, selectedFacilityType, filters]);
 
   const loadMastersAndData = async () => {
@@ -402,9 +413,9 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
               <span className="bg-amber-100 text-amber-950 border border-amber-300 font-bold px-2 py-0.5 rounded text-[11px] flex items-center gap-1.5">
                 <span>🛡️ एडमिन खोज एवं फ़िल्टर (Search Options)</span>
               </span>
-              {(filters.block || filters.panchayat || (filters.month && filters.month !== 'सितम्बर 2026')) && (
+              {(filters.block || filters.panchayat || (filters.month && filters.month !== defaultMonth)) && (
                 <button
-                  onClick={() => setFilters({ ...filters, block: '', panchayat: '', month: 'सितम्बर 2026' })}
+                  onClick={() => setFilters({ ...filters, block: '', panchayat: '', month: defaultMonth })}
                   className="text-xs text-rose-600 hover:underline font-bold"
                 >
                   फ़िल्टर रीसेट करें

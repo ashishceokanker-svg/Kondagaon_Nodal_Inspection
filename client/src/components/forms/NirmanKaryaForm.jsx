@@ -4,7 +4,7 @@ import {
   Building2, CheckSquare, FileText, AlertTriangle, Layers, DollarSign, Wrench, ShieldCheck
 } from 'lucide-react';
 import { API } from '../../api';
-import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../../constants';
+import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats, dateToMonthString } from '../../constants';
 import GeoPhotoCapture from '../GeoPhotoCapture';
 import { useFormVisibility } from '../../utils/useFormVisibility';
 
@@ -107,6 +107,7 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
     }
     return {
       date: today,
+      month: officer?.selectedMonth || dateToMonthString(today),
       officerId: officer?.id || '',
       officerName: officer?.name || '',
       officerDesignation: officer?.designation || '',
@@ -181,9 +182,11 @@ export default function NirmanKaryaForm({ officer, onBack, onSuccess, initialDat
       const finalAgencyName = formData.agencyName === 'अन्य कार्य एजेंसी'
         ? (formData.customAgencyName.trim() || 'अन्य कार्य एजेंसी')
         : formData.agencyName;
+      const finalMonth = formData.month || officer?.selectedMonth || dateToMonthString(formData.date);
 
       const payload = {
         ...formData,
+        month: finalMonth,
         agencyName: finalAgencyName,
         isDraft,
         status: isDraft ? 'ड्राफ्ट (लंबित)' : 'जमा किया गया (पूर्ण)'

@@ -120,6 +120,25 @@ export const getCurrentMonthString = () => {
   return `${monthName} ${year}`;
 };
 
+export const dateToMonthString = (dateStr) => {
+  if (!dateStr) return getCurrentMonthString();
+  try {
+    const parts = String(dateStr).split('-');
+    if (parts.length >= 2) {
+      const year = parts[0];
+      const monthIdx = parseInt(parts[1], 10) - 1;
+      const monthNames = [
+        'जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून',
+        'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवम्बर', 'दिसम्बर'
+      ];
+      if (monthIdx >= 0 && monthIdx < 12) {
+        return `${monthNames[monthIdx]} ${year}`;
+      }
+    }
+  } catch (e) {}
+  return getCurrentMonthString();
+};
+
 export const getOfficerPanchayats = (officer) => {
   if (!officer) return [];
   const list = [];

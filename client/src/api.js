@@ -2,7 +2,7 @@
 
 import { supabase, isSupabaseConfigured } from './supabaseClient';
 import { DEFAULT_NODAL_OFFICERS } from './data/defaultOfficers';
-import { matchBlock, getPanchayatsForBlock, getBlockForPanchayat } from './constants';
+import { matchBlock, getPanchayatsForBlock, getBlockForPanchayat, getCurrentMonthString, dateToMonthString } from './constants';
 
 const API_BASE = '/api';
 
@@ -74,7 +74,7 @@ function mapInspectionToDbRow(type, data) {
     panchayat: data.panchayat || '',
     village: data.village || '',
     date: data.date || '',
-    month: data.month || 'सितम्बर 2026',
+    month: data.month || (data.date ? dateToMonthString(data.date) : getCurrentMonthString()),
     status: data.status || 'पूर्ण',
     remarks: data.remarks || data.overallRemarks || data.academicRemarks || '',
     photo_url: data.photoUrl || '',
@@ -567,14 +567,20 @@ export const API = {
           let query = supabase.from('masters').select('*').eq('district', 'inspections_nirman');
           const { data, error } = await query;
           if (!error && Array.isArray(data)) {
-            let mapped = data.map(r => ({
-              ...(r.panchayats || {}),
-              id: r.id,
-              date: r.panchayats?.date || (r.updated_at ? r.updated_at.slice(0, 10) : ''),
-              block: r.panchayats?.block || (Array.isArray(r.blocks) ? r.blocks[0] : ''),
-              panchayat: r.panchayats?.panchayat || (Array.isArray(r.blocks) ? r.blocks[1] : ''),
-              officerId: r.panchayats?.officerId || (Array.isArray(r.blocks) ? r.blocks[2] : '')
-            }));
+            let mapped = data.map(r => {
+              const p = r.panchayats || {};
+              const date = p.date || (r.updated_at ? r.updated_at.slice(0, 10) : '');
+              const itemMonth = p.month || (date ? dateToMonthString(date) : getCurrentMonthString());
+              return {
+                ...p,
+                id: r.id,
+                date,
+                month: itemMonth,
+                block: p.block || (Array.isArray(r.blocks) ? r.blocks[0] : ''),
+                panchayat: p.panchayat || (Array.isArray(r.blocks) ? r.blocks[1] : ''),
+                officerId: p.officerId || (Array.isArray(r.blocks) ? r.blocks[2] : '')
+              };
+            });
             if (filters.officerId && filters.officerId !== 'admin') {
               mapped = mapped.filter(item => item.officerId === filters.officerId || item.officer_id === filters.officerId);
             }
@@ -588,7 +594,9 @@ export const API = {
             }
             if (filters.startDate) mapped = mapped.filter(item => (item.date || item.inspectionDate || '') >= filters.startDate);
             if (filters.endDate) mapped = mapped.filter(item => (item.date || item.inspectionDate || '') <= filters.endDate);
-            if (filters.month) mapped = mapped.filter(item => item.month === filters.month);
+            if (filters.month) {
+              mapped = mapped.filter(item => item.month === filters.month || (item.date && dateToMonthString(item.date) === filters.month));
+            }
             mapped.sort((a, b) => new Date(b.date || b.createdAt || 0) - new Date(a.date || a.createdAt || 0));
 
             localStorage.setItem(`cached_inspections_${type}`, JSON.stringify(mapped));
@@ -598,7 +606,9 @@ export const API = {
             } else if (filters.panchayats && Array.isArray(filters.panchayats) && filters.panchayats.length > 0) {
               drafts = drafts.filter(item => filters.panchayats.includes(item.panchayat));
             }
-            if (filters.month) drafts = drafts.filter(item => item.month === filters.month);
+            if (filters.month) {
+              drafts = drafts.filter(item => item.month === filters.month || (item.date && dateToMonthString(item.date) === filters.month));
+            }
             return [...drafts, ...mapped];
           }
         } else {
@@ -700,7 +710,8 @@ export const API = {
       try {
         if (type === 'nirman') {
           const id = data.id || `insp-nirman-${Date.now()}-${Math.round(Math.random() * 1000)}`;
-          const itemToSave = { ...data, id, type: 'nirman' };
+          const month = data.month || (data.date ? dateToMonthString(data.date) : getCurrentMonthString());
+          const itemToSave = { ...data, id, type: 'nirman', month };
           const row = {
             id,
             district: 'inspections_nirman',
@@ -710,8 +721,12 @@ export const API = {
           };
           const { error } = await supabase.from('masters').upsert(row);
           if (!error) {
+            localStorage.removeItem('cached_goswara');
             this.removeOfflineDraft('nirman', data.draftId || id);
             this._updateCachedInspection('nirman', itemToSave);
+            try {
+              window.dispatchEvent(new CustomEvent('inspections_updated', { detail: { type: 'nirman', item: itemToSave } }));
+            } catch (e) {}
             return { success: true, item: itemToSave };
           } else {
             console.warn('Supabase nirman upsert error:', error);
@@ -726,8 +741,12 @@ export const API = {
           if (!error) {
             const rowToUse = (savedRows && savedRows.length > 0) ? savedRows[0] : dbRow;
             const item = mapDbRowToInspection(rowToUse);
+            localStorage.removeItem('cached_goswara');
             this.removeOfflineDraft(type, data.draftId || data.id);
             this._updateCachedInspection(type, item);
+            try {
+              window.dispatchEvent(new CustomEvent('inspections_updated', { detail: { type, item } }));
+            } catch (e) {}
             return { success: true, item };
           } else {
             console.warn('Supabase upsert error, falling back to local/draft:', error);
@@ -783,11 +802,15 @@ export const API = {
 
     // Remove from offline drafts and cache
     this.removeOfflineDraft(type, id);
+    localStorage.removeItem('cached_goswara');
     const cached = localStorage.getItem(`cached_inspections_${type}`);
     if (cached) {
       const list = JSON.parse(cached).filter(i => i.id !== id);
       localStorage.setItem(`cached_inspections_${type}`, JSON.stringify(list));
     }
+    try {
+      window.dispatchEvent(new CustomEvent('inspections_updated', { detail: { type, id } }));
+    } catch (e) {}
     return { success: true };
   },
 

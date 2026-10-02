@@ -12,6 +12,11 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
 
   useEffect(() => {
     loadDashboardData();
+    const handleUpdated = () => {
+      loadDashboardData();
+    };
+    window.addEventListener('inspections_updated', handleUpdated);
+    return () => window.removeEventListener('inspections_updated', handleUpdated);
   }, [officer]);
 
   const loadDashboardData = async () => {
