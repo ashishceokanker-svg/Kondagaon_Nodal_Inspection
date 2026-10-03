@@ -539,7 +539,7 @@ export default function NodalLogin({ onLoginSuccess }) {
                 <ul className="list-disc list-inside space-y-1.5 text-slate-700 ml-1">
                   <li><strong>विकासखण्ड चुनें:</strong> अपना ब्लॉक (उदा. फरसगांव, बड़ेराजपुर, केशकाल, कोंडागांव, माकड़ी) ड्रॉपडाउन से चुनें।</li>
                   <li><strong>ग्राम पंचायत चुनें:</strong> अपनी आवंटित ग्राम पंचायत चुनें। चयन करते ही आपका नाम व पद स्वतः प्रदर्शित होगा।</li>
-                  <li><strong>समीक्षा माह चुनें:</strong> जिस माह का निरीक्षण दर्ज कर रहे हैं (उदा. सितम्बर 2026)।</li>
+                  <li><strong>समीक्षा माह:</strong> वर्तमान चालू माह स्वतः निर्धारित एवं सुरक्षित रहता है।</li>
                   <li><strong>पासवर्ड:</strong> अपना <strong>10 अंकों का पंजीकृत मोबाइल नंबर</strong> पासवर्ड के रूप में दर्ज करें और <em>'नोडल लॉगिन करें'</em> बटन दबाएं।</li>
                 </ul>
               </div>
@@ -617,6 +617,27 @@ export default function NodalLogin({ onLoginSuccess }) {
                   यदि आपके मोबाइल या ब्राउज़र में कोई नया फॉर्म या नया डेटा तुरंत दिखाई न दे, तो लॉगिन स्क्रीन पर दिए गए 
                   <strong> 'ऐप एवं ऑनलाइन डेटा अपडेट करें (Update App & Sync)'</strong> बटन को दबाएं। यह तुरंत क्लाउड से नवीनतम डेटा व सेटिंग्स लोड कर देता है।
                 </p>
+              </div>
+
+              {/* Step 7: iPhone / iOS Instructions */}
+              <div className="p-3.5 bg-rose-50/80 rounded-xl border-2 border-rose-200">
+                <h4 className="font-bold text-rose-900 text-sm flex items-center gap-2 mb-2">
+                  <span className="w-5 h-5 rounded-full bg-rose-600 text-white text-[11px] flex items-center justify-center font-bold">7</span>
+                  📱 iPhone / iOS मोबाइल में ऐप कैसे चलाएं (Apple Users)
+                </h4>
+                <div className="space-y-2 text-slate-700">
+                  <p className="text-rose-950 font-semibold">
+                    <strong>ध्यान दें:</strong> .apk फाइल केवल Android मोबाइल के लिए होती है, Apple iPhone (iOS) में सुरक्षा कारणों से APK इंस्टॉल नहीं होती। iPhone यूज़र्स इसे 1 मिनट में सीधे होम स्क्रीन पर जोड़कर ऐप की तरह चला सकते हैं:
+                  </p>
+                  <ol className="list-decimal list-inside space-y-1.5 ml-1 font-medium text-slate-800">
+                    <li>iPhone के <strong>Safari</strong> ब्राउज़र में यह लिंक खोलें: <a href="https://kondagaon-nodal.vercel.app" target="_blank" rel="noopener noreferrer" className="text-blue-700 font-bold underline">https://kondagaon-nodal.vercel.app</a></li>
+                    <li>Safari में नीचे बीच में मौजूद <strong>'Share' (शेयर आइकन ⎋)</strong> बटन पर टैप करें।</li>
+                    <li>नीचे स्क्रॉल करके <strong>'Add to Home Screen' (होम स्क्रीन पर जोड़ें)</strong> चुनें और ऊपर दाईं ओर <strong>'Add'</strong> दबाएं।</li>
+                  </ol>
+                  <div className="p-2.5 bg-white rounded-lg border border-rose-200 text-[11px] text-slate-800 leading-normal">
+                    ✨ <strong>सुविधा:</strong> iPhone स्क्रीन पर सरकारी मोनो के साथ ऐप आइकन बन जाएगा। इस पर क्लिक करते ही यह बिना किसी ब्राउज़र पट्टी के <strong>फुल-स्क्रीन ऐप</strong> की तरह खुलेगा तथा कैमरा, GPS लोकेशन, सभी 8 निरीक्षण प्रपत्र और गोसवारा रिपोर्ट 100% काम करेंगे।
+                  </div>
+                </div>
               </div>
 
               {/* Contact / Support */}
