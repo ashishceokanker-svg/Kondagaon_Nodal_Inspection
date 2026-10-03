@@ -125,16 +125,9 @@ export default function Navbar({ officer, onLogout, activeTab, setActiveTab, onM
                   <p className="text-xs font-bold leading-tight truncate max-w-[130px] sm:max-w-none">{officer.name}</p>
                 </div>
                 <div className="flex items-center justify-end gap-1.5 text-[10px] text-blue-200 mt-0.5">
-                  <select
-                    value={officer.selectedMonth || getCurrentMonthString()}
-                    onChange={(e) => onMonthChange && onMonthChange(e.target.value)}
-                    className="bg-blue-900/90 text-amber-300 font-bold text-[10px] px-1 py-0.5 rounded border border-blue-400/40 focus:outline-none cursor-pointer"
-                    title="सक्रिय निरीक्षण माह बदलें"
-                  >
-                    {MONTH_OPTIONS.map((m) => (
-                      <option key={m} value={m} className="bg-slate-900 text-white font-normal">{m}</option>
-                    ))}
-                  </select>
+                  <span className="bg-blue-950/80 text-amber-300 font-bold text-[10px] px-1.5 py-0.5 rounded border border-blue-400/40">
+                    माह: {officer.selectedMonth || getCurrentMonthString()}
+                  </span>
                   <span className="hidden sm:inline">• {officer.designation}</span>
                 </div>
               </div>

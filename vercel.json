@@ -26,6 +26,28 @@
           "value": "1; mode=block"
         }
       ]
+    },
+    {
+      "source": "/(index.html)?",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/Kondagaon_Nodal_Inspection.apk",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"Kondagaon_Nodal_Inspection.apk\""
+        }
+      ]
     }
   ]
 }

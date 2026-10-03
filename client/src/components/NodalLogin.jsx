@@ -106,7 +106,7 @@ export default function NodalLogin({ onLoginSuccess }) {
         panchayat: selectedPanchayat,
         officerId: matchedOfficer.id,
         officerName: matchedOfficer.name,
-        month: selectedMonth,
+        month: getCurrentMonthString(),
         password: password.trim()
       });
 
@@ -157,6 +157,14 @@ export default function NodalLogin({ onLoginSuccess }) {
     setIsUpdatingApp(true);
     setUpdateMsg('नवीनतम डेटा एवं सेटिंग्स ऑनलाइन सिंक हो रही हैं...');
     try {
+      // 1. Sync any pending offline drafts
+      try {
+        await API.syncOfflineDrafts();
+      } catch (se) {
+        console.warn('Sync drafts notice:', se);
+      }
+
+      // 2. Clear stale local cache
       localStorage.removeItem('cached_officers');
       localStorage.removeItem('cached_goswara');
       sessionStorage.clear();
@@ -167,13 +175,14 @@ export default function NodalLogin({ onLoginSuccess }) {
         } catch (ce) {}
       }
 
+      // 3. Refresh all master data, officers and visibility settings from Supabase
       await API.refreshAllData();
       await loadOfficers();
-      setUpdateMsg('✅ ऐप एवं डेटा सफलतापूर्वक अपडेट हो गया!');
+      setUpdateMsg('✅ ऐप एवं डेटा सफलतापूर्वक अपडेट व सिंक हो गया!');
       setTimeout(() => {
         setUpdateMsg('');
         window.location.href = window.location.origin + window.location.pathname + '?v=' + Date.now();
-      }, 800);
+      }, 700);
     } catch (e) {
       setUpdateMsg('⚠️ अपडेट में समस्या आई, कृपया इंटरनेट कनेक्शन जांचें।');
     } finally {
@@ -321,21 +330,22 @@ export default function NodalLogin({ onLoginSuccess }) {
                 </div>
               )}
 
-              {/* Step 3: Select Month */}
+              {/* Step 3: Current Month (Locked to current month) */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                   <Calendar className="w-4 h-4 text-purple-600" />
-                  माह का चयन करें (किस माह का निरीक्षण दर्ज कर रहे हैं): *
+                  सक्रिय निरीक्षण माह (Current Month): *
                 </label>
-                <select
-                  value={selectedMonth}
-                  onChange={(e) => setSelectedMonth(e.target.value)}
-                  className="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-white font-bold text-slate-800 focus:ring-2 focus:ring-blue-600 focus:outline-none"
-                >
-                  {MONTH_OPTIONS.map((m) => (
-                    <option key={m} value={m}>{m}</option>
-                  ))}
-                </select>
+                <input
+                  type="text"
+                  readOnly
+                  disabled
+                  value={getCurrentMonthString()}
+                  className="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-slate-100 font-bold text-slate-800 cursor-not-allowed select-none"
+                />
+                <p className="text-[10px] text-slate-500 mt-1 font-medium">
+                  * वर्तमान चालू माह स्वतः निर्धारित है।
+                </p>
               </div>
 
               {/* Step 4: Password */}
@@ -461,13 +471,15 @@ export default function NodalLogin({ onLoginSuccess }) {
 
             {/* Download Latest APK Button */}
             <a
-              href="/Kondagaon_Nodal_Inspection.apk?v=1.6"
+              href="https://kondagaon-nodal.vercel.app/Kondagaon_Nodal_Inspection.apk"
               download="Kondagaon_Nodal_Inspection.apk"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 text-xs transition active:scale-[0.99] shadow-sm text-center"
               title="नवीनतम एंड्रॉइड ऐप (.apk) डाउनलोड करें"
             >
               <Smartphone className="w-4 h-4 text-amber-700" />
-              <span>📱 नवीनतम एंड्रॉइड ऐप डाउनलोड करें (.apk v1.6)</span>
+              <span>📱 नवीनतम एंड्रॉइड ऐप डाउनलोड करें (.apk)</span>
             </a>
             {updateMsg && (
               <p className="text-[11px] text-center font-bold text-emerald-700 mt-1.5 animate-pulse">
