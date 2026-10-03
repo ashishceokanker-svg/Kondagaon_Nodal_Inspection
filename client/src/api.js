@@ -20,6 +20,7 @@ export const DEFAULT_FORM_VISIBILITY = {
 function mapDbRowToInspection(row) {
   if (!row) return null;
   const formData = row.form_data || {};
+  const determinedMonth = row.month || formData.month || (row.date ? dateToMonthString(row.date) : getCurrentMonthString());
   return {
     ...formData,
     id: row.id,
@@ -39,7 +40,7 @@ function mapDbRowToInspection(row) {
     healthCenterName: row.health_center_name || formData.healthCenterName,
     workName: row.work_name || formData.workName || '',
     date: row.date || formData.date,
-    month: row.month || formData.month,
+    month: determinedMonth,
     status: row.status || formData.status || 'पूर्ण',
     remarks: row.remarks || formData.remarks,
     photoUrl: row.photo_url || formData.photoUrl,
@@ -63,6 +64,8 @@ export function normalizeOfficer(officer) {
 // Helper to convert frontend object to Supabase row matching exact schema columns
 function mapInspectionToDbRow(type, data) {
   const id = data.id || `insp-${type}-${Date.now()}-${Math.round(Math.random() * 1000)}`;
+  const currentOfficer = API.getCurrentOfficer();
+  const assignedMonth = data.month || currentOfficer?.selectedMonth || (data.date ? dateToMonthString(data.date) : getCurrentMonthString());
   const row = {
     id,
     officer_id: data.officerId || data.officer_id || '',
@@ -74,14 +77,14 @@ function mapInspectionToDbRow(type, data) {
     panchayat: data.panchayat || '',
     village: data.village || '',
     date: data.date || '',
-    month: data.month || (data.date ? dateToMonthString(data.date) : getCurrentMonthString()),
+    month: assignedMonth,
     status: data.status || 'पूर्ण',
     remarks: data.remarks || data.overallRemarks || data.academicRemarks || '',
     photo_url: data.photoUrl || '',
     latitude: data.latitude ? Number(data.latitude) : null,
     longitude: data.longitude ? Number(data.longitude) : null,
     geo_accuracy: data.geoAccuracy ? Number(data.geoAccuracy) : null,
-    form_data: { ...data, id },
+    form_data: { ...data, id, month: assignedMonth },
     updated_at: new Date().toISOString()
   };
 
@@ -181,7 +184,7 @@ export const API = {
           district: 'कोण्डागांव',
           panchayat: 'समस्त ग्राम पंचायत',
           mobile: '9999999999',
-          selectedMonth: credentials.month || 'सितम्बर 2026'
+          selectedMonth: credentials.month || getCurrentMonthString()
         };
         localStorage.setItem('current_officer', JSON.stringify(adminOfficer));
         return { success: true, officer: adminOfficer };
@@ -233,7 +236,7 @@ export const API = {
           const officerWithMonth = {
             ...officer,
             mobile: isGajendra ? '8962498501' : officer.mobile,
-            selectedMonth: credentials.month || 'सितम्बर 2026'
+            selectedMonth: credentials.month || getCurrentMonthString()
           };
           localStorage.setItem('current_officer', JSON.stringify(officerWithMonth));
           return { success: true, officer: officerWithMonth };
@@ -287,7 +290,7 @@ export const API = {
       const expected = (found.mobile || '').trim();
       const match = entered === expected || (isGajendra && (entered === '8962498501' || entered === '7974368756'));
       if (match) {
-        const officerWithMonth = { ...found, mobile: isGajendra ? '8962498501' : found.mobile, selectedMonth: credentials.month || 'सितम्बर 2026' };
+        const officerWithMonth = { ...found, mobile: isGajendra ? '8962498501' : found.mobile, selectedMonth: credentials.month || getCurrentMonthString() };
         localStorage.setItem('current_officer', JSON.stringify(officerWithMonth));
         return { success: true, officer: officerWithMonth };
       } else {
@@ -626,7 +629,7 @@ export const API = {
           }
           if (filters.startDate) query = query.gte('date', filters.startDate);
           if (filters.endDate) query = query.lte('date', filters.endDate);
-          if (filters.month) query = query.eq('month', filters.month);
+          if (filters.month) query = query.or(`month.eq.${filters.month},month.is.null`);
           query = query.order('created_at', { ascending: false });
 
           const { data, error } = await query;
@@ -640,7 +643,7 @@ export const API = {
             } else if (filters.panchayats && Array.isArray(filters.panchayats) && filters.panchayats.length > 0) {
               mapped = mapped.filter(item => filters.panchayats.includes(item.panchayat));
             }
-            if (filters.month) mapped = mapped.filter(item => item.month === filters.month);
+            if (filters.month) mapped = mapped.filter(item => item.month === filters.month || (item.date && dateToMonthString(item.date) === filters.month));
             localStorage.setItem(`cached_inspections_${type}`, JSON.stringify(mapped));
             // Merge any offline pending drafts
             let drafts = this.getOfflineDrafts(type);
@@ -699,7 +702,7 @@ export const API = {
       combined = combined.filter(item => (item.date || item.inspectionDate) <= filters.endDate);
     }
     if (filters.month) {
-      combined = combined.filter(item => item.month === filters.month);
+      combined = combined.filter(item => item.month === filters.month || (item.date && dateToMonthString(item.date) === filters.month));
     }
     return combined;
   },
@@ -1140,8 +1143,11 @@ export const API = {
   saveOfflineDraft(type, data) {
     const drafts = this.getOfflineDrafts();
     const draftId = data.draftId || data.id || `draft-${Date.now()}`;
+    const currentOff = this.getCurrentOfficer();
+    const activeMonth = data.month || currentOff?.selectedMonth || (data.date ? dateToMonthString(data.date) : getCurrentMonthString());
     const draftItem = {
       ...data,
+      month: activeMonth,
       id: draftId,
       draftId: draftId,
       _inspectionType: type,

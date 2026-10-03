@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Activity, HeartPulse, User, Camera, Save, Send, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { API } from '../../api';
-import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../../constants';
+import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats, dateToMonthString, getCurrentMonthString } from '../../constants';
 import GeoPhotoCapture from '../GeoPhotoCapture';
 import { useFormVisibility } from '../../utils/useFormVisibility';
 
@@ -15,6 +15,7 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
     if (initialData) return initialData;
     return {
       date: today,
+      month: officer?.selectedMonth || dateToMonthString(today) || getCurrentMonthString(),
       officerId: officer?.id || '',
       officerName: officer?.name || '',
       officerDesignation: officer?.designation || '',
@@ -138,9 +139,11 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
     }
     setSaving(true);
     try {
+      const finalMonth = formData.month || officer?.selectedMonth || (formData.date ? dateToMonthString(formData.date) : getCurrentMonthString());
       const allDrugsAvailable = Object.values(formData.drugs).every(v => v === 'उपलब्ध');
       const payload = {
         ...formData,
+        month: finalMonth,
         isDraft,
         essentialDrugsAvailable: allDrugsAvailable ? 'हाँ (सभी 9 दवाएं उपलब्ध)' : 'आंशिक उपलब्ध',
         laborRoomEquipped: formData.labourRoom.sevenTrays === 'हाँ (उपलब्ध)' ? 'हाँ' : 'नहीं',
@@ -173,9 +176,14 @@ export default function HealthForm({ officer, onBack, onSuccess, initialData = n
           >
             <ArrowLeft className="w-3.5 h-3.5" /> वापस
           </button>
-          <span className="text-xs bg-red-950/60 py-1 px-2.5 rounded-full border border-red-400/30">
-            प्रपत्र: Helth.pdf
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-xs bg-red-950/60 py-1 px-2.5 rounded-full border border-red-400/30">
+              माह: {formData.month || officer?.selectedMonth || getCurrentMonthString()}
+            </span>
+            <span className="text-xs bg-red-950/60 py-1 px-2.5 rounded-full border border-red-400/30">
+              प्रपत्र: Helth.pdf
+            </span>
+          </div>
         </div>
         <div className="mt-3 text-center">
           <div className="inline-flex p-2.5 bg-white/10 rounded-2xl mb-2">

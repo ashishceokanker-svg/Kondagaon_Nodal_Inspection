@@ -76,6 +76,16 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleMonthChange = (newMonth) => {
+    if (!officer) return;
+    const updated = { ...officer, selectedMonth: newMonth };
+    setOfficer(updated);
+    localStorage.setItem('current_officer', JSON.stringify(updated));
+    localStorage.removeItem('cached_goswara');
+    window.dispatchEvent(new CustomEvent('month_changed', { detail: newMonth }));
+    window.dispatchEvent(new CustomEvent('inspections_updated', { detail: { month: newMonth } }));
+  };
+
   const isAdmin = officer?.role === 'admin' || officer?.id === 'admin';
 
   return (
@@ -88,6 +98,7 @@ export default function App() {
           onLogout={handleLogout}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
+          onMonthChange={handleMonthChange}
         />
       )}
 

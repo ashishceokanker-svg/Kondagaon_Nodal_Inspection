@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Landmark, Users, MapPin, Calendar, CheckSquare, ChevronDown, ChevronUp, Camera, Save, Send, ArrowLeft } from 'lucide-react';
 import { API } from '../../api';
-import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../../constants';
+import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats, dateToMonthString, getCurrentMonthString } from '../../constants';
 import GeoPhotoCapture from '../GeoPhotoCapture';
 import { useFormVisibility } from '../../utils/useFormVisibility';
 
@@ -16,6 +16,7 @@ export default function GramChaupalForm({ officer, onBack, onSuccess, initialDat
     if (initialData) return initialData;
     return {
       date: today,
+      month: officer?.selectedMonth || dateToMonthString(today) || getCurrentMonthString(),
       officerId: officer?.id || '',
       officerName: officer?.name || '',
       officerDesignation: officer?.designation || '',
@@ -117,8 +118,10 @@ export default function GramChaupalForm({ officer, onBack, onSuccess, initialDat
     }
     setSaving(true);
     try {
+      const finalMonth = formData.month || officer?.selectedMonth || (formData.date ? dateToMonthString(formData.date) : getCurrentMonthString());
       const payload = {
         ...formData,
+        month: finalMonth,
         isDraft,
         status: isDraft ? 'ड्राफ्ट (लंबित)' : 'जमा किया गया (पूर्ण)'
       };
@@ -147,9 +150,14 @@ export default function GramChaupalForm({ officer, onBack, onSuccess, initialDat
           >
             <ArrowLeft className="w-3.5 h-3.5" /> वापस
           </button>
-          <span className="text-xs bg-purple-950/60 py-1 px-2.5 rounded-full border border-purple-400/30">
-            प्रपत्र: Gram Chopal.pdf
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-xs bg-purple-950/60 py-1 px-2.5 rounded-full border border-purple-400/30">
+              माह: {formData.month || officer?.selectedMonth || getCurrentMonthString()}
+            </span>
+            <span className="text-xs bg-purple-950/60 py-1 px-2.5 rounded-full border border-purple-400/30">
+              प्रपत्र: Gram Chopal.pdf
+            </span>
+          </div>
         </div>
         <div className="mt-3 text-center">
           <div className="inline-flex p-2.5 bg-white/10 rounded-2xl mb-2">

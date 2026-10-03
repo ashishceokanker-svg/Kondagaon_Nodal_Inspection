@@ -16,13 +16,20 @@ export default function Dashboard({ officer, onSelectModule, onViewGoswara, onVi
       loadDashboardData();
     };
     window.addEventListener('inspections_updated', handleUpdated);
-    return () => window.removeEventListener('inspections_updated', handleUpdated);
-  }, [officer]);
+    window.addEventListener('month_changed', handleUpdated);
+    return () => {
+      window.removeEventListener('inspections_updated', handleUpdated);
+      window.removeEventListener('month_changed', handleUpdated);
+    };
+  }, [officer, officer?.selectedMonth]);
 
   const loadDashboardData = async () => {
     try {
       const isAdmin = officer?.role === 'admin' || officer?.id === 'admin';
-      const data = await API.getGoswaraSummary({ officerId: isAdmin ? '' : officer?.id });
+      const data = await API.getGoswaraSummary({
+        officerId: isAdmin ? '' : officer?.id,
+        month: officer?.selectedMonth || ''
+      });
       setStats(data);
       setRecentList(data.recentInspections || []);
     } catch (e) {

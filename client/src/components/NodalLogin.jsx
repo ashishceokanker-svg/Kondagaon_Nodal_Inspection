@@ -328,12 +328,13 @@ export default function NodalLogin({ onLoginSuccess }) {
                   माह का चयन करें (किस माह का निरीक्षण दर्ज कर रहे हैं): *
                 </label>
                 <select
-                  value={getCurrentMonthString()}
-                  disabled
+                  value={selectedMonth}
                   onChange={(e) => setSelectedMonth(e.target.value)}
-                  className="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-slate-100 font-bold text-slate-800 cursor-not-allowed"
+                  className="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-white font-bold text-slate-800 focus:ring-2 focus:ring-blue-600 focus:outline-none"
                 >
-                  <option value={getCurrentMonthString()}>{getCurrentMonthString()}</option>
+                  {MONTH_OPTIONS.map((m) => (
+                    <option key={m} value={m}>{m}</option>
+                  ))}
                 </select>
               </div>
 

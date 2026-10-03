@@ -67,6 +67,23 @@ export default function GoswaraReports({ officer, onBack, onSelectInspection }) 
     return () => window.removeEventListener('inspections_updated', handleUpdated);
   }, [activeSubTab, selectedFacilityType, filters]);
 
+  useEffect(() => {
+    if (officer?.selectedMonth && officer.selectedMonth !== filters.month) {
+      setFilters(prev => ({ ...prev, month: officer.selectedMonth }));
+    }
+  }, [officer?.selectedMonth]);
+
+  useEffect(() => {
+    const handleMonthChanged = (e) => {
+      const newMonth = e.detail?.month;
+      if (newMonth && newMonth !== filters.month) {
+        setFilters(prev => ({ ...prev, month: newMonth }));
+      }
+    };
+    window.addEventListener('month_changed', handleMonthChanged);
+    return () => window.removeEventListener('month_changed', handleMonthChanged);
+  }, [filters.month]);
+
   const loadMastersAndData = async () => {
     try {
       const m = await API.getMasters();

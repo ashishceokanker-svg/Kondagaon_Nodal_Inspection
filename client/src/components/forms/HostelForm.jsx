@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Building, Shield, User, Camera, Save, Send, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { API } from '../../api';
-import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats } from '../../constants';
+import { DISTRICT_BLOCKS, getPanchayatsForBlock, getTodayDateString, getOfficerPanchayats, dateToMonthString, getCurrentMonthString } from '../../constants';
 import { getHostelsForPanchayat } from '../../data/hostelMasterData';
 import GeoPhotoCapture from '../GeoPhotoCapture';
 import { useFormVisibility } from '../../utils/useFormVisibility';
@@ -13,9 +13,13 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
   const today = getTodayDateString();
 
   const [formData, setFormData] = useState(() => {
-    if (initialData) return initialData;
+    if (initialData) return {
+      month: initialData.month || officer?.selectedMonth || dateToMonthString(today),
+      ...initialData
+    };
     return {
       date: today,
+      month: officer?.selectedMonth || dateToMonthString(today),
       officerId: officer?.id || '',
       officerName: officer?.name || '',
       officerDesignation: officer?.designation || '',
@@ -202,8 +206,10 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
     }
     setSaving(true);
     try {
+      const finalMonth = formData.month || officer?.selectedMonth || dateToMonthString(formData.date) || getCurrentMonthString();
       const payload = {
         ...formData,
+        month: finalMonth,
         isDraft,
         powerSolar: `विद्युत: ${formData.electricityAvailable}, सोलर: ${formData.solarAvailable}`,
         status: isDraft ? 'ड्राफ्ट (लंबित)' : 'जमा किया गया (पूर्ण)'
@@ -233,9 +239,14 @@ export default function HostelForm({ officer, onBack, onSuccess, initialData = n
           >
             <ArrowLeft className="w-3.5 h-3.5" /> वापस
           </button>
-          <span className="text-xs bg-emerald-950/60 py-1 px-2.5 rounded-full border border-emerald-400/30">
-            प्रपत्र: Hostel_Ashram.pdf
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-bold bg-white/20 text-white px-2.5 py-0.5 rounded-full border border-white/20">
+              📅 माह: {formData.month || officer?.selectedMonth || getCurrentMonthString()}
+            </span>
+            <span className="text-xs bg-emerald-950/60 py-1 px-2.5 rounded-full border border-emerald-400/30">
+              प्रपत्र: Hostel_Ashram.pdf
+            </span>
+          </div>
         </div>
         <div className="mt-3 text-center">
           <div className="inline-flex p-2.5 bg-white/10 rounded-2xl mb-2">
